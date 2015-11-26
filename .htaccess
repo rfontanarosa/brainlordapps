@@ -1,0 +1,3 @@
+<FilesMatch "\.(xml|db|sqlite|7z)$">
+Deny from all
+</FilesMatch>
