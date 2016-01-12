@@ -75,7 +75,7 @@ class DbManager {
 		$query = "SELECT MIN(id) FROM texts WHERE id NOT IN (SELECT id_text FROM trans WHERE status=2 AND author='$uname') AND id > $id";
 		$results = $db->query($query);
 		if ($row = $results->fetchArray()) {
-			$next_id = $row[0];
+			$ret = $row[0];
 		}
 		$results->finalize();
 		return $ret;
@@ -86,7 +86,7 @@ class DbManager {
 		$query = "SELECT MAX(id) FROM texts WHERE id NOT IN (SELECT id_text FROM trans WHERE status=2 AND author='$uname') AND id < $id";
 		$results = $db->query($query);
 		if ($row = $results->fetchArray()) {
-			$next_id = $row[0];
+			$ret = $row[0];
 		}
 		$results->finalize();
 		return $ret;

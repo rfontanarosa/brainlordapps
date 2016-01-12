@@ -137,8 +137,8 @@
 							<a class="btn btn-default"><?php echo sprintf('#%04d', $id); ?></a>
 						</div>
 						<div class="btn-group" role="group">
-							<a class="btn btn-default <?php if (!isset($prev_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($prev_id)) echo $prev_id; ?>">&lsaquo;&nbsp;Prev (TODO)</a>
-							<a class="btn btn-default <?php if (!isset($next_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($next_id)) echo $next_id; ?>">Next (TODO)&nbsp;&rsaquo;</a>
+							<a class="btn btn-default <?php if ($prev_id == 0) echo 'disabled'; ?>" href="?id=<?php if (isset($prev_id)) echo $prev_id; ?>">&lsaquo;&nbsp;Prev (TODO)</a>
+							<a class="btn btn-default <?php if ($next_id == 0) echo 'disabled'; ?>" href="?id=<?php if (isset($next_id)) echo $next_id; ?>">Next (TODO)&nbsp;&rsaquo;</a>
 						</div>
 					</div>
 				</div>
@@ -154,7 +154,9 @@
 									$db = new SQLite3(SQLITE_FILENAME);
 									if ($row = DbManager::getOriginalById($db, $id)) {
 										$text = $row['text_encoded'];
-										//$text = str_replace('{01}', '&#10;', $text);
+										if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
+											$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
+										}
 										echo '<textarea id="original_text" rows="10" style="background: white;" class="form-control" disabled>', $text, '</textarea>';
 									}
 									$db->close();
@@ -180,7 +182,9 @@
 								if ($row = DbManager::getTranslationByUserAndOriginalId($db, $uname, $id)) {
 									$author = $row['author'];
 									$text = $row['new_text'];
-									//$text = str_replace('{01}', '&#10;', $text);
+									if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
+										$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
+									}
 									$status = $row['status'];
 									$date = $row['date'];
 								}
