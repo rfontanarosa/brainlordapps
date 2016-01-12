@@ -1,0 +1,45 @@
+#box1-outer {
+	display: block;
+	width: 224px;
+	width: 204px;
+	height: 96px;
+	height: 76px;
+	padding: 10px;
+	background: url(../images/preview/text-back.png);
+	float: left;
+}
+
+#box1-inner {
+	display: block;
+	width: 202px;
+	height: 74px;
+	text-align: left;
+	font-family: Courier;
+	font-size: 8px;
+	letter-spacing: 2px;
+	line-height: 8px;
+	color: white;
+	border: solid red 1px;
+}
+
+#box2-outer {
+	width: 160px;
+	width: 140px;
+	height: 112px;
+	height: 92px;
+	padding: 10px;
+	background: url(../images/preview/sign-back.png);
+	float: left;
+}
+
+#box2-inner {
+	display: block;
+	width: 138px;
+	height: 90px;
+	text-align: center;
+	font-family: Courier;
+	font-size: 8px;
+	letter-spacing: 3px;
+	color: white;
+	border: solid red 1px;
+}
