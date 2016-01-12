@@ -1,0 +1,76 @@
+body {
+	color: white;
+	padding-top: 70px;
+	background: url(../images/bg1.png);
+}
+
+textarea {
+	font-family: Courier;
+}
+
+.btn-toolbar .btn-group {
+	float: none;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	color: white;
+}
+
+.navbar-inverse {
+	background: url(../images/bg2.png) repeat;
+	border-color: black;
+}
+
+.navbar-inverse .navbar-brand {
+	color: white;
+}
+
+.panel {
+	background-color: #081870;
+}
+
+.panel-default > .panel-footer {
+	background-color: #081870;
+}
+
+.panel-default > .panel-heading {
+	color: white;
+	background-color: #081870;
+}
+
+.form-control {
+	color: black;
+}
+
+.img-responsive {
+	margin: 0 auto;
+}
+
+.progress {
+	margin-bottom: 0px;
+}
+
+.modal-body {
+	color: black;
+}
+
+
+
+
+#preview-panel > div {
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+.nav-tabs.nav-justified {
+	margin-bottom: 10px;
+}
+
+.nav-tabs.nav-justified>li>a, .nav-tabs.nav-justified>li>a:hover, .nav-tabs.nav-justified>li>a:focus {
+	background: #081870;
+	color: white;
+}
+
+.nav-tabs.nav-justified>.active>a, .nav-tabs.nav-justified>.active>a:hover, .nav-tabs.nav-justified>.active>a:focus {
+	background: url(bg4.png) repeat;
+}
