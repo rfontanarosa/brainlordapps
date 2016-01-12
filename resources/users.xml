@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<users>
+	<user>
+		<!-- t3st -->
+		<uname>test</uname>
+		<pass>e86e107b113b0f830b9b817b4a9addb8</pass>
+		<roles>
+			<role>*</role>
+		</roles>
+	</user>
+</users>
