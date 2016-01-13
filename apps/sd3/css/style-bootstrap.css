@@ -1,0 +1,64 @@
+body {
+	color: white;
+	padding-top: 70px;
+	background: url(../images/bg1.png);
+}
+
+textarea {
+	font-family: Courier;
+}
+
+.btn-toolbar .btn-group {
+	float: none;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+	color: white;
+}
+
+.navbar-inverse {
+	background: url(../images/bg3.png) repeat;
+	border-color: black;
+}
+
+.navbar-inverse .navbar-brand {
+	color: white;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+	background-color: #006000;
+	color: white;
+}
+
+.nav-tabs>li>a, .nav-tabs>li>a:focus, .nav-tabs>li>a:hover {
+	background-color: #003800;
+	color: white;
+	border: 1px solid #ddd;
+}
+
+.panel-default > .panel-body {
+	background-color: #003800;
+	color: white;
+}
+
+.panel-default > .panel-footer {
+	background-color: #003800;
+	color: white;
+}
+
+.panel-default > .panel-heading {
+	background-color: #003800;
+	color: white;
+}
+
+.form-control {
+	color: black;
+}
+
+.img-responsive {
+	margin: 0 auto;
+}
+
+.progress {
+	margin-bottom: 0px;
+}

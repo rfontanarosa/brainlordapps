@@ -1,0 +1,45 @@
+.sd3dialogbox .infobox {
+	border: 1px solid white;
+	color: white;
+	font-size: 10px;
+	margin: 10px 0;
+	min-height: 5px;
+	text-align: left;
+	width: 256px;
+}
+
+.sd3dialogbox .counter1, .sd3dialogbox .counter2, .sd3dialogbox .counter3 {
+	margin: 5px;
+}
+
+.sd3dialogbox .alert {
+	color: #fa4444;
+	margin: 5px;
+	padding: 0px;
+	border: none;
+}
+
+.sd3dialogbox .bgimage {
+	background: url(../images/preview/bg5.png) no-repeat;
+	border: 1px solid #333;
+	height: 223px;
+	text-align: left;
+	width: 256px;
+}
+
+.sd3dialogbox .chars {
+	padding-left: 9px;
+	padding-top: 4px;
+	line-height: 0px;
+}
+
+.sd3dialogbox .window {
+	background: url(../images/preview/window.png) no-repeat;
+	height: 54px;
+	margin-top: 15px;
+	width: 254px;
+}
+
+.redtext {
+	color: #fa4444;
+}
