@@ -236,7 +236,7 @@
 			$line = preg_split('//u', $line, -1, PREG_SPLIT_NO_EMPTY);
 			for ($i=0; $i<count($line); $i++) {
 				$char = ys4TextDecoder($line[$i]);
-				$class = isset($map2[$char]) ? 'tile' .$map2[$char] . 'x16' : 'tile4x16';
+				$class = isset($map2[$char]) ? 'tile' . $map2[$char] . 'x16' : 'tile4x16';
 				echo '<img class="tile ' . $class . ' ys4-' . $char . '" src="./images/preview/placeholder-8x16.png">';
 			}
 			echo '<br />';

@@ -7,10 +7,10 @@ function previewBox1(text, output_tag_id, max_chars) {
 		text = text.replace(/\{..\}/g, '');
 		var values = text.split(' ');
 		var lines = ['', '', '', '', '', '', '', '', ''];
-		var line_index = 0
+		var line_index = 0;
 		var line_text = '';
 		var line_size = 0;
-		console.log(values);
+		//console.log(values);
 		$.each(values, function(i, val) {
 			if (val.length > max_chars) {
 				/*
@@ -30,10 +30,10 @@ function previewBox1(text, output_tag_id, max_chars) {
 				line_size = lines[line_index].length;
 			}
 		});
-		console.log(lines);
+		//console.log(lines);
 		$.each(lines, function(i, line) {
 			$(output_inner_box).append(line + '<br />');
-			console.log(i + ' - ' + line.length + ' - ' + line);
+			//console.log(i + ' - ' + line.length + ' - ' + line);
 		});
 		output_outer_box.append(output_inner_box);
 		$('#' + output_tag_id).append(output_outer_box);

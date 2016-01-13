@@ -32,8 +32,6 @@
 }
 .box-test-container {
 	margin: 0px;
-	/*padding-top: 39px;*/
-	/*padding-left: 23px;*/
 	height: 239px;
 	line-height: 14px;
 }
