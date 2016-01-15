@@ -70,7 +70,6 @@
 	margin: 0px;
 	height: 239px;
 	line-height: 14px;
-	text-align: center;
 }
 
 .tile4x16 {
@@ -222,7 +221,7 @@
 		$paddingTop = 8 + ($boxProperties['top'] * 8);
 		$paddingLeft = 8 + ($boxProperties['left'] * 8);
 		$width = $paddingLeft + 8 + ($boxProperties['width'] * 12);
-		if ($id_text >= 1277 && $id_text < 1300) {
+		if (($id_text >= 1277 && $id_text < 1294) || ($id_text >= 975 && $id_text < 977) || $id_text == 987) {
 			echo '<style> .box-dialog-' . $i . ' .tile { background-color: ' . $boxProperties['color'] .'; } </style>';
 			echo '<div class="box-introduction box-introduction-' . $i . '"><div class="box-introduction-container" style="border-right: solid 1px yellow; width: ' . $width . 'px; padding-top: ' . $paddingTop . 'px; padding-left: ' . $paddingLeft . 'px;">';
 		} else {
