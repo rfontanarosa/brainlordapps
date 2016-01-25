@@ -14,6 +14,13 @@
 		}
 	}
 
+	function textClean($text) {
+		if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
+			$text = str_replace(PHP_EOL, NEWLINECHAR, $text);
+		}
+		return $text;
+	}
+
 	function sd3NewTableResolve($text) {
 		return $text;
 	}
@@ -27,7 +34,7 @@
 					$author = UserManager::getUsername();
 					$new_text = $_POST['new_text'];
 					$status = $_POST['status'];
-					$comment = $_POST['comment'];
+					$comment = sqlite_escape_string($_POST['comment']);
 					$time = time();
 					$new_text = textClean($new_text);
 					$new_text = sqlite_escape_string($new_text);
