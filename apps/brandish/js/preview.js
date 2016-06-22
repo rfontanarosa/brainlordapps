@@ -1,5 +1,5 @@
 function previewBox1(text, output_tag_id, max_chars) {
-	splitted_text = text.split(/\{01\}/g);
+	var splitted_text = text.split(/\{01\}/g);
 	$.each(splitted_text, function(k, text) {
 		var output_outer_box = $('<div id="box1-outer"></div>');
 		var output_inner_box = $('<span id="box1-inner"></span>');
@@ -19,8 +19,7 @@ function previewBox1(text, output_tag_id, max_chars) {
 				line_index++;
 				line_size = 0;
 				*/
-			}
-			else {
+			} else {
 				if ((line_size + val.length) > max_chars) {
 					line_index++;
 					line_size = 0;
