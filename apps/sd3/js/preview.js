@@ -25,25 +25,28 @@ function sd3DialogClean(dialog) {
 
 function sd3TextClean(text) {
 	text = text.replace(/<00>/g, "");
-	text = text.replace(/<08>/g, "");
-	text = text.replace(/<07>/g, "");
-	text = text.replace(/<09>/g, "");
+	text = text.replace(/<05>/g, "").replace(/<06>/g, "");
+	text = text.replace(/<07>/g, "").replace(/<08>/g, "").replace(/<09>/g, "");
+	text = text.replace(/<0B>/g, "");
 	text = text.replace(/<16>/g, "");
 	text = text.replace(/<19>/g, "");
-	text = text.replace(/<C2>/g, "");
-	text = text.replace(/<C6>/g, "");
-	text = text.replace(/<F3>/g, "");
+	text = text.replace(/<C1>/g, "").replace(/<C2>/g, "").replace(/<C4>/g, "").replace(/<C6>/g, "");
+	text = text.replace(/<F2>/g, "").replace(/<F3>/g, "").replace(/<F4>/g, "").replace(/<F8>/g, "");
 	text = text.replace(/<BOX>/g, "");
 	text = text.replace(/<OPEN>/g, "");
 	text = text.replace(/<WAIT>/g, "");
 	text = text.replace(/<MULTI>/g, "");
 	text = text.replace(/<CHOICE>/g, "");
-	text = text.replace(/<OR>/g, "");	
+	text = text.replace(/<OR>/g, "");
 	//text = text.replace(/<PAGE>/g, "");
 	text = text.replace(/<END>/g, "");
 	text = text.replace(/<CLOSE>/g, "");
 	text = text.replace(/<LINE>/g, "");
-	text = text.replace(/<KEVIN>/g, "KEVIN");
+	text = text.replace(/<DURAN>/g, "DURAN6");
+	text = text.replace(/<ANGELA>/g, "ANGELA");
+	text = text.replace(/<LISE>/g, "LISE56");
+	text = text.replace(/<HAWK>/g, "HAWK56");
+	text = text.replace(/<KEVIN>/g, "KEVIN6");
 	text = text.replace(/<CARLIE>/g, "CARLIE");
 	return text;
 }
