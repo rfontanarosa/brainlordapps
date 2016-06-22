@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title><?php echo TITLE; ?></title>
+		<title><?php echo TITLE; ?>&nbsp;-&nbsp;Translation Tool</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -66,7 +66,7 @@
 						<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<?php echo UserManager::getUsername(); ?></a></li>
 					</ul>
 				<?php else: ?>
-					<form method="post" class="navbar-form navbar-right" role="navigation">
+					<form method="post" class="navbar-form navbar-right" role="navogation">
 						<div class="form-group">
 							<input type="text" name="uname" class="form-control" placeholder="Username">
 						</div>
@@ -97,21 +97,22 @@
 						$db = new SQLite3(SQLITE_FILENAME);
 						$partially = DbManager::countByUserAndStatus($db, $uname, 1);
 						$done = DbManager::countByUserAndStatus($db, $uname, 2);
+						$undone = LAST_ENTRY - ($done + $partially);
 						$db->close();
 						unset($db);
-						$done = number_format(round(($done/$max_id)*100, 3), 1);
-						$partially = number_format(round(($partially/$max_id)*100, 3), 1);
-						$undone = number_format(100 - $done - $partially, 1);
+						$done100 = number_format(round(($done/$max_id)*100, 3), 1);
+						$partially100 = number_format(round(($partially/$max_id)*100, 3), 1);
+						$undone100 = number_format(100 - $done100 - $partially100, 1);
 					?>
 					<div class="progress">
-						<div class="progress-bar progress-bar-success" style="width: <?php echo $done; ?>%">
-							<span><?php echo $done; ?>% Done</span>
+						<div class="progress-bar progress-bar-success" style="width: <?php echo $done100; ?>%">
+							<span><?php echo $done100; ?>% Done</span>
 						</div>
-						<div class="progress-bar progress-bar-warning" style="width: <?php echo $partially; ?>%">
-							<span><?php echo $partially; ?>% Partially Done</span>
+						<div class="progress-bar progress-bar-warning" style="width: <?php echo $partially100; ?>%">
+							<span><?php echo $partially100; ?>% Partially Done</span>
 						</div>
-						<div class="progress-bar progress-bar-danger" style="width: <?php echo $undone; ?>%">
-							<span><?php echo $undone; ?>% Undone</span>
+						<div class="progress-bar progress-bar-danger" style="width: <?php echo $undone100; ?>%">
+							<span><?php echo $undone100; ?>% Undone</span>
 						</div>
 					</div>
 				</div>
@@ -180,7 +181,6 @@
 								// modified text
 								$db = new SQLite3(SQLITE_FILENAME);
 								if ($row = DbManager::getTranslationByUserAndOriginalId($db, $uname, $id)) {
-									$author = $row['author'];
 									$text = $row['new_text'];
 									if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
 										$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
@@ -194,7 +194,6 @@
 							?>
 							<form method="post" id="form1">
 								<input type="hidden" name="id_text" value="<?php echo $id; ?>" />
-								<input type="hidden" name="author" value="<?php echo $uname; ?>" />
 								<?php
 									switch ($status) {
 										case '0':
@@ -266,7 +265,7 @@
 
 	<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
-			<div class="modal-content">	
+			<div class="modal-content">
 				<div class="modal-body"><span class="label"></span></div>
 			</div>
 		</div>

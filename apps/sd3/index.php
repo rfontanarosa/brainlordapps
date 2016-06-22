@@ -21,7 +21,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title><?php echo TITLE; ?></title>
+		<title><?php echo TITLE; ?>&nbsp;-&nbsp;Translation Tool</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -94,33 +94,19 @@
 				<div class="col-xs-6 col-md-6 col-lg-6">
 					<?php
 						$db = new SQLite3(SQLITE_FILENAME);
-						// instance
-						$query = "SELECT COUNT(*) FROM trans WHERE author='$uname' AND status = '1' OR status = '2'";
-						$results = $db->query($query);
-						if ($row = $results->fetchArray()) {
-							$done = $row[0];
-						}
-						$undone = $max_id - $done;
-						// size
-						$query = "SELECT sum(size) FROM trans join texts on trans.id_text= texts.id WHERE author='$uname' AND status = '2'";
-						$results = $db->query($query);
-						if ($row = $results->fetchArray()) {
-							$translated = $row[0];
-						}
-						$query = "SELECT sum(size) FROM texts";
-						$results = $db->query($query);
-						if ($row = $results->fetchArray()) {
-							$total = $row[0];
-						}
-						$results->finalize();
+						$partially = DbManager::countByUserAndStatus($db, $uname, 1);
+						$done = DbManager::countByUserAndStatus($db, $uname, 2);
+						$undone = LAST_ENTRY - ($done + $partially);
 						$db->close();
 						unset($db);
 						$done100 = number_format(round(($done/$max_id)*100, 3), 1);
-						$undone100 = number_format(100 - $done, 1);
+						$partially100 = number_format(round(($partially/$max_id)*100, 3), 1);
+						$undone100 = number_format(100 - $done100 - $partially100, 1);
 					?>
 					<ul class="list-group">
-						<li class="list-group-item list-group-item-success"><?php echo $done100 ?>% Done (<?php echo $done ?>)</li>
-						<li class="list-group-item list-group-item-danger"><?php echo $undone100; ?>% Undone (<?php echo $undone ?>)</li>
+						<li class="list-group-item list-group-item-success"><span class="badge"><?php echo $done ?></span>Done (<?php echo $done100 ?>%)</li>
+						<li class="list-group-item list-group-item-warning"><span class="badge"><?php echo $partially ?></span>Partially Done (<?php echo $partially100 ?>%)</li>
+						<li class="list-group-item list-group-item-danger"><span class="badge"><?php echo $undone ?></span>Undone (<?php echo $undone100 ?>)</li>
 					</ul>
 				</div>
 			</div>
@@ -169,18 +155,15 @@
 									<?php
 										try {
 											$db = new SQLite3(SQLITE_FILENAME);
-											$query = "SELECT * FROM texts WHERE id = '$id'";
-											$results = $db->query($query);
-											if ($row = $results->fetchArray()) {
+											if ($row = DbManager::getOriginalById($db, $id)) {
 												$text = $row['text_encoded'];
 												$size = $row['size'];
 												$block = $row['block'];
 												$id2 = $row['id2'];
 												if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
-													$text = str_replace(NEWLINECHAR, '-----', $text);
+													$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
 												}
 											}
-											$results->finalize();
 											$db->close();
 											unset($db);
 										}
@@ -211,20 +194,16 @@
 									<?php
 										// modified text
 										$db = new SQLite3(SQLITE_FILENAME);
-										$query = "SELECT * FROM trans JOIN texts ON trans.id_text = texts.id WHERE author='$uname' AND id_text = '$id'";
-										$results = $db->query($query);
-										if ($row = $results->fetchArray()) {
-											$author = $row['author'];
+										if ($row = DbManager::getTranslationByUserAndOriginalId($db, $uname, $id)) {
 											$text = $row['new_text'];
 											$comment = $row['comment'];
+											if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
+												$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
+											}
 											$status = $row['status'];
 											$date = $row['date'];
-											if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
-												$text = str_replace(NEWLINECHAR, '-----', $text);
-											}
 										}
 										if (!isset($status)) $status = 0;
-										$results->finalize();
 										$db->close();
 										unset($db);
 									?>
@@ -288,7 +267,11 @@
 				<div class="col-xs-12 col-md-12 col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">Tips</div>
-						<div class="panel-body"></div>
+						<div class="panel-body">
+							<ul>
+								<li><a href="http://mana.wikia.com/wiki/Seiken_Densetsu_3">Wiki of Mana</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>

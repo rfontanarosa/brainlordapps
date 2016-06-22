@@ -21,10 +21,10 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title><?php echo TITLE; ?></title>
+		<title><?php echo TITLE; ?>&nbsp;-&nbsp;Translation Tool</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="./images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 		<link href="./images/favicon.ico" rel="apple-touch-icon" />
 		<link rel="stylesheet" href="../../libs/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
@@ -99,21 +99,22 @@
 						$db = new SQLite3(SQLITE_FILENAME);
 						$partially = DbManager::countByUserAndStatus($db, $uname, 1);
 						$done = DbManager::countByUserAndStatus($db, $uname, 2);
+						$undone = LAST_ENTRY - ($done + $partially);
 						$db->close();
 						unset($db);
-						$done = number_format(round(($done/$max_id)*100, 3), 1);
-						$partially = number_format(round(($partially/$max_id)*100, 3), 1);
-						$undone = number_format(100 - $done - $partially, 1);
+						$done100 = number_format(round(($done/$max_id)*100, 3), 1);
+						$partially100 = number_format(round(($partially/$max_id)*100, 3), 1);
+						$undone100 = number_format(100 - $done100 - $partially100, 1);
 					?>
 					<div class="progress">
-						<div class="progress-bar progress-bar-success" style="width: <?php echo $done; ?>%">
-							<span><?php echo $done; ?>% Done</span>
+						<div class="progress-bar progress-bar-success" style="width: <?php echo $done100; ?>%">
+							<span><?php echo $done100; ?>% Done</span>
 						</div>
-						<div class="progress-bar progress-bar-warning" style="width: <?php echo $partially; ?>%">
-							<span><?php echo $partially; ?>% Partially Done</span>
+						<div class="progress-bar progress-bar-warning" style="width: <?php echo $partially100; ?>%">
+							<span><?php echo $partially100; ?>% Partially Done</span>
 						</div>
-						<div class="progress-bar progress-bar-danger" style="width: <?php echo $undone; ?>%">
-							<span><?php echo $undone; ?>% Undone</span>
+						<div class="progress-bar progress-bar-danger" style="width: <?php echo $undone100; ?>%">
+							<span><?php echo $undone100; ?>% Undone</span>
 						</div>
 					</div>
 				</div>
@@ -168,6 +169,9 @@
 								}
 							?>
 						</div>
+						<div class="panel-footer">
+							<button type="submit" class="btn btn-default" id="preview-original-btn"><span class="glyphicon glyphicon-search"></span>&nbsp;Preview</button>
+						</div>
 					</div>
 				</div>
 				<!-- NEW TEXT BOX -->
@@ -178,7 +182,6 @@
 								// modified text
 								$db = new SQLite3(SQLITE_FILENAME);
 								if ($row = DbManager::getTranslationByUserAndOriginalId($db, $uname, $id)) {
-									$author = $row['author'];
 									$text = $row['new_text'];
 									if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
 										$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
@@ -192,7 +195,6 @@
 							?>
 							<form method="post" id="form1">
 								<input type="hidden" name="id_text" value="<?php echo $id; ?>" />
-								<input type="hidden" name="author" value="<?php echo $uname; ?>" />
 								<?php
 									switch ($status) {
 										case '0':
@@ -213,6 +215,7 @@
 							</form>
 						</div>
 						<div class="panel-footer">
+							<button type="submit" class="btn btn-default text-right" id="preview-new-btn"><span class="glyphicon glyphicon-search"></span>&nbsp;Preview</button>
 							<button type="submit" class="btn btn-danger submit-btn" value="0"><span class="glyphicon glyphicon-floppy-save"></span>&nbsp;UNDONE</button>
 							<button type="submit" class="btn btn-warning submit-btn" value="1"><span class="glyphicon glyphicon-floppy-save"></span>&nbsp;PARTIALLY DONE</button>
 							<button type="submit" class="btn btn-success submit-btn" value="2"><span class="glyphicon glyphicon-floppy-save"></span>&nbsp;DONE</button>
@@ -232,64 +235,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- PREVIEW -->
-			<div class="row">
-				<div class="col-xs-12 col-md-12 col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<div class="btn-group">
-								<button type="button" class="btn btn-default">Box1 - {LP}{TP}{RP}</button>
-								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-									<span class="caret"></span>
-									<span class="sr-only">Toggle Dropdown</span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="#" id="box1-original-btn">Original (26 chars)</a></li>
-									<li><a href="#" id="box1-new-btn">New (26 chars)</a></li>
-								</ul>
-							</div>
-							<div class="btn-group">
-								<button type="button" class="btn btn-default">Box2 - SIGN</button>
-								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-									<span class="caret"></span>
-									<span class="sr-only">Toggle Dropdown</span>
-								</button>
-								<ul class="dropdown-menu" role="menu">
-									<li><a href="#" id="box2-original-btn">Original</a></li>
-									<li><a href="#" id="box2-new-btn">New</a></li>
-								</ul>
-							</div>
-						</div>
-						<script type="text/javascript">
-							$('#box1-original-btn').click(function(e){
-								e.preventDefault();
-								var original_text = $('#original_text').val();
-								$('#preview-panel').empty();
-								previewBox1(original_text, 'preview-panel', 26);
-							});
-							$('#box1-new-btn').click(function(e){
-								e.preventDefault();
-								var new_text = $('#new_text').val();
-								$('#preview-panel').empty();
-								previewBox1(new_text, 'preview-panel', 26);
-							});
-							$('#box2-original-btn').click(function(e){
-								e.preventDefault();
-								var original_text = $('#original_text').val();
-								$('#preview-panel').empty();
-								previewBox2(original_text, 'preview-panel');
-							});
-							$('#box2-new-btn').click(function(e){
-								e.preventDefault();
-								var new_text = $('#new_text').val();
-								$('#preview-panel').empty();
-								previewBox2(new_text, 'preview-panel');
-							});
-						</script>
-						<div id="preview-panel" class="panel-body"></div>
-					</div>
-				</div>
-			</div>
 			<!-- TIPS -->
 			<div class="row">
 				<div class="col-xs-12 col-md-12 col-lg-12">
@@ -306,7 +251,7 @@
 								<li>{01} - INPUT</li>
 								<li>{04} - VARIABLE</li>
 								<li>{02}{XX} - XX lines to clear</li>
-								<li>signs box (from #102 to 151): max. 16 characters per line</li>
+								<li>signs box (from 102 to 151): max. 16 characters per line</li>
 								<li>duplicated messages: 152/178 and 179/205</li>
 							</ul>
 						</div>
@@ -319,14 +264,26 @@
 
 	<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
-			<div class="modal-content">	
+			<div class="modal-content">
 				<div class="modal-body"><span class="label"></span></div>
 			</div>
 		</div>
 	</div>
 
+	<div id="preview-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="mySmallModalLabel" style="color:black;"><span class="glyphicon glyphicon-search"></span>&nbsp;Preview</h4>
+				</div>
+				<div class="modal-body"></div>
+			</div>
+		</div>
+	</div>
+
 	<script type="text/javascript">
-	
+
 	$(document).ready(function() {
 
 		$('#form1').on('submit', function(e) {
@@ -367,6 +324,48 @@
 				$('#myModal > .modal-dialog > .modal-content > .modal-body > span').text('An error has occurred!').removeClass('label-success').addClass('label-danger');
 			}).always(function(a, textStatus, b) {
 				$('#myModal').modal();
+			});
+		});
+
+		$('#preview-original-btn').click(function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			var id_text = $('input[name="id_text"]').val();
+			var text = $('#original_text').val();
+			$.ajax({
+				async: false,
+				type: 'POST',
+				url: 'preview.php',
+				data: {
+					type : 'original',
+					id_text: id_text,
+					text : text
+				},
+				success: function(response) {
+					$('#preview-modal .modal-body').html(response);
+					$('#preview-modal').modal('show');
+				}
+			});
+		});
+
+		$('#preview-new-btn').click(function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			var id_text = $('input[name="id_text"]').val();
+			var text = $('#new_text').val();
+			$.ajax({
+				async: false,
+				type: 'POST',
+				url: 'preview.php',
+				data: {
+					type : 'new',
+					id_text : id_text,
+					text : text
+				},
+				success: function(response) {
+					$('#preview-modal .modal-body').html(response);
+					$('#preview-modal').modal('show');
+				}
 			});
 		});
 
