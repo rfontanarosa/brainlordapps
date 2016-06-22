@@ -2,12 +2,11 @@
   "name": "brainlordapps",
   "version": "0.0.0",
   "authors": [
-    "Roberto Fontanarosa <robertofontanarosa@gmail.it>"
+    "Roberto Fontanarosa <robertofontanarosa@gmail.com>"
   ],
   "license": "MIT",
   "dependencies": {
-    "jquery": "~2.2.0",
-    "bootstrap": "~3.3.6",
-    "requirejs": "~2.1.18"
+    "jquery": "~2",
+    "bootstrap": "~3"
   }
 }
