@@ -1,10 +1,17 @@
-<?php header('Content-Type: text/html; charset=utf-8'); ?>
+<?php
+
+	header('Content-Type: text/html; charset=utf-8');
+
+	require_once 'config.inc.php';
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title><?php echo TITLE; ?></title>
+		<title><?php echo TITLE; ?>&nbsp;-&nbsp;Translation Tool</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="./images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 		<link href="./images/favicon.ico" rel="apple-touch-icon" />

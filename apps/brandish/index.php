@@ -31,8 +31,6 @@
 		<link rel="stylesheet" href="./css/style-bootstrap.css" type="text/css" />
 		<script type="text/javascript" src="../../libs/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="../../libs/bootstrap/dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="./js/preview.js"></script>
-		<link rel="stylesheet" href="./css/style-preview.css" type="text/css" />
 	</head>
 	<body>
 
@@ -146,6 +144,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- MAIN -->
 			<div class="row">
 				<!-- ORIGINAL TEXT BOX -->
 				<div class="col-xs-6 col-md-6 col-lg-6">
@@ -239,19 +238,19 @@
 			<div class="row">
 				<div class="col-xs-12 col-md-12 col-lg-12">
 					<div class="panel panel-default">
-						<div class="panel-heading">Tips</div>
+						<div class="panel-heading">Notes &amp; Tips</div>
 						<div class="panel-body">
 							<ul>
 								<li>{LP}{TP}{RP} - LP left padding, TP top padding, RP right padding</li>
-								<li>{03}{15}{1a} - dialog box: max. 26 characters per line</li>
-								<li>{05}{10}{16} - item description (lens): max. 22 characters per line</li>
-								<li>{04}{14}{18} - item description (shop): max. 24 characters per line</li>
+								<li>{03}{15}{1a} - dialog box: max. 26 (0x1a) characters per line</li>
+								<li>{05}{10}{16} - item description (lens): max. 22 (0x16) characters per line</li>
+								<li>{04}{14}{18} - item description (shop): max. 24 (0x18) characters per line</li>
 								<li>{00} - END</li>
 								<li>{40} - NEWLINE</li>
 								<li>{01} - INPUT</li>
 								<li>{04} - VARIABLE</li>
 								<li>{02}{XX} - XX lines to clear</li>
-								<li>signs box (from 102 to 151): max. 16 characters per line</li>
+								<li>sign boxes (from 102 to 151): max. 16 characters per line</li>
 								<li>duplicated messages: 152/178 and 179/205</li>
 							</ul>
 						</div>
@@ -320,7 +319,7 @@
 				$('#lastUpdate').text(data.updateDate);
 				$('#myModal > .modal-dialog > .modal-content > .modal-body > span').text('The text has been updated with success!').removeClass('label-danger').addClass('label-success');
 			}).fail(function(jqXHR, textStatus, errorThrown) {
-				console.log(thrownError);
+				console.log(errorThrown);
 				$('#myModal > .modal-dialog > .modal-content > .modal-body > span').text('An error has occurred!').removeClass('label-success').addClass('label-danger');
 			}).always(function(a, textStatus, b) {
 				$('#myModal').modal();
