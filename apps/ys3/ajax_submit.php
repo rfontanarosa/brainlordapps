@@ -1,6 +1,6 @@
-﻿<?php
+<?php session_start(); ?>
 
-	session_start();
+<?php
 
 	header('Content-Type: text/plain');
 	//header('Content-type: application/json');

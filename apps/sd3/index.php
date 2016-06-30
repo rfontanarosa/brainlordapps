@@ -326,7 +326,7 @@
 				$('#lastUpdate').text(data.updateDate);
 				$('#myModal > .modal-dialog > .modal-content > .modal-body > span').text('The text has been updated with success!').removeClass('label-danger').addClass('label-success');
 			}).fail(function(jqXHR, textStatus, errorThrown) {
-				console.log(thrownError);
+				console.log(errorThrown);
 				$('#myModal > .modal-dialog > .modal-content > .modal-body > span').text('An error has occurred!').removeClass('label-success').addClass('label-danger');
 			}).always(function(a, textStatus, b) {
 				$('#myModal').modal();
