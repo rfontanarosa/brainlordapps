@@ -125,16 +125,14 @@
 
 	if ($id_text >= 102 && $id_text <= 151) {
 		echo '<div class="box-sign"><div class="box-sign-container">';
-		$cleanedText = brandishTextClean($source);
+		$cleanedText = brandishTextClean($cleanedSource);
 		for ($i=0; $i<10; $i++) {
 			$line = mb_substr($cleanedText, 16*$i, 16);
-			echo "<!--$line-->";
-			for ($k=0; $k<strlen($line); $k++) {
+			$line = preg_split('//u', $line, -1, PREG_SPLIT_NO_EMPTY);
+			for ($k=0; $k<count($line); $k++) {
 				$char = $line[$k];
 				$key = array_search($char, $table);
-			echo "<!--$char-->";
 				if ($key !== false) {
-
 					echo '<img class="tile-8x8 brandish-font1-' . $key . '" src="./images/preview/placeholder-8x8.png" />';
 				} else {
 					echo '<img class="tile-8x8" src="./images/preview/placeholder-8x8.png" />';
@@ -144,7 +142,7 @@
 		}
 		echo '</div></div>';
 	} else {
-		$boxes = explode('{01}', $source);
+		$boxes = explode('{01}', $cleanedSource);
 		foreach ($boxes as $box) {
 			$cleanedText = brandishTextClean($box);
 			$values = explode(' ', $cleanedText);
@@ -164,13 +162,16 @@
 					$line_size = strlen($lines[$line_index]);
 				}
 			}
-			if ($id_text >= 1 || $id_text <= 101) {
+			if ($id_text >= 1 && $id_text <= 101) {
 				echo '<div class="box-explore"><div class="box-explore-container">';
 			}
 			else {
 				if ($id_text == 241) echo '<div class="box-explore" style="background-image: url(\'./images/preview/brandish-preview-241.png\');">';
 				else if ($id_text == 242) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-242.png\');">';
 				else if ($id_text == 243) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-243.png\');">';
+				else if ($id_text == 254) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-254.png\');">';
+				else if ($id_text == 255) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-255.png\');">';
+				else if ($id_text == 257) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-257.png\');">';
 				else if ($id_text == 258) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-258.png\');">';
 				else if ($id_text == 261) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-261.png\');">';
 				else if ($id_text == 262) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-262.png\');">';
