@@ -15,10 +15,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link href="./images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 		<link href="./images/favicon.ico" rel="apple-touch-icon" />
-		<link rel="stylesheet" href="../../libs/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+		<link rel="stylesheet" href="../../assets/libs/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
 		<link rel="stylesheet" href="./css/bootstrap.custom.css" type="text/css" />
-		<script type="text/javascript" src="../../libs/jquery/dist/jquery.min.js"></script>
-		<script type="text/javascript" src="../../libs/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
 	</head>
 	<body style="background-image: url(./images/bg2.png)">
 
