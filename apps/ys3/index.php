@@ -263,6 +263,10 @@
 			</div>
 		</div>
 
+	<?php else: ?>
+
+		<div class="container">ACCESS DENIED!!! You are not authorized to access this page!</div>
+
 	<?php endif; ?>
 
 	<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
