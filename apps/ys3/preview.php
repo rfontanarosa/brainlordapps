@@ -19,7 +19,7 @@
 	$array = array_merge($array, array('-0', '-1', '-2', '-3', '-4', '-5', '-6', '-7', '-8', '-9'));
 	$array = array_merge($array, array('à', 'è', 'é', 'ì', 'ò', 'ù'));
 	foreach ($array as $i => $value) {
-		echo '.ys3-' . $value . '{ background: url(./images/preview/alfabeto.png) ' . (8*$i)*-1 . 'px 0; }';
+		echo '.ys3-' . $value . '{ background: url(./images/preview/ys3-font1-it.png) ' . (8*$i)*-1 . 'px 0; }';
 	}
 
 ?>
@@ -28,7 +28,7 @@
 	margin: 0px;
 	width: 256px;
 	height: 239px;
-	background-image: url('./images/preview/preview2.png');
+	background-image: url('./images/preview/ys3-preview.png');
 }
 .box-test-container {
 	margin: 0px;

@@ -20,7 +20,7 @@
 	$map1 += array('11' => array('N', '-12'));
 	$map1 += array('12' => array('A', 'O', 'Q', 'V'));
 	$map1 += array('14' => array('M', 'W'));
-	
+
 	$map2 = array();
 	$map2 += array('i' => 2, 'l' => 2, 'I' => 2);
 	$map2 += array('j' => 3, '1' => 3);
