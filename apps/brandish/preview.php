@@ -169,6 +169,12 @@
 				if ($id_text == 241) echo '<div class="box-explore" style="background-image: url(\'./images/preview/brandish-preview-241.png\');">';
 				else if ($id_text == 242) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-242.png\');">';
 				else if ($id_text == 243) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-243.png\');">';
+				else if ($id_text == 248) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-248.png\');">';
+				else if ($id_text == 249) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-249.png\');">';
+				else if ($id_text == 250) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-250.png\');">';
+				else if ($id_text == 251) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-251.png\');">';
+				else if ($id_text == 252) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-252.png\');">';
+				else if ($id_text == 253) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-253.png\');">';
 				else if ($id_text == 254) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-254.png\');">';
 				else if ($id_text == 255) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-255.png\');">';
 				else if ($id_text == 257) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-257.png\');">';
