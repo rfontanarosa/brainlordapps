@@ -22,13 +22,13 @@
 	}
 
 	function bofNewTableResolve($text) {
-		$text = str_replace('à', '', $text);
-		$text = str_replace('è', '', $text);
-		$text = str_replace('é', '', $text);
-		$text = str_replace('ì', '', $text);
-		$text = str_replace('ò', '', $text);
-		$text = str_replace('ù', '', $text);
-		$text = str_replace('È', '', $text);
+		$text = str_replace('à', '{10}', $text);
+		$text = str_replace('è', '{11}', $text);
+		$text = str_replace('é', '{12}', $text);
+		$text = str_replace('ì', '{13}', $text);
+		$text = str_replace('ò', '{14}', $text);
+		$text = str_replace('ù', '{15}', $text);
+		$text = str_replace('È', '{16}', $text);
 		return $text;
 	}
 

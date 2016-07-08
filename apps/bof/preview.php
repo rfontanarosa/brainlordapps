@@ -15,8 +15,8 @@
 	$table = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
 	$table = array_merge($table, array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'));
 	$table = array_merge($table, array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'));
-	$table = array_merge($table, array(',', '.', '!', '?', '\'', ':'));
-	$table = array_merge($table, array('È', 'à', 'è', 'é', 'ì', 'ò', 'ù'));
+	$table = array_merge($table, array(',', '.', '!', '?', '\'', ':', '', '', '', '', ''));
+	$table = array_merge($table, array('à', 'è', 'é', 'ì', 'ò', 'ù', 'È'));
 	foreach ($table as $i => $value) {
 		echo '.bof-font1-' . $i . '{ background: url(./images/preview/bof-font1-en.png) ' . (8*$i)*-1 . 'px 0; }';
 	}
@@ -51,8 +51,14 @@
 	function bofTextClean($text) {
 		$text = str_replace('{01}', '', $text);
 		$text = str_replace('{05}', '', $text);
+		$text = str_replace('{28}', ' ', $text);
+		$text = str_replace('{24}', ' ', $text);
 		$text = str_replace('{07}{00}', 'RyuX', $text);
-		$text = str_replace("{07}\n", 'XXXX', $text);
+		$text = str_replace("{07}\n", 'Nina', $text);
+		$text = str_replace("{07}{05}", 'XXXX', $text);
+		$text = str_replace("{09}\n", 'XXXXXXX', $text);
+		$text = str_replace("{09}{11}", 'XXXXXXX', $text);
+		$text = str_replace("{09}{15}", 'XXXXXXX', $text);
 		return $text;
 	}
 
