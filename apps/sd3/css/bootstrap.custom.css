@@ -26,12 +26,12 @@ textarea {
 }
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-	background-color: #006000;
+	background-color: #003800;
 	color: white;
 }
 
 .nav-tabs>li>a, .nav-tabs>li>a:focus, .nav-tabs>li>a:hover {
-	background-color: #003800;
+	background-color: #006000;
 	color: white;
 	border: 1px solid #ddd;
 }
