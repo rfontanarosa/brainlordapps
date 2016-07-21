@@ -156,6 +156,8 @@
 									$db = new SQLite3(SQLITE_FILENAME);
 									if ($row = DbManager::getOriginalById($db, $id)) {
 										$text = $row['text_encoded'];
+										$size = $row['size'];
+										$block = $row['block'];
 										if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
 											$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
 										}
@@ -172,6 +174,12 @@
 						<div class="panel-footer">
 							<button type="submit" class="btn btn-default" id="preview-original-btn"><span class="glyphicon glyphicon-search"></span>&nbsp;Preview</button>
 						</div>
+						<div class="panel-footer">
+							<div class="row">
+								<div class="col-xs-3 col-md-3 col-lg-3">Size:&nbsp;<?php echo $size; ?></div>
+								<div class="col-xs-3 col-md-3 col-lg-3">Block:&nbsp;<?php echo $block; ?></div>
+							</div>
+						</div>
 					</div>
 				</div>
 				<!-- NEW TEXT BOX -->
@@ -183,6 +191,7 @@
 								$db = new SQLite3(SQLITE_FILENAME);
 								if ($row = DbManager::getTranslationByUserAndOriginalId($db, $uname, $id)) {
 									$text = $row['new_text'];
+									$comment = $row['comment'];
 									if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
 										$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
 									}
@@ -211,7 +220,12 @@
 											break;
 									}
 								?>
-								<textarea rows="10" class="form-control <?php echo $class; ?>" id="new_text" name="new_text"><?php if (isset($text)) echo $text; else echo $otext; ?></textarea>
+								<div class="form-group">
+									<textarea rows="10" class="form-control <?php echo $class; ?>" id="new_text" name="new_text"><?php if (isset($text)) echo $text; else echo $otext; ?></textarea>
+								</div>
+								<div class="form-group" style="margin-bottom: 0px;">
+									<textarea rows="2" class="form-control" name="comment"><?php if (isset($comment)) echo $comment; ?></textarea>
+								</div>
 							</form>
 						</div>
 						<div class="panel-footer">
@@ -284,6 +298,7 @@
 		$('.submit-btn').click(function(e) {
 			var id_text = $('input[name="id_text"]').val();
 			var new_text = $('textarea[name="new_text"]').val();
+			var comment = $('textarea[name="comment"]').val();
 			var status = $(this).val();
 			$.ajax({
 				type: 'POST',
@@ -291,7 +306,8 @@
 				data: {
 					id_text : id_text,
 					new_text : new_text,
-					status : status
+					status : status,
+					comment : comment
 				}
 			}).done(function(data, textStatus, jqXHR) {
 				var data = $.parseJSON(data);

@@ -41,12 +41,13 @@
 					$author = UserManager::getUsername();
 					$new_text = $_POST['new_text'];
 					$status = $_POST['status'];
+					$comment = sqlite_escape_string($_POST['comment']);
 					$time = time();
 					$new_text = textClean($new_text);
 					$new_text = sqlite_escape_string($new_text);
 					$new_text2 = bofNewTableResolve($new_text);
 					$db = new SQLite3(SQLITE_FILENAME);
-					$query = "INSERT OR REPLACE INTO trans VALUES('$id_text', '$author', '$new_text', '$new_text2', '$status', '$time')";
+					$query = "INSERT OR REPLACE INTO trans VALUES('$id_text', '$author', '$new_text', '$new_text2', '$status', '$time', '$comment')";
 					$db->query($query);
 					$db->close();
 					unset($db);

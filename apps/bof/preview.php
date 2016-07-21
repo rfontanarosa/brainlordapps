@@ -49,22 +49,35 @@
 	}
 
 	function bofTextClean($text) {
+		// characters' name
+		$text = str_replace('{07}{00}', 'RyuX', $text);
+		$text = str_replace("{07}{01}", 'BoXX', $text);
+		$text = str_replace("{07}{02}", 'Nina', $text);
+		$text = str_replace("{07}{03}", 'OxXX', $text);
+		$text = str_replace("{07}{04}", 'Gobi', $text);
+		$text = str_replace("{07}{05}", 'Karn', $text);
+		$text = str_replace("{07}{06}", 'Mogu', $text);
+		$text = str_replace("{07}{07}", 'Bleu', $text);
+		//
+		$text = preg_replace('/\{08}{..\}/', 'XXXXXXX', $text);
+		$text = preg_replace('/\{09}{..\}/', 'XXXXXXX', $text);
+		$text = preg_replace('/\{0a}{..\}/', 'XXXXXXX', $text);
+		$text = preg_replace('/\{0b}{..\}/', 'XXXXXXX', $text);
+		$text = preg_replace('/\{0c}{..\}/', 'XXXXXXX', $text);
+		// commands
 		$text = str_replace('{01}', '', $text);
 		$text = str_replace('{05}', '', $text);
+		$text = str_replace('{06}', 'XXXX', $text);
+		// special characters
 		$text = str_replace('{28}', ' ', $text);
 		$text = str_replace('{24}', ' ', $text);
-		$text = str_replace('{07}{00}', 'RyuX', $text);
-		$text = str_replace("{07}\n", 'Nina', $text);
-		$text = str_replace("{07}{05}", 'XXXX', $text);
-		$text = str_replace("{09}\n", 'XXXXXXX', $text);
-		$text = str_replace("{09}{11}", 'XXXXXXX', $text);
-		$text = str_replace("{09}{15}", 'XXXXXXX', $text);
 		return $text;
 	}
 
 	$id_text = $_POST['id_text'];
 	$source = $_POST['text'];
-	$boxes = explode('{04}', $source);
+	$cleanedSources = bofTextClean($source);
+	$boxes = explode('{04}', $cleanedSources);
 	foreach ($boxes as $box) {
 		echo '<div class="box-test"><div class="box-test-container">';
 		$cleanedText = bofTextClean($box);
