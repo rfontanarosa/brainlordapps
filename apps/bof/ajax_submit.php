@@ -29,6 +29,7 @@
 		$text = str_replace('ò', '{14}', $text);
 		$text = str_replace('ù', '{15}', $text);
 		$text = str_replace('È', '{16}', $text);
+		$text = str_replace('...', '{17}', $text);
 		return $text;
 	}
 

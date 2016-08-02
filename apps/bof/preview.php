@@ -5,10 +5,6 @@
 
 <style>
 
-.tile8x16 {
-	width: 8px;
-	height: 16px;
-}
 
 <?php
 
@@ -23,13 +19,18 @@
 
 ?>
 
-.box-test {
-	margin: 0px;
+.tile8x16 {
+	width: 8px;
+	height: 16px;
+}
+
+.box-dialog {
+	margin: 0px 0px 5px 0px;
 	width: 256px;
 	height: 239px;
 	background-image: url('./images/preview/bof-preview.png');
 }
-.box-test-container {
+.box-dialog-container {
 	margin: 0px;
 	height: 239px;
 	line-height: 14px;
@@ -59,6 +60,35 @@
 		$text = str_replace("{07}{06}", 'Mogu', $text);
 		$text = str_replace("{07}{07}", 'Bleu', $text);
 		//
+		$text = str_replace('{09}{01}', 'Drogen', $text);
+		$text = str_replace("{09}{02}", 'Nanai', $text);
+		$text = str_replace("{09}{03}", 'Winlan', $text);
+		$text = str_replace("{09}{04}", 'Romero', $text);
+		$text = str_replace("{09}{05}", 'Gust', $text);
+		$text = str_replace("{09}{06}", 'Camlon', $text);
+		$text = str_replace("{09}{07}", 'Nada', $text);
+		$text = str_replace("{09}{08}", 'Tantar', $text);
+		$text = str_replace('{09}{09}', 'Tuntar', $text);
+		$text = str_replace("{09}{0a}", 'Agua', $text);
+		$text = str_replace("{09}{0b}", 'Auria', $text);
+		$text = str_replace("{09}{0c}", 'Bleak', $text);
+		$text = str_replace("{09}{0d}", 'Arad', $text);
+		$text = str_replace("{09}{0e}", 'Spring', $text);
+		$text = str_replace("{09}{0f}", 'Tunlan', $text);
+		$text = str_replace('{09}{10}', 'Gant', $text);
+		$text = str_replace("{09}{11}", 'Scande', $text);
+		$text = str_replace("{09}{12}", 'Carmen', $text);
+		$text = str_replace("{09}{13}", 'Gramor', $text);
+		$text = str_replace("{09}{14}", 'Wisdon', $text);
+		$text = str_replace("{09}{15}", 'Karma', $text);
+		$text = str_replace("{09}{16}", 'Prima', $text);
+		$text = str_replace("{09}{17}", 'Crypt', $text);
+		$text = str_replace('{09}{18}', 'Nabal', $text);
+		$text = str_replace("{09}{19}", 'Tock', $text);
+		$text = str_replace("{09}{1a}", 'Spyre', $text);
+		$text = str_replace("{09}{1b}", 'ObeliskX', $text);
+		$text = str_replace("{09}{1c}", 'Pagoda', $text);
+		//
 		$text = preg_replace('/\{08}{..\}/', 'XXXXXXX', $text);
 		$text = preg_replace('/\{09}{..\}/', 'XXXXXXX', $text);
 		$text = preg_replace('/\{0a}{..\}/', 'XXXXXXX', $text);
@@ -71,6 +101,8 @@
 		// special characters
 		$text = str_replace('{28}', ' ', $text);
 		$text = str_replace('{24}', ' ', $text);
+		$text = str_replace('{2d}', ' ', $text);
+		$text = str_replace('{2e}', ' ', $text);
 		return $text;
 	}
 
@@ -79,7 +111,7 @@
 	$cleanedSources = bofTextClean($source);
 	$boxes = explode('{04}', $cleanedSources);
 	foreach ($boxes as $box) {
-		echo '<div class="box-test"><div class="box-test-container">';
+		echo '<div class="box-dialog"><div class="box-dialog-container">';
 		$cleanedText = bofTextClean($box);
 		$lines = explode("\n", $cleanedText);
 		foreach ($lines as $i => $line) {
