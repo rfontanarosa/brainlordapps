@@ -89,7 +89,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-6 col-md-6 col-lg-6">
-					<img src="./images/sd3-logo.gif" class="img-responsive" alt="><?php echo TITLE; ?>" />
+					<img src="./images/sd3-logo.gif" class="img-responsive" alt="<?php echo TITLE; ?>" />
 				</div>
 				<div class="col-xs-6 col-md-6 col-lg-6">
 					<?php

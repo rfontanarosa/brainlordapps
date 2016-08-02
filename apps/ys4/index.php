@@ -82,7 +82,7 @@
 	</div>
 
 	<div class="container text-center ">
-		<img src="./images/logo.png" class="img-responsive" alt="><?php echo TITLE; ?>" />
+		<img src="./images/logo.png" class="img-responsive" alt="<?php echo TITLE; ?>" />
 	</div>
 
 	<?php if (UserManager::isLogged() && UserManager::hasRole(APPLICATION_ID)): ?>
