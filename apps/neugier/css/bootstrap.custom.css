@@ -1,0 +1,8 @@
+body {
+	background: url(../images/bg2.png);
+}
+
+.navbar-inverse {
+	background: url(../images/bg1.png) repeat;
+	border-color: black;
+}
