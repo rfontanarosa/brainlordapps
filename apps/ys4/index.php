@@ -343,49 +343,26 @@
 			});
 		});
 
-		$('#preview-original-btn').click(function(e) {
+		$('#preview-original-btn, #preview-new-btn').click(function(e) {
 			e.stopPropagation();
 			e.preventDefault();
 			var id_text = $('input[name="id_text"]').val();
-			var pre_text = $('#original_pretext').val();
-			var text = $('#original_text').val();
+			var originalOrNew = ($(this).attr('id').indexOf('new') !== -1) ? 'new' : 'original';
+			var pre_text = (originalOrNew == 'new') ? $('input[name="new_pretext"]').val() : $('#original_pretext').val();
+			var text = (originalOrNew == 'new') ? $('#new_text').val() : $('#original_text').val();
 			$.ajax({
 				async: false,
 				type: 'POST',
 				url: 'preview.php',
 				data: {
-					type: 'original',
-					pre_text: pre_text,
 					id_text: id_text,
-					text: text
-				},
-				success: function(response) {
-					$('#preview-modal .modal-body').html(response);
-					$('#preview-modal').modal('show');
-				}
-			});
-		});
-
-		$('#preview-new-btn').click(function(e) {
-			e.stopPropagation();
-			e.preventDefault();
-			var id_text = $('input[name="id_text"]').val();
-			var pre_text = $('input[name="new_pretext"]').val();
-			var text = $('#new_text').val();
-			$.ajax({
-				async: false,
-				type: 'POST',
-				url: 'preview.php',
-				data: {
-					type: 'new',
-					id_text: id_text,
+					type: originalOrNew,
 					pre_text: pre_text,
-					text: text
-				},
-				success: function(response) {
-					$('#preview-modal .modal-body').html(response);
-					$('#preview-modal').modal('show');
+					text : text
 				}
+			}).done(function(data, textStatus, jqXHR) {
+				$('#preview-modal .modal-body').html(data);
+				$('#preview-modal').modal('show');
 			});
 		});
 
