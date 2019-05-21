@@ -40,6 +40,13 @@
 	width: 254px;
 }
 
+.sd3dialogbox .line {
+    background: url(../images/preview/line.png) no-repeat;
+    height: 54px;
+    margin-top: 15px;
+    width: 254px;
+}
+
 .redtext {
 	color: #fa4444;
 }
