@@ -5,7 +5,6 @@
 
 <style>
 
-
 <?php
 
 	$table = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
@@ -83,26 +82,51 @@
 		$text = str_replace("{09}{15}", 'Karma', $text);
 		$text = str_replace("{09}{16}", 'Prima', $text);
 		$text = str_replace("{09}{17}", 'Crypt', $text);
-		$text = str_replace('{09}{18}', 'Nabal', $text);
+		$text = str_replace("{09}{18}", 'Nabal', $text);
 		$text = str_replace("{09}{19}", 'Tock', $text);
 		$text = str_replace("{09}{1a}", 'Spyre', $text);
 		$text = str_replace("{09}{1b}", 'ObeliskX', $text);
 		$text = str_replace("{09}{1c}", 'Pagoda', $text);
 		//
+		$text = str_replace("{0a}{38}", 'RemedyXX', $text);
+		$text = str_replace("{0a}{3a}", 'SawXXXXX', $text);
+		$text = str_replace("{0a}{3b}", 'TabletXX', $text);
+		$text = str_replace("{0a}{3c}", 'RingXXXX', $text);
+		$text = str_replace("{0a}{46}", 'BookXXXX', $text);
+		$text = str_replace("{0a}{54}", 'I.OreXXX', $text);
+		$text = str_replace("{0a}{5a}", 'EggXXXXX', $text);
+		$text = str_replace("{0a}{5b}", 'SphereXX', $text);
+		$text = str_replace("{0a}{5c}", 'GillsXXX', $text);
+		$text = str_replace("{0a}{5d}", 'G.BarXXX', $text);
+		$text = str_replace("{0a}{5e}", 'IcicleXX', $text);
+		$text = str_replace("{0a}{5f}", 'FifeXXXX', $text);
+		$text = str_replace("{0a}{60}", 'PassXXXX', $text);
+		$text = str_replace("{0a}{65}", 'ListXXXX', $text);
+		$text = str_replace("{0a}{6a}", 'TmKeyXXX', $text);
+		$text = str_replace("{0a}{6e}", 'BolsterX', $text);
+		$text = str_replace("{0a}{70}", 'G.FlyXXX', $text);
+		$text = str_replace("{0a}{71}", 'OilXXXXX', $text);
+		//
+        /*
 		$text = preg_replace('/\{08}{..\}/', 'XXXXXXX', $text);
 		$text = preg_replace('/\{09}{..\}/', 'XXXXXXX', $text);
 		$text = preg_replace('/\{0a}{..\}/', 'XXXXXXX', $text);
 		$text = preg_replace('/\{0b}{..\}/', 'XXXXXXX', $text);
 		$text = preg_replace('/\{0c}{..\}/', 'XXXXXXX', $text);
+        */
+        $text = preg_replace('/\{0[8,9,a,b,c]}{..\}/', 'XXXXXXX', $text);
 		// commands
 		$text = str_replace('{01}', '', $text);
 		$text = str_replace('{05}', '', $text);
 		$text = str_replace('{06}', 'XXXX', $text);
 		// special characters
+        /*
 		$text = str_replace('{28}', ' ', $text);
 		$text = str_replace('{24}', ' ', $text);
 		$text = str_replace('{2d}', ' ', $text);
 		$text = str_replace('{2e}', ' ', $text);
+        */
+        $text = str_replace('{2[8,4,d,e]}', ' ', $text);
 		return $text;
 	}
 

@@ -92,19 +92,19 @@
 		<div class="container">
 
 			<!-- PROGRESS BAR -->
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<?php
-						$db = new SQLite3(SQLITE_FILENAME);
-						$partially = DbManager::countByUserAndStatus($db, $uname, 1);
-						$done = DbManager::countByUserAndStatus($db, $uname, 2);
-						$undone = LAST_ENTRY - ($done + $partially);
-						$db->close();
-						unset($db);
-						$done100 = number_format(round(($done/$max_id)*100, 3), 1);
-						$partially100 = number_format(round(($partially/$max_id)*100, 3), 1);
-						$undone100 = number_format(100 - $done100 - $partially100, 1);
-					?>
+			<div class="panel panel-default" id="progress-bar">
+				<?php
+					$db = new SQLite3(SQLITE_FILENAME);
+					$partially = DbManager::countByUserAndStatus($db, $uname, 1);
+					$done = DbManager::countByUserAndStatus($db, $uname, 2);
+					$undone = LAST_ENTRY - ($done + $partially);
+					$db->close();
+					unset($db);
+					$done100 = number_format(round(($done/$max_id)*100, 3), 1);
+					$partially100 = number_format(round(($partially/$max_id)*100, 3), 1);
+					$undone100 = number_format(100 - $done100 - $partially100, 1);
+				?>
+				<div class="panel-body text-center">
 					<div class="progress">
 						<div class="progress-bar progress-bar-success" style="width: <?php echo $done100; ?>%">
 							<span><?php echo $done100; ?>% Done</span>
@@ -118,16 +118,17 @@
 					</div>
 				</div>
 			</div>
-			<!-- PAGINATION -->
-			<div class="panel panel-default">
+
+			<!-- PAGINATOR -->
+			<div class="panel panel-default" id="paginator">
+				<?php
+					$db = new SQLite3(SQLITE_FILENAME);
+					$next_id = DbManager::getNextIdByUserAndId($db, $uname, $id);
+					$prev_id = DbManager::getPrevIdByUserAndId($db, $uname, $id);
+					$db->close();
+					unset($db);
+				?>
 				<div class="panel-body text-center">
-					<?php
-						$db = new SQLite3(SQLITE_FILENAME);
-						$next_id = DbManager::getNextIdByUserAndId($db, $uname, $id);
-						$prev_id = DbManager::getPrevIdByUserAndId($db, $uname, $id);
-						$db->close();
-						unset($db);
-					?>
 					<div class="btn-toolbar" role="toolbar">
 						<div class="btn-group" role="group">
 							<a class="btn btn-default <?php if ($id == 1) echo 'disabled'; ?>" href="?id=1">&larr;&nbsp;First</a>
@@ -145,7 +146,36 @@
 					</div>
 				</div>
 			</div>
-			<!-- MAIN -->
+
+			<!-- SEARCH BOXES -->
+			<div class="row">
+				<div class="col-xs-6 col-md-6 col-lg-6">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="input-group">
+								<input type="text" class="form-control" id="search1" placeholder="Search for..." />
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button" id="search-original-btn">Search!</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-6 col-lg-6">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="input-group">
+								<input type="text" class="form-control" id="search2" placeholder="Search for..." />
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button" id="search-new-btn">Search!</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- TRANSLATION BOXES -->
 			<div class="row">
 				<!-- ORIGINAL TEXT BOX -->
 				<div class="col-xs-6 col-md-6 col-lg-6">
@@ -254,7 +284,11 @@
 				<div class="col-xs-12 col-md-12 col-lg-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">Tips</div>
-						<div class="panel-body"></div>
+						<div class="panel-body">
+							<ul>
+								<li><a href="http://bof.wikia.com/wiki/Main_Page">Breath of Fire - Wikia</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -265,6 +299,8 @@
 		<div class="container">ACCESS DENIED!!! You are not authorized to access this page!</div>
 
 	<?php endif; ?>
+
+	<!-- MODALS -->
 
 	<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm">
@@ -279,7 +315,19 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-						<h4 class="modal-title" id="mySmallModalLabel" style="color:black;"><span class="glyphicon glyphicon-search"></span>&nbsp;Preview</h4>
+						<h4 class="modal-title" id="mySmallModalLabel" style="color:black;"><span class="glyphicon glyphicon-search"></span>&nbsp;PREVIEW</h4>
+				</div>
+				<div class="modal-body"></div>
+			</div>
+		</div>
+	</div>
+
+	<div id="search-result-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="mySmallModalLabel" style="color:black;"><span class="glyphicon glyphicon-search"></span>&nbsp;SEARCH RESULTS</h4>
 				</div>
 				<div class="modal-body"></div>
 			</div>
@@ -333,46 +381,62 @@
 			});
 		});
 
-		$('#preview-original-btn').click(function(e) {
+		$('#preview-original-btn, #preview-new-btn').click(function(e) {
 			e.stopPropagation();
 			e.preventDefault();
 			var id_text = $('input[name="id_text"]').val();
-			var text = $('#original_text').val();
+			var originalOrNew = ($(this).attr('id').indexOf('new') !== -1) ? 'new' : 'original';
+			var text = (originalOrNew == 'new') ? $('#new_text').val() : $('#original_text').val();
 			$.ajax({
 				async: false,
 				type: 'POST',
 				url: 'preview.php',
 				data: {
-					type : 'original',
 					id_text: id_text,
+					type: originalOrNew,
 					text : text
-				},
-				success: function(response) {
-					$('#preview-modal .modal-body').html(response);
-					$('#preview-modal').modal('show');
 				}
+			}).done(function(data, textStatus, jqXHR) {
+				$('#preview-modal .modal-body').html(data);
+				$('#preview-modal').modal('show');
 			});
 		});
 
-		$('#preview-new-btn').click(function(e) {
+		$('#search-original-btn, #search-new-btn').click(function(e) {
 			e.stopPropagation();
 			e.preventDefault();
-			var id_text = $('input[name="id_text"]').val();
-			var text = $('#new_text').val();
-			$.ajax({
-				async: false,
-				type: 'POST',
-				url: 'preview.php',
-				data: {
-					type : 'new',
-					id_text : id_text,
-					text : text
-				},
-				success: function(response) {
-					$('#preview-modal .modal-body').html(response);
-					$('#preview-modal').modal('show');
-				}
-			});
+			var originalOrNew = ($(this).attr('id').indexOf('new') !== -1) ? 'new' : 'original';
+			var text_to_search = (originalOrNew == 'new') ? $('#search2').val() : $('#search1').val();
+			if (text_to_search.length > 1) {
+				$.ajax({
+					async: false,
+					type: 'POST',
+					url: 'ajax_search.php',
+					data: {
+						type: originalOrNew,
+						text_to_search : text_to_search
+					}
+				}).done(function(data, textStatus, jqXHR) {
+					var array = JSON.parse(data);
+					if (array.length != 0) {
+						var search_result = $('<ul class="list-inline" />');
+						$.each(array, function(index, value) {
+							var anchor = $('<a />').attr('href', '?id=' + value).text(value);
+							var item = $('<li />').html(anchor);
+							search_result.append(item);
+						});
+						$('#search-result-modal .modal-body').html(search_result);
+					} else {
+						$('#search-result-modal .modal-body').text('No results found!');
+					}
+				}).fail(function(jqXHR, textStatus, errorThrown) {
+					console.log(errorThrown);
+				}).always(function(a, textStatus, b) {
+					$('#search-result-modal').modal('show');
+				});
+			} else {
+				//
+			}
 		});
 
 	});
