@@ -1,4 +1,2 @@
-assets/libs/*
-resources/db/*
-resources/dump/*
-resources/csv/*
+assets/libs
+resources

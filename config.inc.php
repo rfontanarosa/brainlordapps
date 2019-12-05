@@ -13,7 +13,7 @@ define('RESOURCE_PATH', BASE_PATH . '/resources');
 class UserManager {
 
 	public static function login($uname, $pass) {
-		$xml = @simplexml_load_file(RESOURCE_PATH . '/users.xml');
+		$xml = @simplexml_load_file(BASE_PATH . '/users.xml');
 		if ($xml !== false) {
 			foreach($xml->user as $user) {
 				if ($uname == $user->uname) {

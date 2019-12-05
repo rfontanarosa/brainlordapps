@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<users>
+	<user>
+		<!-- 281083 -->
+		<uname>clomax</uname>
+		<pass>a1163e2185c02cb934eec16cca3fc507</pass>
+		<roles>
+			<role>bof</role>
+			<role>brainlord</role>
+			<role>brandish</role>
+			<role>brandish2</role>
+			<role>neugier</role>
+			<role>sd3</role>
+			<role>spike</role>
+			<role>ys3</role>
+			<role>ys4</role>
+		</roles>
+	</user>
+	<user>
+		<!-- t3st -->
+		<uname>test</uname>
+		<pass>e86e107b113b0f830b9b817b4a9addb8</pass>
+		<roles>
+			<role>*</role>
+		</roles>
+	</user>
+</users>
