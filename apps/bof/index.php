@@ -155,7 +155,7 @@
 							<div class="input-group">
 								<input type="text" class="form-control" id="search1" placeholder="Search for..." />
 								<span class="input-group-btn">
-									<button class="btn btn-default" type="button" id="search-original-btn">Search!</button>
+									<button class="btn btn-default" type="button" id="search-original-btn">Search</button>
 								</span>
 							</div>
 						</div>
@@ -167,7 +167,7 @@
 							<div class="input-group">
 								<input type="text" class="form-control" id="search2" placeholder="Search for..." />
 								<span class="input-group-btn">
-									<button class="btn btn-default" type="button" id="search-new-btn">Search!</button>
+									<button class="btn btn-default" type="button" id="search-new-btn">Search</button>
 								</span>
 							</div>
 						</div>

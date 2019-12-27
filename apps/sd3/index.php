@@ -465,8 +465,10 @@
 					var array = JSON.parse(data);
 					if (array.length != 0) {
 						$.each(array, function(index, value) {
-							var item = $('<a />').addClass('btn btn-sm btn-light mr-1 mb-1').attr('target', '_blank').attr('href', '?id=' + value).text(value);
+							const {id, status} = value;
+							const item = $('<a />').addClass('btn btn-sm mr-1 mb-1').attr('target', '_blank').attr('href', '?id=' + id).text(id);
 							$('#search-result').append(item);
+							(status == 2) ? item.addClass('btn-success') : (status == 1) ? item.addClass('btn-warning') : item.addClass('btn-danger');
 						});
 					} else {
 						$('#search-result').text('No results found!');
