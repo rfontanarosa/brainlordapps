@@ -27,10 +27,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="./images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 		<link href="./images/favicon.ico" rel="apple-touch-icon" />
-		<link rel="stylesheet" href="../../assets/libs/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+		<link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+		<script type="text/javascript" src="../../node_modules/@fortawesome/fontawesome-free/css/all.min.css"></script>
 		<link rel="stylesheet" href="./css/bootstrap.custom.css" type="text/css" />
-		<script type="text/javascript" src="../../assets/libs/jquery/dist/jquery.min.js"></script>
-		<script type="text/javascript" src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../../node_modules/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript"src="../../node_modules/popper.js/dist/popper.min.js"></script>
+		<script type="text/javascript" src="../../node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
 		<link rel="stylesheet" href="./css/style-preview.css" type="text/css" />
 		<script type="text/javascript" src="./js/preview.js" charset="UTF-8"></script>
 	</head>
@@ -47,295 +50,303 @@
 		}
 	?>
 
-	<div class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="index.php"><?php echo TITLE; ?></a>
-			</div>
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<?php if (UserManager::isLogged()): ?>
-					<form method="post" class="navbar-form navbar-right" role="navigation">
-						<input type="hidden" name="logout" value="1" />
-						<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</button>
-					</form>
-					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<?php echo UserManager::getUsername(); ?></a></li>
-					</ul>
-				<?php else: ?>
-					<form method="post" class="navbar-form navbar-right" role="navigation">
-						<div class="form-group">
-							<input type="text" name="uname" class="form-control" placeholder="Username">
-						</div>
-						<div class="form-group">
-							<input type="password" name="pass" class="form-control" placeholder="Password">
-						</div>
-						<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Login</button>
-					</form>
-				<?php endif; ?>
-			</div>
+	<!-- NAVBAR -->
+	<nav class="navbar fixed-top navbar-expand-lg navbar-light brain-navbar">
+		<span class="navbar-brand mb-0 h1"><?php echo TITLE; ?></span>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<?php if (UserManager::isLogged()): ?>
+				<span class="navbar-text ml-auto pr-2">
+					<i class="fas fa-user"></i>&nbsp;<?php echo UserManager::getUsername(); ?>
+				</span>
+				<form method="post" class="form-inline">
+					<input type="hidden" name="logout" value="1" />
+					<button type="submit" class="btn btn-light my-2 my-sm-0"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</button>
+				</form>
+			<?php else: ?>
+				<form method="post" class="form-inline ml-auto">
+					<input type="text" name="uname" class="form-control mr-sm-2 my-2 my-sm-0" placeholder="Username" aria-label="Username" />
+					<input type="password" name="pass" class="form-control mr-sm-2 my-2 my-sm-0" placeholder="Password" aria-label="Password" />
+					<button type="submit" class="btn btn-light my-2 my-sm-0"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</button>
+				</form>
+			<?php endif; ?>
 		</div>
-	</div>
+	</nav>
 
 	<?php if (UserManager::isLogged() && UserManager::hasRole(APPLICATION_ID)): ?>
 
 		<?php $uname = UserManager::getUsername(); ?>
 
-		<div class="container">
+		<?php
+			$db = new SQLite3(SQLITE_FILENAME);
+			$partially = DbManager::countByUserAndStatus($db, $uname, 1);
+			$done = DbManager::countByUserAndStatus($db, $uname, 2);
+			$undone = LAST_ENTRY - ($done + $partially);
+			$db->close();
+			unset($db);
+			$done100 = number_format(round(($done/$max_id)*100, 3), 1);
+			$partially100 = number_format(round(($partially/$max_id)*100, 3), 1);
+			$undone100 = number_format(100 - $done100 - $partially100, 1);
+		?>
+		<div class="container-fluid mt-3">
 			<div class="row">
-				<div class="col-xs-6 col-md-6 col-lg-6">
-					<img src="./images/sd3-logo.gif" class="img-responsive" alt="<?php echo TITLE; ?>" />
-				</div>
-				<div class="col-xs-6 col-md-6 col-lg-6">
-					<?php
-						$db = new SQLite3(SQLITE_FILENAME);
-						$partially = DbManager::countByUserAndStatus($db, $uname, 1);
-						$done = DbManager::countByUserAndStatus($db, $uname, 2);
-						$undone = LAST_ENTRY - ($done + $partially);
-						$db->close();
-						unset($db);
-						$done100 = number_format(round(($done/$max_id)*100, 3), 1);
-						$partially100 = number_format(round(($partially/$max_id)*100, 3), 1);
-						$undone100 = number_format(100 - $done100 - $partially100, 1);
-					?>
-					<ul class="list-group">
-						<li class="list-group-item list-group-item-success"><span class="badge"><?php echo $done ?></span>Done (<?php echo $done100 ?>%)</li>
-						<li class="list-group-item list-group-item-warning"><span class="badge"><?php echo $partially ?></span>Partially Done (<?php echo $partially100 ?>%)</li>
-						<li class="list-group-item list-group-item-danger"><span class="badge"><?php echo $undone ?></span>Undone (<?php echo $undone100 ?>)</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-
-		<div class="container">
-			<!-- PAGINATION -->
-			<div class="panel panel-default">
-				<div class="panel-body text-center">
-					<?php
-						$db = new SQLite3(SQLITE_FILENAME);
-						$next_id = DbManager::getNextIdByUserAndId($db, $uname, $id);
-						$prev_id = DbManager::getPrevIdByUserAndId($db, $uname, $id);
-						$db->close();
-						unset($db);
-					?>
-					<div class="btn-toolbar" role="toolbar">
-						<div class="btn-group" role="group">
-							<a class="btn btn-default <?php if ($id == 1) echo 'disabled'; ?>" href="?id=1">&larr;&nbsp;First</a>
-							<a class="btn btn-default <?php if ($id == 1) echo 'disabled'; ?>" href="?id=<?php if ($id > 1) echo ($id - 1); ?>">&laquo;&nbsp;Prev</a>
-							<a class="btn btn-default <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php if ($id < $max_id) echo ($id + 1); ?>">Next&nbsp;&raquo;</a>
-							<a class="btn btn-default <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php echo $max_id; ?>">Last&nbsp;&rarr;</a>
-						</div>
-						<div class="btn-group" role="group">
-							<a class="btn btn-default"><?php echo sprintf('#%04d', $id); ?></a>
-						</div>
-						<div class="btn-group" role="group">
-							<a class="btn btn-default <?php if (!isset($prev_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($prev_id)) echo $prev_id; ?>">&lsaquo;&nbsp;Prev (TODO)</a>
-							<a class="btn btn-default <?php if (!isset($next_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($next_id)) echo $next_id; ?>">Next (TODO)&nbsp;&rsaquo;</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- SEARCH BOXES -->
-			<div class="row">
-				<div class="col-xs-6 col-md-6 col-lg-6">
-					<div class="panel panel-default">
-						<div class="panel-body">
+				<div class="col-md-12 col-lg-6 mb-3">
+					<!-- SEARCH -->
+					<div class="card brain-card">
+						<div class="card-header">SEARCH</div>
+						<div class="card-body">
 							<div class="input-group">
-								<input type="text" class="form-control" id="search1" placeholder="Search for..." />
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button" id="search-original-btn">Search!</button>
-								</span>
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon1">Original</span>
+								</div>
+								<input type="search" class="form-control" id="search1" placeholder="Search for..." />
+								<div class="input-group-append">
+									<button class="btn btn-outline-light" type="button" id="search-original-btn"><i class="fas fa-search"></i>&nbsp;Search</button>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="col-xs-6 col-md-6 col-lg-6">
-					<div class="panel panel-default">
-						<div class="panel-body">
+						<div class="card-body pt-0">
 							<div class="input-group">
-								<input type="text" class="form-control" id="search2" placeholder="Search for..." />
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button" id="search-new-btn">Search!</button>
-								</span>
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon2">Translated</span>
+								</div>
+								<input type="search" class="form-control" id="search2" placeholder="Search for..." />
+								<div class="input-group-append">
+									<button class="btn btn-outline-light" type="button" id="search-new-btn"><i class="fas fa-search"></i>&nbsp;Search</button>
+								</div>
 							</div>
 						</div>
+						<div class="card-footer"id="search-result" style="display: none;"></div>
 					</div>
 				</div>
-			</div>
-			<!-- MAIN -->
-			<div class="row">
-				<div class="col-xs-6 col-md-6 col-lg-6">
-					<ul class="nav nav-tabs nav-justified" role="tablist">
-						<li role="presentation"><a href="#original-box" aria-controls="original-box" role="tab" data-toggle="tab">Original</a></li>
-						<li role="presentation" class="active"><a href="#translation-box" aria-controls="translation-box" role="tab" data-toggle="tab">Translation</a></li>
-					</ul>
-					<div class="tab-content">
-						<!-- ORIGINAL TEXT BOX -->
-						<div role="tabpanel" class="tab-pane" id="original-box">
-							<div class="panel panel-default">
-								<div class="panel-body">
-									<?php
-										try {
-											$db = new SQLite3(SQLITE_FILENAME);
-											if ($row = DbManager::getOriginalById($db, $id)) {
-												$text = $row['text_encoded'];
-												$size = $row['size'];
-												$block = $row['block'];
-												$id2 = $row['id2'];
-												if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
-													$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
-												}
-											}
-											$db->close();
-											unset($db);
-										}
-										catch (Exception $e) {
-											print_r($e);
-										}
-									?>
-									<div class="form-group">
-										<textarea rows="10" id="original_text" class="form-control" name="original_text" disabled><?php echo $text; ?></textarea>
-									</div>
+				<div class="col-md-6 col-lg-3 mb-3">
+					<!-- GO TO -->
+					<div class="card brain-card">
+						<div class="card-header">GO TO</div>
+						<div class="card-body">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text" id="basic-addon0">#</span>
 								</div>
-								<div class="panel-footer">
-									<button type="submit" class="btn btn-default" id="preview-original-btn"><span class="glyphicon glyphicon-search"></span>&nbsp;Preview</button>
-								</div>
-								<div class="panel-footer">
-									<div class="row">
-										<div class="col-xs-3 col-md-3 col-lg-3">ID2:&nbsp;<?php echo $id2; ?></div>
-										<div class="col-xs-3 col-md-3 col-lg-3">Size:&nbsp;<?php echo $size; ?></div>
-										<div class="col-xs-3 col-md-3 col-lg-3">Block:&nbsp;<?php echo $block; ?></div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- NEW TEXT BOX -->
-						<div role="tabpanel" class="tab-pane active" id="translation-box">
-							<div class="panel panel-default">
-								<div class="panel-body">
-									<?php
-										// modified text
-										$db = new SQLite3(SQLITE_FILENAME);
-										if ($row = DbManager::getTranslationByUserAndOriginalId($db, $uname, $id)) {
-											$text = $row['new_text'];
-											$comment = $row['comment'];
-											if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
-												$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
-											}
-											$status = $row['status'];
-											$date = $row['date'];
-										}
-										if (!isset($status)) $status = 0;
-										$db->close();
-										unset($db);
-									?>
-									<form method="post" id="form1">
-										<input type="hidden" name="id_text" value="<?php echo $id; ?>" />
-										<?php
-											switch ($status) {
-												case '0':
-													$class = 'label-danger';
-													break;
-												case '':
-													$class = 'label-danger';
-													break;
-												case '1':
-													$class = 'label-warning';
-													break;
-												case '2':
-													$class = 'label-success';
-													break;
-											}
-										?>
-										<div class="form-group">
-											<textarea rows="10" class="form-control <?php echo $class; ?>" id="new_text" name="new_text"><?php echo $text; ?></textarea>
-										</div>
-										<div class="form-group" style="margin-bottom: 0px;">
-											<textarea rows="2" class="form-control" name="comment"><?php if (isset($comment)) echo $comment; ?></textarea>
-										</div>
-									</form>
-								</div>
-								<div class="panel-footer">
-									<button type="submit" class="btn btn-default text-right" id="preview-new-btn"><span class="glyphicon glyphicon-search"></span>&nbsp;Preview</button>
-									<button type="submit" class="btn btn-danger submit-btn" value="0"><span class="glyphicon glyphicon-floppy-save"></span>&nbsp;UNDONE</button>
-									<button type="submit" class="btn btn-warning submit-btn" value="1"><span class="glyphicon glyphicon-floppy-save"></span>&nbsp;PARTIALLY DONE</button>
-									<button type="submit" class="btn btn-success submit-btn" value="2"><span class="glyphicon glyphicon-floppy-save"></span>&nbsp;DONE</button>
-								</div>
-								<div class="panel-footer">
-									Last update:&nbsp;
-									<span id="lastUpdate">
-										<?php
-											if (isset($date)) {
-												echo @date('d/m/Y, G:i', $date);
-											} else {
-												echo 'Never been updated!';
-											}
-										?>
-									</span>
+								<input type="text" class="form-control" id="goto1" placeholder="Go to..." />
+								<div class="input-group-append">
+									<button class="btn btn-outline-light" type="button" id="go-to-btn"><i class="fas fa-external-link-alt"></i>&nbsp;Go</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-xs-6 col-md-6 col-lg-6">
-					<!-- PREVIEW -->
-					<div class="panel panel-default">
-						<div id="dialog-container" class="panel-body"></div>
-					</div>
-				</div>
-			</div>
-			<!-- TIPS -->
-			<div class="row">
-				<div class="col-xs-12 col-md-12 col-lg-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">Tips</div>
-						<div class="panel-body">
-							<ul>
-								<li><a href="http://mana.wikia.com/wiki/Seiken_Densetsu_3">Wiki of Mana</a></li>
-                                <li><a href="https://it.wikipedia.org/wiki/Glossario_dei_fumetti">Glossario dei fumetti</a></li>
-							</ul>
-						</div>
+				<div class="col-md-6 col-lg-3 mb-3">
+					<!-- STATS -->
+					<div class="card brain-card">
+						<div class="card-header">STATS</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">
+								<?php echo $done100 ?>%
+								<span class="badge badge-primary badge-pill"><?php echo $done ?></span>
+							</li>
+							<li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center"">
+								<?php echo $partially100 ?>%
+								<span class="badge badge-primary badge-pill"><?php echo $partially ?></span>
+							</li>
+							<li class="list-group-item list-group-item-danger d-flex justify-content-between align-items-center"">
+								<?php echo $undone100 ?>%
+								<span class="badge badge-primary badge-pill"><?php echo $undone ?></span>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 
-	<?php else: ?>
+		<!-- PAGINATION -->
+		<?php
+			$db = new SQLite3(SQLITE_FILENAME);
+			$next_id = DbManager::getNextIdByUserAndId($db, $uname, $id);
+			$prev_id = DbManager::getPrevIdByUserAndId($db, $uname, $id);
+			$db->close();
+			unset($db);
+		?>
+		<div class="container-fluid mb-3">
+			<div class="card brain-card">
+				<div class="btn-toolbar d-flex justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
 
-		<div class="container">ACCESS DENIED!!! You are not authorized to access this page!</div>
+					<div class="btn-group m-2" role="group" aria-label="First group">
+						<a class="btn btn-light <?php if ($id == 1) echo 'disabled'; ?>" href="?id=1">&larr;&nbsp;First</a>
+						<a class="btn btn-light <?php if ($id == 1) echo 'disabled'; ?>" href="?id=<?php if ($id > 1) echo ($id - 1); ?>">&lsaquo;&nbsp;Prev</a>
+						<a class="btn btn-light disabled" href=""><?php echo sprintf('#%04d', $id); ?></a>
+						<a class="btn btn-light <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php if ($id < $max_id) echo ($id + 1); ?>">Next&nbsp;&rsaquo;</a>
+						<a class="btn btn-light <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php echo $max_id; ?>">Last&nbsp;&rarr;</a>
+					</div>
+					<div class="btn-group m-2" role="group" aria-label="First group">
+						<a class="btn btn-light <?php if (!isset($prev_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($prev_id)) echo $prev_id; ?>">&laquo;&nbsp;Prev (TODO)</a>
+						<a class="btn btn-light disabled" href=""><?php echo sprintf('#%04d', $id); ?></a>
+						<a class="btn btn-light <?php if (!isset($next_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($next_id)) echo $next_id; ?>">Next (TODO)&nbsp;&raquo;</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- BOXES -->
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-4 mb-3">
+					<?php
+						try {
+							$db = new SQLite3(SQLITE_FILENAME);
+							if ($row = DbManager::getOriginalById($db, $id)) {
+								$text = $row['text_encoded'];
+								$size = $row['size'];
+								$block = $row['block'];
+								$id2 = $row['id2'];
+								if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
+									$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
+								}
+							}
+							$db->close();
+							unset($db);
+						}
+						catch (Exception $e) {
+							print_r($e);
+						}
+					?>
+					<!-- ORIGINAL BOX -->
+					<div class="card brain-card">
+						<div class="card-header d-flex justify-content-between align-items-center">
+							<span>ORIGINAL</span>
+							<button type="submit" class="btn btn-light btn-sm" id="preview-original-btn"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
+						</div>
+						<div class="card-body">
+							<div class="form-group">
+								<textarea rows="10" class="form-control <?php echo $class; ?>" id="original_text" name="original_text" disabled><?php echo $text; ?></textarea>
+							</div>
+						</div>
+						<div class="card-footer d-flex justify-content-between">
+							<small>ID2:&nbsp;<?php echo $id2; ?></small>
+							<small>Size:&nbsp;<?php echo $size; ?></small>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 mb-3">
+					<?php
+						$db = new SQLite3(SQLITE_FILENAME);
+						if ($row = DbManager::getTranslationByUserAndOriginalId($db, $uname, $id)) {
+							$text = $row['new_text'];
+							$comment = $row['comment'];
+							if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
+								$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
+							}
+							$status = $row['status'];
+							$date = $row['date'];
+						}
+						if (!isset($status)) $status = 0;
+						$db->close();
+						unset($db);
+					?>
+					<!-- TRANSLATION BOX -->
+					<div class="card brain-card">
+						<div class="card-header d-flex justify-content-between align-items-center">
+							<span>TRANSLATION</span>
+							<button type="submit" class="btn btn-light btn-sm" id="preview-new-btn"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
+						</div>
+						<div class="card-body">
+							<form method="post" id="form1">
+								<input type="hidden" name="id_text" value="<?php echo $id; ?>" />
+								<?php
+									switch ($status) {
+										case '0':
+											$class = 'btn-danger';
+											break;
+										case '':
+											$class = 'btn-danger';
+											break;
+										case '1':
+											$class = 'btn-warning';
+											break;
+										case '2':
+											$class = 'btn-success';
+											break;
+									}
+								?>
+								<div class="form-group">
+									<textarea rows="10" class="form-control <?php echo $class; ?>" id="new_text" name="new_text"><?php echo $text; ?></textarea>
+								</div>
+								<div class="form-group mb-0">
+									<textarea rows="2" class="form-control" name="comment"><?php if (isset($comment)) echo $comment; ?></textarea>
+								</div>
+							</form>
+						</div>
+						<div class="card-footer d-flex justify-content-between">
+							<button type="submit" class="btn btn-danger btn-sm submit-btn" value="0"><i class="far fa-save"></i>&nbsp;UNDONE</button>
+							<button type="submit" class="btn btn-warning btn-sm submit-btn" value="1"><i class="far fa-save"></i>&nbsp;ALMOST</button>
+							<button type="submit" class="btn btn-success btn-sm submit-btn" value="2"><i class="far fa-save"></i>&nbsp;DONE</button>
+						</div>
+						<div class="card-footer">
+							<small>
+								Last update:&nbsp;
+								<span id="lastUpdate">
+									<?php
+										if (isset($date)) {
+											echo @date('d/m/Y, G:i', $date);
+										} else {
+											echo 'Never been updated!';
+										}
+									?>
+								</span>
+							</small>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 mb-3">
+					<!-- PEVIEW BOX -->
+					<div class="card brain-card">
+						<div class="card-header">PREVIEW</div>
+						<div class="card-body">
+							<div id="dialog-container" class="panel-body"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- TIPS -->
+		<div class="container-fluid mb-3">
+			<a class="btn btn-light btn-sm" href="http://mana.wikia.com/wiki/Seiken_Densetsu_3" target="_blank">Wiki of Mana&nbsp;<i class="fas fa-external-link-alt"></i></a>
+		</div>
+
+		<?php else: ?>
+
+		<div class="container-fluid">ACCESS DENIED!!! You are not authorized to access this page!</div>
 
 	<?php endif; ?>
 
-	<!-- MODALS -->
-
-	<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-body"><span class="label"></span></div>
-			</div>
+	<!-- TOASTS -->
+	<div class="toast fixed-top" role="alert" aria-live="assertive" aria-atomic="true" id="myToast">
+		<div class="toast-header">
+			<strong class="mr-auto">Brainlordapps</strong>
+			<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
 		</div>
+		<div class="toast-body"></div>
 	</div>
 
-	<div id="search-result-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-sm">
+	<!-- MODALS -->
+	<div class="modal" tabindex="-1" role="dialog" id="myModal">
+		<div class="modal-dialog modal-sm" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-						<h4 class="modal-title" id="mySmallModalLabel" style="color:black;"><span class="glyphicon glyphicon-search"></span>&nbsp;SEARCH RESULTS</h4>
+				<div class="modal-body">
+					<span class="label"></span>
 				</div>
-				<div class="modal-body"></div>
 			</div>
 		</div>
 	</div>
 
 	<script type="text/javascript">
 
-	$(document).load(function() {
+	$(document).on('load', function() {
 		sd3Cache();
 	});
 
@@ -360,22 +371,25 @@
 				var textarea = $('textarea[name=new_text]', '#form1');
 				switch (status) {
 					case '0':
-						textarea.removeClass('label-success label-warning').addClass('label-danger');
+						textarea.removeClass('btn-success btn-warning').addClass('btn-danger');
 						break;
 					case '1':
-						textarea.removeClass('label-danger label-success').addClass('label-warning');
+						textarea.removeClass('btn-danger btn-success').addClass('btn-warning');
 						break;
 					case '2':
-						textarea.removeClass('label-danger label-warning').addClass('label-success');
+						textarea.removeClass('btn-danger btn-warning').addClass('btn-success');
 						break;
 				}
 				$('#lastUpdate').text(data.updateDate);
-				$('#myModal > .modal-dialog > .modal-content > .modal-body > span').text('The text has been updated with success!').removeClass('label-danger').addClass('label-success');
+				$('#myToast .toast-body').text('The text has been updated with success!').removeClass('btn-danger').addClass('btn-success');
 			}).fail(function(jqXHR, textStatus, errorThrown) {
 				console.log(errorThrown);
-				$('#myModal > .modal-dialog > .modal-content > .modal-body > span').text('An error has occurred!').removeClass('label-success').addClass('label-danger');
+				$('#myToast .toast-body').text('An error has occurred!').removeClass('label-success').addClass('label-danger');;
 			}).always(function(a, textStatus, b) {
-				$('#myModal').modal();
+				//$('#myModal').modal();
+				$('#myToast').toast({
+					delay: 1500,
+				}).toast('show');
 			});
 		});
 
@@ -403,17 +417,34 @@
 			sd3Preview('dialog-container', text);
 		});
 
-        $('#search1').keypress(function(e) {
-            if (e.keyCode == '13') {
-                $('#search-original-btn').click();
-            }
-        });
+		$('#search1').keypress(function(e) {
+			if (e.keyCode == '13') {
+					$('#search-original-btn').click();
+			}
+		});
 
-        $('#search2').keypress(function(e) {
-            if (e.keyCode == '13') {
-                $('#search-new-btn').click();
-            }
-        });
+		$('#search2').keypress(function(e) {
+			if (e.keyCode == '13') {
+					$('#search-new-btn').click();
+			}
+		});
+
+		$('#goto1').keypress(function(e) {
+			if (e.keyCode == '13') {
+					$('#go-to-btn').click();
+			}
+		});
+
+		$('#go-to-btn').click(function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			const id = $('#goto1').val();
+			if (id && id > 0 && id < <?php echo $max_id ?>) {
+				window.open(`?id=${id}`, '_blank').focus();
+			} else {
+				alert('Out of range');
+			}
+		});
 
 		$('#search-original-btn, #search-new-btn').click(function(e) {
 			e.stopPropagation();
@@ -430,22 +461,20 @@
 						text_to_search : text_to_search
 					}
 				}).done(function(data, textStatus, jqXHR) {
+					$('#search-result').empty();
 					var array = JSON.parse(data);
 					if (array.length != 0) {
-						var search_result = $('<ul class="list-inline" />');
 						$.each(array, function(index, value) {
-							var anchor = $('<a />').attr('href', '?id=' + value).text(value);
-							var item = $('<li />').html(anchor);
-							search_result.append(item);
+							var item = $('<a />').addClass('btn btn-sm btn-light mr-1 mb-1').attr('target', '_blank').attr('href', '?id=' + value).text(value);
+							$('#search-result').append(item);
 						});
-						$('#search-result-modal .modal-body').html(search_result);
 					} else {
-						$('#search-result-modal .modal-body').text('No results found!');
+						$('#search-result').text('No results found!');
 					}
 				}).fail(function(jqXHR, textStatus, errorThrown) {
 					console.log(errorThrown);
 				}).always(function(a, textStatus, b) {
-					$('#search-result-modal').modal('show');
+					$('#search-result').show();
 				});
 			} else {
 				//

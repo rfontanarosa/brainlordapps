@@ -1,0 +1,35 @@
+$bg-base-color: #006000;
+$text-base-color: white;
+$body-background: url(../images/bg1.png);
+$navbar-background: url(../images/bg3.png);
+
+body {
+	padding-top: 56px;
+	background: $body-background;
+}
+
+.brain-navbar {
+	color: $text-base-color;
+	background: $navbar-background;
+	border-bottom: 1px solid $text-base-color;
+	.navbar-brand, .navbar-text {
+		text-shadow: 3px 3px 0px rgba(0, 0, 0, 1);
+	}
+	.navbar-toggler {
+	border: 1px solid $text-base-color;
+	}
+}
+
+.brain-card {
+	background-color: $bg-base-color;
+	color: $text-base-color;
+	border: 1px solid $text-base-color;
+}
+
+.brain-navbar .navbar-brand, .brain-navbar .navbar-text {
+	color: $text-base-color;
+}
+
+textarea {
+	font-family: Courier;
+}
