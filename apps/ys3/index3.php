@@ -6,7 +6,7 @@
 
 	require_once 'config.inc.php';
 
-	if (UserManager::isLogged() && UserManager::hasRole(APPLICATION_ID)) {
+	if (UserManager::isLogged() && UserManager::getRole(APPLICATION_ID) == 'user') {
 
 		$uname = UserManager::getUsername();
 
