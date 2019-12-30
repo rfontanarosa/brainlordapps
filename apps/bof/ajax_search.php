@@ -15,7 +15,7 @@
 	}
 
 	try {
-		if (UserManager::isLogged() && UserManager::hasRole(APPLICATION_ID)) {
+		if (UserManager::isLogged() && UserManager::getRole(APPLICATION_ID) == 'user') {
 			switch ($_SERVER['REQUEST_METHOD']) {
 				case 'POST':
 					if (isset($_POST['type']) && isset($_POST['text_to_search'])) {

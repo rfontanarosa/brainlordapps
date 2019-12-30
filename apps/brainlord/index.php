@@ -85,7 +85,7 @@
 		<img src="./images/logo.png" class="img-responsive" alt="<?php echo TITLE; ?>" />
 	</div>
 
-	<?php if (UserManager::isLogged() && UserManager::hasRole(APPLICATION_ID)): ?>
+	<?php if (UserManager::isLogged() && UserManager::getRole(APPLICATION_ID) == 'user'): ?>
 
 		<?php $uname = UserManager::getUsername(); ?>
 

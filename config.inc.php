@@ -19,11 +19,11 @@ class UserManager {
 				if ($uname == $user->uname) {
 					if (md5($pass) == $user->pass) {
 						$_SESSION['uname'] = $uname;
-						foreach($user->roles->role as $role) {
+						foreach($user->apps->app as $app) {
 							if (!isset($_SESSION['roles'])) {
 								$_SESSION['roles'] = array();
 							}
-							array_push($_SESSION['roles'], $role . '');
+							$_SESSION['roles'][$app['name'] . ''] = $app['role'] . '';
 						}
 					} else {
 						$login_response = 'Error: Invalid password';
@@ -51,8 +51,8 @@ class UserManager {
 		session_destroy();
 	}
 
-	public static function hasRole($role) {
-		return (isset($_SESSION['roles']) && (in_array('*', $_SESSION['roles']) || in_array($role, $_SESSION['roles'])));
+	public static function getRole($app) {
+		return (array_key_exists('*', $_SESSION['roles'])) ? $_SESSION['roles']['*'] : (array_key_exists($app, $_SESSION['roles'])) ? $_SESSION['roles'][$app] : false;
 	}
 
 }

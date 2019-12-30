@@ -75,7 +75,7 @@
 		</div>
 	</nav>
 
-	<?php if (UserManager::isLogged() && UserManager::hasRole(APPLICATION_ID)): ?>
+	<?php if (UserManager::isLogged() && UserManager::getRole(APPLICATION_ID) == 'user'): ?>
 
 		<?php $uname = UserManager::getUsername(); ?>
 
@@ -172,7 +172,6 @@
 		<div class="container-fluid mb-3">
 			<div class="card brain-card">
 				<div class="btn-toolbar d-flex justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
-
 					<div class="btn-group m-2" role="group" aria-label="First group">
 						<a class="btn btn-light <?php if ($id == 1) echo 'disabled'; ?>" href="?id=1">&larr;&nbsp;First</a>
 						<a class="btn btn-light <?php if ($id == 1) echo 'disabled'; ?>" href="?id=<?php if ($id > 1) echo ($id - 1); ?>">&lsaquo;&nbsp;Prev</a>
@@ -303,7 +302,7 @@
 					<!-- PEVIEW BOX -->
 					<div class="card brain-card">
 						<div class="card-header">PREVIEW</div>
-						<div class="card-body">
+						<div class="card-body overflow-auto" style="height: 20rem;">
 							<div id="dialog-container" class="panel-body"></div>
 						</div>
 					</div>
@@ -419,19 +418,19 @@
 
 		$('#search1').keypress(function(e) {
 			if (e.keyCode == '13') {
-					$('#search-original-btn').click();
+				$('#search-original-btn').click();
 			}
 		});
 
 		$('#search2').keypress(function(e) {
 			if (e.keyCode == '13') {
-					$('#search-new-btn').click();
+				$('#search-new-btn').click();
 			}
 		});
 
 		$('#goto1').keypress(function(e) {
 			if (e.keyCode == '13') {
-					$('#go-to-btn').click();
+				$('#go-to-btn').click();
 			}
 		});
 
@@ -442,7 +441,10 @@
 			if (id && id > 0 && id < <?php echo $max_id ?>) {
 				window.open(`?id=${id}`, '_blank').focus();
 			} else {
-				alert('Out of range');
+				$('#myToast .toast-body').text('Index out of range!')
+				$('#myToast').toast({
+					delay: 1500,
+				}).toast('show');
 			}
 		});
 
@@ -466,7 +468,7 @@
 					if (array.length != 0) {
 						$.each(array, function(index, value) {
 							const {id, status} = value;
-							const item = $('<a />').addClass('btn btn-sm mr-1 mb-1').attr('target', '_blank').attr('href', '?id=' + id).text(id);
+							const item = $('<a />').addClass('btn btn-sm mr-1 mb-1').attr('target', '_blank').attr('href', `?id=${id}`).text(id);
 							$('#search-result').append(item);
 							(status == 2) ? item.addClass('btn-success') : (status == 1) ? item.addClass('btn-warning') : item.addClass('btn-danger');
 						});

@@ -26,7 +26,7 @@
 	}
 
 	try {
-		if (UserManager::isLogged() && UserManager::hasRole(APPLICATION_ID)) {
+		if (UserManager::isLogged() && UserManager::getRole(APPLICATION_ID) == 'user') {
 			switch ($_SERVER['REQUEST_METHOD']) {
 				case 'POST':
 					$result = array();

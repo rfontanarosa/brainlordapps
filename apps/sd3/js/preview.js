@@ -58,17 +58,16 @@ function sd3TextClean(text) {
     text = text.replace(/<0[0,5,6,7,8,9]>/g, "");
     //
     text = text.replace(/<F2>/g, "").replace(/<F3>/g, "").replace(/<F4>/g, "");
-
-	//text = text.replace(/<WAIT>/g, "");
-	text = text.replace(/<MULTI>/g, "");
-	text = text.replace(/<CHOICE>/g, "");
-	text = text.replace(/<OR>/g, "");
-	//text = text.replace(/<PAGE>/g, "");
+    //
+    //text = text.replace(/<WAIT>/g, "");
+    text = text.replace(/<MULTI>/g, "");
+    text = text.replace(/<CHOICE>/g, "");
+    text = text.replace(/<OR>/g, "");
+    //text = text.replace(/<PAGE>/g, "");
     text = text.replace(/<CLOSE><OPEN>/g, "");
-	text = text.replace(/<CLOSE>/g, "");
-	text = text.replace(/<LINE>/g, "");
-
-	return text;
+    text = text.replace(/<CLOSE>/g, "");
+    text = text.replace(/<LINE>/g, "");
+    return text;
 }
 
 function sd3PreviewAlt(previewContainerSelector, text) {
@@ -86,10 +85,10 @@ function sd3PreviewLine(previewContainerSelector, text) {
 }
 
 function sd3PreviewBox(previewContainerSelector, text, boxIndex, boxType) {
-	text = text.replace(/<PAGE>\n/g, "<PAGE>");
-	text = text.replace(/<END>\n/g, "<END>");
-	var textArray = text.split('<PAGE>');
-	for (var j=0; j<textArray.length; j++) {
+    text = text.replace(/<PAGE>\n/g, "<PAGE>");
+    text = text.replace(/<END>\n/g, "<END>");
+    var textArray = text.split('<PAGE>');
+    for (var j=0; j<textArray.length; j++) {
 
         if (boxType == 1) {
             dialogBox = '<div id="dialog-' + boxIndex + '-' + j + '" class="sd3dialogbox"><div class="bgimage"><div class="window"><div class="chars"></div></div></div><div class="infobox"><div class="counter1"></div><div class="counter2"></div><div class="counter3"></div><div class="alert"></div></div></div>';
@@ -99,64 +98,64 @@ function sd3PreviewBox(previewContainerSelector, text, boxIndex, boxType) {
 
         $('#' + previewContainerSelector).append(dialogBox);
 
-		dialogSelector = '#dialog-' + boxIndex + '-' + j;
+        dialogSelector = '#dialog-' + boxIndex + '-' + j;
 
-		$(dialogSelector).find('.chars').html('');
-		$(dialogSelector).find('.counter1').html('');
-		$(dialogSelector).find('.counter2').html('');
-		$(dialogSelector).find('.counter3').html('');
-		$(dialogSelector).find('.alert').html('');
+        $(dialogSelector).find('.chars').html('');
+        $(dialogSelector).find('.counter1').html('');
+        $(dialogSelector).find('.counter2').html('');
+        $(dialogSelector).find('.counter3').html('');
+        $(dialogSelector).find('.alert').html('');
 
-		textDialog = textArray[j];
-		textDialog = sd3TextClean(textDialog);
+        textDialog = textArray[j];
+        textDialog = sd3TextClean(textDialog);
 
-		var i = 0;
-		var indexLine = 0;
-		var k = "";
-		var l = "";
-		var alert = "";
-		var picture = "";
-		var picturestring = "";
-		var counter = [0, 0, 0];
-		var counterstring = ['', '', ''];
+        var i = 0;
+        var indexLine = 0;
+        var k = "";
+        var l = "";
+        var alert = "";
+        var picture = "";
+        var picturestring = "";
+        var counter = [0, 0, 0];
+        var counterstring = ['', '', ''];
 
-		for (i = 0; i < textDialog.length; i++) {
-			l = textDialog.charAt(i);
-			//console.log(l, l.charCodeAt());
-			// "=34
-			// /=47
-			picture = "";
-			if (hashcharlist[l] > 0) {
-				counter[indexLine] += hashcharlist[l];
-				picture = "<img src=\"./images/preview/" + l.charCodeAt() + ".gif\" />";
-			}
-			else if (l == "\n") {
-				picture = "<img src=\"./images/preview/32.gif\"><br>";
-				indexLine++;
-			}
-			else if (textDialog.charAt(i) != 13) {
-				k += l;
-				alert = "Unsupported character(s): " + k;
-			}
-			// counter e counter string
-			if (counter[indexLine] <= 239) {
-				counterstring[indexLine] = "Line " + (indexLine + 1) + ": " + counter[indexLine] + " pixel";
-				if (picture != "") {
-					picturestring += picture;
-				}
-			}
-			else {
-				counterstring[indexLine] = "<div class=\"redtext\">Line " + (indexLine + 1) + ": " + counter[indexLine] + " pixel</div>";
-			}
-		}
+        for (i = 0; i < textDialog.length; i++) {
+            l = textDialog.charAt(i);
+            //console.log(l, l.charCodeAt());
+            // "=34
+            // /=47
+            picture = "";
+            if (hashcharlist[l] > 0) {
+                counter[indexLine] += hashcharlist[l];
+                picture = "<img src=\"./images/preview/" + l.charCodeAt() + ".gif\" />";
+            }
+            else if (l == "\n") {
+                picture = "<img src=\"./images/preview/32.gif\"><br>";
+                indexLine++;
+            }
+            else if (textDialog.charAt(i) != 13) {
+                k += l;
+                alert = "Unsupported character(s): " + k;
+            }
+            // counter e counter string
+            if (counter[indexLine] <= 239) {
+                counterstring[indexLine] = "Line " + (indexLine + 1) + ": " + counter[indexLine] + " pixel";
+                if (picture != "") {
+                    picturestring += picture;
+                }
+            }
+            else {
+                counterstring[indexLine] = "<div class=\"redtext\">Line " + (indexLine + 1) + ": " + counter[indexLine] + " pixel</div>";
+            }
+        }
 
-		$(dialogSelector).find('.chars').html(picturestring);
-		$(dialogSelector).find('.counter1').html(counterstring[0]);
-		$(dialogSelector).find('.counter2').html(counterstring[1]);
-		$(dialogSelector).find('.counter3').html(counterstring[2]);
-		$(dialogSelector).find('.alert').html(alert);
+        $(dialogSelector).find('.chars').html(picturestring);
+        $(dialogSelector).find('.counter1').html(counterstring[0]);
+        $(dialogSelector).find('.counter2').html(counterstring[1]);
+        $(dialogSelector).find('.counter3').html(counterstring[2]);
+        $(dialogSelector).find('.alert').html(alert);
 
-	}
+    }
 
 }
 
