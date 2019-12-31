@@ -52,7 +52,11 @@ class UserManager {
 	}
 
 	public static function getRole($app) {
-		return (array_key_exists('*', $_SESSION['roles'])) ? $_SESSION['roles']['*'] : (array_key_exists($app, $_SESSION['roles'])) ? $_SESSION['roles'][$app] : false;
+		$ret = (array_key_exists('*', $_SESSION['roles'])) ? $_SESSION['roles']['*'] : '';
+		if ($ret == '') {
+			$ret = (array_key_exists($app, $_SESSION['roles'])) ? $_SESSION['roles'][$app] : '';
+		}
+		return $ret;
 	}
 
 }
