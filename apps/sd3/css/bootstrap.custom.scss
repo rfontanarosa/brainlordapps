@@ -1,5 +1,7 @@
 $bg-base-color: #006000;
+$bg-btn-light-color: #f8f9fa;
 $text-base-color: white;
+$text-btn-light-color: black;
 $body-background: url(../images/bg1.png);
 $navbar-background: url(../images/bg3.png);
 
@@ -17,6 +19,22 @@ body {
 	}
 	.navbar-toggler {
 	border: 1px solid $text-base-color;
+	}
+}
+
+.brain-nav {
+	.nav-item {
+		background-color: $bg-btn-light-color;
+		border: 1px solid $text-base-color;
+		border-radius: .25rem;
+		margin-right: 1rem;
+		margin-bottom: 1rem;
+		.active {
+			background-color: $bg-base-color;
+		}
+		a {
+			color: $text-btn-light-color;
+		}
 	}
 }
 

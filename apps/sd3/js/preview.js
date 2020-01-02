@@ -64,7 +64,7 @@ function sd3TextClean(text) {
     text = text.replace(/<CHOICE>/g, "");
     text = text.replace(/<OR>/g, "");
     //text = text.replace(/<PAGE>/g, "");
-    text = text.replace(/<CLOSE><OPEN>/g, "");
+    text = text.replace(/<OPEN>/g, "");
     text = text.replace(/<CLOSE>/g, "");
     text = text.replace(/<LINE>/g, "");
     return text;
