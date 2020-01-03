@@ -51,7 +51,7 @@
 	?>
 
 	<!-- NAVBAR -->
-	<nav class="navbar fixed-top navbar-expand-lg navbar-light brain-navbar">
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark brain-navbar">
 		<span class="navbar-brand mb-0 h1"><?php echo TITLE; ?></span>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -59,17 +59,17 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<?php if (UserManager::isLogged()): ?>
 				<span class="navbar-text ml-auto pr-2">
-					<i class="fas fa-user"></i>&nbsp;<?php echo UserManager::getUsername(); ?>
+					<i class="fas fa-user"></i>&nbsp;<?php echo UserManager::getUsername(); ?>&nbsp;-&nbsp;<?php echo UserManager::getRole(APPLICATION_ID); ?>
 				</span>
 				<form method="post" class="form-inline">
 					<input type="hidden" name="logout" value="1" />
-					<button type="submit" class="btn btn-light my-2 my-sm-0"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</button>
+					<button type="submit" class="btn btn-light btn-sm my-2 my-sm-0"><i class="fas fa-sign-out-alt"></i>&nbsp;Logout</button>
 				</form>
 			<?php else: ?>
 				<form method="post" class="form-inline ml-auto">
-					<input type="text" name="uname" class="form-control mr-sm-2 my-2 my-sm-0" placeholder="Username" aria-label="Username" />
-					<input type="password" name="pass" class="form-control mr-sm-2 my-2 my-sm-0" placeholder="Password" aria-label="Password" />
-					<button type="submit" class="btn btn-light my-2 my-sm-0"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</button>
+					<input type="text" name="uname" class="form-control form-control-sm mr-sm-2 my-2 my-sm-0" placeholder="Username" aria-label="Username" />
+					<input type="password" name="pass" class="form-control form-control-sm mr-sm-2 my-2 my-sm-0" placeholder="Password" aria-label="Password" />
+					<button type="submit" class="btn btn-light btn-sm my-2 my-sm-0"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</button>
 				</form>
 			<?php endif; ?>
 		</div>
@@ -123,7 +123,7 @@
 				</li>
 			</ul>
 			<div class="row">
-				<div class="col-md-7 col-lg-7">
+				<div class="col-md-7 col-lg-7 pr-0">
 					<div class="tab-content" id="pills-tabContent">
 						<div class="tab-pane fade" id="pills-original" role="tabpanel" aria-labelledby="pills-original-tab">
 							<?php
@@ -180,8 +180,7 @@
 							?>
 							<!-- TRANSLATION BOX -->
 							<div class="card brain-card mb-3">
-								<div class="card-header d-flex justify-content-between align-items-center">
-									<button type="submit" class="btn btn-light preview-btn" id="reset-btn"><i class="fas fa-sync-alt"></i>&nbsp;RESET</button>
+								<div class="card-header d-flex justify-content-between">
 									<span>TRANSLATION</span>
 									<button type="submit" class="btn btn-light preview-btn" id="preview-new-btn"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
 								</div>
@@ -294,11 +293,11 @@
 										<?php echo $done100 ?>%
 										<span class="badge badge-primary badge-pill"><?php echo $done ?></span>
 									</li>
-									<li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center"">
+									<li class="list-group-item list-group-item-warning d-flex justify-content-between align-items-center">
 										<?php echo $partially100 ?>%
 										<span class="badge badge-primary badge-pill"><?php echo $partially ?></span>
 									</li>
-									<li class="list-group-item list-group-item-danger d-flex justify-content-between align-items-center"">
+									<li class="list-group-item list-group-item-danger d-flex justify-content-between align-items-center">
 										<?php echo $undone100 ?>%
 										<span class="badge badge-primary badge-pill"><?php echo $undone ?></span>
 									</li>
@@ -326,7 +325,7 @@
 
 		<?php else: ?>
 
-		<div class="container-fluid">ACCESS DENIED!!! You are not authorized to access this page!</div>
+		<div class="container-fluid mt-3 bg-light">ACCESS DENIED!!! You are not authorized to access this page!</div>
 
 	<?php endif; ?>
 
@@ -361,10 +360,10 @@
 	$(document).ready(function() {
 
 		$('.submit-btn').click(function(e) {
-			var id_text = $('input[name="id_text"]').val();
-			var new_text = $('textarea[name="new_text"]').val();
-			var comment = $('textarea[name="comment"]').val();
-			var status = $(this).val();
+			const id_text = $('input[name="id_text"]').val();
+			const new_text = $('textarea[name="new_text"]').val();
+			const comment = $('textarea[name="comment"]').val();
+			const status = $(this).val();
 			$.ajax({
 				type: 'POST',
 				url: 'ajax_submit.php',
@@ -375,24 +374,25 @@
 					comment : comment
 				}
 			}).done(function(data, textStatus, jqXHR) {
-				var data = $.parseJSON(data);
-				var textarea = $('textarea[name=new_text]', '#form1');
+				const json_data = $.parseJSON(data);
+				const textarea = $('textarea[name=new_text]', '#form1');
+				textarea.removeClass('btn-warning btn-danger btn-success');
 				switch (status) {
 					case '0':
-						textarea.removeClass('btn-success btn-warning').addClass('btn-danger');
+						textarea.addClass('btn-danger');
 						break;
 					case '1':
-						textarea.removeClass('btn-danger btn-success').addClass('btn-warning');
+						textarea.addClass('btn-warning');
 						break;
 					case '2':
-						textarea.removeClass('btn-danger btn-warning').addClass('btn-success');
+						textarea.addClass('btn-success');
 						break;
 				}
-				$('#lastUpdate').text(data.updateDate);
-				$('#myToast .toast-body').text('The text has been updated with success!').removeClass('btn-danger').addClass('btn-success');
+				$('#lastUpdate').text(json_data.updateDate);
+				$('#myToast .toast-body').text('The text has been updated with success!').removeClass('bg-danger').addClass('bg-success');
 			}).fail(function(jqXHR, textStatus, errorThrown) {
 				console.log(errorThrown);
-				$('#myToast .toast-body').text('An error has occurred!').removeClass('label-success').addClass('label-danger');;
+				$('#myToast .toast-body').text('An error has occurred!').removeClass('bg-success').addClass('bg-danger');;
 			}).always(function(a, textStatus, b) {
 				//$('#myModal').modal();
 				$('#myToast').toast({
@@ -416,13 +416,6 @@
 			e.stopPropagation();
 			e.preventDefault();
 			$('#new_text').keyup();
-		});
-
-		$('#reset-btn').click(function(e) {
-			e.stopPropagation();
-			e.preventDefault();
-			const original_text = $('#original_text').val();
-			$('#new_text').val(original_text);
 		});
 
 		$('textarea#new_text, textarea#original_text').keyup(function(e) {
