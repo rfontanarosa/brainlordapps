@@ -27,13 +27,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="./images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 		<link href="./images/favicon.ico" rel="apple-touch-icon" />
-		<script type="text/javascript" src="../../node_modules/@fortawesome/fontawesome-free/css/all.min.css"></script>
 		<script type="text/javascript" src="../../node_modules/jquery/dist/jquery.min.js"></script>
 		<script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript"src="../../node_modules/popper.js/dist/popper.min.js"></script>
+		<script type="text/javascript"src="../../node_modules/popper.js/dist/umd/popper.min.js"></script>
 		<script type="text/javascript" src="../../node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
-		<link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
 		<link rel="stylesheet" href="./css/bootstrap.custom.css" type="text/css" />
 		<link rel="stylesheet" href="./css/style-preview.css" type="text/css" />
 		<script type="text/javascript" src="./js/preview.js" charset="UTF-8"></script>
