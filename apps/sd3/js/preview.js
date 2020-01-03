@@ -1,5 +1,6 @@
 function sd3Cache() {
     var images = new Array(
+        "34.gif", "35.gif", "36.gif", "37.gif", "38.gif", "43.gif", "42.gif", "47.gif",
         "32.gif", "33.gif", "39.gif", "40.gif", "41.gif", "44.gif", "45.gif", "46.gif", "48.gif", "49.gif",
         "50.gif", "51.gif", "52.gif", "53.gif", "54.gif", "55.gif", "56.gif", "57.gif", "58.gif", "63.gif",
         "65.gif", "66.gif", "67.gif", "68.gif", "69.gif", "70.gif", "71.gif", "72.gif", "73.gif", "74.gif",
@@ -25,18 +26,17 @@ function sd3TextClean(text) {
     text = text.replace(/<CHAR 3>/g, "CHAR03");
     //
     text = text.replace(/<DURAN>/g, "DURAN6");
-    text = text.replace(/<ANGELA>/g, "ANGELA");
-    text = text.replace(/<LISE>/g, "LISE56");
-    text = text.replace(/<HAWK>/g, "HAWK56");
     text = text.replace(/<KEVIN>/g, "KEVIN6");
+    text = text.replace(/<HAWK>/g, "HAWK56");
+    text = text.replace(/<ANGELA>/g, "ANGELA");
     text = text.replace(/<CARLIE>/g, "CARLIE");
+    text = text.replace(/<LISE>/g, "LISE56");
     //
     text = text.replace(/<WHITE>/g, "");
     text = text.replace(/<YELLOW>/g, "");
-    text = text.replace(/<MONO NARROW WHITE>/g, "");
     text = text.replace(/<MONO WHITE>/g, "");
     text = text.replace(/<MONO YELLOW>/g, "");
-    //text = text.replace(/<MONO NARROW YELLOW>/g, "");
+    text = text.replace(/<MONO NARROW WHITE>/g, "");
     //
     text = text.replace(/<ITEM ...>/g, "ITEMXX");
     //
@@ -177,11 +177,11 @@ function sd3Preview(previewContainerSelector, text) {
 }
 
 var charlist = [];
-charlist[0] = new Array("ABCDEFGHJKLNPRSUVabcdeghknopqrstuvyz23456789àèéìòùÈ-?", 8);
-charlist[1] = new Array("MOQTWXYZmwx0", 9);
+charlist[0] = new Array("/\"#$%&ABCDEFGHJKLNPRSUVabcdeghknopqrstuvyz23456789àèéìòùÈ-?", 8);
+charlist[1] = new Array("*MOQTWXYZmwx0", 9);
 charlist[2] = new Array("il.:", 3);
 charlist[3] = new Array("I!()", 5);
-charlist[4] = new Array("fj1", 7);
+charlist[4] = new Array("+fj1", 7);
 charlist[5] = new Array(",'", 4);
 charlist[6] = new Array(" ", 6);
 
