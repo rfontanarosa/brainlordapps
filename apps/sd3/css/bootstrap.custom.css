@@ -30,6 +30,14 @@ body {
 .brain-navbar .navbar-brand, .brain-navbar .navbar-text {
   color: white; }
 
+.preview-btn {
+  padding: .25rem .5rem;
+  font-size: 75%;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: .25rem; }
+
 textarea {
   font-family: Courier; }
 

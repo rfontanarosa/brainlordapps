@@ -97,7 +97,7 @@
 						<a class="btn btn-light <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php if ($id < $max_id) echo ($id + 1); ?>">Next&nbsp;&rsaquo;</a>
 						<a class="btn btn-light <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php echo $max_id; ?>">Last&nbsp;&rarr;</a>
 					</div>
-					<div class="btn-group mb-3" role="group" aria-label="First group">
+					<div class="btn-group mb-3" role="group" aria-label="Second group">
 						<a class="btn btn-light <?php if (!isset($prev_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($prev_id)) echo $prev_id; ?>">&laquo;&nbsp;Prev (TODO)</a>
 						<a class="btn btn-light disabled" href=""><?php echo sprintf('#%04d', $id); ?></a>
 						<a class="btn btn-light <?php if (!isset($next_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($next_id)) echo $next_id; ?>">Next (TODO)&nbsp;&raquo;</a>
@@ -149,7 +149,7 @@
 							<div class="card brain-card mb-3">
 								<div class="card-header d-flex justify-content-between align-items-center">
 									<span>ORIGINAL</span>
-									<button type="submit" class="btn btn-light btn-sm" id="preview-original-btn"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
+									<button type="submit" class="btn btn-light preview-btn" id="preview-original-btn"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
 								</div>
 								<div class="card-body">
 									<div class="form-group mb-0">
@@ -181,11 +181,9 @@
 							<!-- TRANSLATION BOX -->
 							<div class="card brain-card mb-3">
 								<div class="card-header d-flex justify-content-between align-items-center">
+									<button type="submit" class="btn btn-light preview-btn" id="reset-btn"><i class="fas fa-sync-alt"></i>&nbsp;RESET</button>
 									<span>TRANSLATION</span>
-									<div>
-										<button type="submit" class="btn btn-light btn-sm" id="reset-btn"><i class="fas fa-sync-alt"></i>&nbsp;RESET</button>
-										<button type="submit" class="btn btn-light btn-sm" id="preview-new-btn"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
-									</div>
+									<button type="submit" class="btn btn-light preview-btn" id="preview-new-btn"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
 								</div>
 								<div class="card-body">
 									<form method="post" id="form1">
@@ -277,7 +275,7 @@
 							</div>
 						</div>
 						<div class="tab-pane fade" id="pills-stats" role="tabpanel" aria-labelledby="pills-stats-tab">
-							<!-- STATS -->
+							<!-- STATS BOX -->
 							<?php
 								$db = new SQLite3(SQLITE_FILENAME);
 								$partially = DbManager::countByUserAndStatus($db, $uname, 1);

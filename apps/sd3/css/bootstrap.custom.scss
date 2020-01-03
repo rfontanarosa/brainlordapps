@@ -48,6 +48,15 @@ body {
 	color: $text-base-color;
 }
 
+.preview-btn {
+	padding: .25rem .5rem;
+	font-size: 75%;
+	color: $text-base-color;
+	background-color: transparent;
+	border: 1px solid $text-base-color;
+	border-radius: .25rem;
+}
+
 textarea {
 	font-family: Courier;
 }
