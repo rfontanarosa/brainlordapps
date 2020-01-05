@@ -65,8 +65,11 @@ class DbManager {
 
 	public static function countByUserAndStatus($db, $uname, $status) {
 		$ret = 0;
-		$query = "SELECT COUNT(*) FROM trans WHERE author='$uname' AND status = '$status'";
-		$results = $db->query($query);
+		$query = 'SELECT COUNT(*) FROM trans WHERE author = :author AND status = :status';
+		$stmt = $db->prepare($query);
+		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
+		$stmt->bindValue(':status', $status, SQLITE3_INTEGER);
+		$results = $stmt->execute();
 		if ($row = $results->fetchArray()) {
 			$ret = $row[0];
 		}
@@ -76,8 +79,12 @@ class DbManager {
 
 	public static function getNextIdByUserAndId($db, $uname, $id) {
 		$ret = 0;
-		$query = "SELECT MIN(id) FROM texts WHERE id NOT IN (SELECT id_text FROM trans WHERE status=2 AND author='$uname') AND id > $id";
-		$results = $db->query($query);
+		$query = 'SELECT MAX(id) FROM texts WHERE id NOT IN (SELECT id_text FROM trans WHERE author = :author AND status = :status) AND id > :id';
+		$stmt = $db->prepare($query);
+		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
+		$stmt->bindValue(':status', 2, SQLITE3_INTEGER);
+		$stmt->bindValue(':id', $id, SQLITE3_INTEGER);
+		$results = $stmt->execute();
 		if ($row = $results->fetchArray()) {
 			$ret = $row[0];
 		}
@@ -87,8 +94,12 @@ class DbManager {
 
 	public static function getPrevIdByUserAndId($db, $uname, $id) {
 		$ret = 0;
-		$query = "SELECT MAX(id) FROM texts WHERE id NOT IN (SELECT id_text FROM trans WHERE status=2 AND author='$uname') AND id < $id";
-		$results = $db->query($query);
+		$query = 'SELECT MAX(id) FROM texts WHERE id NOT IN (SELECT id_text FROM trans WHERE author = :author AND status = :status) AND id < :id';
+		$stmt = $db->prepare($query);
+		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
+		$stmt->bindValue(':status', 2, SQLITE3_INTEGER);
+		$stmt->bindValue(':id', $id, SQLITE3_INTEGER);
+		$results = $stmt->execute();
 		if ($row = $results->fetchArray()) {
 			$ret = $row[0];
 		}
@@ -97,11 +108,8 @@ class DbManager {
 	}
 
 	public static function getOriginalById($db, $id) {
-		/*
-		$query = "SELECT * FROM texts WHERE id = '$id'";
-		$results = $db->query($query);
-		*/
-		$stmt = $db->prepare('SELECT * FROM texts WHERE id = :id');
+		$query = 'SELECT * FROM texts WHERE id = :id';
+		$stmt = $db->prepare($query);
 		$stmt->bindValue(':id', $id, SQLITE3_INTEGER);
 		$results = $stmt->execute();
 		$row = $results->fetchArray();
@@ -110,12 +118,19 @@ class DbManager {
 	}
 
 	public static function getTranslationByUserAndOriginalId($db, $uname, $id) {
-		/*
-		$query = "SELECT * FROM trans WHERE author = '$uname' AND id_text = '$id'";
-		$results = $db->query($query);
-		*/
-		$stmt = $db->prepare('SELECT * FROM trans WHERE author = :author AND id_text = :id');
+		$query = 'SELECT * FROM trans WHERE author = :author AND id_text = :id';
+		$stmt = $db->prepare($query);
 		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
+		$stmt->bindValue(':id', $id, SQLITE3_INTEGER);
+		$results = $stmt->execute();
+		$row = $results->fetchArray();
+		$results->finalize();
+		return $row;
+	}
+
+	public static function getTranslationByOriginalId($db, $uname, $id) {
+		$query = 'SELECT * FROM trans WHERE id_text = :id';
+		$stmt = $db->prepare($query);
 		$stmt->bindValue(':id', $id, SQLITE3_INTEGER);
 		$results = $stmt->execute();
 		$row = $results->fetchArray();

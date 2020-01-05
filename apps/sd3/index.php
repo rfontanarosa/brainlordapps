@@ -145,7 +145,7 @@
 									print_r($e);
 								}
 							?>
-							<!-- ORIGINAL BOX -->
+							<!-- ORIGINAL - BOX -->
 							<div class="card brain-card mb-3">
 								<div class="card-header d-flex justify-content-between align-items-center">
 									<span>ORIGINAL</span>
@@ -178,7 +178,7 @@
 								$db->close();
 								unset($db);
 							?>
-							<!-- TRANSLATION BOX -->
+							<!-- TRANSLATION - BOX -->
 							<div class="card brain-card mb-3">
 								<div class="card-header d-flex justify-content-between">
 									<span>TRANSLATION</span>
@@ -233,9 +233,9 @@
 							</div>
 						</div>
 						<div class="tab-pane fade" id="pills-search" role="tabpanel" aria-labelledby="pills-search-tab">
+							<!-- SEARCH BOX -->
 							<div class="card brain-card mb-3">
 								<div class="card-header">SEARCH</div>
-								<!-- GO TO -->
 								<div class="card-body">
 									<div class="input-group">
 										<div class="input-group-prepend">
@@ -247,7 +247,6 @@
 										</div>
 									</div>
 								</div>
-								<!-- SEARCH -->
 								<div class="card-body pt-0">
 									<div class="input-group">
 										<div class="input-group-prepend">
@@ -274,7 +273,6 @@
 							</div>
 						</div>
 						<div class="tab-pane fade" id="pills-stats" role="tabpanel" aria-labelledby="pills-stats-tab">
-							<!-- STATS BOX -->
 							<?php
 								$db = new SQLite3(SQLITE_FILENAME);
 								$partially = DbManager::countByUserAndStatus($db, $uname, 1);
@@ -286,6 +284,7 @@
 								$partially100 = number_format(round(($partially/$max_id)*100, 3), 1);
 								$undone100 = number_format(100 - $done100 - $partially100, 1);
 							?>
+							<!-- STATS BOX -->
 							<div class="card brain-card mb-3">
 								<div class="card-header">STATS</div>
 								<ul class="list-group list-group-flush">
@@ -368,10 +367,10 @@
 				type: 'POST',
 				url: 'ajax_submit.php',
 				data: {
-					id_text : id_text,
-					new_text : new_text,
-					status : status,
-					comment : comment
+					id_text,
+					new_text,
+					status,
+					comment,
 				}
 			}).done(function(data, textStatus, jqXHR) {
 				const json_data = $.parseJSON(data);
@@ -421,7 +420,7 @@
 		$('textarea#new_text, textarea#original_text').keyup(function(e) {
 			e.stopPropagation();
 			e.preventDefault();
-			var text = $(this).val();
+			const text = $(this).val();
 			sd3Preview('dialog-container', text);
 		});
 
@@ -460,8 +459,8 @@
 		$('#search-original-btn, #search-new-btn').click(function(e) {
 			e.stopPropagation();
 			e.preventDefault();
-			var originalOrNew = ($(this).attr('id').indexOf('new') !== -1) ? 'new' : 'original';
-			var text_to_search = (originalOrNew == 'new') ? $('#search2').val() : $('#search1').val();
+			const originalOrNew = ($(this).attr('id').indexOf('new') !== -1) ? 'new' : 'original';
+			const text_to_search = (originalOrNew == 'new') ? $('#search2').val() : $('#search1').val();
 			if (text_to_search.length > 1) {
 				$.ajax({
 					async: false,
@@ -469,17 +468,20 @@
 					url: 'ajax_search.php',
 					data: {
 						type: originalOrNew,
-						text_to_search : text_to_search
+						text_to_search
 					}
 				}).done(function(data, textStatus, jqXHR) {
 					$('#search-result').empty();
-					var array = JSON.parse(data);
+					const array = JSON.parse(data);
 					if (array.length != 0) {
 						$.each(array, function(index, value) {
 							const {id, status} = value;
-							const item = $('<a />').addClass('btn btn-sm mr-1 mb-1').attr('target', '_blank').attr('href', `?id=${id}`).text(id);
-							$('#search-result').append(item);
+							const item = $('<a />').addClass('btn btn-sm mr-1 mb-1').text(id).attr('href', `?id=${id}`).attr('target', '_blank');
+							if (id == <?php echo $id ?>) {
+								item.addClass('disabled').removeAttr('href').removeAttr('_blank');
+							} 
 							(status == 2) ? item.addClass('btn-success') : (status == 1) ? item.addClass('btn-warning') : item.addClass('btn-danger');
+							$('#search-result').append(item);
 						});
 					} else {
 						$('#search-result').text('No results found!');
