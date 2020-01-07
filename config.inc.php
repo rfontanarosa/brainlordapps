@@ -79,7 +79,7 @@ class DbManager {
 
 	public static function getNextIdByUserAndId($db, $uname, $id) {
 		$ret = 0;
-		$query = 'SELECT MAX(id) FROM texts WHERE id NOT IN (SELECT id_text FROM trans WHERE author = :author AND status = :status) AND id > :id';
+		$query = 'SELECT MIN(id) FROM texts WHERE id NOT IN (SELECT id_text FROM trans WHERE author = :author AND status = :status) AND id > :id';
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
 		$stmt->bindValue(':status', 2, SQLITE3_INTEGER);
