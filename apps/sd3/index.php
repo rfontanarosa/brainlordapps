@@ -250,7 +250,7 @@
 										</div>
 										<input type="search" class="form-control" id="search1" placeholder="Search for..." />
 										<div class="input-group-append">
-											<button class="btn btn-outline-light" type="button" id="search-original-btn"><i class="fas fa-search"></i>&nbsp;Search</button>
+											<button class="btn btn-outline-light" type="button" id="search-original-btn" data-type="original"><i class="fas fa-search"></i>&nbsp;Search</button>
 										</div>
 									</div>
 								</div>
@@ -261,7 +261,18 @@
 										</div>
 										<input type="search" class="form-control" id="search2" placeholder="Search for..." />
 										<div class="input-group-append">
-											<button class="btn btn-outline-light" type="button" id="search-new-btn"><i class="fas fa-search"></i>&nbsp;Search</button>
+											<button class="btn btn-outline-light" type="button" id="search-new-btn" data-type="new"><i class="fas fa-search"></i>&nbsp;Search</button>
+										</div>
+									</div>
+								</div>
+								<div class="card-body pt-0">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="basic-addon3">Comment</span>
+										</div>
+										<input type="search" class="form-control" id="search3" placeholder="Search for..." />
+										<div class="input-group-append">
+											<button class="btn btn-outline-light" type="button" id="search-comment-btn" data-type="comment"><i class="fas fa-search"></i>&nbsp;Search</button>
 										</div>
 									</div>
 								</div>
@@ -432,6 +443,12 @@
 			}
 		});
 
+		$('#search3').keypress(function(e) {
+			if (e.keyCode == '13') {
+				$('#search-comment-btn').click();
+			}
+		});
+
 		$('#goto1').keypress(function(e) {
 			if (e.keyCode == '13') {
 				$('#go-to-btn').click();
@@ -452,20 +469,31 @@
 			}
 		});
 
-		$('#search-original-btn, #search-new-btn').click(function(e) {
+		$('#search-original-btn, #search-new-btn, #search-comment-btn').click(function(e) {
 			e.stopPropagation();
 			e.preventDefault();
-			const originalOrNew = ($(this).attr('id').indexOf('new') !== -1) ? 'new' : 'original';
-			const text_to_search = (originalOrNew == 'new') ? $('#search2').val() : $('#search1').val();
+			const type = $(this).attr('data-type');
+			let text_to_search = '';
+			switch (type) {
+				case 'original':
+					text_to_search = $('#search1').val();
+					break;
+				case 'new':
+					text_to_search = $('#search2').val();
+					break;
+				case 'comment':
+					text_to_search = $('#search3').val();
+					break;
+			}
 			if (text_to_search.length > 1) {
 				$.ajax({
 					async: false,
 					type: 'POST',
 					url: 'ajax_search.php',
 					data: {
-						type: originalOrNew,
-						text_to_search
-					}
+						type,
+						text_to_search,
+					},
 				}).done(function(data, textStatus, jqXHR) {
 					$('#search-result').empty();
 					const array = JSON.parse(data);
