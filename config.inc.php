@@ -128,14 +128,17 @@ class DbManager {
 		return $row;
 	}
 
-	public static function getTranslationByOriginalId($db, $uname, $id) {
+	public static function getTranslationByOriginalId($db, $id) {
 		$query = 'SELECT * FROM trans WHERE id_text = :id';
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':id', $id, SQLITE3_INTEGER);
 		$results = $stmt->execute();
-		$row = $results->fetchArray();
+		$rows = array();
+		while ($row = $results->fetchArray()) {
+			$rows[] = $row;
+		}
 		$results->finalize();
-		return $row;
+		return $rows;
 	}
 
 }

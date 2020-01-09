@@ -93,13 +93,14 @@
 					<div class="btn-group mb-3 mr-3" role="group" aria-label="First group">
 						<a class="btn btn-light <?php if ($id == 1) echo 'disabled'; ?>" href="?id=1">&larr;&nbsp;First</a>
 						<a class="btn btn-light <?php if ($id == 1) echo 'disabled'; ?>" href="?id=<?php if ($id > 1) echo ($id - 1); ?>">&lsaquo;&nbsp;Prev</a>
-						<a class="btn btn-light disabled" href=""><?php echo sprintf('#%04d', $id); ?></a>
 						<a class="btn btn-light <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php if ($id < $max_id) echo ($id + 1); ?>">Next&nbsp;&rsaquo;</a>
 						<a class="btn btn-light <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php echo $max_id; ?>">Last&nbsp;&rarr;</a>
 					</div>
-					<div class="btn-group mb-3" role="group" aria-label="Second group">
-						<a class="btn btn-light <?php if (!isset($prev_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($prev_id)) echo $prev_id; ?>">&laquo;&nbsp;Prev (TODO)</a>
+					<div class="btn-group mb-3 mr-3" role="group" aria-label="Second group">
 						<a class="btn btn-light disabled" href=""><?php echo sprintf('#%04d', $id); ?></a>
+					</div>
+					<div class="btn-group mb-3" role="group" aria-label="Third group">
+						<a class="btn btn-light <?php if (!isset($prev_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($prev_id)) echo $prev_id; ?>">&laquo;&nbsp;Prev (TODO)</a>
 						<a class="btn btn-light <?php if (!isset($next_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($next_id)) echo $next_id; ?>">Next (TODO)&nbsp;&raquo;</a>
 					</div>
 				</div>
@@ -123,7 +124,7 @@
 				</li>
 			</ul>
 			<div class="row">
-				<div class="col-md-7 col-lg-7 pr-0">
+				<div class="col-md-7 col-lg-7">
 					<div class="tab-content" id="pills-tabContent">
 						<div class="tab-pane fade" id="pills-original" role="tabpanel" aria-labelledby="pills-original-tab">
 							<?php
@@ -166,17 +167,20 @@
 							<?php
 								$db = new SQLite3(SQLITE_FILENAME);
 								if ($row = DbManager::getTranslationByUserAndOriginalId($db, $uname, $id)) {
-									$text = $row['new_text'];
+									$new_text = $row['new_text'];
 									$comment = $row['comment'];
 									if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
-										$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
+										$new_text = str_replace(NEWLINECHAR, '&#13;&#10;', $new_text);
 									}
 									$status = $row['status'];
 									$date = $row['date'];
 								}
-								if (!isset($status)) $status = 0;
 								$db->close();
 								unset($db);
+								$new_text = (isset($new_text)) ? $new_text : $text;
+								$comment = (isset($comment)) ? $comment : '';
+								$status = (isset($status)) ? $status : 0;
+								$date = (isset($date)) ? @date('d/m/Y, G:i', $date) : 'Never been updated!';
 							?>
 							<!-- TRANSLATION - BOX -->
 							<div class="card brain-card mb-3">
@@ -204,10 +208,10 @@
 											}
 										?>
 										<div class="form-group">
-											<textarea rows="10" class="form-control <?php echo $class; ?>" id="new_text" name="new_text"><?php echo $text; ?></textarea>
+											<textarea rows="10" class="form-control <?php echo $class; ?>" id="new_text" name="new_text"><?php echo $new_text; ?></textarea>
 										</div>
 										<div class="form-group mb-0">
-											<textarea rows="2" class="form-control" name="comment"><?php if (isset($comment)) echo $comment; ?></textarea>
+											<textarea rows="2" class="form-control" name="comment"><?php echo $comment; ?></textarea>
 										</div>
 									</form>
 								</div>
@@ -219,15 +223,7 @@
 								<div class="card-footer">
 									<small>
 										Last update:&nbsp;
-										<span id="lastUpdate">
-											<?php
-												if (isset($date)) {
-													echo @date('d/m/Y, G:i', $date);
-												} else {
-													echo 'Never been updated!';
-												}
-											?>
-										</span>
+										<span id="lastUpdate"><?php echo $date; ?></span>
 									</small>
 								</div>
 							</div>
