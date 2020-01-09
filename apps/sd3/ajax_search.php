@@ -33,14 +33,14 @@
 						$stmt = $db->prepare($query);
 						$stmt->bindValue(':text_to_search', "%$text_to_search%", SQLITE3_TEXT);
 						$stmt->bindValue(':author', $author, SQLITE3_TEXT);
-
-						$result = $db->query($query);
-						while ($row = $result->fetchArray()) {
+						$results = $stmt->execute();
+						while ($row = $results->fetchArray()) {
 							array_push($data, array(
 								'id' => $row[0],
 								'status' => $row[1],
 							));
 						}
+						$results->finalize();
 						$db->close();
 						unset($db);
 						echo json_encode($data);
