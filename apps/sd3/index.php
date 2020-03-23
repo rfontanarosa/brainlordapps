@@ -122,6 +122,9 @@
 				<li class="nav-item">
 					<a class="nav-link" id="pills-stats-tab" data-toggle="pill" href="#pills-stats" role="tab" aria-controls="pills-stats" aria-selected="false"><i class="fas fa-chart-bar"></i>&nbsp;STATS</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="pills-others-tab" data-toggle="pill" href="#pills-others" role="tab" aria-controls="pills-others" aria-selected="false"><i class="fas fa-users"></i>&nbsp;OTHERS</a>
+				</li>
 			</ul>
 			<div class="row">
 				<div class="col-md-7 col-lg-7">
@@ -310,6 +313,67 @@
 								</ul>
 							</div>
 						</div>
+						<div class="tab-pane fade" id="pills-others" role="tabpanel" aria-labelledby="pills-others-tab">
+							<?php
+								$db = new SQLite3(SQLITE_FILENAME);
+								if ($rows = DbManager::getOtherTranslationByOriginalId($db, $uname, $id)) {
+									foreach ($rows as $row) {
+										$author = $row['author'];
+										$new_text = $row['new_text'];
+										$comment = $row['comment'];
+										if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
+											$new_text = str_replace(NEWLINECHAR, '&#13;&#10;', $new_text);
+										}
+										$status = $row['status'];
+										$date = $row['date'];
+										$new_text = (isset($new_text)) ? $new_text : $text;
+										$comment = (isset($comment)) ? $comment : '';
+										$status = (isset($status)) ? $status : 0;
+										$date = (isset($date)) ? @date('d/m/Y, G:i', $date) : 'Never been updated!';
+							?>
+							<!-- USER - BOX -->
+							<div class="card brain-card mb-3">
+								<div class="card-header d-flex justify-content-between align-items-center">
+									<span><?php echo $author; ?></span>
+								</div>
+								<div class="card-body">
+									<?php
+										switch ($status) {
+											case '0':
+												$class = 'btn-danger';
+												break;
+											case '':
+												$class = 'btn-danger';
+												break;
+											case '1':
+												$class = 'btn-warning';
+												break;
+											case '2':
+												$class = 'btn-success';
+												break;
+										}
+									?>
+									<div class="form-group">
+										<textarea rows="10" class="form-control <?php echo $class; ?>" id="<?php echo $author; ?>_text" name="<?php echo $author; ?>_text" disabled><?php echo $new_text; ?></textarea>
+									</div>
+									<div class="form-group mb-0">
+										<textarea rows="2" class="form-control" name="<?php echo $author; ?>_comment" disabled><?php echo $comment; ?></textarea>
+									</div>
+								</div>
+								<div class="card-footer">
+									<small>
+										Last update:&nbsp;
+										<span id="lastUpdate"><?php echo $date; ?></span>
+									</small>
+								</div>
+							</div>
+							<?php
+									}
+								}
+								$db->close();
+								unset($db);
+							?>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-5 col-lg-5">
@@ -378,7 +442,7 @@
 					new_text,
 					status,
 					comment,
-				}
+				},
 			}).done(function(data, textStatus, jqXHR) {
 				const json_data = $.parseJSON(data);
 				const textarea = $('textarea[name=new_text]', '#form1');

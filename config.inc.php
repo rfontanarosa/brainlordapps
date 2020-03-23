@@ -128,9 +128,10 @@ class DbManager {
 		return $row;
 	}
 
-	public static function getTranslationByOriginalId($db, $id) {
-		$query = 'SELECT * FROM trans WHERE id_text = :id';
+	public static function getOtherTranslationByOriginalId($db, $uname, $id) {
+		$query = 'SELECT * FROM trans WHERE author != :author AND id_text = :id ';
 		$stmt = $db->prepare($query);
+		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
 		$stmt->bindValue(':id', $id, SQLITE3_INTEGER);
 		$results = $stmt->execute();
 		$rows = array();
