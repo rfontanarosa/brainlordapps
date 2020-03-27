@@ -57,18 +57,19 @@
 
 	function bofTextClean($text) {
 		//
+		$text = preg_replace('/\{f6}{..\}/', '', $text);
 		$text = preg_replace('/\{fb}{..\}{..\}{..\}{..\}{..\}/', '', $text);
 		$text = preg_replace('/\{fc}{..\}{..\}{..\}{..\}{..\}/', '', $text);
-		$text = preg_replace('/\{ff}{..\}{..\}{..\}{..\}{..\}/', '', $text);
-		$text = preg_replace('/\{f6}{..\}/', '', $text);
 		$text = preg_replace('/\{fd}{..\}{..\}/', '', $text);
 		$text = preg_replace('/\{fe}{..\}{..\}/', '', $text);
+		$text = preg_replace('/\{ff}{..\}{..\}{..\}/', '', $text);
 		//
 		$text = str_replace('{ee}', ' ', $text);
 		$text = str_replace('{ef}', ' ', $text);
 		$text = str_replace('{82}', '', $text);
 		$text = str_replace('{88}', 'PLAYER', $text);
 		$text = str_replace('<white>', '', $text);
+		$text = str_replace('<input>', '', $text);
 		//
 		$text = str_replace('{f7}', '', $text);
 		return $text;

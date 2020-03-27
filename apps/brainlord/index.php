@@ -145,6 +145,35 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- SEARCH BOXES -->
+			<div class="row">
+				<div class="col-xs-6 col-md-6 col-lg-6">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="input-group">
+								<input type="text" class="form-control" id="search1" placeholder="Search for..." />
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button" id="search-original-btn">Search</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6 col-md-6 col-lg-6">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="input-group">
+								<input type="text" class="form-control" id="search2" placeholder="Search for..." />
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button" id="search-new-btn">Search</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<!-- MAIN -->
 			<div class="row">
 				<!-- ORIGINAL TEXT BOX -->
@@ -292,6 +321,18 @@
 		</div>
 	</div>
 
+	<div id="search-result-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="mySmallModalLabel" style="color:black;"><span class="glyphicon glyphicon-search"></span>&nbsp;SEARCH RESULTS</h4>
+				</div>
+				<div class="modal-body"></div>
+			</div>
+		</div>
+	</div>
+
 	<script type="text/javascript">
 
 	$(document).ready(function() {
@@ -358,6 +399,43 @@
 				$('#preview-modal .modal-body').html(data);
 				$('#preview-modal').modal('show');
 			});
+		});
+
+		$('#search-original-btn, #search-new-btn').click(function(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			var originalOrNew = ($(this).attr('id').indexOf('new') !== -1) ? 'new' : 'original';
+			var text_to_search = (originalOrNew == 'new') ? $('#search2').val() : $('#search1').val();
+			if (text_to_search.length > 1) {
+				$.ajax({
+					async: false,
+					type: 'POST',
+					url: 'ajax_search.php',
+					data: {
+						type: originalOrNew,
+						text_to_search : text_to_search
+					}
+				}).done(function(data, textStatus, jqXHR) {
+					var array = JSON.parse(data);
+					if (array.length != 0) {
+						var search_result = $('<ul class="list-inline" />');
+						$.each(array, function(index, value) {
+							var anchor = $('<a />').attr('href', '?id=' + value).text(value);
+							var item = $('<li />').html(anchor);
+							search_result.append(item);
+						});
+						$('#search-result-modal .modal-body').html(search_result);
+					} else {
+						$('#search-result-modal .modal-body').text('No results found!');
+					}
+				}).fail(function(jqXHR, textStatus, errorThrown) {
+					console.log(errorThrown);
+				}).always(function(a, textStatus, b) {
+					$('#search-result-modal').modal('show');
+				});
+			} else {
+				//
+			}
 		});
 
 	});

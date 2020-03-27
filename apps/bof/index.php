@@ -119,8 +119,8 @@
 				</div>
 			</div>
 
-			<!-- PAGINATOR -->
-			<div class="panel panel-default" id="paginator">
+			<!-- PAGINATION -->
+			<div class="panel panel-default">
 				<?php
 					$db = new SQLite3(SQLITE_FILENAME);
 					$next_id = DbManager::getNextIdByUserAndId($db, $uname, $id);
@@ -175,7 +175,7 @@
 				</div>
 			</div>
 
-			<!-- TRANSLATION BOXES -->
+			<!-- MAIN -->
 			<div class="row">
 				<!-- ORIGINAL TEXT BOX -->
 				<div class="col-xs-6 col-md-6 col-lg-6">
