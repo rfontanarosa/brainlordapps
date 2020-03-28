@@ -185,6 +185,7 @@
 									$db = new SQLite3(SQLITE_FILENAME);
 									if ($row = DbManager::getOriginalById($db, $id)) {
 										$text = $row['text_encoded'];
+										$text_address = $row['address'];
 										$size = $row['size'];
 										$block = $row['block'];
 										if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
@@ -205,6 +206,7 @@
 						</div>
 						<div class="panel-footer">
 							<div class="row">
+								<div class="col-xs-3 col-md-3 col-lg-3">Address:&nbsp;<?php echo $text_address; ?></div>
 								<div class="col-xs-3 col-md-3 col-lg-3">Size:&nbsp;<?php echo $size; ?></div>
 								<div class="col-xs-3 col-md-3 col-lg-3">Block:&nbsp;<?php echo $block; ?></div>
 							</div>
