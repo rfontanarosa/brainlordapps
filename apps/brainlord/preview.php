@@ -55,7 +55,7 @@
 		return $text;
 	}
 
-	function bofTextClean($text) {
+	function brainlordTextClean($text) {
 		//
 		$text = preg_replace('/\{f6}{..\}/', '', $text);
 		$text = preg_replace('/\{fb}{..\}{..\}{..\}{..\}{..\}/', '', $text);
@@ -64,12 +64,14 @@
 		$text = preg_replace('/\{fe}{..\}{..\}/', '', $text);
 		$text = preg_replace('/\{ff}{..\}{..\}{..\}/', '', $text);
 		//
+		$text = str_replace('{f3}', ' ', $text);
+		$text = str_replace('{82}', '', $text);
+		$text = str_replace('{8c}', 'X', $text);
+		$text = str_replace('<name>', 'PLAYER', $text);
+		$text = str_replace('<ram>', 'RAM', $text);
+		$text = str_replace('<white>', '', $text);
 		$text = str_replace('{ee}', ' ', $text);
 		$text = str_replace('{ef}', ' ', $text);
-		$text = str_replace('{82}', '', $text);
-		$text = str_replace('{88}', 'PLAYER', $text);
-		$text = str_replace('<white>', '', $text);
-		$text = str_replace('<input>', '', $text);
 		//
 		$text = str_replace('{f7}', '', $text);
 		return $text;
@@ -77,11 +79,11 @@
 
 	$id_text = $_POST['id_text'];
 	$source = $_POST['text'];
-	$cleanedSources = bofTextClean($source);
-	$boxes = explode('{fa}', $cleanedSources);
+	$cleanedSources = brainlordTextClean($source);
+	$boxes = explode('<input>', $cleanedSources);
 	foreach ($boxes as $box) {
 		echo '<div class="box-dialog"><div class="box-dialog-container">';
-		$cleanedText = bofTextClean($box);
+		$cleanedText = brainlordTextClean($box);
 		$lines = explode("\n", $cleanedText);
 		foreach ($lines as $i => $line) {
 			$line = preg_split('//u', $line, -1, PREG_SPLIT_NO_EMPTY);
