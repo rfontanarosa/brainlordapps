@@ -29,6 +29,7 @@
 		$text = str_replace('ò', '{61}', $text);
 		$text = str_replace('ù', '{62}', $text);
 		$text = str_replace('È', '{63}', $text);
+		$text = str_replace('°', '{64}', $text);
 		return $text;
 	}
 

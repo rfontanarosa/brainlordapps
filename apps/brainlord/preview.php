@@ -9,12 +9,12 @@
 
 	$table = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
 	$table = array_merge($table, array('', '', '', '', '', '', ')', '', '', ''));
-	$table = array_merge($table, array('', '', '', '.', '', '', '', '', '', ''));
+	$table = array_merge($table, array('', '', '', '.', '', '/', '', '', '', ''));
 	$table = array_merge($table, array('', ''));
 	$table = array_merge($table, array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'));
 	$table = array_merge($table, array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'));
 	$table = array_merge($table, array('', '', '?', '', '', '', ':', ';', '', 'à'));
-	$table = array_merge($table, array('è', 'é', 'ì', 'ò', 'ù', 'È', '', '', '\'', '"'));
+	$table = array_merge($table, array('è', 'é', 'ì', 'ò', 'ù', 'È', '°', '', '\'', '"'));
 	$table = array_merge($table, array('-', ',', '', '', '', '', '', '', '', ''));
 	$table = array_merge($table, array('', '', '', '', '', '', '', '', '', ''));
 	$table = array_merge($table, array('', '', '', '!', '', '', '', '', '', ''));
@@ -66,9 +66,12 @@
 		//
 		$text = str_replace('{f3}', ' ', $text);
 		$text = str_replace('{82}', '', $text);
+		$text = str_replace('{89}', 'X', $text);
 		$text = str_replace('{8c}', 'X', $text);
+		$text = str_replace('{8d}', 'X', $text);
 		$text = str_replace('<name>', 'PLAYER', $text);
 		$text = str_replace('<ram>', 'RAM', $text);
+		//
 		$text = str_replace('<white>', '', $text);
 		$text = str_replace('{ee}', ' ', $text);
 		$text = str_replace('{ef}', ' ', $text);
