@@ -390,7 +390,7 @@
 
 		<!-- TIPS -->
 		<div class="container-fluid mb-3">
-			<a class="btn btn-light btn-sm" href="http://mana.wikia.com/wiki/Seiken_Densetsu_3" target="_blank">Wiki of Mana&nbsp;<i class="fas fa-external-link-alt"></i></a>
+			<a class="btn btn-light btn-sm" href="https://mana.fandom.com/wiki/Trials_of_Mana" target="_blank">Wiki of Mana&nbsp;<i class="fas fa-external-link-alt"></i></a>
 		</div>
 
 		<?php else: ?>

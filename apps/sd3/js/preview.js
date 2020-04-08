@@ -133,7 +133,7 @@ function sd3PreviewBox(previewContainerSelector, text, boxIndex, boxType) {
                 picture = "<img src=\"./images/preview/32.gif\"><br>";
                 indexLine++;
             }
-            else if (textDialog.charAt(i) != 13) {
+            else if (textDialog.charCodeAt(i) != 13) {
                 k += l;
                 alert = "Unsupported character(s): " + k;
             }
