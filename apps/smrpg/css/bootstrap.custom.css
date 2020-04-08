@@ -1,0 +1,42 @@
+body {
+  padding-top: 56px;
+  background: url(../images/bg1.png); }
+
+.brain-navbar {
+  color: white;
+  background: url(../images/bg3.png);
+  border-bottom: 1px solid white; }
+  .brain-navbar .navbar-brand, .brain-navbar .navbar-text {
+    text-shadow: 3px 3px 0px black; }
+  .brain-navbar .navbar-toggler {
+    border: 1px solid white; }
+
+.brain-nav .nav-item {
+  background-color: #f8f9fa;
+  border: 1px solid white;
+  border-radius: .25rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem; }
+  .brain-nav .nav-item .active {
+    background: url(../images/bg2.png);
+  }
+  .brain-nav .nav-item a {
+    color: black; }
+
+.brain-card {
+  background: url(../images/bg2.png);
+  color: white;
+  border: 1px solid white; }
+
+.brain-navbar .navbar-brand, .brain-navbar .navbar-text {
+  color: white; }
+
+.preview-btn {
+  padding: .25rem .5rem;
+  font-size: 75%;
+  color: white;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: .25rem; }
+
+/*# sourceMappingURL=bootstrap.custom.css.map */
