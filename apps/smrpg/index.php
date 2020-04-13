@@ -220,8 +220,16 @@
 								</div>
 								<div class="card-footer d-flex justify-content-between">
 									<button type="submit" class="btn btn-danger btn-sm submit-btn" value="0"><i class="far fa-save"></i>&nbsp;UNDONE</button>
-									<button type="submit" class="btn btn-warning btn-sm submit-btn" value="1"><i class="far fa-save"></i>&nbsp;ALMOST</button>
+									<button type="submit" class="btn btn-warning btn-sm submit-btn" value="1"><i class="far fa-save"></i>&nbsp;PARTIALLY</button>
 									<button type="submit" class="btn btn-success btn-sm submit-btn" value="2"><i class="far fa-save"></i>&nbsp;DONE</button>
+								</div>
+								<div class="card-footer">
+									<div class="form-group mb-0">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="extendsToDuplicates" />
+											<label class="form-check-label" for="extendsToDuplicates">Extends to duplicates</label>
+										</div>
+									</div>
 								</div>
 								<div class="card-footer">
 									<small>
@@ -441,6 +449,7 @@
 			const new_text = $('textarea[name="new_text"]').val();
 			const comment = $('textarea[name="comment"]').val();
 			const status = $(this).val();
+			const extends_to_duplicates = $('#extendsToDuplicates').is(':checked');
 			$.ajax({
 				type: 'POST',
 				url: 'ajax_submit.php',
@@ -449,6 +458,7 @@
 					new_text,
 					status,
 					comment,
+					extends_to_duplicates,
 				},
 			}).done(function(data, textStatus, jqXHR) {
 				const json_data = $.parseJSON(data);

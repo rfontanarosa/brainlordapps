@@ -5,6 +5,10 @@
 
 <style>
 
+	.bl-font1 {
+		background-image: url(./images/preview/bl-font1-en.png);
+	}
+
 <?php
 
 	$table = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
@@ -20,7 +24,7 @@
 	$table = array_merge($table, array('', '', '', '!', '', '', '', '', '', ''));
 
 	foreach ($table as $i => $value) {
-		echo '.bl-font1-' . $i . '{ background: url(./images/preview/bl-font1-en.png) ' . (8*$i)*-1 . 'px 0; }';
+		echo '.bl-font1-' . $i . '{ background-position: ' . (8 * $i) * -1 . 'px 0; }';
 	}
 
 ?>
@@ -94,7 +98,7 @@
 				$char = $line[$i];
 				$key = array_search($char, $table);
 				if ($key !== false) {
-					echo '<img class="tile-8x16 bl-font1-' . $key . '" src="./images/preview/placeholder-8x16.png" />';
+					echo '<img class="tile-8x16 bl-font1 bl-font1-' . $key . '" src="./images/preview/placeholder-8x16.png" />';
 				} else {
 					echo '<img class="tile-8x16" src="./images/preview/placeholder-8x16.png" />';
 				}

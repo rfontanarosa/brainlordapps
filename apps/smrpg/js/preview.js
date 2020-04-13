@@ -78,13 +78,13 @@ function smrpgPreview(previewContainerSelector, text) {
 }
 
 var charlist = [];
-charlist[1] = new Array("MW", 9);
-charlist[0] = new Array("ARw&?‥", 8);
-charlist[4] = new Array(" “”()023456789BCEGHKOPQUVXmv:;", 7);
-charlist[6] = new Array("!.DFJNSTYZacdgknopqsuxyz․", 6);
-charlist[3] = new Array("1Lbefhjrt", 5);
-charlist[5] = new Array(",'", 4);
-charlist[2] = new Array("Iil", 3);
+charlist[1] = new Array("MW*…#+×%", 9);
+charlist[0] = new Array("ARw&?‥À<>", 8);
+charlist[4] = new Array(" “”()023456789BCEGHKOPQUVXmv:;ÒÙ", 7);
+charlist[6] = new Array("!./DFJNSTYZacdgknopqsuxyzàòù", 6);
+charlist[3] = new Array(",-.1LbefhjrtèéÈÉ", 5);
+charlist[5] = new Array("'", 4);
+charlist[2] = new Array("IilìÌ", 3);
 
 var hashcharlist = [];
 for (var i = 0; i < charlist.length; i++) {
