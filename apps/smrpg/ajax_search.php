@@ -24,15 +24,25 @@
 						$text_to_search = sqlite_escape_string($_POST['text_to_search']);
 						$author = UserManager::getUsername();
 						$db = new SQLite3(SQLITE_FILENAME);
-						$query = "SELECT tx.id, ts.status FROM texts as tx LEFT JOIN (SELECT * FROM trans WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text_encoded LIKE :text_to_search ORDER BY id ASC";
-						if ($type == 'new') {
+						if ($type == 'original') {
+							$query = "SELECT tx.id, ts.status FROM texts as tx LEFT JOIN (SELECT * FROM trans WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text_encoded LIKE :text_to_search ORDER BY id ASC";
+						} else if ($type == 'new') {
 							$query = "SELECT id_text, status FROM trans WHERE new_text LIKE :text_to_search AND author = :author ORDER BY id_text ASC";
 						} else if ($type == 'comment') {
 							$query = "SELECT id_text, status FROM trans WHERE comment LIKE :text_to_search AND author = :author ORDER BY id_text ASC";
+						} else if ($type == 'duplicates') {
+							$query = "SELECT tx.id, ts.status FROM texts as tx LEFT JOIN (SELECT * FROM trans WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text_encoded = (SELECT text_encoded FROM texts WHERE id = :text_to_search) ORDER BY id ASC";
+						} else {
+							header('HTTP/1.1 400 Bad Request');
+							exit;
 						}
 						$stmt = $db->prepare($query);
-						$stmt->bindValue(':text_to_search', "%$text_to_search%", SQLITE3_TEXT);
 						$stmt->bindValue(':author', $author, SQLITE3_TEXT);
+						if ($type == 'duplicates') {
+							$stmt->bindValue(':text_to_search', "$text_to_search", SQLITE3_TEXT);
+						} else {
+							$stmt->bindValue(':text_to_search', "%$text_to_search%", SQLITE3_TEXT);
+						}
 						$results = $stmt->execute();
 						while ($row = $results->fetchArray()) {
 							array_push($data, array(
