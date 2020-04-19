@@ -8,12 +8,6 @@
 
 	require_once 'config.inc.php';
 
-	if (!function_exists('sqlite_escape_string')) {
-		function sqlite_escape_string($string) {
-			return str_replace("'", "''", $string);
-		}
-	}
-
 	function textClean($text) {
 		if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
 			$text = str_replace(PHP_EOL, NEWLINECHAR, $text);
@@ -33,13 +27,12 @@
 					$id_text = $_POST['id_text'];
 					$author = UserManager::getUsername();
 					$new_text = $_POST['new_text'];
-					$comment = $_POST['comment'];
 					$status = $_POST['status'];
-					$extends_to_duplicates = $_POST['extends_to_duplicates'] === 'true';
+					$comment = $_POST['comment'];
 					$time = time();
 					$new_text = textClean($new_text);
-					$new_text = $new_text;
 					$new_text2 = smrpgNewTableResolve($new_text);
+					$extends_to_duplicates = $_POST['extends_to_duplicates'] === 'true';
 					$db = new SQLite3(SQLITE_FILENAME);
 					if ($extends_to_duplicates) {
 						$query = 'SELECT id FROM texts WHERE text_encoded = (SELECT text_encoded FROM texts WHERE id = :id)';
