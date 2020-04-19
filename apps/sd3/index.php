@@ -138,6 +138,7 @@
 										$size = $row['size'];
 										$block = $row['block'];
 										$id2 = $row['id2'];
+										$other_text = $row['text'];
 										if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
 											$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
 										}
@@ -156,13 +157,17 @@
 									<button type="submit" class="btn btn-light preview-btn" id="preview-original-btn"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
 								</div>
 								<div class="card-body">
-									<div class="form-group mb-0">
+									<div class="form-group">
 										<textarea rows="10" class="form-control" id="original_text" name="original_text" disabled><?php echo $text; ?></textarea>
+									</div>
+									<div class="form-group mb-0">
+										<textarea rows="10" class="form-control" id="other_text" name="other_text" disabled><?php echo $other_text; ?></textarea>
 									</div>
 								</div>
 								<div class="card-footer d-flex justify-content-between">
 									<small>ID2:&nbsp;<?php echo $id2; ?></small>
 									<small>Size:&nbsp;<?php echo $size; ?></small>
+									<small>Block:&nbsp;<?php echo $block; ?></small>
 								</div>
 							</div>
 						</div>
