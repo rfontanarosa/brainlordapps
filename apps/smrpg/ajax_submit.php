@@ -15,7 +15,7 @@
 		return $text;
 	}
 
-	function smrpgNewTableResolve($text) {
+	function tableClean($text) {
 		return $text;
 	}
 
@@ -31,7 +31,7 @@
 					$comment = $_POST['comment'];
 					$time = time();
 					$new_text = textClean($new_text);
-					$new_text2 = smrpgNewTableResolve($new_text);
+					$new_text2 = tableClean($new_text);
 					$extends_to_duplicates = $_POST['extends_to_duplicates'] === 'true';
 					$db = new SQLite3(SQLITE_FILENAME);
 					if ($extends_to_duplicates) {

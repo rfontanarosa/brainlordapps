@@ -229,6 +229,14 @@
 									<button type="submit" class="btn btn-success btn-sm submit-btn" value="2"><i class="far fa-save"></i>&nbsp;DONE</button>
 								</div>
 								<div class="card-footer">
+									<div class="form-group mb-0">
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="extendsToDuplicates" />
+											<label class="form-check-label" for="extendsToDuplicates">Extends to duplicates</label>
+										</div>
+									</div>
+								</div>
+								<div class="card-footer">
 									<small>
 										Last update:&nbsp;
 										<span id="lastUpdate"><?php echo $date; ?></span>
@@ -243,7 +251,7 @@
 								<div class="card-body">
 									<div class="input-group">
 										<div class="input-group-prepend">
-											<span class="input-group-text" id="basic-addon0">#</span>
+											<span class="input-group-text" id="basic-addon0">Go to (UID)</span>
 										</div>
 										<input type="text" class="form-control" id="goto1" placeholder="Go to..." />
 										<div class="input-group-append">
@@ -281,6 +289,17 @@
 										<input type="search" class="form-control" id="search3" placeholder="Search for..." />
 										<div class="input-group-append">
 											<button class="btn btn-outline-light" type="button" id="search-comment-btn" data-type="comment"><i class="fas fa-search"></i>&nbsp;Search</button>
+										</div>
+									</div>
+								</div>
+								<div class="card-body pt-0">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text" id="basic-addon4">Duplicates (UID)</span>
+										</div>
+										<input type="search" class="form-control" id="search4" placeholder="Search duplicates..." value="<?php echo $id; ?>" />
+										<div class="input-group-append">
+											<button class="btn btn-outline-light" type="button" id="search-duplicates-btn" data-type="duplicates"><i class="fas fa-search"></i>&nbsp;Search</button>
 										</div>
 									</div>
 								</div>
