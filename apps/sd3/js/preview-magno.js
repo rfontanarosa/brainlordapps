@@ -20,39 +20,39 @@ function sd3Cache() {
 
 function sd3TextClean(text) {
     //
-    text = text.replace(/<CHAR 0>/g, "CHAR00");
-    text = text.replace(/<CHAR 1>/g, "CHAR01");
-    text = text.replace(/<CHAR 2>/g, "CHAR02");
-    text = text.replace(/<CHAR 3>/g, "CHAR03");
+    text = text.replace(/<WAIT><00><CLOSE><END><00>/g, "");
+    text = text.replace(/<WAIT><00><CLOSE><END><56><0B><00>/g, "");
+    text = text.replace(/<WAIT><00><CLOSE><END><68><\+b_><66><23><7F><00>/g, "");
+    text = text.replace(/<WAIT><00><CLOSE><END><4B><22><00>/g, "");
+
+    text = text.replace(/<END><7B><DC>/g, "");
     //
-    text = text.replace(/<DURAN>/g, "DURAN6");
-    text = text.replace(/<KEVIN>/g, "KEVIN6");
-    text = text.replace(/<HAWK>/g, "HAWK56");
-    text = text.replace(/<ANGELA>/g, "ANGELA");
-    text = text.replace(/<CARLIE>/g, "CARLIE");
-    text = text.replace(/<LISE>/g, "LISE56");
+    text = text.replace(/<19><00>/g, "CHAR00");
+    text = text.replace(/<19><01>/g, "CHAR01");
+    text = text.replace(/<19><02>/g, "CHAR02");
+    text = text.replace(/<19><03>/g, "CHAR03");
     //
-    text = text.replace(/<WHITE>/g, "");
-    text = text.replace(/<YELLOW>/g, "");
-    text = text.replace(/<MONO WHITE>/g, "");
-    text = text.replace(/<MONO YELLOW>/g, "");
-    text = text.replace(/<MONO NARROW WHITE>/g, "");
+    text = text.replace(/<19><F8><00>/g, "DURAN6");
+    text = text.replace(/<19><F8><01>/g, "KEVIN6");
+    text = text.replace(/<19><F8><02>/g, "HAWK56");
+    text = text.replace(/<19><F8><03>/g, "ANGELA");
+    text = text.replace(/<19><F8><04>/g, "CARLIE");
+    text = text.replace(/<19><F8><05>/g, "LISE56");
     //
-    text = text.replace(/<ITEM ...>/g, "ITEMXX");
+    text = text.replace(/<\+B.>/g, "");
+    text = text.replace(/<\+J.>/g, "");
+    text = text.replace(/<\+B_>/g, "");
+    text = text.replace(/<\+J_>/g, "");
+    text = text.replace(/<\+b_>/g, "");
     //
-    text = text.replace(/<PAD [0-9][0-9]?>/g, ""); //TODO rimpiazzare con degli spazi
+    text = text.replace(/<1B><F5><..>/g, "ITEMXX");
     //
-    text = text.replace(/<BOX><WAIT><00>/g, "");
-    text = text.replace(/<BOX><WAIT><00> /g, "");
-    text = text.replace(/<BOX><OPEN>/g, "");
-    text = text.replace(/<BOX>\n/g, "");
-    text = text.replace(/<BOX><PAGE>\n/g, "");
-    text = text.replace(/<BOX>/g, "");
+    text = text.replace(/<TAB ..>/g, ""); //TODO rimpiazzare con degli spazi
     //
-    text = text.replace(/<WAIT><00>/g, "");
-    text = text.replace(/<WAIT><F.><..>/g, "");
+    text = text.replace(/<58><OPEN>\n/g, "");
+    text = text.replace(/<58>/g, "");
     //
-    text = text.replace(/<LINE><OPEN>/g, "");
+    text = text.replace(/<JUMP>/g, "");
     text = text.replace(/<END>/g, "");
     //
     text = text.replace(/<0[0,5,6,7,8,9]>/g, "");
@@ -87,7 +87,7 @@ function sd3PreviewLine(previewContainerSelector, text) {
 function sd3PreviewBox(previewContainerSelector, text, boxIndex, boxType) {
     text = text.replace(/<PAGE>\n/g, "<PAGE>");
     text = text.replace(/<END>\n/g, "<END>");
-    var textArray = text.split('<PAGE>');
+    var textArray = text.split('<WAIT><00><PAUSE>\n');
     for (var j=0; j<textArray.length; j++) {
 
         if (boxType == 1) {
@@ -160,11 +160,11 @@ function renderPreview(previewContainerSelector, text) {
     $('#' + previewContainerSelector).empty();
     if (text.startsWith("<ALT>")) {
         sd3PreviewAlt(previewContainerSelector, text);
-    } else if (text.startsWith("<BOX>")) {
+    } else if (text.startsWith("<58>")) {
         sd3PreviewBox(previewContainerSelector, text, 0, 1);
     } else if (text.startsWith("<CHOICE>")) {
         //
-    } else if (text.startsWith("<LINE>")) {
+    } else if (text.startsWith("<5E>")) {
         sd3PreviewLine(previewContainerSelector, text);
     } else if (text.startsWith("<MULTI>")) {
         //
