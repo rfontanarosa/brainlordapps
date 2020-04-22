@@ -26,6 +26,8 @@
 							$query = "SELECT id_text, status FROM trans WHERE comment LIKE :text_to_search AND author = :author ORDER BY id_text ASC";
 						} else if ($type == 'duplicates') {
 							$query = "SELECT tx.id, ts.status FROM texts as tx LEFT JOIN (SELECT * FROM trans WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text_encoded = (SELECT text_encoded FROM texts WHERE id = :text_to_search) ORDER BY id ASC";
+						} else if ($type == 'personal_all') {
+							$query = "SELECT tx.id, ts.status FROM texts as tx LEFT JOIN (SELECT * FROM trans WHERE author = :author) as ts ON tx.id = ts.id_text ORDER BY id ASC";
 						} else if ($type == 'global_untranslated') {
 							$query = "SELECT id, '0' FROM texts WHERE id NOT IN (SELECT distinct(id_text) FROM trans WHERE status = 2) ORDER BY id ASC";
 						} else {
@@ -36,7 +38,7 @@
 						$stmt->bindValue(':author', $author, SQLITE3_TEXT);
 						if ($type == 'duplicates') {
 							$stmt->bindValue(':text_to_search', "$text_to_search", SQLITE3_TEXT);
-						} else if ($type == 'global_untranslated') {
+						} else if ($type == 'personal_all' || $type == 'global_untranslated') {
 						} else {
 							$stmt->bindValue(':text_to_search', "%$text_to_search%", SQLITE3_TEXT);
 						}

@@ -135,7 +135,7 @@ $(document).ready(function() {
     }
   });
 
-  $('#search-original-btn, #search-new-btn, #search-comment-btn, #search-duplicates-btn, #search-global_untranslated-btn').click(function(e) {
+  $('#search-original-btn, #search-new-btn, #search-comment-btn, #search-duplicates-btn, #search-personal_all-btn, #search-global_untranslated-btn').click(function(e) {
     e.stopPropagation();
     e.preventDefault();
     const type = $(this).attr('data-type');
@@ -168,15 +168,17 @@ $(document).ready(function() {
         $('#search-result').empty();
         if (array.length != 0) {
           $('#search-result').append($('<div />').addClass('mb-3').text(`Results found: ${array.length}`));
-          $.each(array, function(index, value) {
+          const template = $('<a />').addClass('btn btn-sm mr-1 mb-1').attr('target', '_blank');
+          const items = array.map(value => {
             const {id, status} = value;
-            const item = $('<a />').addClass('btn btn-sm mr-1 mb-1').text(id).attr('href', `?id=${id}`).attr('target', '_blank');
-            if (id == current_id) {
+            const item = template.clone().text(id).attr('href', `?id=${id}`);
+            if (id === current_id) {
               item.addClass('disabled').removeAttr('href').removeAttr('_blank');
-            } 
-            (status == 2) ? item.addClass('btn-success') : (status == 1) ? item.addClass('btn-warning') : item.addClass('btn-danger');
-            $('#search-result').append(item);
+            }
+            (status === 2) ? item.addClass('btn-success') : (status === 1) ? item.addClass('btn-warning') : item.addClass('btn-danger');
+            return item;
           });
+          $('#search-result').append(items);
         } else {
           $('#search-result').text('No results found!');
         }

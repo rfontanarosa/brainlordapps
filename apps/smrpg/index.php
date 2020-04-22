@@ -310,9 +310,10 @@
 									</div>
 								</div>
 								<div class="card-body pt-0">
+									<button class="btn btn-outline-light" type="button" id="search-personal_all-btn" data-type="personal_all"><i class="fas fa-search"></i>&nbsp;Search Personal ALL</button>
 									<button class="btn btn-outline-light" type="button" id="search-global_untranslated-btn" data-type="global_untranslated"><i class="fas fa-search"></i>&nbsp;Search Global Untranslated</button>
 								</div>
-								<div class="card-footer"id="search-result" style="display: none;"></div>
+								<div class="card-footer" id="search-result" style="display: none;"></div>
 							</div>
 						</div>
 						<div class="tab-pane fade" id="pills-stats" role="tabpanel" aria-labelledby="pills-stats-tab">
