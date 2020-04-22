@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
-  const max_id = $('#app-vars').attr('data-max-id');
-  const current_id = $('#app-vars').attr('data-current-id');
+  const max_id = parseInt($('#app-vars').attr('data-max-id'));
+  const current_id = parseInt($('#app-vars').attr('data-current-id'));
 
   $('.submit-btn').click(function(e) {
     const id_text = $('input[name="id_text"]').val();
@@ -115,11 +115,11 @@ $(document).ready(function() {
     }
   });
 
-  $('#search-original-btn, #search-new-btn, #search-comment-btn, #search-duplicates-btn').click(function(e) {
+  $('#search-original-btn, #search-new-btn, #search-comment-btn, #search-duplicates-btn, #search-global_untranslated-btn').click(function(e) {
     e.stopPropagation();
     e.preventDefault();
     const type = $(this).attr('data-type');
-    let text_to_search = '';
+    let text_to_search = undefined;
     switch (type) {
       case 'original':
         text_to_search = $('#search1').val();
@@ -134,7 +134,7 @@ $(document).ready(function() {
         text_to_search = $('#search4').val();
         break;
     }
-    if (text_to_search.length > 1) {
+    if (text_to_search === undefined || text_to_search.length > 1) {
       $.ajax({
         async: false,
         type: 'POST',
@@ -144,9 +144,10 @@ $(document).ready(function() {
           text_to_search,
         },
       }).done(function(data, textStatus, jqXHR) {
-        $('#search-result').empty();
         const array = JSON.parse(data);
+        $('#search-result').empty();
         if (array.length != 0) {
+          $('#search-result').append($('<div />').addClass('mb-3').text(`Results found: ${array.length}`));
           $.each(array, function(index, value) {
             const {id, status} = value;
             const item = $('<a />').addClass('btn btn-sm mr-1 mb-1').text(id).attr('href', `?id=${id}`).attr('target', '_blank');
@@ -161,11 +162,15 @@ $(document).ready(function() {
         }
       }).fail(function(jqXHR, textStatus, errorThrown) {
         console.log(errorThrown);
+        $('#search-result').empty();
+        $('#search-result').text('An error has occurred!');
       }).always(function(a, textStatus, b) {
         $('#search-result').show();
       });
     } else {
-      //
+      $('#search-result').empty();
+      $('#search-result').text('Invalid or empty input!');
+      $('#search-result').show();
     }
   });
 
