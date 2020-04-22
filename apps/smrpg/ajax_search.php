@@ -27,7 +27,7 @@
 						} else if ($type == 'duplicates') {
 							$query = "SELECT tx.id, ts.status FROM texts as tx LEFT JOIN (SELECT * FROM trans WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text_encoded = (SELECT text_encoded FROM texts WHERE id = :text_to_search) ORDER BY id ASC";
 						} else if ($type == 'global_untranslated') {
-							$query = "SELECT id, 2 FROM texts WHERE id NOT IN (SELECT distinct(id_text) FROM trans WHERE status = 2) ORDER BY id ASC";
+							$query = "SELECT id, '0' FROM texts WHERE id NOT IN (SELECT distinct(id_text) FROM trans WHERE status = 2) ORDER BY id ASC";
 						} else {
 							header('HTTP/1.1 400 Bad Request');
 							exit;
