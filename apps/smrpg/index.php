@@ -137,7 +137,7 @@
 										$text = $row['text_encoded'];
 										$size = $row['size'];
 										$block = $row['block'];
-										$id2 = $row['id2'];
+										$id2 = isset($row['id2']) ? $row['id2'] : 'XXX';
 										$other_text = $row['text'];
 										if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
 											$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
@@ -152,9 +152,12 @@
 							?>
 							<!-- ORIGINAL - BOX -->
 							<div class="card brain-card mb-3">
-								<div class="card-header d-flex justify-content-between align-items-center">
+								<div class="card-header d-flex justify-content-between">
 									<span>ORIGINAL</span>
-									<button type="submit" class="btn btn-light preview-btn" id="preview-original-btn"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
+									<div class="d-flex justify-content-end">
+										<button type="submit" class="btn btn-light copy-btn" data-source-id="original_text"><i class="fas fa-copy"></i>&nbsp;COPY</button>
+										<button type="submit" class="btn btn-light preview-btn" id="preview-original-btn" data-source-id="original_text"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
+									</div>
 								</div>
 								<div class="card-body">
 									<div class="form-group">
@@ -194,7 +197,10 @@
 							<div class="card brain-card mb-3">
 								<div class="card-header d-flex justify-content-between">
 									<span>TRANSLATION</span>
-									<button type="submit" class="btn btn-light preview-btn" id="preview-new-btn"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
+									<div class="d-flex justify-content-end">
+										<button type="submit" class="btn btn-light" id="paste-new-btn"><i class="fas fa-paste"></i>&nbsp;PASTE</button>
+										<button type="submit" class="btn btn-light preview-btn" id="preview-new-btn" data-source-id="new_text"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
+									</div>
 								</div>
 								<div class="card-body">
 									<form method="post" id="form1">
@@ -360,8 +366,12 @@
 							?>
 							<!-- USER - BOX -->
 							<div class="card brain-card mb-3">
-								<div class="card-header d-flex justify-content-between align-items-center">
+								<div class="card-header d-flex justify-content-between">
 									<span><?php echo $author; ?></span>
+									<div class="d-flex justify-content-end">
+										<button type="submit" class="btn btn-light copy-btn" data-source-id="<?php echo $author; ?>_text"><i class="fas fa-copy"></i>&nbsp;COPY</button>
+										<button type="submit" class="btn btn-light preview-btn" data-source-id="<?php echo $author; ?>_text"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
+									</div>
 								</div>
 								<div class="card-body">
 									<?php

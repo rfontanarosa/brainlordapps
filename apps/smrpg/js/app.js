@@ -52,27 +52,43 @@ $(document).ready(function() {
     e.preventDefault();
   });
 
-  $('#preview-original-btn').click(function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    $('#original_text').keyup();
-  });
-
-  $('#preview-new-btn').click(function(e) {
-    e.stopPropagation();
-    e.preventDefault();
-    $('#new_text').keyup();
-  });
-
-  $('textarea#new_text, textarea#original_text').keyup(function(e) {
+  $('.preview-btn').click(function(e) {
     e.stopPropagation();
     e.preventDefault();
     if (typeof renderPreview === 'function') {
-      const text = $(this).val();
+      const sourceId = e.target.getAttribute('data-source-id');
+      const text = document.getElementById(sourceId).value;
       renderPreview('dialog-container', text);
     } else {
       console.log('renderPreview is not defined!');
     }
+  });
+
+  $('.copy-btn').click(function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    const sourceId = e.target.getAttribute('data-source-id');
+    const text = document.getElementById(sourceId).value;
+    navigator.clipboard.writeText(text).then(function() {
+      /* clipboard successfully set */
+    }, function() {
+      /* clipboard write failed */
+    });
+  });
+
+  $('#paste-new-btn').click(function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    navigator.clipboard.readText().then(clipText => {
+      document.getElementById("new_text").value = clipText;
+      $('#new_text').keyup();
+    });
+  });
+
+  $('textarea#new_text').keyup(function(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    $('#preview-new-btn').click();
   });
 
   $('#search1').keypress(function(e) {
