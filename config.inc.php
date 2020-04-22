@@ -10,6 +10,12 @@ error_reporting(E_ALL);
 define('BASE_PATH', realpath(dirname(__FILE__) . '/'));
 define('RESOURCE_PATH', BASE_PATH . '/resources');
 
+if (!function_exists('sqlite_escape_string')) {
+	function sqlite_escape_string($string) {
+		return str_replace("'", "''", $string);
+	}
+}
+
 class UserManager {
 
 	public static function login($uname, $pass) {
