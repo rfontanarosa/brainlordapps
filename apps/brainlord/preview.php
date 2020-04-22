@@ -52,13 +52,6 @@
 
 <?php
 
-	function textClean($text) {
-		if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
-			$text = str_replace(PHP_EOL, NEWLINECHAR, $text);
-		}
-		return $text;
-	}
-
 	function brainlordTextClean($text) {
 		//
 		$text = preg_replace('/\{f6}{..\}/', '', $text);
@@ -84,7 +77,6 @@
 		return $text;
 	}
 
-	$id_text = $_POST['id_text'];
 	$source = $_POST['text'];
 	$cleanedSources = brainlordTextClean($source);
 	$boxes = explode('<input>', $cleanedSources);
