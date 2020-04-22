@@ -1,7 +1,3 @@
-$(document).on('load', function() {
-  sd3Cache();
-});
-
 $(document).ready(function() {
 
   const max_id = parseInt($('#app-vars').attr('data-max-id'));
@@ -12,6 +8,7 @@ $(document).ready(function() {
     const new_text = $('textarea[name="new_text"]').val();
     const comment = $('textarea[name="comment"]').val();
     const status = $(this).val();
+    const extends_to_duplicates = $('#extendsToDuplicates').is(':checked');
     $.ajax({
       type: 'POST',
       url: 'ajax_submit.php',
@@ -20,6 +17,7 @@ $(document).ready(function() {
         new_text,
         status,
         comment,
+        extends_to_duplicates,
       },
     }).done(function(data, textStatus, jqXHR) {
       const json_data = $.parseJSON(data);
@@ -69,8 +67,12 @@ $(document).ready(function() {
   $('textarea#new_text, textarea#original_text').keyup(function(e) {
     e.stopPropagation();
     e.preventDefault();
-    const text = $(this).val();
-    sd3Preview('dialog-container', text);
+    if (typeof renderPreview === 'function') {
+      const text = $(this).val();
+      renderPreview('dialog-container', text);
+    } else {
+      console.log('renderPreview is not defined!');
+    }
   });
 
   $('#search1').keypress(function(e) {

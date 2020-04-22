@@ -159,7 +159,7 @@ function sd3PreviewBox(previewContainerSelector, text, boxIndex, boxType) {
 
 }
 
-function sd3Preview(previewContainerSelector, text) {
+function renderPreview(previewContainerSelector, text) {
     $('#' + previewContainerSelector).empty();
     if (text.startsWith("<ALT>")) {
         sd3PreviewAlt(previewContainerSelector, text);
@@ -191,3 +191,7 @@ for (var i = 0; i < charlist.length; i++) {
         hashcharlist[charlist[i][0].charAt(j)] = charlist[i][1];
     }
 }
+
+$(document).on('load', function() {
+    sd3Cache();
+});

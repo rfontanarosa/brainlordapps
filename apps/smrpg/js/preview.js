@@ -72,7 +72,7 @@ function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
 
 }
 
-function smrpgPreview(previewContainerSelector, text) {
+function renderPreview(previewContainerSelector, text) {
     $('#' + previewContainerSelector).empty();
     smrpgPreviewBox(previewContainerSelector, text, 0, 1);
 }

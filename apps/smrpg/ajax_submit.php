@@ -8,17 +8,6 @@
 
 	require_once 'config.inc.php';
 
-	function textClean($text) {
-		if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
-			$text = str_replace(PHP_EOL, NEWLINECHAR, $text);
-		}
-		return $text;
-	}
-
-	function tableClean($text) {
-		return $text;
-	}
-
 	try {
 		if (UserManager::isLogged() && UserManager::getRole(APPLICATION_ID) == 'user') {
 			switch ($_SERVER['REQUEST_METHOD']) {

@@ -67,8 +67,12 @@ $(document).ready(function() {
   $('textarea#new_text, textarea#original_text').keyup(function(e) {
     e.stopPropagation();
     e.preventDefault();
-    const text = $(this).val();
-    smrpgPreview('dialog-container', text);
+    if (typeof renderPreview === 'function') {
+      const text = $(this).val();
+      renderPreview('dialog-container', text);
+    } else {
+      console.log('renderPreview is not defined!');
+    }
   });
 
   $('#search1').keypress(function(e) {
