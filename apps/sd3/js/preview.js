@@ -100,11 +100,11 @@ function sd3PreviewBox(previewContainerSelector, text, boxIndex, boxType) {
 
         dialogSelector = '#dialog-' + boxIndex + '-' + j;
 
-        $(dialogSelector).find('.chars').html('');
-        $(dialogSelector).find('.counter1').html('');
-        $(dialogSelector).find('.counter2').html('');
-        $(dialogSelector).find('.counter3').html('');
-        $(dialogSelector).find('.alert').html('');
+        $(dialogSelector).find('.chars').empty();
+        $(dialogSelector).find('.counter1').empty();
+        $(dialogSelector).find('.counter2').empty();
+        $(dialogSelector).find('.counter3').empty();
+        $(dialogSelector).find('.alert').empty();
 
         textDialog = textArray[j];
         textDialog = sd3TextClean(textDialog);

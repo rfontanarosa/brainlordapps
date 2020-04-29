@@ -39,17 +39,6 @@
 	</head>
 	<body>
 
-	<?php
-		$max_id = LAST_ENTRY;
-		$id = isset($_GET['id']) ? $_GET['id'] : 1;
-		if (!is_numeric($id)) {
-			exit('<div class="container">ERROR!!! Index is not a number!</div></body></html>');
-		}
-		if ($id < 1 || $id > $max_id) {
-			exit('<div class="container">ERROR!!! Index out of range!</div></body></html>');
-		}
-	?>
-
 	<!-- NAVBAR -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark brain-navbar">
 		<span class="navbar-brand mb-0 h1"><?php echo TITLE; ?></span>
@@ -74,6 +63,17 @@
 			<?php endif; ?>
 		</div>
 	</nav>
+
+	<?php
+		$max_id = LAST_ENTRY;
+		$id = isset($_GET['id']) ? $_GET['id'] : 1;
+		if (!is_numeric($id)) {
+			exit('<div class="m-3 p-3 bg-light">ERROR! Index is not a number!</div></body></html>');
+		}
+		if ($id < 1 || $id > $max_id) {
+			exit('<div class="m-3 p-3 bg-light">ERROR! Index out of range!</div></body></html>');
+		}
+	?>
 
 	<?php if (UserManager::isLogged() && UserManager::getRole(APPLICATION_ID) == 'user'): ?>
 
@@ -310,16 +310,18 @@
 									</div>
 								</div>
 								<div class="card-body pt-0">
+									<button class="btn btn-outline-light" type="button" id="search-personal_all-btn" data-type="personal_all"><i class="fas fa-search"></i>&nbsp;Search Personal ALL</button>
 									<button class="btn btn-outline-light" type="button" id="search-global_untranslated-btn" data-type="global_untranslated"><i class="fas fa-search"></i>&nbsp;Search Global Untranslated</button>
 								</div>
-								<div class="card-footer"id="search-result" style="display: none;"></div>
+								<div class="card-footer" id="search-result" style="display: none;"></div>
 							</div>
 						</div>
 						<div class="tab-pane fade" id="pills-stats" role="tabpanel" aria-labelledby="pills-stats-tab">
 							<?php
 								$db = new SQLite3(SQLITE_FILENAME);
-								$partially = DbManager::countByUserAndStatus($db, $uname, 1);
-								$done = DbManager::countByUserAndStatus($db, $uname, 2);
+								$stats = DbManager::countByUserGroupByStatus($db, $uname);
+								$partially = $stats[1];
+								$done = $stats[2];
 								$undone = LAST_ENTRY - ($done + $partially);
 								$db->close();
 								unset($db);
@@ -432,7 +434,7 @@
 
 		<?php else: ?>
 
-		<div class="container-fluid mt-3 bg-light">ACCESS DENIED!!! You are not authorized to access this page!</div>
+		<div class="m-3 p-3 bg-light">ACCESS DENIED! You are not authorized to access this page!</div>
 
 	<?php endif; ?>
 
