@@ -24,20 +24,17 @@ function sd3TextClean(text) {
     text = text.replace(/<CHAR 1>/g, "CHAR01");
     text = text.replace(/<CHAR 2>/g, "CHAR02");
     text = text.replace(/<CHAR 3>/g, "CHAR03");
-    //
     text = text.replace(/<DURAN>/g, "DURAN6");
     text = text.replace(/<KEVIN>/g, "KEVIN6");
     text = text.replace(/<HAWK>/g, "HAWK56");
     text = text.replace(/<ANGELA>/g, "ANGELA");
     text = text.replace(/<CARLIE>/g, "CARLIE");
     text = text.replace(/<LISE>/g, "LISE56");
-    //
     text = text.replace(/<WHITE>/g, "");
     text = text.replace(/<YELLOW>/g, "");
     text = text.replace(/<MONO WHITE>/g, "");
     text = text.replace(/<MONO YELLOW>/g, "");
     text = text.replace(/<MONO NARROW WHITE>/g, "");
-    //
     text = text.replace(/<ITEM ...>/g, "ITEMXX");
     //
     text = text.replace(/<PAD [0-9][0-9]?>/g, ""); //TODO rimpiazzare con degli spazi
@@ -85,26 +82,24 @@ function sd3PreviewLine(previewContainerSelector, text) {
 }
 
 function sd3PreviewBox(previewContainerSelector, text, boxIndex, boxType) {
+    const previewContainer = $('#' + previewContainerSelector);
+
     text = text.replace(/<PAGE>\n/g, "<PAGE>");
     text = text.replace(/<END>\n/g, "<END>");
     var textArray = text.split('<PAGE>');
     for (var j=0; j<textArray.length; j++) {
 
-        if (boxType == 1) {
-            dialogBox = '<div id="dialog-' + boxIndex + '-' + j + '" class="sd3dialogbox"><div class="bgimage"><div class="window"><div class="chars"></div></div></div><div class="infobox"><div class="counter1"></div><div class="counter2"></div><div class="counter3"></div><div class="alert"></div></div></div>';
-        } else {
-            dialogBox = '<div id="dialog-' + boxIndex + '-' + j + '" class="sd3dialogbox"><div class="bgimage"><div class="line"><div class="chars"></div></div></div><div class="infobox"><div class="counter1"></div><div class="counter2"></div><div class="counter3"></div><div class="alert"></div></div></div>';
-        }
+        const className = (boxType === 1) ? 'window' : 'line';
+        const dialogBox = '<div id="dialog-' + boxIndex + '-' + j + '" class="sd3dialogbox"><div class="bgimage"><div class="' + className + '"><div class="chars"></div></div></div><div class="infobox"><div class="counter1"></div><div class="counter2"></div><div class="counter3"></div><div class="alert"></div></div></div>';
+        previewContainer.append(dialogBox);
 
-        $('#' + previewContainerSelector).append(dialogBox);
+        const dialogSelector = '#dialog-' + boxIndex + '-' + j;
 
-        dialogSelector = '#dialog-' + boxIndex + '-' + j;
-
-        $(dialogSelector).find('.chars').empty();
-        $(dialogSelector).find('.counter1').empty();
-        $(dialogSelector).find('.counter2').empty();
-        $(dialogSelector).find('.counter3').empty();
-        $(dialogSelector).find('.alert').empty();
+        $(dialogSelector, previewContainer).find('.chars').empty();
+        $(dialogSelector, previewContainer).find('.counter1').empty();
+        $(dialogSelector, previewContainer).find('.counter2').empty();
+        $(dialogSelector, previewContainer).find('.counter3').empty();
+        $(dialogSelector, previewContainer).find('.alert').empty();
 
         textDialog = textArray[j];
         textDialog = sd3TextClean(textDialog);
@@ -136,21 +131,21 @@ function sd3PreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             }
             // counter e counter string
             if (counter[indexLine] <= 239) {
-                counterstring[indexLine] = "Line " + (indexLine + 1) + ": " + counter[indexLine] + " pixel";
+                counterstring[indexLine] = "" + (indexLine + 1) + ": " + counter[indexLine] + "px";
                 if (picture != "") {
                     picturestring += picture;
                 }
             }
             else {
-                counterstring[indexLine] = "<div class=\"redtext\">Line " + (indexLine + 1) + ": " + counter[indexLine] + " pixel</div>";
+                counterstring[indexLine] = "<div class=\"redtext\">" + (indexLine + 1) + ": " + counter[indexLine] + "px</div>";
             }
         }
 
-        $(dialogSelector).find('.chars').html(picturestring);
-        $(dialogSelector).find('.counter1').html(counterstring[0]);
-        $(dialogSelector).find('.counter2').html(counterstring[1]);
-        $(dialogSelector).find('.counter3').html(counterstring[2]);
-        $(dialogSelector).find('.alert').html(alert);
+        $(dialogSelector, previewContainer).find('.chars').html(picturestring);
+        $(dialogSelector, previewContainer).find('.counter1').html(counterstring[0]);
+        $(dialogSelector, previewContainer).find('.counter2').html(counterstring[1]);
+        $(dialogSelector, previewContainer).find('.counter3').html(counterstring[2]);
+        $(dialogSelector, previewContainer).find('.alert').html(alert);
 
     }
 

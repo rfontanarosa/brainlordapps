@@ -1,11 +1,19 @@
+.sd3dialogbox {
+	width: 254px;
+	margin-right: .5rem;
+}
+
 .sd3dialogbox .infobox {
-	border: 1px solid white;
-	color: white;
-	font-size: 10px;
+	background: white;
+	color: black;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	font-size: .75rem;
 	margin: 10px 0;
 	min-height: 5px;
 	text-align: left;
-	width: 256px;
+
 }
 
 .sd3dialogbox .counter1, .sd3dialogbox .counter2, .sd3dialogbox .counter3 {
@@ -19,14 +27,6 @@
 	border: none;
 }
 
-.sd3dialogbox .bgimage {
-	background: url(../images/preview/bg5.png) no-repeat;
-	border: 1px solid #333;
-	height: 223px;
-	text-align: left;
-	width: 256px;
-}
-
 .sd3dialogbox .chars {
 	padding-left: 9px;
 	padding-top: 4px;
@@ -36,8 +36,6 @@
 .sd3dialogbox .window {
 	background: url(../images/preview/window.png) no-repeat;
 	height: 54px;
-	margin-top: 15px;
-	width: 254px;
 }
 
 .sd3dialogbox .line {

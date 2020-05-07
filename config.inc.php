@@ -83,6 +83,20 @@ class DbManager {
 		return $ret;
 	}
 
+	public static function countByUserGroupByStatus($db, $uname) {
+		$ret = array(0, 0, 0);
+		$query = 'SELECT status, COUNT(*) FROM trans WHERE author = :author GROUP BY status';
+		$stmt = $db->prepare($query);
+		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
+		$results = $stmt->execute();
+		while ($row = $results->fetchArray()) {
+			$status = $row[0];
+			$ret[$status] = $row[1];
+		}
+		$results->finalize();
+		return $ret;
+	}
+
 	public static function getNextIdByUserAndId($db, $uname, $id) {
 		$ret = 0;
 		$query = 'SELECT MIN(id) FROM texts WHERE id NOT IN (SELECT id_text FROM trans WHERE author = :author AND status = :status) AND id > :id';
@@ -135,7 +149,7 @@ class DbManager {
 	}
 
 	public static function getOtherTranslationByOriginalId($db, $uname, $id) {
-		$query = 'SELECT * FROM trans WHERE author != :author AND id_text = :id ';
+		$query = 'SELECT * FROM trans WHERE author != :author AND id_text = :id ORDER BY date DESC';
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
 		$stmt->bindValue(':id', $id, SQLITE3_INTEGER);
