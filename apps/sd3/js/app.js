@@ -115,8 +115,8 @@ $(document).ready(function() {
   $('#go-to-btn').click(function(e) {
     e.stopPropagation();
     e.preventDefault();
-    const id = $('#goto1').val();
-    if (id && id > 0 && id < max_id) {
+    const id = parseInt(document.getElementById('go-to').value);
+    if (!isNaN(id) && id > 0 && id < max_id) {
       window.open(`?id=${id}`, '_blank').focus();
     } else {
       $('#myToast .toast-body').text('Index out of range!')
