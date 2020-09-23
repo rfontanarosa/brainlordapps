@@ -33,7 +33,7 @@
 		<script type="text/javascript" src="../../node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
 		<link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
-		<link rel="stylesheet" href="./css/bootstrap.custom.css" type="text/css" />
+		<link rel="stylesheet" href="./css/bootstrap4.custom.css" type="text/css" />
 		<link rel="stylesheet" href="./css/style-preview.css" type="text/css" />
 		<script type="text/javascript" src="./js/preview.js" charset="UTF-8"></script>
 	</head>

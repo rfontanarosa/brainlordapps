@@ -5,12 +5,12 @@ html {
 body {
   height: 100%;
   padding-top: 56px;
-  background: url(../images/bg3.png);
+  background: url(../images/bg1.png);
 }
 
 .sidebar {
   width: 5rem;
-  background: url(../images/bg7.png);
+  background: url(../images/bg3.png);
   border-right: 1px white solid;
 }
 
@@ -29,7 +29,7 @@ body {
 
 .brain-navbar {
   color: white;
-  background: url(../images/bg7.png);
+  background: url(../images/bg3.png);
   border-bottom: 1px solid white;
 }
 
@@ -60,7 +60,7 @@ body {
 }
 
 .brain-nav .nav-item .active {
-  background: url(../images/bg6.png);
+  background: url(../images/bg2.png);
 }
 
 .brain-nav .nav-item a {
@@ -68,7 +68,7 @@ body {
 }
 
 .brain-card {
-  background: url(../images/bg6.png);
+  background: url(../images/bg2.png);
   color: white;
   border: 1px solid white;
 }
@@ -94,4 +94,4 @@ body {
 .brain-card .card-footer {
   border-top: 1px solid white;
 }
-/*# sourceMappingURL=bootstrap.custom.css.map */
+/*# sourceMappingURL=bootstrap4.custom.css.map */
