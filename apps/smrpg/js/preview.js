@@ -12,21 +12,24 @@ function smrpgTextClean(text) {
 }
 
 function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
+    const previewContainer = $('#' + previewContainerSelector);
+
     var textArray = text.split(/\[3\]|\[4\]/g); // New page, wait for input / New page
     for (var j=0; j<textArray.length; j++) {
+
         dialogBox = '<div id="dialog-' + boxIndex + '-' + j + '" class="smrpg-dialogbox"><div class="bgimage"><div class="chars"></div></div><div class="infobox"><div class="counter1"></div><div class="counter2"></div><div class="counter3"></div><div class="alert"></div></div></div>';
-        $('#' + previewContainerSelector).append(dialogBox);
+        previewContainer.append(dialogBox);
+
         dialogSelector = '#dialog-' + boxIndex + '-' + j;
 
-        $(dialogSelector).find('.chars').html('');
-        $(dialogSelector).find('.counter1').html('');
-        $(dialogSelector).find('.counter2').html('');
-        $(dialogSelector).find('.counter3').html('');
-        $(dialogSelector).find('.alert').html('');
+        $(dialogSelector, previewContainer).find('.chars').html('');
+        $(dialogSelector, previewContainer).find('.counter1').html('');
+        $(dialogSelector, previewContainer).find('.counter2').html('');
+        $(dialogSelector, previewContainer).find('.counter3').html('');
+        $(dialogSelector, previewContainer).find('.alert').html('');
 
         textDialog = textArray[j];
         textDialog = smrpgTextClean(textDialog);
-        console.log(textDialog);
 
         var i = 0;
         var indexLine = 0;
@@ -62,11 +65,11 @@ function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             }
         }
 
-        $(dialogSelector).find('.chars').html(picturestring);
-        $(dialogSelector).find('.counter1').html(counterstring[0]);
-        $(dialogSelector).find('.counter2').html(counterstring[1]);
-        $(dialogSelector).find('.counter3').html(counterstring[2]);
-        $(dialogSelector).find('.alert').html(alert);
+        $(dialogSelector, previewContainer).find('.chars').html(picturestring);
+        $(dialogSelector, previewContainer).find('.counter1').html(counterstring[0]);
+        $(dialogSelector, previewContainer).find('.counter2').html(counterstring[1]);
+        $(dialogSelector, previewContainer).find('.counter3').html(counterstring[2]);
+        $(dialogSelector, previewContainer).find('.alert').html(alert);
 
     }
 
