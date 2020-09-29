@@ -121,6 +121,8 @@
 				$status = (isset($status)) ? $status : 0;
 				$formattedDate = (isset($date)) ? @date('d/m/Y, G:i', $date) : 'Never been updated!';
 				$max_date = (isset($date)) ? $date : 0;
+				// DUPLICATES
+				$duplicates = DbManager::countDucplicatesById($db, $id);
 				// OTHERS
 				$others = DbManager::getOtherTranslationByOriginalId($db, $uname, $id);
 				$others_count = count($others);
@@ -251,8 +253,8 @@
 									</small>
 									<div class="form-group mb-0">
 										<div class="form-check">
-											<input class="form-check-input" type="checkbox" id="extendsToDuplicates" />
-											<label class="form-check-label" for="extendsToDuplicates">Extends to duplicates</label>
+											<input class="form-check-input" type="checkbox" id="extendsToDuplicates"  <?php if ($duplicates > 0) echo 'checked'; ?> />
+											<label class="form-check-label" for="extendsToDuplicates">Extends to <?php echo $duplicates; ?> duplicates</label>
 										</div>
 									</div>
 								</div>

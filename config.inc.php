@@ -97,6 +97,19 @@ class DbManager {
 		return $ret;
 	}
 
+	public static function countDucplicatesById($db, $id) {
+		$ret = 0;
+		$query = 'SELECT COUNT(*) FROM texts WHERE text_encoded = (SELECT text_encoded FROM texts WHERE id = :id)';
+		$stmt = $db->prepare($query);
+		$stmt->bindValue(':id', $id, SQLITE3_INTEGER);
+		$results = $stmt->execute();
+		if ($row = $results->fetchArray()) {
+			$ret = $row[0];
+		}
+		$results->finalize();
+		return $ret - 1;
+	}
+
 	public static function getNextIdByUserAndId($db, $uname, $id) {
 		$ret = 0;
 		$query = 'SELECT MIN(id) FROM texts WHERE id NOT IN (SELECT id_text FROM trans WHERE author = :author AND status = :status) AND id > :id';
