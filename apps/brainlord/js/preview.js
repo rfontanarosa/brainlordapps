@@ -7,7 +7,7 @@ function renderPreview(previewContainerSelector, text) {
       text,
     }
   }).done(function(data, textStatus, jqXHR) {
-    $('#dialog-container').empty();
-    $('#dialog-container').html(data);
+    $('#' + previewContainerSelector).empty();
+    $('#' + previewContainerSelector).html(data);
   });
 };

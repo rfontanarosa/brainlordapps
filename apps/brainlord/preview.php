@@ -35,7 +35,7 @@
 }
 
 .box-dialog {
-	margin: 0px 0px 5px 0px;
+	margin: 0px .5rem .5rem 0px;
 	width: 256px;
 	height: 224px;
 	background-image: url('./images/preview/bl-preview.png');
