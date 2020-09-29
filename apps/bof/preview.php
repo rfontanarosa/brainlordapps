@@ -107,30 +107,29 @@
 		$text = str_replace("{0a}{70}", 'G.FlyXXX', $text);
 		$text = str_replace("{0a}{71}", 'OilXXXXX', $text);
 		//
-        /*
+		/*
 		$text = preg_replace('/\{08}{..\}/', 'XXXXXXX', $text);
 		$text = preg_replace('/\{09}{..\}/', 'XXXXXXX', $text);
 		$text = preg_replace('/\{0a}{..\}/', 'XXXXXXX', $text);
 		$text = preg_replace('/\{0b}{..\}/', 'XXXXXXX', $text);
 		$text = preg_replace('/\{0c}{..\}/', 'XXXXXXX', $text);
-        */
-        $text = preg_replace('/\{0[8,9,a,b,c]}{..\}/', 'XXXXXXX', $text);
+		*/
+		$text = preg_replace('/\{0[8,9,a,b,c]}{..\}/', 'XXXXXXX', $text);
 		// commands
 		$text = str_replace('{01}', '', $text);
 		$text = str_replace('{05}', '', $text);
 		$text = str_replace('{06}', 'XXXX', $text);
 		// special characters
-        /*
+		/*
 		$text = str_replace('{28}', ' ', $text);
 		$text = str_replace('{24}', ' ', $text);
 		$text = str_replace('{2d}', ' ', $text);
 		$text = str_replace('{2e}', ' ', $text);
-        */
-        $text = str_replace('{2[8,4,d,e]}', ' ', $text);
+		*/
+		$text = str_replace('{2[8,4,d,e]}', ' ', $text);
 		return $text;
 	}
 
-	$id_text = $_POST['id_text'];
 	$source = $_POST['text'];
 	$cleanedSources = bofTextClean($source);
 	$boxes = explode('{04}', $cleanedSources);

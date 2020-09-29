@@ -21,8 +21,7 @@
 
 .smrpg-dialogbox .bgimage {
 	background: url(../images/preview/bg1.png) no-repeat;
-	border: 1px solid white;
-	height: 223px;
+	height: 224px;
 	text-align: left;
 	width: 256px;
 }
