@@ -1,10 +1,11 @@
 function smrpgTextClean(text) {
     text = text.replace(/\[1\]/g, "\n"); // New line
-    text = text.replace(/\[2\]/g, "\n"); // New line, wait for input
     text = text.replace(/\[6\]/g, ""); // End string
     text = text.replace(/\[0\]/g, ""); // End string, wait for input
     text = text.replace(/\[7\]/g, ""); // Option triangle
     text = text.replace(/\[12\]/g, ""); // Pause 1 second
+    text = text.replace(/\[13\]\[.\]/g, ""); // Pause?
+    text = text.replace(/\[13\]\[..\]/g, ""); // Pause?
     text = text.replace(/\[5\]/g, ""); // Pause, wait for input
     text = text.replace(/\[42\]/g, "․"); // .
     text = text.replace(/\[43\]/g, "‥"); // ..
@@ -14,7 +15,7 @@ function smrpgTextClean(text) {
 function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
     const previewContainer = $('#' + previewContainerSelector);
 
-    var textArray = text.split(/\[3\]|\[4\]/g); // New page, wait for input / New page
+    var textArray = text.split(/\[2\]|\[3\]|\[4\]/g); // Wait for input, clean previous lines / New page, wait for input / New page
     for (var j=0; j<textArray.length; j++) {
 
         dialogBox = '<div id="dialog-' + boxIndex + '-' + j + '" class="smrpg-dialogbox"><div class="bgimage"><div class="chars"></div></div><div class="infobox"><div class="counter1"></div><div class="counter2"></div><div class="counter3"></div><div class="alert"></div></div></div>';
@@ -82,7 +83,7 @@ function renderPreview(previewContainerSelector, text) {
 
 var charlist = [];
 charlist[1] = new Array("MW*…#+×%", 9);
-charlist[0] = new Array("ARw&?‥À<>", 8);
+charlist[0] = new Array("~©ARw&?‥À<>", 8);
 charlist[4] = new Array(" “”()023456789BCEGHKOPQUVXmv:;ÒÙ", 7);
 charlist[6] = new Array("!./DFJNSTYZacdgknopqsuxyzàòù", 6);
 charlist[3] = new Array(",-.1LbefhjrtèéÈÉ", 5);
