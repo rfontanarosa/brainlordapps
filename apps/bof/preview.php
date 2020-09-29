@@ -5,6 +5,10 @@
 
 <style>
 
+	.bof-font1 {
+		background-image: url(./images/preview/bof-font1-en.png);
+	}
+
 <?php
 
 	$table = array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');
@@ -12,8 +16,9 @@
 	$table = array_merge($table, array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'));
 	$table = array_merge($table, array(',', '.', '!', '?', '\'', ':', '', '', '', '', ''));
 	$table = array_merge($table, array('à', 'è', 'é', 'ì', 'ò', 'ù', 'È'));
+
 	foreach ($table as $i => $value) {
-		echo '.bof-font1-' . $i . '{ background: url(./images/preview/bof-font1-en.png) ' . (8*$i)*-1 . 'px 0; }';
+		echo '.bof-font1-' . $i . '{ background-position:  ' . (8 * $i) * -1 . 'px 0; }';
 	}
 
 ?>
@@ -24,7 +29,7 @@
 }
 
 .box-dialog {
-	margin: 0px 0px 5px 0px;
+	margin: 0px .5rem .5rem 0px;
 	width: 256px;
 	height: 239px;
 	background-image: url('./images/preview/bof-preview.png');
@@ -40,13 +45,6 @@
 </style>
 
 <?php
-
-	function textClean($text) {
-		if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
-			$text = str_replace(PHP_EOL, NEWLINECHAR, $text);
-		}
-		return $text;
-	}
 
 	function bofTextClean($text) {
 		// characters' name
@@ -146,7 +144,7 @@
 				$char = $line[$i];
 				$key = array_search($char, $table);
 				if ($key !== false) {
-					echo '<img class="tile-8x16 bof-font1-' . $key . '" src="./images/preview/placeholder-8x16.png" />';
+					echo '<img class="tile-8x16 bof-font1 bof-font1-' . $key . '" src="./images/preview/placeholder-8x16.png" />';
 				} else {
 					echo '<img class="tile-8x16" src="./images/preview/placeholder-8x16.png" />';
 				}
