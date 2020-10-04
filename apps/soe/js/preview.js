@@ -100,6 +100,11 @@ function soeTextClean(text) {
     text = text.replace(/{/g, '"');
     text = text.replace(/}/g, '"');
     text = text.replace(/<\$96>/g, "");
+    text = text.replace(/<\$97>/g, "");
+    text = text.replace(/<\$87>/g, "");
+    text = text.replace(/<\$A3>/g, "XXXXX");
+    text = text.replace(/<\Item>/g, "XXXXX");
+    text = text.replace(/<\Choice>/g, "");
     text = text.replace(/<S \$.. \$..>/g, "");
     return text;
 }
@@ -127,7 +132,7 @@ function soePreviewBox(previewContainerSelector, text, boxIndex, boxType) {
 
         previewContainer.append(dialogBox);
 
-        dialogSelector = $('#dialog-' + boxIndex + '-' + j);
+        dialogSelector = $('#dialog-' + boxIndex + '-' + j, previewContainer);
 
         textDialog = textArray[j];
         textDialog = soeTextClean(textDialog);
