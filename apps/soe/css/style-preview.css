@@ -1,0 +1,22 @@
+.soe-dialogbox {
+	background: url(../images/preview/background1.png) no-repeat;
+	text-align: left;
+  width: 256px;
+  height: 224px;
+}
+
+.soe-dialogbox .dialog-box {
+  width: 160px;
+  height: 56px;
+}
+
+.soe-dialogbox .dialog-box .dialog-box-row {
+  position: relative;
+  height: 12px;
+  top: 20px;
+  left: 20px;
+}
+
+.soe-dialogbox .dialog-box img {
+  float: left;
+}
