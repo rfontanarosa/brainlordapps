@@ -14,11 +14,23 @@ function smrpgTextClean(text) {
 
 function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
     const previewContainer = $('#' + previewContainerSelector);
-
+    text = text.replace(/\[2\]/g, "\t[2]");
+    text = text.replace(/\[3\]/g, "\t[3]");
     var textArray = text.split(/\[2\]|\[3\]|\[4\]/g); // Wait for input, clean previous lines / New page, wait for input / New page
     for (var j=0; j<textArray.length; j++) {
 
-        dialogBox = '<div id="dialog-' + boxIndex + '-' + j + '" class="smrpg-dialogbox"><div class="bgimage"><div class="chars"></div></div><div class="infobox"><div class="counter1"></div><div class="counter2"></div><div class="counter3"></div><div class="alert"></div></div></div>';
+        dialogBox = '<div id="dialog-' + boxIndex + '-' + j + '" class="smrpg-dialogbox">\
+            <div class="bgimage">\
+                <div class="chars"></div>\
+            </div>\
+            <div class="infobox">\
+                <div class="counter1"></div>\
+                <div class="counter2"></div>\
+                <div class="counter3"></div>\
+                <div class="alert"></div>\
+            </div>\
+        </div>';
+
         previewContainer.append(dialogBox);
 
         dialogSelector = '#dialog-' + boxIndex + '-' + j;
@@ -51,12 +63,14 @@ function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             } else if (l == "\n") {
                 picture = "<br>";
                 indexLine++;
+            } else if (l == "\t") {
+                picture = '<div class="newline_newpage_arrow"></div>';
             } else if (l.charCodeAt() !== 13) {
                 k += l;
                 alert = "Unsupported character(s): " + k;
             }
             // counter e counter string
-            if (counter[indexLine] <= 239) {
+            if (counter[indexLine] <= (198 + 10)) {
                 counterstring[indexLine] = "Line " + (indexLine + 1) + ": " + counter[indexLine] + " pixel";
                 if (picture != "") {
                     picturestring += picture;
@@ -84,10 +98,10 @@ function renderPreview(previewContainerSelector, text) {
 var charlist = [];
 charlist[1] = new Array("MW*…#+×%", 9);
 charlist[0] = new Array("~©ARw&?‥À<>", 8);
-charlist[4] = new Array(" “”()023456789BCEGHKOPQUVXmv:;ÒÙ", 7);
+charlist[4] = new Array("“”()023456789BCEGHKOPQUVXmv:;ÒÙ", 7);
 charlist[6] = new Array("!./DFJNSTYZacdgknopqsuxyzàòù", 6);
 charlist[3] = new Array(",-.1LbefhjrtèéÈÉ", 5);
-charlist[5] = new Array("'", 4);
+charlist[5] = new Array(" '", 4);
 charlist[2] = new Array("IilìÌ", 3);
 
 var hashcharlist = [];

@@ -1,3 +1,7 @@
+.smrpg-dialogbox {
+	margin-right: .5rem;
+}
+
 .smrpg-dialogbox .infobox {
 	border: 1px solid white;
 	color: white;
@@ -30,6 +34,16 @@
 	padding-left: 17px;
 	padding-top: 18px;
 	line-height: 0px;
+	position: relative;
+}
+
+.newline_newpage_arrow {
+	width: 15px;
+	height: 8px;
+	background: url(../images/preview/newline_newpage_arrow.png) no-repeat;
+	position: absolute;
+	top: 56px;
+	right: 17px;
 }
 
 .smrpg-dialogbox .chars br {
