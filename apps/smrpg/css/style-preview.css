@@ -64,15 +64,17 @@
 
 .smrpg-font1-32 { width: 4px; background-position: -0px -0px; } /*   */
 .smrpg-font1-33 { width: 6px; background-position: -16px -0px; } /* ! */
-.smrpg-font1-8220 { width: 6px; background-position: -32px -0px; }
-.smrpg-font1-8221 { width: 6px; background-position: -48px -0px; }
+.smrpg-font1-8220 { width: 6px; background-position: -32px -0px; } /* “ */
+.smrpg-font1-8221 { width: 6px; background-position: -48px -0px; } /* ” */
+.smrpg-font1-9829 { width: 8px; background-position: -64px -0px; } /* ♥ */
+.smrpg-font1-9834 { width: 8px; background-position: -80px -0px; } /* ♪ */
 
 .smrpg-font1-40 { width: 7px; background-position: -0px -12px; } /* ( */
 .smrpg-font1-41 { width: 7px; background-position: -16px -12px; } /* ) */
-.smrpg-font1-2024 { width: 6px; background-position: -32px -12px; }
-.smrpg-font1-2025 { width: 8px; background-position: -48px -12px; }
+.smrpg-font1-183 { width: 6px; background-position: -32px -12px; } /* · */
+.smrpg-font1-8229 { width: 8px; background-position: -48px -12px; } /* ‥ */
 .smrpg-font1-44 { width: 5px; background-position: -64px -12px; } /* , */
-.smrpg-font1-53 { width: 5px; background-position: -80px -12px; } /* - */
+.smrpg-font1-45 { width: 5px; background-position: -80px -12px; } /* - */
 .smrpg-font1-46 { width: 5px; background-position: -96px -12px; } /* . */
 .smrpg-font1-47 { width: 6px; background-position: -112px -12px; } /* / */
 

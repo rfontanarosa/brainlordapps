@@ -7,8 +7,10 @@ function smrpgTextClean(text) {
     text = text.replace(/\[13\]\[.\]/g, ""); // Pause?
     text = text.replace(/\[13\]\[..\]/g, ""); // Pause?
     text = text.replace(/\[5\]/g, ""); // Pause, wait for input
-    text = text.replace(/\[42\]/g, "․"); // .
-    text = text.replace(/\[43\]/g, "‥"); // ..
+    text = text.replace(/\[36\]/g, "♥");
+    text = text.replace(/\[37\]/g, "♪");
+    text = text.replace(/\[42\]/g, "·");
+    text = text.replace(/\[43\]/g, "‥");
     return text;
 }
 
@@ -58,7 +60,7 @@ function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             l = textDialog.charAt(i);
             picture = "";
             if (hashcharlist[l] > 0) {
-                counter[indexLine] += hashcharlist[l];
+                counter[indexLine] += hashcharlist[l] + 1;
                 picture = '<div class="smrpg-font1 smrpg-font1-' + l.charCodeAt() + '"></div>';
             } else if (l == "\n") {
                 picture = "<br>";
@@ -70,7 +72,7 @@ function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
                 alert = "Unsupported character(s): " + k;
             }
             // counter e counter string
-            if (counter[indexLine] <= (198 + 10)) {
+            if (counter[indexLine] <= 222) {
                 counterstring[indexLine] = "Line " + (indexLine + 1) + ": " + counter[indexLine] + " pixel";
                 if (picture != "") {
                     picturestring += picture;
@@ -96,11 +98,11 @@ function renderPreview(previewContainerSelector, text) {
 }
 
 var charlist = [];
-charlist[1] = new Array("MW*…#+×%", 9);
-charlist[0] = new Array("~©ARw&?‥À<>", 8);
-charlist[4] = new Array("“”()023456789BCEGHKOPQUVXmv:;ÒÙ", 7);
-charlist[6] = new Array("!./DFJNSTYZacdgknopqsuxyzàòù", 6);
-charlist[3] = new Array(",-.1LbefhjrtèéÈÉ", 5);
+charlist[1] = new Array("MW…#+×%*", 9);
+charlist[0] = new Array("♥♪‥~?©ARÀw<>&", 8);
+charlist[4] = new Array("()023456789BCEGHKOPQUVXÈÉmv:;ÒÙ", 7);
+charlist[6] = new Array("!“”·/DFJNSTYZacdgknopqsuxyzàòù", 6);
+charlist[3] = new Array(",-.1Lbefhjrtèé", 5);
 charlist[5] = new Array(" '", 4);
 charlist[2] = new Array("IilìÌ", 3);
 
