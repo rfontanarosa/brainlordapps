@@ -188,6 +188,11 @@
 								<i class="fas fa-users"></i>&nbsp;OTHERS&nbsp;<span class="badge badge-primary"><?php echo $others_count ?></span>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" id="pills-tools-tab" data-toggle="pill" href="#pills-tools" role="tab" aria-controls="pills-tools" aria-selected="false">
+								<i class="fas fa-tools"></i>&nbsp;TOOLS
+							</a>
+						</li>
 					</ul>
 				</div>
 				<div class="col-md-12 col-lg-4">
@@ -443,6 +448,22 @@
 						<div class="col-md-12 col-lg-6">
 							<div class="card brain-card">
 								<div class="card-body" id="search-result">SEARCH RESULTS</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="tab-pane fade" id="pills-tools" role="tabpanel" aria-labelledby="pills-tools-tab">
+					<div class="row">
+						<div class="col-md-12 col-lg-6">
+							<div class="card brain-card">
+								<div class="card-header">TOOLS</div>
+									<?php if (file_exists('tools.php')): ?>
+										<?php require_once("tools.php"); ?>
+									<?php else: ?>
+										<div class="card-body">No tools.</div>
+									<?php endif; ?>
+								</div>
 							</div>
 						</div>
 					</div>

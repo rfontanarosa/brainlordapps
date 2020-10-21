@@ -175,4 +175,43 @@ class DbManager {
 		return $rows;
 	}
 
+	public static function getTranslationsByUser($db, $uname, $block=0) {
+		$ret = array();
+		$query = "SELECT text, new_text, text_encoded, id, id2 FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM trans WHERE trans.author=:author AND trans.status = 2) AS t2 ON t1.id=t2.id_text ORDER BY t1.id";
+		if ($block != 0) {
+			$query = "SELECT text, new_text, text_encoded, id, id2 FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM trans WHERE trans.author=:author AND trans.status = 2) AS t2 ON t1.id=t2.id_text WHERE t1.block = :block ORDER BY t1.id";	
+		}
+		$stmt = $db->prepare($query);
+		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
+		if ($block != 0) {
+			$stmt->bindValue(':block', $block, SQLITE3_INTEGER);
+		}
+		$results = $stmt->execute();
+		while ($row = $results->fetchArray()) {
+			$ret[] = $row;
+		}
+		$results->finalize();
+		return $ret;
+	}
+
+	public static function getMoreRecentTranslations($db, $block=0) {
+		$ret = array();
+		$query = "SELECT text, new_text, text_encoded, id, id2, address, size, t2.author, t2.date FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM trans WHERE trans.status = 2) AS t2 ON t1.id=t2.id_text WHERE 1=1 GROUP BY id HAVING MAX(t2.date)";
+		if ($block != 0) {
+			$query = "SELECT text, new_text, text_encoded, id, id2, address, size, t2.author, t2.date FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM trans WHERE trans.status = 2) AS t2 ON t1.id=t2.id_text WHERE t1.block = :block GROUP BY id HAVING MAX(t2.date)";
+		}
+		$stmt = $db->prepare($query);
+		if ($block != 0) {
+			$stmt->bindValue(':block', $block, SQLITE3_INTEGER);
+		}
+		$results = $stmt->execute();
+		while ($row = $results->fetchArray()) {
+			$ret[] = $row;
+		}
+		$results->finalize();
+		return $ret;
+	}
+
+
+
 }
