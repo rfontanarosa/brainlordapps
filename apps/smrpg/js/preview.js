@@ -4,8 +4,6 @@ function smrpgTextClean(text) {
     text = text.replace(/\[0\]/g, ""); // End string, wait for input
     text = text.replace(/\[7\]/g, ""); // Option triangle
     text = text.replace(/\[12\]/g, ""); // Pause 1 second
-    text = text.replace(/\[13\]\[.\]/g, ""); // Pause?
-    text = text.replace(/\[13\]\[..\]/g, ""); // Pause?
     text = text.replace(/\[5\]/g, ""); // Pause, wait for input
     text = text.replace(/\[36\]/g, "♥");
     text = text.replace(/\[37\]/g, "♪");
@@ -16,10 +14,13 @@ function smrpgTextClean(text) {
 
 function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
     const previewContainer = $('#' + previewContainerSelector);
+    text = text.replace(/\[13\]\[.\]/g, ""); // Pause?
+    text = text.replace(/\[13\]\[..\]/g, ""); // Pause?
+    text = text.replace(/\[28\]\[.\]/g, ""); // RAM?
     text = text.replace(/\[2\]/g, "\t[2]");
     text = text.replace(/\[3\]/g, "\t[3]");
-    var textArray = text.split(/\[2\]|\[3\]|\[4\]/g); // Wait for input, clean previous lines / New page, wait for input / New page
-    for (var j=0; j<textArray.length; j++) {
+    const textArray = text.split(/\[2\]|\[3\]|\[4\]/g); // Wait for input, clean previous lines / New page, wait for input / New page
+    for (let j = 0; j < textArray.length; j++) {
 
         dialogBox = '<div id="dialog-' + boxIndex + '-' + j + '" class="smrpg-dialogbox">\
             <div class="bgimage">\
@@ -46,17 +47,16 @@ function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
         textDialog = textArray[j];
         textDialog = smrpgTextClean(textDialog);
 
-        var i = 0;
-        var indexLine = 0;
-        var k = "";
-        var l = "";
-        var alert = "";
-        var picture = "";
-        var picturestring = "";
-        var counter = [0, 0, 0];
-        var counterstring = ['', '', ''];
+        let indexLine = 0;
+        let k = "";
+        let l = "";
+        let alert = "";
+        let picture = "";
+        let picturestring = "";
+        const counter = [0, 0, 0];
+        const counterstring = ['', '', ''];
 
-        for (i = 0; i < textDialog.length; i++) {
+        for (let i = 0; i < textDialog.length; i++) {
             l = textDialog.charAt(i);
             picture = "";
             if (hashcharlist[l] > 0) {
@@ -71,14 +71,16 @@ function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
                 k += l;
                 alert = "Unsupported character(s): " + k;
             }
-            // counter e counter string
-            if (counter[indexLine] <= 222) {
-                counterstring[indexLine] = "Line " + (indexLine + 1) + ": " + counter[indexLine] + " pixel";
-                if (picture != "") {
-                    picturestring += picture;
-                }
+            if (picture != "") {
+                picturestring += picture;
+            }
+        }
+
+        for (let i = 0; i < counter.length; i++) {
+            if (counter[i] <= 222) {
+                counterstring[i] = "Line " + (i + 1) + ": " + counter[i] + " pixel";
             } else {
-                counterstring[indexLine] = "<div class=\"redtext\">Line " + (indexLine + 1) + ": " + counter[indexLine] + " pixel</div>";
+                counterstring[i] = "<div class=\"redtext\">Line " + (i + 1) + ": " + counter[i] + " pixel</div>";
             }
         }
 
@@ -97,18 +99,18 @@ function renderPreview(previewContainerSelector, text) {
     smrpgPreviewBox(previewContainerSelector, text, 0, 1);
 }
 
-var charlist = [];
-charlist[1] = new Array("MW…#+×%*", 9);
-charlist[0] = new Array("♥♪‥~?©ARÀw<>&", 8);
-charlist[4] = new Array("()023456789BCEGHKOPQUVXÈÉmv:;ÒÙ", 7);
-charlist[6] = new Array("!“”·/DFJNSTYZacdgknopqsuxyzàòù", 6);
-charlist[3] = new Array(",-.1Lbefhjrtèé", 5);
-charlist[5] = new Array(" '", 4);
-charlist[2] = new Array("IilìÌ", 3);
+const charlist = [];
+charlist.push(["MW…#+×%*", 9]);
+charlist.push(["♥♪‥~?©ARÀw<>&", 8]);
+charlist.push(["()023456789BCEGHKOPQUVXÈÉmv:;ÒÙ", 7]);
+charlist.push(["!“”·/DFJNSTYZacdgknopqsuxyzàòù", 6]);
+charlist.push([",-.1Lbefhjrtèé", 5]);
+charlist.push([" '", 4]);
+charlist.push(["IilìÌ", 3]);
 
-var hashcharlist = [];
-for (var i = 0; i < charlist.length; i++) {
-    for (var j = 0; j < charlist[i][0].length; j++) {
+const hashcharlist = [];
+for (let i = 0; i < charlist.length; i++) {
+    for (let j = 0; j < charlist[i][0].length; j++) {
         hashcharlist[charlist[i][0].charAt(j)] = charlist[i][1];
     }
 }
