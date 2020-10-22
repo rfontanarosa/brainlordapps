@@ -452,21 +452,12 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="tab-pane fade" id="pills-tools" role="tabpanel" aria-labelledby="pills-tools-tab">
-					<div class="row">
-						<div class="col-md-12 col-lg-6">
-							<div class="card brain-card">
-								<div class="card-header">TOOLS</div>
-									<?php if (file_exists('tools.php')): ?>
-										<?php require_once("tools.php"); ?>
-									<?php else: ?>
-										<div class="card-body">No tools.</div>
-									<?php endif; ?>
-								</div>
-							</div>
-						</div>
-					</div>
+					<?php if (file_exists('tools.php')): ?>
+						<?php require_once("tools.php"); ?>
+					<?php else: ?>
+						<div class="p-3 bg-light">No tools.</div>
+					<?php endif; ?>
 				</div>
 			</div>
 		</div>
