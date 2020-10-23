@@ -3,6 +3,7 @@
 require_once '../../config.inc.php';
 
 define('APPLICATION_ID', 'soe');
+define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 
 define('TITLE', 'Secret of Evermore');
 

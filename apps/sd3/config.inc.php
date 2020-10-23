@@ -3,6 +3,7 @@
 require_once '../../config.inc.php';
 
 define('APPLICATION_ID', 'sd3');
+define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 
 define('TITLE', 'Seiken Densetsu 3');
 

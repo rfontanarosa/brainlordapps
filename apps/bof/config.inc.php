@@ -3,6 +3,7 @@
 require_once '../../config.inc.php';
 
 define('APPLICATION_ID', 'bof');
+define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 
 define('TITLE', 'Breath of Fire');
 

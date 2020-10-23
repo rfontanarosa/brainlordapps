@@ -19,17 +19,17 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="./images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-		<link href="./images/favicon.ico" rel="apple-touch-icon" />
-		<script type="text/javascript" src="../../node_modules/jquery/dist/jquery.min.js"></script>
-		<script type="text/javascript" src="../../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript"src="../../node_modules/popper.js/dist/umd/popper.min.js"></script>
-		<script type="text/javascript" src="../../node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
-		<link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="../../node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
-		<link rel="stylesheet" href="./css/bootstrap4.custom.css" type="text/css" />
-		<link rel="stylesheet" href="./css/style-preview.css" type="text/css" />
-		<script type="text/javascript" src="./js/preview.js" charset="UTF-8"></script>
+		<link href="<?php echo APPLICATION_PATH ?>/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link href="<?php echo APPLICATION_PATH ?>/images/favicon.ico" rel="apple-touch-icon" />
+		<script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script type="text/javascript"src="/node_modules/popper.js/dist/umd/popper.min.js"></script>
+		<script type="text/javascript" src="/node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+		<link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+		<link rel="stylesheet" href="<?php echo APPLICATION_PATH ?>/css/bootstrap4.custom.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo APPLICATION_PATH ?>/css/style-preview.css" type="text/css" />
+		<script type="text/javascript" src="<?php echo APPLICATION_PATH ?>/js/preview.js" charset="UTF-8"></script>
 	</head>
 	<body>
 
@@ -500,7 +500,7 @@
 	</div>
 
 	<span id="app-vars" data-max-id="<?php echo $max_id ?>" data-current-id="<?php echo $id ?>" data-more-recent-translation="<?php echo $more_recent_translation ?>" style="display: hidden;"></span>
-	<script type="text/javascript" src="./js/app.js?1" charset="UTF-8"></script>
+	<script type="text/javascript" src="/common/js/app.js" charset="UTF-8"></script>
 
 	</body>
 </html>
