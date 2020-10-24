@@ -140,27 +140,29 @@
 			</a>
 			<a class="btn btn-light btn-sm <?php if ($id == 1) echo 'disabled'; ?>" href="?id=1">
 				<i class="fas fa-fast-backward"></i>
-				<div>FIRST</div>
+				<small>FIRST</small>
 			</a>
-			<a class="btn btn-light btn-sm <?php if ($id == 1) echo 'disabled'; ?>" href="?id=<?php if ($id > 1) echo ($id - 1); ?>">
+			<a class="btn btn-light btn-sm <?php if ($id == 1) echo 'disabled'; ?>" href="?id=<?php echo ($id > 1) ? ($id - 1) : 1; ?>" id="prev-btn">
 				<i class="fas fa-step-backward"></i>
-				<div>PREV</div>
+				<small>PREV</small>
+				<small>Ctrl + P</small>
 			</a>
-			<a class="btn btn-light btn-sm <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php if ($id < $max_id) echo ($id + 1); ?>">
+			<a class="btn btn-light btn-sm <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php echo ($id < $max_id) ? ($id + 1) : $max_id; ?>" id="next-btn">
 				<i class="fas fa-step-forward"></i>
-				<div>NEXT</div>
+				<small>NEXT</small>
+				<small>Ctrl + N</small>
 			</a>
 			<a class="btn btn-light btn-sm <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php echo $max_id; ?>">
 				<i class="fas fa-fast-forward"></i>
-				<div>LAST</div>
+				<small>LAST</small>
 			</a>
 			<a class="btn btn-light btn-sm <?php if (!isset($prev_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($prev_id)) echo $prev_id; ?>">
 				<i class="fas fa-backward"></i>
-				<div>P_TODO</div>
+				<small>P_TODO</small>
 			</a>
 			<a class="btn btn-light btn-sm <?php if (!isset($next_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($next_id)) echo $next_id; ?>">
 				<i class="fas fa-forward"></i>
-				<div>N_TODO</div>
+				<small>N_TODO</small>
 			</a>
 		</nav>
 	</div>
@@ -260,8 +262,8 @@
 								<div class="card-footer d-flex justify-content-between">
 									<input type="hidden" name="status" value="0" />
 									<button type="submit" class="btn btn-danger btn-sm submit-btn" value="0"><i class="fas fa-times"></i>&nbsp;UNDONE</button>
-									<button type="submit" class="btn btn-warning btn-sm submit-btn" value="1"><i class="fas fa-exclamation-triangle"></i>&nbsp;PARTIALLY</button>
-									<button type="submit" class="btn btn-success btn-sm submit-btn" value="2"><i class="fas fa-check"></i>&nbsp;DONE</button>
+									<button type="submit" class="btn btn-warning btn-sm submit-btn" value="1" id="partially-btn"><i class="fas fa-exclamation-triangle"></i>&nbsp;PARTIALLY<br /><small>Ctrl + A</small></button>
+									<button type="submit" class="btn btn-success btn-sm submit-btn" value="2" id="done-btn"><i class="fas fa-check"></i>&nbsp;DONE<br /><small>Ctrl + D</small></button>
 								</div>
 							</div>
 						</div>

@@ -1,5 +1,21 @@
 $(document).ready(function() {
 
+  document.onkeyup = function(e) {
+    if (e.ctrlKey && e.which == 80) {
+      // Ctrl + P shortcut combination was pressed
+      document.getElementById('prev-btn').click();
+    } else if (e.ctrlKey && e.which == 78) {
+      // Ctrl + N shortcut combination was pressed
+      document.getElementById('next-btn').click();
+    } else if (e.ctrlKey && e.which == 68) {
+      // Ctrl + D shortcut combination was pressed
+      document.getElementById('done-btn').click();
+    } else if (e.ctrlKey && e.which == 65) {
+      // Ctrl + A shortcut combination was pressed
+      document.getElementById('partially-btn').click();
+    }
+  };
+
   const max_id = parseInt($('#app-vars').attr('data-max-id'));
   const current_id = parseInt($('#app-vars').attr('data-current-id'));
   let more_recent_translation = $('#app-vars').attr('data-more-recent-translation') === '1';
@@ -93,9 +109,7 @@ $(document).ready(function() {
     });
   });
 
-  $('textarea#new_text').keyup(function(e) {
-    e.stopPropagation();
-    e.preventDefault();
+  $('#new_text').keyup(function(e) {
     $('#preview-new-btn').click();
   });
 
