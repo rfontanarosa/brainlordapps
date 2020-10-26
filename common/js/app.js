@@ -17,20 +17,20 @@ $(function() {
   let moreRecentTranslation = document.getElementById('app-vars').getAttribute('data-more-recent-translation') === '1';
 
   const submit = () => {
-    const id_text = $('input[name="id_text"]').val();
-    const new_text = $('textarea[name="new_text"]').val();
+    const idText = $('input[name="id_text"]').val();
+    const newText = $('textarea[name="new_text"]').val();
     const comment = $('textarea[name="comment"]').val();
     const status = $('input[name="status"]').val();
-    const extends_to_duplicates = $('#extendsToDuplicates').is(':checked');
+    const extendsToDuplicates = $('#extends-to-duplicates').is(':checked');
     $.ajax({
       type: 'POST',
       url: 'ajax_submit.php',
       data: {
-        id_text,
-        new_text,
+        id_text: idText,
+        new_text: newText,
         status,
         comment,
-        extends_to_duplicates,
+        extends_to_duplicates: extendsToDuplicates,
       },
     }).done(function(data, textStatus, jqXHR) {
       const jsonObject = JSON.parse(data);

@@ -1,5 +1,11 @@
 <?php
 
+	header('Content-Type: text/html; charset=utf-8');
+
+	session_start();
+
+	require_once './config.inc.php';
+
 	/** LOGOUT */
 	if (isset($_POST['logout'])) {
 		UserManager::logout();
@@ -254,8 +260,8 @@
 									</small>
 									<div class="form-group mb-0">
 										<div class="form-check">
-											<input class="form-check-input" type="checkbox" id="extendsToDuplicates"  <?php if ($duplicates > 0) echo 'checked'; ?> />
-											<label class="form-check-label" for="extendsToDuplicates">Extends to <?php echo $duplicates; ?> duplicates</label>
+											<input class="form-check-input" type="checkbox" id="extends-to-duplicates"  <?php if ($duplicates > 0) echo 'checked'; ?> />
+											<label class="form-check-label" for="extends-to-duplicates">Extends to <?php echo $duplicates; ?> duplicates</label>
 										</div>
 									</div>
 								</div>
