@@ -397,7 +397,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon0">ID2</span>
 										</div>
-										<input type="search" class="form-control search-btn" id="search-id2" placeholder="Search for..." data-btn-id="search-id2-btn" />
+										<input type="search" class="form-control search-input" id="search-id2" placeholder="Search for..." data-button-id="search-id2-btn" />
 										<div class="input-group-append">
 											<button class="btn btn-outline-light" type="button" id="search-id2-btn" data-type="id2"><i class="fas fa-search"></i>&nbsp;Search</button>
 										</div>
@@ -406,7 +406,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon1">Original</span>
 										</div>
-										<input type="search" class="form-control search-btn" id="search-original" placeholder="Search for..." data-btn-id="search-original-btn" />
+										<input type="search" class="form-control search-input" id="search-original" placeholder="Search for..." data-button-id="search-original-btn" />
 										<div class="input-group-append">
 											<button class="btn btn-outline-light" type="button" id="search-original-btn" data-type="original"><i class="fas fa-search"></i>&nbsp;Search</button>
 										</div>
@@ -415,7 +415,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon2">Translated</span>
 										</div>
-										<input type="search" class="form-control search-btn" id="search-new" placeholder="Search for..." data-btn-id="search-new-btn" />
+										<input type="search" class="form-control search-input" id="search-new" placeholder="Search for..." data-button-id="search-new-btn" />
 										<div class="input-group-append">
 											<button class="btn btn-outline-light" type="button" id="search-new-btn" data-type="new"><i class="fas fa-search"></i>&nbsp;Search</button>
 										</div>
@@ -424,7 +424,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon3">Comment</span>
 										</div>
-										<input type="search" class="form-control search-btn" id="search-comment" placeholder="Search for..." data-btn-id="search-comment-btn" />
+										<input type="search" class="form-control search-input" id="search-comment" placeholder="Search for..." data-button-id="search-comment-btn" />
 										<div class="input-group-append">
 											<button class="btn btn-outline-light" type="button" id="search-comment-btn" data-type="comment"><i class="fas fa-search"></i>&nbsp;Search</button>
 										</div>
@@ -433,7 +433,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text" id="basic-addon4">Duplicates (ID)</span>
 										</div>
-										<input type="search" class="form-control search-btn" id="search-duplicates" placeholder="Search duplicates..."  data-btn-id="search-duplicates-btn" value="<?php echo $id; ?>" />
+										<input type="search" class="form-control search-input" id="search-duplicates" placeholder="Search duplicates..." data-button-id="search-duplicates-btn" value="<?php echo $id; ?>" />
 										<div class="input-group-append">
 											<button class="btn btn-outline-light" type="button" id="search-duplicates-btn" data-type="duplicates"><i class="fas fa-search"></i>&nbsp;Search</button>
 										</div>
