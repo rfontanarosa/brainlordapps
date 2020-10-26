@@ -219,7 +219,7 @@
 									<span style="line-height: 1.75;">TRANSLATION</span>
 									<div class="d-flex justify-content-end">
 										<button type="submit" class="btn btn-light" id="paste-new-btn"><i class="fas fa-paste"></i>&nbsp;PASTE</button>
-										<button type="submit" class="btn btn-light preview-btn" id="preview-new-btn" data-source-id="new_text" data-dialog-container-id="dialog-container"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
+										<button type="submit" class="btn btn-light preview-btn" id="preview-new-btn" data-source-id="new_text" data-dialog-container-id="dialog-container" data-id="<?php echo $id; ?>"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
 									</div>
 								</div>
 								<div class="card-body">

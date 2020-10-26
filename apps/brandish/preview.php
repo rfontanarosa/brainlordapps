@@ -19,7 +19,7 @@
 
 	$table = array();
 	$type = $_POST['type'];
-	if ($type == 'original') {
+	if ($type == 'original_text') {
 		$table = array_merge($table, array('!', '', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/'));
 		$table = array_merge($table, array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'));
 		$table = array_merge($table, array('', '', '', '', '', '?', ''));
@@ -30,7 +30,7 @@
 		foreach ($table as $i => $value) {
 			echo '.brandish-font1-' . $i . '{ background: url(./images/preview/brandish-font1-en.png) ' . (8*$i)*-1 . 'px 0; }';
 		}
-	} elseif ($type == 'new') {
+	} else {
 		$table = array_merge($table, array('!', '', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/'));
 		$table = array_merge($table, array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9'));
 		$table = array_merge($table, array('', '', '', '', '', '?', ''));
@@ -91,13 +91,6 @@
 
 <?php
 
-	function textClean($text) {
-		if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
-			$text = str_replace(PHP_EOL, NEWLINECHAR, $text);
-		}
-		return $text;
-	}
-
 	function brandishBoxPropertiesCalculator($text) {
 		$max_chars = 26;
 		$props = substr($text, 0, 12);
@@ -117,7 +110,7 @@
 		return $text;
 	}
 
-	$id_text = $_POST['id_text'];
+	$id_text = (int)$_POST['id'];
 	$source = $_POST['text'];
 	$cleanedSource = textClean($source);
 	$boxProperties = brandishBoxPropertiesCalculator($cleanedSource);
