@@ -17,7 +17,7 @@
         $original_text = $row[2];
         $new_text = $row[1];
         $text = $new_text ? $new_text : $original_text;
-        $str .= "{$id2}\t$text\n";
+        $str .= "{{$id2}}\t$text\n";
     }
 
     $filename = $block == 1 ? 'dialogues.txt' : 'battleDialogues.txt';
