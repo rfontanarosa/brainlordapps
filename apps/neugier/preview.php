@@ -59,13 +59,6 @@
 
 <?php
 
-	function textClean($text) {
-		if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
-			$text = str_replace(PHP_EOL, NEWLINECHAR, $text);
-		}
-		return $text;
-	}
-
 	function neugierTextClean($text) {
 		//
 		$text = str_replace('{08}', '…', $text);
@@ -134,13 +127,12 @@
 		return $char;
 	}
 
-	$id_text = $_POST['id_text'];
 	$source = $_POST['text'];
 	$cleanedSources = neugierTextClean($source);
 
 	$boxes = array();
 	$lines = explode("\n", $cleanedSources);
-	echo count($lines);
+
 	for ($i=0; $i<count($lines); $i+=4) {
 		$box = array_slice($lines, $i, 4);
 		array_push($boxes, $box);
