@@ -20,7 +20,7 @@ $(function() {
     const idText = $('input[name="id_text"]').val();
     const newText = $('textarea[name="new_text"]').val();
     const comment = $('textarea[name="comment"]').val();
-    const status = $('input[name="status"]').val();
+    const status = parseInt($('input[name="status"]').val());
     const extendsToDuplicates = $('#extends-to-duplicates').is(':checked');
     $.ajax({
       type: 'POST',
@@ -35,7 +35,7 @@ $(function() {
     }).done(function(data, textStatus, jqXHR) {
       const jsonObject = JSON.parse(data);
       const textarea = $('textarea[name=new_text]');
-      const className = status === '0' ? 'btn-danger' : status === '1' ? 'btn-warning' : 'btn-success';
+      const className = status === 0 ? 'btn-danger' : status === 1 ? 'btn-warning' : 'btn-success';
       textarea.removeClass('btn-warning btn-danger btn-success').addClass(className);
       $('#lastUpdate').text(jsonObject.updateDate);
       moreRecentTranslation = false;
@@ -54,7 +54,7 @@ $(function() {
   $('#modal-confirm-btn').on('click', () => submit());
 
   $('.submit-btn').on('click', e => {
-    const status = e.target.value;
+    const status = e.currentTarget.value;
     $('input[name="status"]').val(status);
     moreRecentTranslation ? $('#confirm-modal').modal() : submit();
   });
@@ -63,10 +63,10 @@ $(function() {
     e.stopPropagation();
     e.preventDefault();
     if (typeof renderPreview === 'function') {
-      const sourceId = e.target.getAttribute('data-source-id');
-      const dialogContainerId = e.target.getAttribute('data-dialog-container-id');
+      const sourceId = e.currentTarget.getAttribute('data-source-id');
+      const dialogContainerId = e.currentTarget.getAttribute('data-dialog-container-id');
       const text = document.getElementById(sourceId).value;
-      const id = e.target.getAttribute('data-id');
+      const id = e.currentTarget.getAttribute('data-id');
       renderPreview(dialogContainerId, text, id, sourceId);
     } else {
       console.log('renderPreview is not defined!');
@@ -76,7 +76,7 @@ $(function() {
   $('.copy-btn').on('click', e => {
     e.stopPropagation();
     e.preventDefault();
-    const sourceId = e.target.getAttribute('data-source-id');
+    const sourceId = e.currentTarget.getAttribute('data-source-id');
     const text = document.getElementById(sourceId).value;
     navigator.clipboard.writeText(text).then(function() {
       /* clipboard successfully set */
@@ -98,7 +98,7 @@ $(function() {
 
   $('.search-input').on('keypress', e => {
     if (e.key === 'Enter') {
-      const buttonId = e.target.getAttribute('data-button-id');
+      const buttonId = e.currentTarget.getAttribute('data-button-id');
       document.getElementById(buttonId).click();
     }
   });
@@ -126,7 +126,7 @@ $(function() {
   $('#search-id2-btn, #search-original-btn, #search-new-btn, #search-comment-btn, #search-duplicates-btn, #search-personal_all-btn, #search-global_untranslated-btn').on('click', e => {
     e.stopPropagation();
     e.preventDefault();
-    const type = e.target.getAttribute('data-type');
+    const type = e.currentTarget.getAttribute('data-type');
     let textToSearch = undefined;
     switch (type) {
       case 'id2':
