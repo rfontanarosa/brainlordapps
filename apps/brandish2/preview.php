@@ -203,7 +203,7 @@
 <?php
 
 	$type = $_POST['type'];
-	if ($type == 'new') {
+	if ($type == 'new_text') {
 		$table['à'] = '6a';
 		$table['è'] = '6b';
 		$table['é'] = '6c';
@@ -226,7 +226,7 @@
 	$source = $_POST['text'];
 	$source = str_replace('{02}{00}', '', $source);
 
-	$id_text = $_POST['id_text'];
+	$id_text = (int)$_POST['id'];
 
 	$boxes = explode('{02}', $source);
 	foreach ($boxes as $box) {
