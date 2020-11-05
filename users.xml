@@ -9,10 +9,13 @@
 			<app name="brainlord" role="user" />
 			<app name="brandish" role="user" />
 			<app name="brandish2" role="user" />
+			<app name="ffmq" role="user" />
+			<app name="lufia" role="user" />
 			<app name="neugier" role="user" />
 			<app name="sd3" role="user" />
-			<app name="smrpg" role="user" />
 			<app name="soe" role="user" />
+			<app name="smrpg" role="user" />
+			<app name="so" role="user" />
 			<app name="spike" role="user" />
 			<app name="ys3" role="user" />
 			<app name="ys4" role="user" />
