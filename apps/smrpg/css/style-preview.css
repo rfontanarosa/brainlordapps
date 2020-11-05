@@ -94,11 +94,11 @@
 
 .smrpg-font1-169 { width: 8px; background-position: -0px -48px; } /* © */
 .smrpg-font1-65 { width: 8px; background-position: -16px -48px; } /* A */
-.smrpg-font1-66 { width: 7px; background-position: -32px -48px; }
-.smrpg-font1-67 { width: 7px; background-position: -48px -48px; }
-.smrpg-font1-68 { width: 6px; background-position: -64px -48px; }
-.smrpg-font1-69 { width: 7px; background-position: -80px -48px; }
-.smrpg-font1-70 { width: 6px; background-position: -96px -48px; }
+.smrpg-font1-66 { width: 7px; background-position: -32px -48px; } /* B */
+.smrpg-font1-67 { width: 7px; background-position: -48px -48px; } /* C */
+.smrpg-font1-68 { width: 6px; background-position: -64px -48px; } /* D */
+.smrpg-font1-69 { width: 7px; background-position: -80px -48px; } /* E */
+.smrpg-font1-70 { width: 6px; background-position: -96px -48px; } /* F */
 .smrpg-font1-71 { width: 7px; background-position: -112px -48px; } /* G */
 
 .smrpg-font1-72 { width: 7px; background-position: -0px -60px; } /* H */
@@ -111,12 +111,12 @@
 .smrpg-font1-79 { width: 7px; background-position: -112px -60px; } /* O */
 
 .smrpg-font1-80 { width: 7px; background-position: -0px -72px; } /* P */
-.smrpg-font1-81 { width: 7px; background-position: -16px -72px; }
-.smrpg-font1-82 { width: 8px; background-position: -32px -72px; }
-.smrpg-font1-83 { width: 6px; background-position: -48px -72px; }
-.smrpg-font1-84 { width: 6px; background-position: -64px -72px; }
-.smrpg-font1-85 { width: 7px; background-position: -80px -72px; }
-.smrpg-font1-86 { width: 7px; background-position: -96px -72px; }
+.smrpg-font1-81 { width: 7px; background-position: -16px -72px; } /* Q */
+.smrpg-font1-82 { width: 8px; background-position: -32px -72px; } /* R */
+.smrpg-font1-83 { width: 6px; background-position: -48px -72px; } /* S */
+.smrpg-font1-84 { width: 6px; background-position: -64px -72px; } /* T */
+.smrpg-font1-85 { width: 7px; background-position: -80px -72px; } /* U */
+.smrpg-font1-86 { width: 7px; background-position: -96px -72px; } /* V */
 .smrpg-font1-87 { width: 9px; background-position: -112px -72px; } /* W */
 
 .smrpg-font1-88 { width: 6px; background-position: -0px -84px; } /* X */
@@ -124,11 +124,11 @@
 .smrpg-font1-90 { width: 7px; background-position: -32px -84px; } /* Z */
 
 .smrpg-font1-97 { width: 6px; background-position: -16px -96px; } /* a */
-.smrpg-font1-98 { width: 5px; background-position: -32px -96px; }
-.smrpg-font1-99 { width: 6px; background-position: -48px -96px; }
-.smrpg-font1-100 { width: 6px; background-position: -64px -96px; }
-.smrpg-font1-101 { width: 5px; background-position: -80px -96px; }
-.smrpg-font1-102 { width: 5px; background-position: -96px -96px; }
+.smrpg-font1-98 { width: 5px; background-position: -32px -96px; } /* b */
+.smrpg-font1-99 { width: 6px; background-position: -48px -96px; } /* c */
+.smrpg-font1-100 { width: 6px; background-position: -64px -96px; } /* d */
+.smrpg-font1-101 { width: 5px; background-position: -80px -96px; } /* e */
+.smrpg-font1-102 { width: 5px; background-position: -96px -96px; } /* f */
 .smrpg-font1-103 { width: 6px; background-position: -112px -96px; } /* g */
 
 .smrpg-font1-104 { width: 5px; background-position: -0px -108px; } /* h */
@@ -141,12 +141,12 @@
 .smrpg-font1-111 { width: 6px; background-position: -112px -108px; } /* o */
 
 .smrpg-font1-112 { width: 6px; background-position: -0px -120px; } /* p */
-.smrpg-font1-113 { width: 6px; background-position: -16px -120px; }
-.smrpg-font1-114 { width: 5px; background-position: -32px -120px; }
-.smrpg-font1-115 { width: 6px; background-position: -48px -120px; }
-.smrpg-font1-116 { width: 5px; background-position: -64px -120px; }
-.smrpg-font1-117 { width: 6px; background-position: -80px -120px; }
-.smrpg-font1-118 { width: 7px; background-position: -96px -120px; }
+.smrpg-font1-113 { width: 6px; background-position: -16px -120px; } /* q */
+.smrpg-font1-114 { width: 5px; background-position: -32px -120px; } /* r */
+.smrpg-font1-115 { width: 6px; background-position: -48px -120px; } /* s */
+.smrpg-font1-116 { width: 5px; background-position: -64px -120px; } /* t */
+.smrpg-font1-117 { width: 6px; background-position: -80px -120px; } /* u */
+.smrpg-font1-118 { width: 7px; background-position: -96px -120px; } /* v */
 .smrpg-font1-119 { width: 8px; background-position: -112px -120px; } /* w */
 
 .smrpg-font1-120 { width: 6px; background-position: -0px -132px; } /* x */

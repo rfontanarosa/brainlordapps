@@ -55,11 +55,9 @@ function ffmqPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
         }
     }
 
-    console.log(newText.replaceAll('\r', '<BOX>').replaceAll('\n', '<LINE>'));
+    // console.log(newText.replaceAll('\r', '<BOX>').replaceAll('\n', '<LINE>'));
 
     const previewContainer = $('#' + previewContainerSelector);
-
-    //let dialogs = text.split(/<(?:1A|1B|SPEAKER|SCROLL)[^>]*>\n/gm);
 
     let dialogs = newText.split('\r');
     dialogs = dialogs.filter(element => element !== '');

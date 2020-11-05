@@ -19,10 +19,11 @@ function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
     text = text.replace(/\[28\]\[.\]/g, ""); // RAM?
     text = text.replace(/\[2\]/g, "\t[2]");
     text = text.replace(/\[3\]/g, "\t[3]");
-    const textArray = text.split(/\[2\]|\[3\]|\[4\]/g); // Wait for input, clean previous lines / New page, wait for input / New page
-    for (let j = 0; j < textArray.length; j++) {
+    const dialogs = text.split(/\[2\]|\[3\]|\[4\]/g); // Wait for input, clean previous lines / New page, wait for input / New page
+    dialogs.forEach((dialog, index) => {
 
-        dialogBox = '<div id="dialog-' + boxIndex + '-' + j + '" class="smrpg-dialogbox">\
+        const dialogId = `dialog-${boxIndex}-${index}`;
+        dialogBox = '<div id="' + dialogId + '" class="smrpg-dialogbox">\
             <div class="bgimage">\
                 <div class="chars"></div>\
             </div>\
@@ -33,32 +34,19 @@ function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
                 <div class="alert"></div>\
             </div>\
         </div>';
-
         previewContainer.append(dialogBox);
 
-        dialogSelector = '#dialog-' + boxIndex + '-' + j;
-
-        $(dialogSelector, previewContainer).find('.chars').html('');
-        $(dialogSelector, previewContainer).find('.counter1').html('');
-        $(dialogSelector, previewContainer).find('.counter2').html('');
-        $(dialogSelector, previewContainer).find('.counter3').html('');
-        $(dialogSelector, previewContainer).find('.alert').html('');
-
-        textDialog = textArray[j];
-        textDialog = smrpgTextClean(textDialog);
+        dialog = smrpgTextClean(dialog);
 
         let indexLine = 0;
-        let k = "";
-        let l = "";
-        let alert = "";
-        let picture = "";
-        let picturestring = "";
-        const counter = [0, 0, 0];
+        let picturestring = '';
         const counterstring = ['', '', ''];
+        let alert = '';
+        const counter = [0, 0, 0];
 
-        for (let i = 0; i < textDialog.length; i++) {
-            l = textDialog.charAt(i);
-            picture = "";
+        for (let i = 0; i < dialog.length; i++) {
+            const l = dialog.charAt(i);
+            let picture = "";
             if (hashcharlist[l] > 0) {
                 counter[indexLine] += hashcharlist[l] + 1;
                 picture = '<div class="smrpg-font1 smrpg-font1-' + l.charCodeAt() + '"></div>';
@@ -68,8 +56,7 @@ function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             } else if (l == "\t") {
                 picture = '<div class="newline_newpage_arrow"></div>';
             } else if (l.charCodeAt() !== 13) {
-                k += l;
-                alert = "Unsupported character(s): " + k;
+                alert += l;
             }
             if (picture != "") {
                 picturestring += picture;
@@ -84,18 +71,19 @@ function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             }
         }
 
+        const dialogSelector = `#${dialogId}`;
         $(dialogSelector, previewContainer).find('.chars').html(picturestring);
         $(dialogSelector, previewContainer).find('.counter1').html(counterstring[0]);
         $(dialogSelector, previewContainer).find('.counter2').html(counterstring[1]);
         $(dialogSelector, previewContainer).find('.counter3').html(counterstring[2]);
-        $(dialogSelector, previewContainer).find('.alert').html(alert);
+        $(dialogSelector, previewContainer).find('.alert').html(alert !== '' ? `Unsupported character(s): ${alert}` : '');
 
-    }
+    });
 
 }
 
 function renderPreview(previewContainerSelector, text) {
-    $('#' + previewContainerSelector).empty();
+    document.getElementById(previewContainerSelector).innerHTML = '';
     smrpgPreviewBox(previewContainerSelector, text, 0, 1);
 }
 
