@@ -1,3 +1,7 @@
+String.prototype.replaceAt = function(index, replacement) {
+    return this.substr(0, index) + replacement + this.substr(index + replacement.length);
+}
+
 const table = {
     "'": { "hex": "27", "width": 3 },
     " ": { "hex": "00", "width": 4 },
@@ -67,7 +71,8 @@ const table = {
     "[": { "hex": "5B", "width": 4 },
     "\\": { "hex": "5C", "width": 6 },
     "]": { "hex": "5D", "width": 4 },
-    "‘": { "hex": "60", "width": 3 },
+    "…": { "hex": "5F", "width": 9 },
+    "`": { "hex": "60", "width": 3 },
     "a": { "hex": "61", "width": 7 },
     "b": { "hex": "62", "width": 7 },
     "c": { "hex": "63", "width": 6 },
@@ -101,100 +106,129 @@ function soeTextClean(text) {
     text = text.replace(/}/g, '"');
     text = text.replace(/<\$96>/g, "");
     text = text.replace(/<\$97>/g, "");
+    text = text.replace(/<\$85>/g, "");
     text = text.replace(/<\$87>/g, "");
     text = text.replace(/<\$A3>/g, "XXXXX");
     text = text.replace(/<\Item>/g, "XXXXX");
+    text = text.replace(/<Dog>/g, "XXXXX");
     text = text.replace(/<\Choice>/g, "");
     text = text.replace(/<S \$.. \$..>/g, "");
     return text;
 }
 
 function soePreviewBox(previewContainerSelector, text, boxIndex, boxType) {
+    text0 = text.replaceAll('<$86>', '\r');
+    text0 = soeTextClean(text0);
+    let newText = '';
+    const charLimit = 152;
+    const lineLimit = 4;
+    let charCounter = 0;
+    let wordCounter = 0;
+    let lineCounter = 1;
+    let spacePosition = -1;
+    for (let i = 0; i < text0.length; i++) {
+        const utf16char = text0.charAt(i);
+        newText += utf16char;
+        // console.log(i, utf16char, charCounter, lineCounter, spacePosition);
+        if (utf16char === '\r') {
+            charCounter = 0;
+            lineCounter = 1;
+            spacePosition = -1;
+        }
+        else if (utf16char === '\n') {
+            charCounter = 0;
+            lineCounter += 1;
+            spacePosition = -1;
+        } else {
+            if (utf16char === ' ') {
+                spacePosition = i;
+                wordCounter = 0;
+            }
+            charCounter += table[utf16char] ? table[utf16char].width : 0;
+            wordCounter += table[utf16char] ? table[utf16char].width : 0;
+            if (charCounter > charLimit) {
+                if (spacePosition !== -1) {
+                    if (lineCounter >= lineLimit) {
+                        newText = newText.replaceAt(spacePosition, '\r');
+                        lineCounter = 1;
+                    } else {
+                        newText = newText.replaceAt(spacePosition, '\n');
+                        lineCounter += 1;
+                    }
+                }
+                spacePosition = -1;
+                charCounter = wordCounter;
+            }
+        }
+    }
+    // console.log(newText.replaceAll('\r', '<BOX>').replaceAll('\n', '<LINE>'));
+
     const previewContainer = $('#' + previewContainerSelector);
 
-    var textArray = text.split("<$86>");
-    for (var j=0; j<textArray.length; j++) {
+    let dialogs = newText.split('\r');
+    dialogs = dialogs.filter(element => element !== '');
+    dialogs.forEach((dialog, index) => {
 
-        dialogBox = '<div id="dialog-' + boxIndex + '-' + j + '" class="soe-dialogbox">\
-            <div class="dialog-box">\
-                <div class="dialog-box-row"></div>\
-                <div class="dialog-box-row"></div>\
-                <div class="dialog-box-row"></div>\
-                <div class="dialog-box-row"></div>\
+        const dialogId = `dialog-${boxIndex}-${index}`;
+        dialogBox = '<div id="' + dialogId + '" class="soe-dialogbox">\
+            <div class="bgimage">\
+                <div class="chars"></div>\
             </div>\
             <div class="infobox">\
-                <div></div>\
-                <div></div>\
-                <div></div>\
-                <div></div>\
+                <div class="counter1"></div>\
+                <div class="counter2"></div>\
+                <div class="counter3"></div>\
+                <div class="counter4"></div>\
+                <div class="alert"></div>\
             </div>\
         </div>';
-
         previewContainer.append(dialogBox);
 
-        dialogSelector = $('#dialog-' + boxIndex + '-' + j, previewContainer);
+        let indexLine = 0;
+        let picturestring = '';
+        const counterstring = ['', '', '', ''];
+        let alert = '';
+        const counter = [0, 0, 0, 0];
 
-        textDialog = textArray[j];
-        textDialog = soeTextClean(textDialog);
-
-        const splitted = textDialog.split(' ');
-    
-        const widths = splitted.map((value) => {
-            return value.split('').reduce((acc, currValue) => {
-                return table[currValue] !== undefined ? acc + table[currValue].width : 0;
-            }, 0);
-        });
-    
-        const limit = 149;
-        const lines = ['', '', '', ''];
-        let total=0, k=0, buffer='';
-    
-        splitted.forEach((value, index) => {
-            if (index !== 0) {
-                buffer += ' ';
-                total += table[' '].width;
+        for (let i = 0; i < dialog.length; i++) {
+            const utf16char = dialog.charAt(i);
+            const utf16int = utf16char.charCodeAt();
+            let buffer = '';
+            if (table[utf16char] && table[utf16char].width > 0) {
+                counter[indexLine] += table[utf16char].width;
+                buffer = `<img src="images/preview/${table[utf16char].hex}.bmp" alt="" />`;
+            } else if (utf16char == "\n") {
+                buffer = '<br />';
+                indexLine++;
+            } else {
+                alert += utf16char;
             }
-            const width = widths[index];
-            if (width <= limit && total + width >= limit) {
-                lines[k] = buffer;
-                total = 0;
-                k++;
-                buffer = '';
+            if (buffer !== '') {
+                picturestring += buffer;
             }
-            buffer += value;
-            total += width;
-        });
-        lines[k] = buffer;
+        };
 
-        $('.dialog-box-row', dialogSelector).empty();
-        const stats = [0, 0, 0, 0];
-        $('.infobox', dialogSelector).children().each(() => $(this).text(0));
+        for (let i = 0; i < counter.length; i++) {
+            if (counter[i] <= 150) {
+                counterstring[i] = "Line " + (i + 1) + ": " + counter[i] + " pixel";
+            } else {
+                counterstring[i] = "<div class=\"redtext\">Line " + (i + 1) + ": " + counter[i] + " pixel</div>";
+            }
+        }
 
-        lines.forEach((line, index) => {
-            const rowSelector = $(`.dialog-box-row:nth-child(${index + 1})`, dialogSelector);
-            line.split('').forEach((char) => {
-                if (table.hasOwnProperty(char)) {
-                    var image = $('<img>', {
-                        src: `images/preview/${table[char].hex}.bmp`,
-                        alt: ''
-                    }).appendTo(rowSelector);
-                    // stats
-                    stats[index] += table[char].width;
-                    $('.infobox', dialogSelector).children().eq(index).text(stats[index]);
-                    if (stats[index] >= limit) {
-                        $('.infobox', dialogSelector).children().eq(index).css('color', 'red');
-                    }
-                } else {
-                    console.log('ERRORE');
-                }
-            });
-        });
+        const dialogSelector = `#${dialogId}`;
+        $(dialogSelector, previewContainer).find('.chars').html(picturestring);
+        $(dialogSelector, previewContainer).find('.counter1').html(counterstring[0]);
+        $(dialogSelector, previewContainer).find('.counter2').html(counterstring[1]);
+        $(dialogSelector, previewContainer).find('.counter3').html(counterstring[2]);
+        $(dialogSelector, previewContainer).find('.counter4').html(counterstring[3]);
+        $(dialogSelector, previewContainer).find('.alert').html(alert !== '' ? `Unsupported character(s): ${alert}` : '');
 
-    }
+    });
 
 }
 
 function renderPreview(previewContainerSelector, text) {
-    $('#' + previewContainerSelector).empty();
+    document.getElementById(previewContainerSelector).innerHTML = '';
     soePreviewBox(previewContainerSelector, text, 0, 1);
 }

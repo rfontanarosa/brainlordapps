@@ -8,7 +8,7 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 define('TITLE', 'Secret of Evermore');
 
 define('SQLITE_FILENAME', RESOURCE_PATH . '/soe/db/soe.db');
-define('LAST_ENTRY', 2567);
+define('LAST_ENTRY', 3002);
 define('NEWLINECHAR', '-----');
 define('NEWLINE_REPLACE', 0);
 

@@ -1,22 +1,45 @@
 .soe-dialogbox {
-	background: url(../images/preview/background1.png) no-repeat;
-	text-align: left;
+  margin-right: .5rem;
+}
+
+.soe-dialogbox .infobox {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  font-size: 10px;
+  margin: 10px 0;
+  min-height: 5px;
+  text-align: left;
   width: 256px;
+}
+
+.soe-dialogbox .infobox > div {
+  margin: 5px;
+}
+
+.soe-dialogbox .alert {
+  color: #fa4444;
+  padding: 0px;
+  border: none;
+}
+
+.soe-dialogbox .bgimage {
+  background: url(../images/preview/background0.png) no-repeat;
   height: 224px;
+  width: 256px;
 }
 
-.soe-dialogbox .dialog-box {
-  width: 160px;
-  height: 56px;
-}
-
-.soe-dialogbox .dialog-box .dialog-box-row {
+.soe-dialogbox .chars {
+  padding-left: 20px;
+  padding-top: 20px;
+  line-height: 0px;
   position: relative;
-  height: 12px;
-  top: 20px;
-  left: 20px;
 }
 
-.soe-dialogbox .dialog-box img {
-  float: left;
+.soe-dialogbox .chars br {
+  margin-bottom: 1px;
+}
+
+.redtext {
+  color: #fa4444;
 }
