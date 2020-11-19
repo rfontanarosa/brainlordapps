@@ -126,7 +126,11 @@ function renderPreview(previewContainerSelector, text) {
 }
 
 const charlist = [];
-charlist.push(["0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijeklmnopqrstuvwxyz!?,.'“”;:…/-&% Èàéèìòù", 8]);
+charlist.push(["023456789ABCDEFGHJKLMNOPQRSUVWXZakmnqwxz!?,.'“”;:…/-&% Èàéèìòù", 8]);
+charlist.push(["TYbcdeforstuvgjpyh", 7]);
+charlist.push(["1I", 5]);
+charlist.push(["l", 4]);
+charlist.push(["i", 3]);
 
 const hashcharlist = [];
 for (let i = 0; i < charlist.length; i++) {
