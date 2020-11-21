@@ -3,6 +3,8 @@ String.prototype.replaceAt = function(index, replacement) {
 }
 
 function ffmqTextClean(text) {
+    text = text.replace('."', '"');
+    text = text.replace(/<HERONAME>/g, 'HERONAME');
     text = text.replace(/<082CFF>/g, 'RAM');
     return text;
 }
@@ -13,7 +15,7 @@ function ffmqPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
     text = text.replaceAll('<LINE>\n', '\n');
     text = ffmqTextClean(text);
     let newText = '';
-    const charLimit = 150;
+    const charLimit = 208;
     const lineLimit = 3;
     let charCounter = 0;
     let wordCounter = 0;
@@ -30,28 +32,36 @@ function ffmqPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
         }
         else if (utf16char === '\n') {
             charCounter = 0;
-            lineCounter += 1;
             spacePosition = -1;
+            if (lineCounter === lineLimit) {
+                newText = newText.slice(0, -1) + '\r';
+                lineCounter = 1;
+            } else {
+                lineCounter += 1;
+            }
         } else {
             if (utf16char === ' ') {
                 spacePosition = i;
+                charCounter += hashcharlist[utf16char] ? hashcharlist[utf16char] : 0;
                 wordCounter = 0;
-            }
-            charCounter += hashcharlist[utf16char] ? hashcharlist[utf16char] : 0;
-            wordCounter += hashcharlist[utf16char] ? hashcharlist[utf16char] : 0;
-            if (charCounter > charLimit) {
-                if (spacePosition !== -1) {
-                    if (lineCounter >= lineLimit) {
-                        newText = newText.replaceAt(spacePosition, '\r');
-                        lineCounter = 1;
-                    } else {
-                        newText = newText.replaceAt(spacePosition, '\n');
-                        lineCounter += 1;
+            } else {
+                charCounter += hashcharlist[utf16char] ? hashcharlist[utf16char] : 0;
+                wordCounter += hashcharlist[utf16char] ? hashcharlist[utf16char] : 0;
+                if (charCounter > charLimit) {
+                    if (spacePosition !== -1) {
+                        if (lineCounter >= lineLimit) {
+                            newText = newText.replaceAt(spacePosition, '\r');
+                            lineCounter = 1;
+                        } else {
+                            newText = newText.replaceAt(spacePosition, '\n');
+                            lineCounter += 1;
+                        }
                     }
+                    spacePosition = -1;
+                    charCounter = wordCounter;
                 }
-                spacePosition = -1;
-                charCounter = wordCounter;
             }
+
         }
     }
 
@@ -102,7 +112,7 @@ function ffmqPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
         };
 
         for (let i = 0; i < counter.length; i++) {
-            if (counter[i] <= 150) {
+            if (counter[i] <= 208) {
                 counterstring[i] = "Line " + (i + 1) + ": " + counter[i] + " pixel";
             } else {
                 counterstring[i] = "<div class=\"redtext\">Line " + (i + 1) + ": " + counter[i] + " pixel</div>";
@@ -126,11 +136,12 @@ function renderPreview(previewContainerSelector, text) {
 }
 
 const charlist = [];
-charlist.push(["023456789ABCDEFGHJKLMNOPQRSUVWXZakmnqwxz!?,.'“”;:…/-&% Èàéèìòù", 8]);
-charlist.push(["TYbcdeforstuvgjpyh", 7]);
-charlist.push(["1I", 5]);
-charlist.push(["l", 4]);
-charlist.push(["i", 3]);
+charlist.push(["023456789ABCDEFGHJKLMNOPQRSUVWXZakmqwxz“”…/&%Èà", 8]);
+charlist.push(["TYbcdeforsuvgjpyh?néèòù", 7]);
+charlist.push(["t-\"", 6]);
+charlist.push([" 1I", 5]);
+charlist.push(["l!,.", 4]);
+charlist.push(["i;:'ì", 3]);
 
 const hashcharlist = [];
 for (let i = 0; i < charlist.length; i++) {
