@@ -196,9 +196,9 @@ class DbManager {
 
 	public static function getMoreRecentTranslations($db, $block=0) {
 		$ret = array();
-		$query = "SELECT text, new_text, text_encoded, id, id2, address, size, t2.author, t2.date FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM trans WHERE trans.status = 2) AS t2 ON t1.id=t2.id_text WHERE 1=1 GROUP BY id HAVING MAX(t2.date)";
+		$query = "SELECT * FROM (SELECT text, new_text, text_encoded, id, id2, address, size, t2.author, COALESCE(t2.date, 1) AS date FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM trans WHERE status = 2) AS t2 ON t1.id=t2.id_text) WHERE 1=1 GROUP BY id HAVING MAX(date)";
 		if ($block != 0) {
-			$query = "SELECT text, new_text, text_encoded, id, id2, address, size, t2.author, t2.date FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM trans WHERE trans.status = 2) AS t2 ON t1.id=t2.id_text WHERE t1.block = :block GROUP BY id HAVING MAX(t2.date)";
+			$query = "SELECT * FROM (SELECT text, new_text, text_encoded, id, id2, address, size, t2.author, COALESCE(t2.date, 1) AS date FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM trans WHERE status = 2) AS t2 ON t1.id=t2.id_text WHERE t1.block = :block) WHERE 1=1 GROUP BY id HAVING MAX(date)";
 		}
 		$stmt = $db->prepare($query);
 		if ($block != 0) {
