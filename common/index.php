@@ -408,22 +408,34 @@
 											<button class="btn btn-outline-light" type="button" id="search-id2-btn" data-type="id2"><i class="fas fa-search"></i>&nbsp;Search</button>
 										</div>
 									</div>
-									<div class="input-group pt-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text" id="basic-addon1">Original</span>
+									<div class="form-group pt-3 mb-0">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text" id="basic-addon1">Original</span>
+											</div>
+											<input type="search" class="form-control search-input" id="search-original" placeholder="Search for..." data-button-id="search-original-btn" />
+											<div class="input-group-append">
+												<button class="btn btn-outline-light" type="button" id="search-original-btn" data-type="original"><i class="fas fa-search"></i>&nbsp;Search</button>
+											</div>
 										</div>
-										<input type="search" class="form-control search-input" id="search-original" placeholder="Search for..." data-button-id="search-original-btn" />
-										<div class="input-group-append">
-											<button class="btn btn-outline-light" type="button" id="search-original-btn" data-type="original"><i class="fas fa-search"></i>&nbsp;Search</button>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="" id="search-original-wwo" />
+											<label class="form-check-label" for="search-original-word">Whole word only</label>
 										</div>
 									</div>
-									<div class="input-group pt-3">
-										<div class="input-group-prepend">
-											<span class="input-group-text" id="basic-addon2">Translated</span>
+									<div class="form-group pt-3 mb-0">
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text" id="basic-addon2">Translated</span>
+											</div>
+											<input type="search" class="form-control search-input" id="search-new" placeholder="Search for..." data-button-id="search-new-btn" />
+											<div class="input-group-append">
+												<button class="btn btn-outline-light" type="button" id="search-new-btn" data-type="new"><i class="fas fa-search"></i>&nbsp;Search</button>
+											</div>
 										</div>
-										<input type="search" class="form-control search-input" id="search-new" placeholder="Search for..." data-button-id="search-new-btn" />
-										<div class="input-group-append">
-											<button class="btn btn-outline-light" type="button" id="search-new-btn" data-type="new"><i class="fas fa-search"></i>&nbsp;Search</button>
+										<div class="form-check">
+											<input class="form-check-input" type="checkbox" value="" id="search-new-wwo" />
+											<label class="form-check-label" for="search-new-word">Whole word only</label>
 										</div>
 									</div>
 									<div class="input-group pt-3">

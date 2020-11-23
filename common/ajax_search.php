@@ -16,14 +16,15 @@
 						$data = array();
 						$type = $_POST['type'];
 						$text_to_search = isset($_POST['text_to_search']) ? $_POST['text_to_search'] : '';
+						$whole_word_only = $_POST['whole_word_only'] === 'true';
 						$author = UserManager::getUsername();
 						$db = new SQLite3(SQLITE_FILENAME);
 						if ($type == 'id2') {
 							$query = "SELECT tx.id, ts.status FROM texts as tx LEFT JOIN (SELECT * FROM trans WHERE author = :author) as ts ON tx.id = ts.id_text WHERE id2 LIKE :text_to_search ORDER BY id ASC";
 						} else if ($type == 'original') {
-							$query = "SELECT tx.id, ts.status FROM texts as tx LEFT JOIN (SELECT * FROM trans WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text_encoded LIKE :text_to_search ORDER BY id ASC";
+							$query = "SELECT tx.id, ts.status, text_encoded FROM texts as tx LEFT JOIN (SELECT * FROM trans WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text_encoded LIKE :text_to_search ORDER BY id ASC";
 						} else if ($type == 'new') {
-							$query = "SELECT id_text, status FROM trans WHERE new_text LIKE :text_to_search AND author = :author ORDER BY id_text ASC";
+							$query = "SELECT id_text, status, new_text2 FROM trans WHERE new_text LIKE :text_to_search AND author = :author ORDER BY id_text ASC";
 						} else if ($type == 'comment') {
 							$query = "SELECT id_text, status FROM trans WHERE comment LIKE :text_to_search AND author = :author ORDER BY id_text ASC";
 						} else if ($type == 'duplicates') {
@@ -46,6 +47,9 @@
 						}
 						$results = $stmt->execute();
 						while ($row = $results->fetchArray()) {
+							if ($whole_word_only == 'true') {
+								if (!preg_match('/\b' . $text_to_search . '\b/', $row[2])) continue;
+							}
 							array_push($data, array(
 								'id' => $row[0],
 								'status' => $row[1],

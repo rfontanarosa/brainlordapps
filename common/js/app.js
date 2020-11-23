@@ -128,15 +128,18 @@ $(function() {
     e.preventDefault();
     const type = e.currentTarget.getAttribute('data-type');
     let textToSearch = undefined;
+    let wholeWordOnly = false;
     switch (type) {
       case 'id2':
         textToSearch = document.getElementById('search-id2').value;
         break;
       case 'original':
         textToSearch = document.getElementById('search-original').value;
+        wholeWordOnly = $('#search-original-wwo').is(':checked');
         break;
       case 'new':
         textToSearch = document.getElementById('search-new').value;
+        wholeWordOnly = $('#search-new-wwo').is(':checked');
         break;
       case 'comment':
         textToSearch = document.getElementById('search-comment').value;
@@ -153,6 +156,7 @@ $(function() {
         data: {
           type,
           text_to_search: textToSearch,
+          whole_word_only: wholeWordOnly,
         },
       }).done(function(data, textStatus, jqXHR) {
         const jsonArray = JSON.parse(data);
