@@ -119,7 +119,7 @@
 				$new_text = (isset($new_text)) ? $new_text : $text;
 				$comment = (isset($comment)) ? $comment : '';
 				$status = (isset($status)) ? $status : 0;
-				$formattedDate = (isset($date)) ? @date('d/m/Y, G:i', $date) : 'Never been updated!';
+				$formatted_date = (isset($date)) ? @date('d/m/Y, G:i', $date) : 'Never been updated!';
 				$max_date = (isset($date)) ? $date : 0;
 				// DUPLICATES
 				$duplicates = DbManager::countDucplicatesById($db, $id);
@@ -225,7 +225,7 @@
 									<span style="line-height: 1.75;">TRANSLATION</span>
 									<div class="d-flex justify-content-end">
 										<button type="submit" class="btn btn-light" id="paste-new-btn"><i class="fas fa-paste"></i>&nbsp;PASTE</button>
-										<button type="submit" class="btn btn-light preview-btn" id="preview-new-btn" data-source-id="new_text" data-dialog-container-id="dialog-container" data-id="<?php echo $id; ?>"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
+										<button type="submit" class="btn btn-light preview-btn" id="preview-new-btn" data-source-id="new-text" data-dialog-container-id="dialog-container" data-id="<?php echo $id; ?>"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
 									</div>
 								</div>
 								<div class="card-body">
@@ -247,7 +247,7 @@
 										}
 									?>
 									<div class="form-group">
-										<textarea rows="8" class="form-control <?php echo $class; ?>" id="new_text" name="new_text"><?php echo $new_text; ?></textarea>
+										<textarea rows="8" class="form-control <?php echo $class; ?>" id="new-text" name="new-text"><?php echo $new_text; ?></textarea>
 									</div>
 									<div class="form-group mb-0">
 										<textarea rows="1" class="form-control" name="comment"><?php echo $comment; ?></textarea>
@@ -256,7 +256,7 @@
 								<div class="card-footer d-flex justify-content-between">
 									<small>
 										<i class="fas fa-clock"></i>
-										<span id="lastUpdate" style="line-height: 1.5rem;"><?php echo $formattedDate; ?></span>
+										<span id="last-update" style="line-height: 1.5rem;"><?php echo $formatted_date; ?></span>
 									</small>
 									<div class="form-group mb-0">
 										<div class="form-check">
@@ -279,13 +279,13 @@
 								<div class="card-header d-flex justify-content-between">
 									<span style="line-height: 1.75;">ORIGINAL</span>
 									<div class="d-flex justify-content-end">
-										<button type="submit" class="btn btn-light copy-btn" data-source-id="original_text"><i class="fas fa-copy"></i>&nbsp;COPY</button>
-										<button type="submit" class="btn btn-light preview-btn" id="preview-original-btn" data-source-id="original_text" data-dialog-container-id="dialog-container"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
+										<button type="submit" class="btn btn-light copy-btn" data-source-id="original-text"><i class="fas fa-copy"></i>&nbsp;COPY</button>
+										<button type="submit" class="btn btn-light preview-btn" id="preview-original-btn" data-source-id="original-text" data-dialog-container-id="dialog-container"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
 									</div>
 								</div>
 								<div class="card-body">
 									<div class="form-group mb-0">
-										<textarea rows="8" class="form-control" id="original_text" name="original_text" disabled><?php echo $text; ?></textarea>
+										<textarea rows="8" class="form-control" id="original-text" name="original-text" disabled><?php echo $text; ?></textarea>
 									</div>
 								</div>
 								<div class="card-footer d-flex justify-content-between">
@@ -323,7 +323,7 @@
 									$new_text = (isset($new_text)) ? $new_text : $text;
 									$comment = (isset($comment)) ? $comment : '';
 									$status = (isset($status)) ? $status : 0;
-									$formattedDate = (isset($date)) ? @date('d/m/Y, G:i', $date) : 'Never been updated!';
+									$formatted_date = (isset($date)) ? @date('d/m/Y, G:i', $date) : 'Never been updated!';
 									if ($max_date < $date) {
 										$max_date = $date;
 										$more_recent_translation = true;
@@ -365,7 +365,7 @@
 								<div class="card-footer">
 									<small>
 										<i class="fas fa-clock"></i>
-										<span><?php echo $formattedDate; ?></span>
+										<span><?php echo $formatted_date; ?></span>
 									</small>
 								</div>
 							</div>
@@ -494,7 +494,7 @@
 	<?php endif; ?>
 
 	<!-- TOASTS -->
-	<div class="toast fixed-top" role="alert" aria-live="assertive" aria-atomic="true" id="myToast">
+	<div class="toast fixed-top" role="alert" aria-live="assertive" aria-atomic="true" id="my-toast">
 		<div class="toast-header">
 			<strong class="mr-auto">Brainlordapps</strong>
 			<button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">

@@ -18,7 +18,7 @@ $(function() {
 
   const submit = () => {
     const idText = $('input[name="id_text"]').val();
-    const newText = $('textarea[name="new_text"]').val();
+    const newText = $('textarea[name="new-text"]').val();
     const comment = $('textarea[name="comment"]').val();
     const status = parseInt($('input[name="status"]').val());
     const extendsToDuplicates = $('#extends-to-duplicates').is(':checked');
@@ -34,18 +34,18 @@ $(function() {
       },
     }).done(function(data, textStatus, jqXHR) {
       const jsonObject = JSON.parse(data);
-      const textarea = $('textarea[name=new_text]');
+      const textarea = $('textarea[name=new-text]');
       const className = status === 0 ? 'btn-danger' : status === 1 ? 'btn-warning' : 'btn-success';
       textarea.removeClass('btn-warning btn-danger btn-success').addClass(className);
-      $('#lastUpdate').text(jsonObject.updateDate);
+      $('#last-update').text(jsonObject.updateDate);
       moreRecentTranslation = false;
-      $('#myToast .toast-body').text('The text has been updated with success!').removeClass('bg-danger').addClass('bg-success');
+      $('#my-toast .toast-body').text('The text has been updated with success!').removeClass('bg-danger').addClass('bg-success');
     }).fail(function(jqXHR, textStatus, errorThrown) {
       console.log(errorThrown);
-      $('#myToast .toast-body').text('An error has occurred!').removeClass('bg-success').addClass('bg-danger');
+      $('#my-toast .toast-body').text('An error has occurred!').removeClass('bg-success').addClass('bg-danger');
     }).always(function(a, textStatus, b) {
       $('#confirm-modal').modal('hide');
-      $('#myToast').toast({
+      $('#my-toast').toast({
         delay: 1500,
       }).toast('show');
     });
@@ -89,12 +89,12 @@ $(function() {
     e.stopPropagation();
     e.preventDefault();
     navigator.clipboard.readText().then(clipText => {
-      document.getElementById('new_text').value = clipText;
-      $('#new_text').keyup();
+      document.getElementById('new-text').value = clipText;
+      $('#new-text').keyup();
     });
   });
 
-  $('#new_text').on('keyup', () => document.getElementById('preview-new-btn').click());
+  $('#new-text').on('keyup', () => document.getElementById('preview-new-btn').click());
 
   $('.search-input').on('keypress', e => {
     if (e.key === 'Enter') {
@@ -116,8 +116,8 @@ $(function() {
     if (!isNaN(id) && id > 0 && id < maxId) {
       window.open(`?id=${id}`, '_blank').focus();
     } else {
-      $('#myToast .toast-body').text('Index out of range!')
-      $('#myToast').toast({
+      $('#my-toast .toast-body').text('Index out of range!')
+      $('#my-toast').toast({
         delay: 1500,
       }).toast('show');
     }
@@ -187,7 +187,7 @@ $(function() {
       });
     } else {
       $('#search-result').empty();
-      $('#search-result').text('Invalid or empty input!');
+      $('#search-result').text('Text input must be not empty and larger than 1 character!');
       $('#search-result').show();
     }
   });
