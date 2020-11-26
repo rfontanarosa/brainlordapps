@@ -90,9 +90,9 @@ function renderPreview(previewContainerSelector, text) {
 const charlist = [];
 charlist.push(["MW…#+×%*", 9]);
 charlist.push(["♥♪‥~?©ARÀw<>&", 8]);
-charlist.push(["()023456789BCEGHKOPQUVXÈÉmv:;ÒÙ", 7]);
+charlist.push(["023456789BCEGHKOPQUVXÈÉmv:;ÒÙ", 7]);
 charlist.push(["!“”·/DFJNSTYZacdgknopqsuxyzàòù", 6]);
-charlist.push([",-.1Lbefhjrtèé", 5]);
+charlist.push(["(),-.1Lbefhjrtèé", 5]);
 charlist.push([" '", 4]);
 charlist.push(["IilìÌ", 3]);
 
