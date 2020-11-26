@@ -17,7 +17,7 @@ $(function() {
   let moreRecentTranslation = document.getElementById('app-vars').getAttribute('data-more-recent-translation') === '1';
 
   const submit = () => {
-    const idText = $('input[name="id_text"]').val();
+    const idText = $('input[name="id-text"]').val();
     const newText = $('textarea[name="new-text"]').val();
     const comment = $('textarea[name="comment"]').val();
     const status = parseInt($('input[name="status"]').val());
@@ -187,7 +187,7 @@ $(function() {
       });
     } else {
       $('#search-result').empty();
-      $('#search-result').text('Text input must be not empty and larger than 1 character!');
+      $('#search-result').text('Input must be not empty and larger than 1 character!');
       $('#search-result').show();
     }
   });

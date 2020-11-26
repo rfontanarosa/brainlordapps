@@ -229,7 +229,7 @@
 									</div>
 								</div>
 								<div class="card-body">
-									<input type="hidden" name="id_text" value="<?php echo $id; ?>" />
+									<input type="hidden" name="id-text" value="<?php echo $id; ?>" />
 									<?php
 										switch ($status) {
 											case '0':
