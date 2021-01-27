@@ -8,7 +8,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 define('BASE_PATH', realpath(dirname(__FILE__) . '/'));
-define('RESOURCE_PATH', BASE_PATH . '/resources');
+define('RESOURCE_PATH', BASE_PATH . '/../brainlordresources/');
 
 if (!function_exists('sqlite_escape_string')) {
 	function sqlite_escape_string($string) {

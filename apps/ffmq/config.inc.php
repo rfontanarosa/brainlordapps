@@ -8,7 +8,7 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 define('TITLE', 'Final Fantasy: Mystic Quest');
 
 define('SQLITE_FILENAME', RESOURCE_PATH . '/ffmq/db/ffmq.db');
-define('LAST_ENTRY', 340);
+define('LAST_ENTRY', 365);
 define('NEWLINECHAR', '-----');
 define('NEWLINE_REPLACE', 0);
 
