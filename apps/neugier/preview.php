@@ -27,7 +27,7 @@
 	foreach ($map1 as $key => $values) {
 		echo '.tile' . $key . 'x16 { width: ' . $key . 'px; height: 16px }';
 		foreach ($values as $i => $value) {
-			echo '.neugier-' . $value . '{ background: #c6def7 url(./images/preview/alfabeto.png?1) ' . ($key*$i)*-1 . 'px ' . 16*($key-1)*-1 . 'px; }';
+			echo '.neugier-' . $value . '{ background: #c6def7 url(./previewer/images/alfabeto.png?1) ' . ($key*$i)*-1 . 'px ' . 16*($key-1)*-1 . 'px; }';
 		}
 	}
 
@@ -43,7 +43,7 @@
 	margin: 0px;
 	width: 256px;
 	height: 239px;
-	background-image: url('./images/preview/neugier-preview.png');
+	background-image: url('./previewer/images/neugier-preview.png');
 	margin-bottom: 5px;
 }
 .box-test-container {
@@ -143,13 +143,13 @@
 		$cleanedText = neugierTextClean($box);
 		foreach ($box as $i => $line) {
 			if ($i > 0) {
-				echo '<img class="tile-8x16" src="./images/preview/placeholder-8x16.png" />';
+				echo '<img class="tile-8x16" src="./previewer/images/placeholder-8x16.png" />';
 			}
 			$line = preg_split('//u', $line, -1, PREG_SPLIT_NO_EMPTY);
 			for ($i=0; $i<count($line); $i++) {
 				$char = neugierTextDecoder($line[$i]);
 				$class = isset($map2[$char]) ? 'tile' . $map2[$char] . 'x16' : 'tile4x16';
-				echo '<img class="tile ' . $class . ' neugier-' . $char . '" src="./images/preview/placeholder-8x16.png">';
+				echo '<img class="tile ' . $class . ' neugier-' . $char . '" src="./previewer/images/placeholder-8x16.png">';
 			}
 			echo '<br />';
 		}

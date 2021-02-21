@@ -14,7 +14,7 @@ function sd3Cache() {
     );
     for (var i = 0; i < images.length; i++) {
         var image = new Image();
-        image.src = "./images/preview/" + images[i];
+        image.src = "./previewer/images/" + images[i];
     }
 }
 
@@ -119,10 +119,10 @@ function sd3PreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             picture = "";
             if (hashcharlist[l] > 0) {
                 counter[indexLine] += hashcharlist[l];
-                picture = "<img src=\"./images/preview/" + l.charCodeAt() + ".gif\" />";
+                picture = "<img src=\"./previewer/images/" + l.charCodeAt() + ".gif\" />";
             }
             else if (l == "\n") {
-                picture = "<img src=\"./images/preview/32.gif\"><br>";
+                picture = "<img src=\"./previewer/images/32.gif\"><br>";
                 indexLine++;
             }
             else if (textDialog.charCodeAt(i) != 13) {

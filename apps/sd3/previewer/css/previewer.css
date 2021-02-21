@@ -13,7 +13,6 @@
 	margin: 10px 0;
 	min-height: 5px;
 	text-align: left;
-
 }
 
 .sd3dialogbox .counter1, .sd3dialogbox .counter2, .sd3dialogbox .counter3 {
@@ -34,12 +33,12 @@
 }
 
 .sd3dialogbox .window {
-	background: url(../images/preview/window.png) no-repeat;
+	background: url(../images/window.png) no-repeat;
 	height: 54px;
 }
 
 .sd3dialogbox .line {
-    background: url(../images/preview/line.png) no-repeat;
+    background: url(../images/line.png) no-repeat;
     height: 54px;
     margin-top: 15px;
     width: 254px;

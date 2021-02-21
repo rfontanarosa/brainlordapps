@@ -13,6 +13,7 @@ function smrpgTextClean(text) {
 }
 
 function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
+    console.log(boxIndex, boxType);
     const previewContainer = $('#' + previewContainerSelector);
     text = text.replace(/\[13\]\[.\]/g, ""); // Pause?
     text = text.replace(/\[13\]\[..\]/g, ""); // Pause?
@@ -23,17 +24,18 @@ function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
     dialogs.forEach((dialog, index) => {
 
         const dialogId = `dialog-${boxIndex}-${index}`;
-        dialogBox = '<div id="' + dialogId + '" class="smrpg-dialogbox">\
+        const dialogClass = boxType === 1 ? 'smrpg-dialog-box' : 'smrpg-battledialog-box';
+        dialogBox = `<div id="${dialogId}" class="smrpg-preview-box ${dialogClass}">\
             <div class="bgimage">\
                 <div class="chars"></div>\
             </div>\
             <div class="infobox">\
-                <div class="counter1"></div>\
-                <div class="counter2"></div>\
-                <div class="counter3"></div>\
+                <div class="counter counter1"></div>\
+                <div class="counter counter2"></div>\
+                <div class="counter counter3"></div>\
                 <div class="alert"></div>\
             </div>\
-        </div>';
+        </div>`;
         previewContainer.append(dialogBox);
 
         dialog = smrpgTextClean(dialog);
@@ -45,21 +47,22 @@ function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
         const counter = [0, 0, 0];
 
         for (let i = 0; i < dialog.length; i++) {
-            const l = dialog.charAt(i);
-            let picture = "";
-            if (hashcharlist[l] > 0) {
-                counter[indexLine] += hashcharlist[l] + 1;
-                picture = '<div class="smrpg-font1 smrpg-font1-' + l.charCodeAt() + '"></div>';
-            } else if (l == "\n") {
-                picture = "<br>";
+            const utf16char = dialog.charAt(i);
+            const utf16int = utf16char.charCodeAt();
+            let buffer = "";
+            if (hashcharlist[utf16char] > 0) {
+                counter[indexLine] += hashcharlist[utf16char] + 1;
+                buffer = `<div class="smrpg-font1 smrpg-font1-${utf16int}"></div>`;
+            } else if (utf16char == "\n") {
+                buffer = '<br />';
                 indexLine++;
-            } else if (l == "\t") {
-                picture = '<div class="newline_newpage_arrow"></div>';
-            } else if (l.charCodeAt() !== 13) {
-                alert += l;
+            } else if (utf16char == "\t") {
+                buffer = '<div class="newline_newpage_arrow"></div>';
+            } else if (utf16char !== 13) {
+                alert += utf16char;
             }
-            if (picture != "") {
-                picturestring += picture;
+            if (buffer !== '') {
+                picturestring += buffer;
             }
         }
 
@@ -82,9 +85,10 @@ function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
 
 }
 
-function renderPreview(previewContainerSelector, text) {
+function renderPreview(previewContainerSelector, text, id, type) {
     document.getElementById(previewContainerSelector).innerHTML = '';
-    smrpgPreviewBox(previewContainerSelector, text, 0, 1);
+    const boxType = id < 4097 ? 1 : 2;
+    smrpgPreviewBox(previewContainerSelector, text, id, boxType);
 }
 
 const charlist = [];
