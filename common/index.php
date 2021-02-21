@@ -34,8 +34,8 @@
 		<link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="/node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
 		<link rel="stylesheet" href="<?php echo APPLICATION_PATH ?>/css/bootstrap4.custom.css" type="text/css" />
-		<link rel="stylesheet" href="<?php echo APPLICATION_PATH ?>/css/style-preview.css" type="text/css" />
-		<script type="text/javascript" src="<?php echo APPLICATION_PATH ?>/js/preview.js" charset="UTF-8"></script>
+		<link rel="stylesheet" href="<?php echo APPLICATION_PATH ?>/previewer/css/previewer.css" type="text/css" />
+		<script type="text/javascript" src="<?php echo APPLICATION_PATH ?>/previewer/js/previewer.js" charset="UTF-8"></script>
 	</head>
 	<body>
 
