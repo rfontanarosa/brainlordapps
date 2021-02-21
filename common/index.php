@@ -100,7 +100,9 @@
 					$text = $row['text_encoded'];
 					$size = $row['size'];
 					$block = $row['block'];
-					$id2 = isset($row['id2']) ? $row['id2'] : 'XXX';
+					$id2 = isset($row['id2']) ? $row['id2'] : 'N/D';
+					$text_offset = isset($row['address']) ? dechex($row['address']) : 'N/D';
+					$pointers_offsets = isset($row['pointers_offsets']) ? $row['pointers_offsets'] : 'N/D';
 					$other_text = $row['text'];
 					if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
 						$text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
@@ -225,7 +227,9 @@
 									<span style="line-height: 1.75;">TRANSLATION</span>
 									<div class="d-flex justify-content-end">
 										<button type="submit" class="btn btn-light" id="paste-new-btn"><i class="fas fa-paste"></i>&nbsp;PASTE</button>
-										<button type="submit" class="btn btn-light preview-btn" id="preview-new-btn" data-source-id="new-text" data-dialog-container-id="dialog-container" data-id="<?php echo $id; ?>"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
+										<button type="submit" class="btn btn-light preview-btn" id="preview-new-btn" data-source-id="new-text" data-dialog-container-id="dialog-container" data-id="<?php echo $id; ?>">
+											<i class="fas fa-eye"></i>&nbsp;PREVIEW
+										</button>
 									</div>
 								</div>
 								<div class="card-body">
@@ -260,7 +264,7 @@
 									</small>
 									<div class="form-group mb-0">
 										<div class="form-check">
-											<input class="form-check-input" type="checkbox" id="extends-to-duplicates"  <?php if ($duplicates > 0) echo 'checked'; ?> />
+											<input class="form-check-input" type="checkbox" id="extends-to-duplicates" <?php if ($duplicates > 0) echo 'checked'; ?> />
 											<label class="form-check-label" for="extends-to-duplicates">Extends to <?php echo $duplicates; ?> duplicates</label>
 										</div>
 									</div>
@@ -280,7 +284,9 @@
 									<span style="line-height: 1.75;">ORIGINAL</span>
 									<div class="d-flex justify-content-end">
 										<button type="submit" class="btn btn-light copy-btn" data-source-id="original-text"><i class="fas fa-copy"></i>&nbsp;COPY</button>
-										<button type="submit" class="btn btn-light preview-btn" id="preview-original-btn" data-source-id="original-text" data-dialog-container-id="dialog-container"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
+										<button type="submit" class="btn btn-light preview-btn" id="preview-original-btn" data-source-id="original-text" data-dialog-container-id="dialog-container" data-id="<?php echo $id; ?>">
+											<i class="fas fa-eye"></i>&nbsp;PREVIEW
+										</button>
 									</div>
 								</div>
 								<div class="card-body">
@@ -292,6 +298,10 @@
 									<small>ID2:&nbsp;<?php echo $id2; ?></small>
 									<small>Size:&nbsp;<?php echo $size; ?></small>
 									<small>Block:&nbsp;<?php echo $block; ?></small>
+								</div>
+								<div class="card-footer d-flex justify-content-between">
+									<small>Text Offset:&nbsp;<?php echo $text_offset; ?></small>
+									<small>Pointers Offsets:&nbsp;<?php echo $pointers_offsets; ?></small>
 								</div>
 							</div>
 						</div>
@@ -332,10 +342,12 @@
 							<!-- USER - BOX -->
 							<div class="card brain-card mb-3">
 								<div class="card-header d-flex justify-content-between">
-									<span><i class="fas fa-user"></i>&nbsp;<?php echo $author; ?></span>
+									<span style="line-height: 1.75;"><i class="fas fa-user"></i>&nbsp;<?php echo $author; ?></span>
 									<div class="d-flex justify-content-end">
 										<button type="submit" class="btn btn-light copy-btn" data-source-id="<?php echo $author; ?>_text"><i class="fas fa-copy"></i>&nbsp;COPY</button>
-										<button type="submit" class="btn btn-light preview-btn" data-source-id="<?php echo $author; ?>_text" data-dialog-container-id="dialog-container1"><i class="fas fa-eye"></i>&nbsp;PREVIEW</button>
+										<button type="submit" class="btn btn-light preview-btn" data-source-id="<?php echo $author; ?>_text" data-dialog-container-id="dialog-container1" data-id="<?php echo $id; ?>">
+											<i class="fas fa-eye"></i>&nbsp;PREVIEW
+										</button>
 									</div>
 								</div>
 								<div class="card-body">
