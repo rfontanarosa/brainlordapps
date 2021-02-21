@@ -120,7 +120,7 @@ function soePreviewBox(previewContainerSelector, text, boxIndex, boxType) {
     text0 = text.replaceAll('<$86>', '\r');
     text0 = soeTextClean(text0);
     let newText = '';
-    const charLimit = 152;
+    const charLimit = 151;
     const lineLimit = 4;
     let charCounter = 0;
     let wordCounter = 0;
@@ -196,7 +196,7 @@ function soePreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             let buffer = '';
             if (table[utf16char] && table[utf16char].width > 0) {
                 counter[indexLine] += table[utf16char].width;
-                buffer = `<img src="images/preview/${table[utf16char].hex}.bmp" alt="" />`;
+                buffer = `<img src="./previewer/images/${table[utf16char].hex}.bmp" alt="" />`;
             } else if (utf16char == "\n") {
                 buffer = '<br />';
                 indexLine++;

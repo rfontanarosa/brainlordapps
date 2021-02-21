@@ -25,7 +25,7 @@
 }
 
 .ffmq-dialogbox .bgimage {
-	background: url(../images/preview/bg1.png) no-repeat;
+	background: url(../images/bg1.png) no-repeat;
 	height: 224px;
 	text-align: left;
 	width: 256px;
@@ -51,7 +51,7 @@
 	min-height: 12px;
 	display: inline-block;
 	margin-bottom: 0px;
-	background-image: url(../images/preview/font_ffmq_8x12_ita.png)
+	background-image: url(../images/font_ffmq_8x12_ita.png)
 }
 
 .ffmq-font1-48 { width: 8px; background-position: -0px -0px; } /* 0 */
@@ -134,7 +134,7 @@
 .ffmq-font1-47 { width: 8px; background-position: -72px -48px; } /* / */
 .ffmq-font1-45 { width: 6px; background-position: -80px -48px; } /* - */
 .ffmq-font1-38 { width: 8px; background-position: -88px -48px; } /* & */
-/*  */
+
 .ffmq-font1-37 { width: 8px; background-position: -104px -48px; } /* % */
 .ffmq-font1-32 { width: 5px; background-position: -112px -48px; } /*   */
 

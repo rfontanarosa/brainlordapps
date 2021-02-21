@@ -24,7 +24,7 @@
 	margin: 0px;
 	width: 216px;
 	height: 72px;
-	background-image: url('./images/preview/box-dialog.png');
+	background-image: url('./previewer/images/box-dialog.png');
 }
 
 .box-dialog-container {
@@ -46,7 +46,7 @@
 	margin: 0px;
 	width: 216px;
 	height: 24px;
-	background-image: url('./images/preview/box-alert.png');
+	background-image: url('./previewer/images/box-alert.png');
 }
 
 .box-alert-container {
@@ -69,7 +69,7 @@
 	margin: 0px;
 	width: 134px;
 	height: 102px;
-	background-image: url('./images/preview/box-game.png');
+	background-image: url('./previewer/images/box-game.png');
 }
 
 .box-game-container {
@@ -92,7 +92,7 @@
 	margin: 0px;
 	width: 160px;
 	height: 112px;
-	background-image: url('./images/preview/box-sign.png');
+	background-image: url('./previewer/images/box-sign.png');
 }
 
 .box-sign-container {
@@ -115,7 +115,7 @@
 	margin: 0px;
 	width: 178px;
 	height: 86px;
-	background-image: url('./images/preview/box-shop.png');
+	background-image: url('./previewer/images/box-shop.png');
 }
 
 .box-shop-container {
@@ -137,7 +137,7 @@
 	margin: 0px;
 	width: 168px;
 	height: 124px;
-	background-image: url('./images/preview/box-information.png');
+	background-image: url('./previewer/images/box-information.png');
 }
 
 .box-information-container {
@@ -159,7 +159,7 @@
 	margin: 0px;
 	width: 120px;
 	height: 24px;
-	background-image: url('./images/preview/box-item-name.png');
+	background-image: url('./previewer/images/box-item-name.png');
 }
 
 .box-item-name-container {
@@ -181,7 +181,7 @@
 	margin: 0px;
 	width: 256;
 	height: 224px;
-	background-image: url('./images/preview/box-narration.png');
+	background-image: url('./previewer/images/box-narration.png');
 }
 
 .box-narration-container {
@@ -256,7 +256,7 @@
 					$value = $table[$char];
 				}
 				if ($value != '') {
-					echo "<img src=\"images/preview/$value.png\" />";
+					echo "<img src=\"./previewer/images/$value.png\" />";
 				}
 			}
 			echo '<br />';
