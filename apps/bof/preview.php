@@ -6,7 +6,7 @@
 <style>
 
 	.bof-font1 {
-		background-image: url(./images/preview/bof-font1-en.png);
+		background-image: url(./previewer/images/bof-font1-en.png);
 	}
 
 <?php
@@ -32,7 +32,7 @@
 	margin: 0px .5rem .5rem 0px;
 	width: 256px;
 	height: 239px;
-	background-image: url('./images/preview/bof-preview.png');
+	background-image: url('./previewer/images/bof-preview.png');
 }
 .box-dialog-container {
 	margin: 0px;
@@ -137,16 +137,16 @@
 		$lines = explode("\n", $cleanedText);
 		foreach ($lines as $i => $line) {
 			if ($i > 0) {
-				echo '<img class="tile-8x16" src="./images/preview/placeholder-8x16.png" />';
+				echo '<img class="tile-8x16" src="./previewer/images/placeholder-8x16.png" />';
 			}
 			$line = preg_split('//u', $line, -1, PREG_SPLIT_NO_EMPTY);
 			for ($i=0; $i<count($line); $i++) {
 				$char = $line[$i];
 				$key = array_search($char, $table);
 				if ($key !== false) {
-					echo '<img class="tile-8x16 bof-font1 bof-font1-' . $key . '" src="./images/preview/placeholder-8x16.png" />';
+					echo '<img class="tile-8x16 bof-font1 bof-font1-' . $key . '" src="./previewer/images/placeholder-8x16.png" />';
 				} else {
-					echo '<img class="tile-8x16" src="./images/preview/placeholder-8x16.png" />';
+					echo '<img class="tile-8x16" src="./previewer/images/placeholder-8x16.png" />';
 				}
 			}
 			echo '<br />';

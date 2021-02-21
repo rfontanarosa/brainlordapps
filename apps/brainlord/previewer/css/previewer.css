@@ -1,0 +1,145 @@
+.brainlord-preview-box {
+    margin-right: .5rem;
+}
+
+.brainlord-preview-box .infobox {
+    border: 1px solid white;
+    color: white;
+    font-size: 10px;
+    margin: 10px 0;
+    min-height: 5px;
+    text-align: left;
+    width: 256px;
+}
+
+.brainlord-preview-box .infobox .counter {
+    margin: 5px;
+}
+
+.brainlord-preview-box .infobox .alert {
+    color: #fa4444;
+    margin: 5px;
+    padding: 0px;
+    border: none;
+}
+
+.brainlord-dialog-box .bgimage {
+    height: 224px;
+    width: 256px;
+    background: url(../images/bl-preview.png) no-repeat;
+}
+
+.brainlord-dialog-box .chars {
+    padding-left: 24px;
+    padding-top: 144px;
+    line-height: 0px;
+    position: relative;
+}
+
+.smrpg-dialog-box .chars br {
+    margin-bottom: 0px;
+}
+
+.redtext {
+    color: #fa4444;
+}
+
+.brainlord-font1 {
+    min-height: 16px;
+    display: inline-block;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    background-image: url(../images/bl-font-text.png);
+    width: 8px;
+    background-position: -80px -16px;
+}
+
+.brainlord-font1-48 { background-position: -0px -0px; } /* 0 */
+.brainlord-font1-49 { background-position: -16px -0px; } /* 1 */
+.brainlord-font1-50 { background-position: -32px -0px; } /* 2 */
+.brainlord-font1-51 { background-position: -48px -0px; } /* 3 */
+.brainlord-font1-52 { background-position: -64px -0px; } /* 4 */
+.brainlord-font1-53 { background-position: -80px -0px; } /* 5 */
+.brainlord-font1-54 { background-position: -96px -0px; } /* 6 */
+.brainlord-font1-55 { background-position: -112px -0px; } /* 7 */
+
+.brainlord-font1-56 { background-position: -0px -16px; } /* 8 */
+.brainlord-font1-57 { background-position: -16px -16px; } /* 9 */
+.brainlord-font1-32 { background-position: -80px -16px; } /*   */
+
+.brainlord-font1-41 { background-position: -0px -32px; } /* ) */
+.brainlord-font1-46 { background-position: -112px -32px; } /* . */
+
+.brainlord-font1-47 { background-position: -16px -48px; } /* / */
+
+.brainlord-font1-65 { background-position: -0px -64px; } /* A */
+.brainlord-font1-66 { background-position: -16px -64px; } /* B */
+.brainlord-font1-67 { background-position: -32px -64px; } /* C */
+.brainlord-font1-68 { background-position: -48px -64px; } /* D */
+.brainlord-font1-69 { background-position: -64px -64px; } /* E */
+.brainlord-font1-70 { background-position: -80px -64px; } /* F */
+.brainlord-font1-71 { background-position: -96px -64px; } /* G */
+.brainlord-font1-72 { background-position: -112px -64px; } /* H */
+
+.brainlord-font1-73 { background-position: -0px -80px; } /* I */
+.brainlord-font1-74 { background-position: -16px -80px; } /* J */
+.brainlord-font1-75 { background-position: -32px -80px; } /* K */
+.brainlord-font1-76 { background-position: -48px -80px; } /* L */
+.brainlord-font1-77 { background-position: -64px -80px; } /* M */
+.brainlord-font1-78 { background-position: -80px -80px; } /* N */
+.brainlord-font1-79 { background-position: -96px -80px; } /* O */
+.brainlord-font1-80 { background-position: -112px -80px; } /* P */
+1
+.brainlord-font1-81 { background-position: -0px -96px; } /* Q */
+.brainlord-font1-82 { background-position: -16px -96px; } /* R */
+.brainlord-font1-83 { background-position: -32px -96px; } /* S */
+.brainlord-font1-84 { background-position: -48px -96px; } /* T */
+.brainlord-font1-85 { background-position: -64px -96px; } /* U */
+.brainlord-font1-86 { background-position: -80px -96px; } /* V */
+.brainlord-font1-87 { background-position: -96px -96px; } /* W */
+.brainlord-font1-88 { background-position: -112px -96px; } /* X */
+
+.brainlord-font1-89 { background-position: -0px -112px; } /* Y */
+.brainlord-font1-90 { background-position: -16px -112px; } /* Z */
+.brainlord-font1-97 { background-position: -32px -112px; } /* a */
+.brainlord-font1-98 { background-position: -48px -112px; } /* b */
+.brainlord-font1-99 { background-position: -64px -112px; } /* c */
+.brainlord-font1-100 { background-position: -80px -112px; } /* d */
+.brainlord-font1-101 { background-position: -96px -112px; } /* e */
+.brainlord-font1-102 { background-position: -112px -112px; } /* f */
+
+.brainlord-font1-103 { background-position: -0px -128px; } /* g */
+.brainlord-font1-104 { background-position: -16px -128px; } /* h */
+.brainlord-font1-105 { background-position: -32px -128px; } /* i */
+.brainlord-font1-106 { background-position: -48px -128px; } /* j */
+.brainlord-font1-107 { background-position: -64px -128px; } /* k */
+.brainlord-font1-108 { background-position: -80px -128px; } /* l */
+.brainlord-font1-109 { background-position: -96px -128px; } /* m */
+.brainlord-font1-110 { background-position: -112px -128px; } /* n */
+
+.brainlord-font1-111 { background-position: -0px -144px; } /* o */
+.brainlord-font1-112 { background-position: -16px -144px; } /* p */
+.brainlord-font1-113 { background-position: -32px -144px; } /* q */
+.brainlord-font1-114 { background-position: -48px -144px; } /* r */
+.brainlord-font1-115 { background-position: -64px -144px; } /* s */
+.brainlord-font1-116 { background-position: -80px -144px; } /* t */
+.brainlord-font1-117 { background-position: -96px -144px; } /* u */
+.brainlord-font1-118 { background-position: -112px -144px; } /* v */
+
+.brainlord-font1-119 { background-position: -0px -160px; } /* w */
+.brainlord-font1-120 { background-position: -16px -160px; } /* x */
+.brainlord-font1-121 { background-position: -32px -160px; } /* y */
+.brainlord-font1-122 { background-position: -48px -160px; } /* z */
+.brainlord-font1-63 { background-position: -96px -160px; } /* ? */
+
+.brainlord-font1-58 { background-position: -32px -176px; } /* : */
+.brainlord-font1-59 { background-position: -48px -176px; } /* ; */
+
+.brainlord-font1-39 { background-position: -96px -192px; } /* ' */
+.brainlord-font1-34 { background-position: -112px -192px; } /* " */
+
+.brainlord-font1-45 { background-position: -0px -208px; } /* - */
+.brainlord-font1-44 { background-position: -16px -208px; } /* , */
+.brainlord-font1-183 { background-position: -32px -208px; } /* · */
+
+.brainlord-font1-33 { background-position: -80px -256px; } /* ! */

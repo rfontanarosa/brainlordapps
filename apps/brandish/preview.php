@@ -28,7 +28,7 @@
 		$table = array_merge($table, array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'));
 		$table = array_merge($table, array('', '', '', ''));
 		foreach ($table as $i => $value) {
-			echo '.brandish-font1-' . $i . '{ background: url(./images/preview/brandish-font1-en.png) ' . (8*$i)*-1 . 'px 0; }';
+			echo '.brandish-font1-' . $i . '{ background: url(./previewer/images/brandish-font1-en.png) ' . (8*$i)*-1 . 'px 0; }';
 		}
 	} else {
 		$table = array_merge($table, array('!', '', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/'));
@@ -39,7 +39,7 @@
 		$table = array_merge($table, array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'));
 		$table = array_merge($table, array('', 'à', '', ''));
 		foreach ($table as $i => $value) {
-			echo '.brandish-font1-' . $i . '{ background: url(./images/preview/brandish-font1-it.png) ' . (8*$i)*-1 . 'px 0; }';
+			echo '.brandish-font1-' . $i . '{ background: url(./previewer/images/brandish-font1-it.png) ' . (8*$i)*-1 . 'px 0; }';
 		}
 	}
 
@@ -49,7 +49,7 @@
 	margin: 0px;
 	width: 256px;
 	height: 224px;
-	background-image: url('./images/preview/brandish-preview-1-101.png');
+	background-image: url('./previewer/images/brandish-preview-1-101.png');
 }
 .box-explore-container {
 	margin: 0px;
@@ -63,7 +63,7 @@
 	margin: 0px;
 	width: 256px;
 	height: 224px;
-	background-image: url('./images/preview/brandish-preview-243.png');
+	background-image: url('./previewer/images/brandish-preview-243.png');
 }
 .box-dialog-container {
 	margin: 0px;
@@ -77,7 +77,7 @@
 	margin: 0px;
 	width: 256px;
 	height: 224px;
-	background-image: url('./images/preview/brandish-preview-102-151.png');
+	background-image: url('./previewer/images/brandish-preview-102-151.png');
 }
 .box-sign-container {
 	margin: 0px;
@@ -126,9 +126,9 @@
 				$char = $line[$k];
 				$key = array_search($char, $table);
 				if ($key !== false) {
-					echo '<img class="tile-8x8 brandish-font1-' . $key . '" src="./images/preview/placeholder-8x8.png" />';
+					echo '<img class="tile-8x8 brandish-font1-' . $key . '" src="./previewer/images/placeholder-8x8.png" />';
 				} else {
-					echo '<img class="tile-8x8" src="./images/preview/placeholder-8x8.png" />';
+					echo '<img class="tile-8x8" src="./previewer/images/placeholder-8x8.png" />';
 				}
 			}
 			echo '<br />';
@@ -159,21 +159,21 @@
 				echo '<div class="box-explore"><div class="box-explore-container">';
 			}
 			else {
-				if ($id_text == 241) echo '<div class="box-explore" style="background-image: url(\'./images/preview/brandish-preview-241.png\');">';
-				else if ($id_text == 242) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-242.png\');">';
-				else if ($id_text == 243) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-243.png\');">';
-				else if ($id_text == 248) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-248.png\');">';
-				else if ($id_text == 249) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-249.png\');">';
-				else if ($id_text == 250) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-250.png\');">';
-				else if ($id_text == 251) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-251.png\');">';
-				else if ($id_text == 252) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-252.png\');">';
-				else if ($id_text == 253) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-253.png\');">';
-				else if ($id_text == 254) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-254.png\');">';
-				else if ($id_text == 255) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-255.png\');">';
-				else if ($id_text == 257) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-257.png\');">';
-				else if ($id_text == 258) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-258.png\');">';
-				else if ($id_text == 261) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-261.png\');">';
-				else if ($id_text == 262) echo '<div class="box-dialog" style="background-image: url(\'./images/preview/brandish-preview-262.png\');">';
+				if ($id_text == 241) echo '<div class="box-explore" style="background-image: url(\'./previewer/images/brandish-preview-241.png\');">';
+				else if ($id_text == 242) echo '<div class="box-dialog" style="background-image: url(\'./previewer/images/brandish-preview-242.png\');">';
+				else if ($id_text == 243) echo '<div class="box-dialog" style="background-image: url(\'./previewer/images/brandish-preview-243.png\');">';
+				else if ($id_text == 248) echo '<div class="box-dialog" style="background-image: url(\'./previewer/images/brandish-preview-248.png\');">';
+				else if ($id_text == 249) echo '<div class="box-dialog" style="background-image: url(\'./previewer/images/brandish-preview-249.png\');">';
+				else if ($id_text == 250) echo '<div class="box-dialog" style="background-image: url(\'./previewer/images/brandish-preview-250.png\');">';
+				else if ($id_text == 251) echo '<div class="box-dialog" style="background-image: url(\'./previewer/images/brandish-preview-251.png\');">';
+				else if ($id_text == 252) echo '<div class="box-dialog" style="background-image: url(\'./previewer/images/brandish-preview-252.png\');">';
+				else if ($id_text == 253) echo '<div class="box-dialog" style="background-image: url(\'./previewer/images/brandish-preview-253.png\');">';
+				else if ($id_text == 254) echo '<div class="box-dialog" style="background-image: url(\'./previewer/images/brandish-preview-254.png\');">';
+				else if ($id_text == 255) echo '<div class="box-dialog" style="background-image: url(\'./previewer/images/brandish-preview-255.png\');">';
+				else if ($id_text == 257) echo '<div class="box-dialog" style="background-image: url(\'./previewer/images/brandish-preview-257.png\');">';
+				else if ($id_text == 258) echo '<div class="box-dialog" style="background-image: url(\'./previewer/images/brandish-preview-258.png\');">';
+				else if ($id_text == 261) echo '<div class="box-dialog" style="background-image: url(\'./previewer/images/brandish-preview-261.png\');">';
+				else if ($id_text == 262) echo '<div class="box-dialog" style="background-image: url(\'./previewer/images/brandish-preview-262.png\');">';
 				else echo '<div class="box-dialog">';
 				echo '<div class="box-dialog-container">';
 			}
@@ -183,9 +183,9 @@
 					$char = $line[$i];
 					$key = array_search($char, $table);
 					if ($key !== false) {
-						echo '<img class="tile-8x8 brandish-font1-' . $key . '" src="./images/preview/placeholder-8x8.png" />';
+						echo '<img class="tile-8x8 brandish-font1-' . $key . '" src="./previewer/images/placeholder-8x8.png" />';
 					} else {
-						echo '<img class="tile-8x8" src="./images/preview/placeholder-8x8.png" />';
+						echo '<img class="tile-8x8" src="./previewer/images/placeholder-8x8.png" />';
 					}
 				}
 				echo '<br />';
