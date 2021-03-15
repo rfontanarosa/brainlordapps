@@ -94,13 +94,21 @@ function renderPreview(previewContainerSelector, text, id, type) {
 }
 
 const charlist = [];
-charlist.push(["MW…#+×%*", 9]);
-charlist.push(["♥♪‥~?©ARÀw<>&", 8]);
-charlist.push(["023456789BCEGHKOPQUVXÈÉmv:;ÒÙ", 7]);
-charlist.push(["!“”·/DFJNSTYZacdgknopqsuxyzàòù", 6]);
-charlist.push(["(),-.1Lbefhjrtèé", 5]);
-charlist.push([" '", 4]);
-charlist.push(["IilìÌ", 3]);
+charlist.push(["01234567", 8]);
+charlist.push(["89 ", 8]);
+charlist.push([").", 8]);
+charlist.push(["/", 8]);
+charlist.push(["ABCDEFGH", 8]);
+charlist.push(["IJKLMNOP", 8]);
+charlist.push(["QRSTUVWX", 8]);
+charlist.push(["YZabcdef", 8]);
+charlist.push(["ghijklmn", 8]);
+charlist.push(["opqrstuv", 8]);
+charlist.push(["wxyz?", 8]);
+charlist.push([":;àèé", 8]);
+charlist.push(["ìòùÈ°'\"", 8]);
+charlist.push(["-,·", 8]);
+charlist.push(["!", 8]);
 
 const hashcharlist = [];
 for (let i = 0; i < charlist.length; i++) {
