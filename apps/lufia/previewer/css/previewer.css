@@ -1,0 +1,157 @@
+.lufia-preview-box {
+    margin-right: .5rem;
+}
+
+.lufia-preview-box .infobox {
+    border: 1px solid white;
+    color: white;
+    font-size: 10px;
+    margin: 10px 0;
+    min-height: 5px;
+    text-align: left;
+    width: 256px;
+}
+
+.lufia-preview-box .infobox .counter {
+    margin: 5px;
+}
+
+.lufia-preview-box .infobox .alert {
+    color: #fa4444;
+    margin: 5px;
+    padding: 0px;
+    border: none;
+}
+
+.lufia-dialog-box .bgimage {
+    height: 224px;
+    width: 256px;
+    background: url(../images/lufia_textbox.png) no-repeat;
+}
+
+.lufia-dialog-box .chars {
+    padding-left: 8px;
+    padding-top: 15px;
+    line-height: 0px;
+    position: relative;
+}
+
+.lufia-dialog-box .chars br {
+    margin-bottom: 0px;
+}
+
+.redtext {
+    color: #fa4444;
+}
+
+.lufia-font1 {
+    min-height: 16px;
+    display: inline-block;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    background-image: url(../images/054250_font_main_ita.png);
+    width: 8px;
+    background-position: -80px -16px;
+}
+
+.lufia-font1-32   { background-position: -0px   -32px;  } /*   */
+.lufia-font1-33   { background-position: -8px   -32px;  } /* ! */
+.lufia-font1-34   { background-position: -16px  -32px;  } /* " */
+.lufia-font1-224  { background-position: -24px  -32px;  } /* à */
+.lufia-font1-232  { background-position: -32px  -32px;  } /* è */
+.lufia-font1-233  { background-position: -40px  -32px;  } /* é */
+.lufia-font1-236  { background-position: -48px  -32px;  } /* ì */
+.lufia-font1-39   { background-position: -56px  -32px;  } /* ' */
+.lufia-font1-40   { background-position: -64px  -32px;  } /* ( */
+.lufia-font1-41   { background-position: -72px  -32px;  } /* ) */
+.lufia-font1-42   { background-position: -80px  -32px;  } /* * */
+.lufia-font1-8229 { background-position: -88px  -32px;  } /* ‥ */
+.lufia-font1-44   { background-position: -96px  -32px;  } /* , */
+.lufia-font1-45   { background-position: -104px -32px;  } /* - */
+.lufia-font1-46   { background-position: -112px -32px;  } /* . */
+.lufia-font1-47   { background-position: -120px -32px;  } /* / */
+
+.lufia-font1-48   { background-position: -0px   -48px;  } /* 0 */
+.lufia-font1-49   { background-position: -8px   -48px;  } /* 1 */
+.lufia-font1-50   { background-position: -16px  -48px;  } /* 2 */
+.lufia-font1-51   { background-position: -24px  -48px;  } /* 3 */
+.lufia-font1-52   { background-position: -32px  -48px;  } /* 4 */
+.lufia-font1-53   { background-position: -40px  -48px;  } /* 5 */
+.lufia-font1-54   { background-position: -48px  -48px;  } /* 6 */
+.lufia-font1-55   { background-position: -56px  -48px;  } /* 7 */
+.lufia-font1-56   { background-position: -64px  -48px;  } /* 8 */
+.lufia-font1-57   { background-position: -72px  -48px;  } /* 9 */
+.lufia-font1-58   { background-position: -80px  -48px;  } /* : */
+.lufia-font1-59   { background-position: -88px  -48px;  } /* ; */
+.lufia-font1-200  { background-position: -96px  -48px;  } /* È */
+.lufia-font1-61   { background-position: -104px -48px;  } /* = */
+.lufia-font1-62   { background-position: -112px -48px;  } /* > */
+.lufia-font1-63   { background-position: -120px -48px;  } /* ? */
+ 
+/**/ 
+.lufia-font1-65   { background-position: -8px   -64px;  } /* A */
+.lufia-font1-66   { background-position: -16px  -64px;  } /* B */
+.lufia-font1-67   { background-position: -24px  -64px;  } /* C */
+.lufia-font1-68   { background-position: -32px  -64px;  } /* D */
+.lufia-font1-69   { background-position: -40px  -64px;  } /* E */
+.lufia-font1-70   { background-position: -48px  -64px;  } /* F */
+.lufia-font1-71   { background-position: -56px  -64px;  } /* G */
+.lufia-font1-72   { background-position: -64px  -64px;  } /* H */
+.lufia-font1-73   { background-position: -72px  -64px;  } /* I */
+.lufia-font1-74   { background-position: -80px  -64px;  } /* J */
+.lufia-font1-75   { background-position: -88px  -64px;  } /* K */
+.lufia-font1-76   { background-position: -96px  -64px;  } /* L */
+.lufia-font1-77   { background-position: -104px -64px;  } /* M */
+.lufia-font1-78   { background-position: -112px -64px;  } /* N */
+.lufia-font1-79   { background-position: -120px -64px;  } /* O */
+ 
+.lufia-font1-80   { background-position: -0px   -80px;  } /* P */
+.lufia-font1-81   { background-position: -8px   -80px;  } /* Q */
+.lufia-font1-82   { background-position: -16px  -80px;  } /* R */
+.lufia-font1-83   { background-position: -24px  -80px;  } /* S */
+.lufia-font1-84   { background-position: -32px  -80px;  } /* T */
+.lufia-font1-85   { background-position: -40px  -80px;  } /* U */
+.lufia-font1-86   { background-position: -48px  -80px;  } /* V */
+.lufia-font1-87   { background-position: -56px  -80px;  } /* W */
+.lufia-font1-88   { background-position: -64px  -80px;  } /* X */
+.lufia-font1-89   { background-position: -72px  -80px;  } /* Y */
+.lufia-font1-90   { background-position: -80px  -80px;  } /* Z */
+.lufia-font1-91   { background-position: -88px  -80px;  } /* [ */
+.lufia-font1-242  { background-position: -96px  -80px;  } /* ò */
+.lufia-font1-93   { background-position: -104px -80px;  } /* ] */
+.lufia-font1-249  { background-position: -112px -80px;  } /* ù */
+.lufia-font1-95   { background-position: -120px -80px;  } /* _ */
+ 
+/**/ 
+.lufia-font1-97   { background-position: -8px   -96px;  } /* a */
+.lufia-font1-98   { background-position: -16px  -96px;  } /* b */
+.lufia-font1-99   { background-position: -24px  -96px;  } /* c */
+.lufia-font1-100  { background-position: -32px  -96px;  } /* d */
+.lufia-font1-101  { background-position: -40px  -96px;  } /* e */
+.lufia-font1-102  { background-position: -48px  -96px;  } /* f */
+.lufia-font1-103  { background-position: -56px  -96px;  } /* g */
+.lufia-font1-104  { background-position: -64px  -96px;  } /* h */
+.lufia-font1-105  { background-position: -72px  -96px;  } /* i */
+.lufia-font1-106  { background-position: -80px  -96px;  } /* j */
+.lufia-font1-107  { background-position: -88px  -96px;  } /* k */
+.lufia-font1-108  { background-position: -96px  -96px;  } /* l */
+.lufia-font1-109  { background-position: -104px -96px;  } /* m */
+.lufia-font1-110  { background-position: -112px -96px;  } /* n */
+.lufia-font1-111  { background-position: -120px -96px;  } /* o */
+
+.lufia-font1-112  { background-position: -0px   -112px;  } /* p */
+.lufia-font1-113  { background-position: -8px   -112px;  } /* q */
+.lufia-font1-114  { background-position: -16px  -112px;  } /* r */
+.lufia-font1-115  { background-position: -24px  -112px;  } /* s */
+.lufia-font1-116  { background-position: -32px  -112px;  } /* t */
+.lufia-font1-117  { background-position: -40px  -112px;  } /* u */
+.lufia-font1-118  { background-position: -48px  -112px;  } /* v */
+.lufia-font1-119  { background-position: -56px  -112px;  } /* w */
+.lufia-font1-120  { background-position: -64px  -112px;  } /* x */
+.lufia-font1-121  { background-position: -72px  -112px;  } /* y */
+.lufia-font1-122  { background-position: -80px  -112px;  } /* z */
+.lufia-font1-123  { background-position: -88px  -112px;  } /* { */
+.lufia-font1-124  { background-position: -96px  -112px;  } /* | */
+.lufia-font1-125  { background-position: -104px -112px;  } /* } */
+.lufia-font1-126  { background-position: -112px -112px;  } /* ~ */
+/**/
