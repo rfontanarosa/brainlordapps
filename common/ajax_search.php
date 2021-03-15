@@ -19,20 +19,20 @@
 						$whole_word_only = $_POST['whole_word_only'] === 'true';
 						$author = UserManager::getUsername();
 						$db = new SQLite3(SQLITE_FILENAME);
-						if ($type == 'id2') {
-							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM trans WHERE author = :author) as ts ON tx.id = ts.id_text WHERE id2 LIKE :text_to_search ORDER BY id ASC";
+						if ($type == 'ref') {
+							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations AS t2 WHERE t2.author = :author) as ts ON tx.id = ts.id_text WHERE ref LIKE :text_to_search ORDER BY id ASC";
 						} else if ($type == 'original') {
-							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status, text_encoded FROM texts as tx LEFT JOIN (SELECT * FROM trans WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text_encoded LIKE :text_to_search ORDER BY id ASC";
+							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status, text_decoded FROM texts as tx LEFT JOIN (SELECT * FROM translations AS t2 WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text_decoded LIKE :text_to_search GROUP BY id HAVING MAX(ts.date) ORDER BY id ASC";
 						} else if ($type == 'new') {
-							$query = "SELECT id_text, COALESCE(status, 0) as status, new_text2 FROM trans WHERE new_text LIKE :text_to_search AND author = :author ORDER BY id_text ASC";
+							$query = "SELECT id_text, COALESCE(status, 0) as status, translation FROM translations WHERE translation LIKE :text_to_search AND author = :author ORDER BY id_text ASC";
 						} else if ($type == 'comment') {
-							$query = "SELECT id_text, COALESCE(status, 0) as status FROM trans WHERE comment LIKE :text_to_search AND author = :author ORDER BY id_text ASC";
+							$query = "SELECT id_text, COALESCE(status, 0) as status FROM translations WHERE comment LIKE :text_to_search AND author = :author ORDER BY id_text ASC";
 						} else if ($type == 'duplicates') {
-							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM trans WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text_encoded = (SELECT text_encoded FROM texts WHERE id = :text_to_search) ORDER BY id ASC";
+							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text_decoded = (SELECT text_decoded FROM texts WHERE id = :text_to_search) ORDER BY id ASC";
 						} else if ($type == 'personal_all') {
-							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM trans WHERE author = :author) as ts ON tx.id = ts.id_text ORDER BY id ASC";
+							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text ORDER BY id ASC";
 						} else if ($type == 'global_untranslated') {
-							$query = "SELECT id, 0 as status FROM texts WHERE id NOT IN (SELECT distinct(id_text) FROM trans WHERE status = 2) ORDER BY id ASC";
+							$query = "SELECT id, 0 as status FROM texts WHERE id NOT IN (SELECT distinct(id_text) FROM translations WHERE status = 2) ORDER BY id ASC";
 						} else {
 							header('HTTP/1.1 400 Bad Request');
 							exit;
@@ -72,8 +72,9 @@
 			header('HTTP/1.1 401 Unauthorized');
 			exit;
 		}
-	} catch (Exception $e) {
+	} catch (Throwable $e) {
 		header('HTTP/1.1 500 Internal Server Error');
+		print_r($e);
 		exit;
 	}
 

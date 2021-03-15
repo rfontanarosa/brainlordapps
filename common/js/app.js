@@ -18,7 +18,7 @@ $(function() {
 
   const submit = () => {
     const idText = $('input[name="id-text"]').val();
-    const newText = $('textarea[name="new-text"]').val();
+    const translation = $('textarea[name="translation"]').val();
     const comment = $('textarea[name="comment"]').val();
     const status = parseInt($('input[name="status"]').val());
     const extendsToDuplicates = $('#extends-to-duplicates').is(':checked');
@@ -27,14 +27,16 @@ $(function() {
       url: 'ajax_submit.php',
       data: {
         id_text: idText,
-        new_text: newText,
+        project: '',
+        translation,
         status,
+        tags: '',
         comment,
         extends_to_duplicates: extendsToDuplicates,
       },
     }).done(function(data, textStatus, jqXHR) {
       const jsonObject = JSON.parse(data);
-      const textarea = $('textarea[name=new-text]');
+      const textarea = $('textarea[name=translation]');
       const className = status === 0 ? 'btn-danger' : status === 1 ? 'btn-warning' : 'btn-success';
       textarea.removeClass('btn-warning btn-danger btn-success').addClass(className);
       $('#last-update').text(jsonObject.updateDate);
@@ -89,12 +91,12 @@ $(function() {
     e.stopPropagation();
     e.preventDefault();
     navigator.clipboard.readText().then(clipText => {
-      document.getElementById('new-text').value = clipText;
-      $('#new-text').keyup();
+      document.getElementById('translation').value = clipText;
+      $('#translation').keyup();
     });
   });
 
-  $('#new-text').on('keyup', () => document.getElementById('preview-new-btn').click());
+  $('#translation').on('keyup', () => document.getElementById('preview-new-btn').click());
 
   $('.search-input').on('keypress', e => {
     if (e.key === 'Enter') {
@@ -123,15 +125,15 @@ $(function() {
     }
   });
 
-  $('#search-id2-btn, #search-original-btn, #search-new-btn, #search-comment-btn, #search-duplicates-btn, #search-personal_all-btn, #search-global_untranslated-btn').on('click', e => {
+  $('#search-ref-btn, #search-original-btn, #search-new-btn, #search-comment-btn, #search-duplicates-btn, #search-personal_all-btn, #search-global_untranslated-btn').on('click', e => {
     e.stopPropagation();
     e.preventDefault();
     const type = e.currentTarget.getAttribute('data-type');
     let textToSearch = undefined;
     let wholeWordOnly = false;
     switch (type) {
-      case 'id2':
-        textToSearch = document.getElementById('search-id2').value;
+      case 'ref':
+        textToSearch = document.getElementById('search-ref').value;
         break;
       case 'original':
         textToSearch = document.getElementById('search-original').value;

@@ -97,10 +97,10 @@
 				$undone100 = number_format(100 - $done100 - $partially100, 1);
 				// ORIGINAL
 				if ($row = DbManager::getOriginalById($db, $id)) {
-					$text = $row['text_encoded'];
+					$text = $row['text_decoded'];
 					$size = $row['size'];
 					$block = $row['block'];
-					$id2 = isset($row['id2']) ? $row['id2'] : 'N/D';
+					$ref = isset($row['ref']) && $row['ref'] |= '' ? $row['ref'] : 'N/D';
 					$text_offset = isset($row['address']) ? dechex($row['address']) : 'N/D';
 					$pointers_offsets = isset($row['pointers_offsets']) ? $row['pointers_offsets'] : 'N/D';
 					$other_text = $row['text'];
@@ -110,15 +110,15 @@
 				}
 				// TRANSLATION
 				if ($row = DbManager::getTranslationByUserAndOriginalId($db, $uname, $id)) {
-					$new_text = $row['new_text'];
+					$translation = $row['translation'];
 					$comment = $row['comment'];
 					if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
-						$new_text = str_replace(NEWLINECHAR, '&#13;&#10;', $new_text);
+						$translation = str_replace(NEWLINECHAR, '&#13;&#10;', $translation);
 					}
 					$status = $row['status'];
 					$date = $row['date'];
 				}
-				$new_text = (isset($new_text)) ? $new_text : $text;
+				$translation = (isset($translation)) ? $translation : $text;
 				$comment = (isset($comment)) ? $comment : '';
 				$status = (isset($status)) ? $status : 0;
 				$formatted_date = (isset($date)) ? @date('d/m/Y, G:i', $date) : 'Never been updated!';
@@ -227,7 +227,7 @@
 									<span style="line-height: 1.75;">TRANSLATION</span>
 									<div class="d-flex justify-content-end">
 										<button type="submit" class="btn btn-light" id="paste-new-btn"><i class="fas fa-paste"></i>&nbsp;PASTE</button>
-										<button type="submit" class="btn btn-light preview-btn" id="preview-new-btn" data-source-id="new-text" data-dialog-container-id="dialog-container" data-id="<?php echo $id; ?>">
+										<button type="submit" class="btn btn-light preview-btn" id="preview-new-btn" data-source-id="translation" data-dialog-container-id="dialog-container" data-id="<?php echo $id; ?>">
 											<i class="fas fa-eye"></i>&nbsp;PREVIEW
 										</button>
 									</div>
@@ -251,7 +251,7 @@
 										}
 									?>
 									<div class="form-group">
-										<textarea rows="8" class="form-control <?php echo $class; ?>" id="new-text" name="new-text"><?php echo $new_text; ?></textarea>
+										<textarea rows="8" class="form-control <?php echo $class; ?>" id="translation" name="translation"><?php echo $translation; ?></textarea>
 									</div>
 									<div class="form-group mb-0">
 										<textarea rows="1" class="form-control" name="comment"><?php echo $comment; ?></textarea>
@@ -295,7 +295,7 @@
 									</div>
 								</div>
 								<div class="card-footer d-flex justify-content-between">
-									<small>ID2:&nbsp;<?php echo $id2; ?></small>
+									<small>Ref:&nbsp;<?php echo $ref; ?></small>
 									<small>Size:&nbsp;<?php echo $size; ?></small>
 									<small>Block:&nbsp;<?php echo $block; ?></small>
 								</div>
@@ -323,14 +323,14 @@
 							<?php
 								foreach ($others as $row) {
 									$author = $row['author'];
-									$new_text = $row['new_text'];
+									$translation = $row['translation'];
 									$comment = $row['comment'];
 									if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
-										$new_text = str_replace(NEWLINECHAR, '&#13;&#10;', $new_text);
+										$translation = str_replace(NEWLINECHAR, '&#13;&#10;', $translation);
 									}
 									$status = $row['status'];
 									$date = $row['date'];
-									$new_text = (isset($new_text)) ? $new_text : $text;
+									$translation = (isset($translation)) ? $translation : $text;
 									$comment = (isset($comment)) ? $comment : '';
 									$status = (isset($status)) ? $status : 0;
 									$formatted_date = (isset($date)) ? @date('d/m/Y, G:i', $date) : 'Never been updated!';
@@ -368,7 +368,7 @@
 										}
 									?>
 									<div class="form-group">
-										<textarea rows="8" class="form-control <?php echo $class; ?>" id="<?php echo $author; ?>_text" name="<?php echo $author; ?>_text" disabled><?php echo $new_text; ?></textarea>
+										<textarea rows="8" class="form-control <?php echo $class; ?>" id="<?php echo $author; ?>_text" name="<?php echo $author; ?>_text" disabled><?php echo $translation; ?></textarea>
 									</div>
 									<div class="form-group mb-0">
 										<textarea rows="1" class="form-control" name="<?php echo $author; ?>_comment" disabled><?php echo $comment; ?></textarea>
@@ -413,11 +413,11 @@
 									</div>
 									<div class="input-group pt-3">
 										<div class="input-group-prepend">
-											<span class="input-group-text" id="basic-addon0">ID2</span>
+											<span class="input-group-text" id="basic-addon0">Ref</span>
 										</div>
-										<input type="search" class="form-control search-input" id="search-id2" placeholder="Search for..." data-button-id="search-id2-btn" />
+										<input type="search" class="form-control search-input" id="search-ref" placeholder="Search for..." data-button-id="search-ref-btn" />
 										<div class="input-group-append">
-											<button class="btn btn-outline-light" type="button" id="search-id2-btn" data-type="id2"><i class="fas fa-search"></i>&nbsp;Search</button>
+											<button class="btn btn-outline-light" type="button" id="search-ref-btn" data-type="ref"><i class="fas fa-search"></i>&nbsp;Search</button>
 										</div>
 									</div>
 									<div class="form-group pt-3 mb-0">

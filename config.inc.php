@@ -85,7 +85,7 @@ class DbManager {
 
 	public static function countByUserGroupByStatus($db, $uname) {
 		$ret = array(0, 0, 0);
-		$query = 'SELECT status, COUNT(*) FROM trans WHERE author = :author GROUP BY status';
+		$query = 'SELECT status, COUNT(*) FROM translations WHERE author = :author GROUP BY status';
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
 		$results = $stmt->execute();
@@ -99,7 +99,7 @@ class DbManager {
 
 	public static function countDucplicatesById($db, $id) {
 		$ret = 0;
-		$query = 'SELECT COUNT(*) FROM texts WHERE text_encoded = (SELECT text_encoded FROM texts WHERE id = :id)';
+		$query = 'SELECT COUNT(*) FROM texts WHERE text_decoded = (SELECT text_decoded FROM texts WHERE id = :id)';
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':id', $id, SQLITE3_INTEGER);
 		$results = $stmt->execute();
@@ -112,7 +112,7 @@ class DbManager {
 
 	public static function getNextIdByUserAndId($db, $uname, $id) {
 		$ret = 0;
-		$query = 'SELECT MIN(id) FROM texts WHERE id NOT IN (SELECT id_text FROM trans WHERE author = :author AND status = :status) AND id > :id';
+		$query = 'SELECT MIN(id) FROM texts WHERE id NOT IN (SELECT id_text FROM translations WHERE author = :author AND status = :status) AND id > :id';
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
 		$stmt->bindValue(':status', 2, SQLITE3_INTEGER);
@@ -127,7 +127,7 @@ class DbManager {
 
 	public static function getPrevIdByUserAndId($db, $uname, $id) {
 		$ret = 0;
-		$query = 'SELECT MAX(id) FROM texts WHERE id NOT IN (SELECT id_text FROM trans WHERE author = :author AND status = :status) AND id < :id';
+		$query = 'SELECT MAX(id) FROM texts WHERE id NOT IN (SELECT id_text FROM translations WHERE author = :author AND status = :status) AND id < :id';
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
 		$stmt->bindValue(':status', 2, SQLITE3_INTEGER);
@@ -151,7 +151,7 @@ class DbManager {
 	}
 
 	public static function getTranslationByUserAndOriginalId($db, $uname, $id) {
-		$query = 'SELECT * FROM trans WHERE author = :author AND id_text = :id';
+		$query = 'SELECT * FROM translations WHERE author = :author AND id_text = :id';
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
 		$stmt->bindValue(':id', $id, SQLITE3_INTEGER);
@@ -162,7 +162,7 @@ class DbManager {
 	}
 
 	public static function getOtherTranslationByOriginalId($db, $uname, $id) {
-		$query = 'SELECT * FROM trans WHERE author != :author AND id_text = :id ORDER BY date DESC';
+		$query = 'SELECT * FROM translations WHERE author != :author AND id_text = :id ORDER BY date DESC';
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
 		$stmt->bindValue(':id', $id, SQLITE3_INTEGER);
@@ -211,7 +211,5 @@ class DbManager {
 		$results->finalize();
 		return $ret;
 	}
-
-
 
 }
