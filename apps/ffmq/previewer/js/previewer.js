@@ -74,7 +74,8 @@ function ffmqPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
     dialogs.forEach((dialog, index) => {
 
         const dialogId = `dialog-${boxIndex}-${index}`;
-        dialogBox = '<div id="' + dialogId + '" class="ffmq-dialogbox">\
+        const dialogClass = 'ffmq-dialog-box';
+        dialogBox = `<div id="${dialogId}" class="ffmq-preview-box ${dialogClass}">\
             <div class="bgimage">\
                 <div class="chars"></div>\
             </div>\
@@ -84,7 +85,7 @@ function ffmqPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
                 <div class="counter3"></div>\
                 <div class="alert"></div>\
             </div>\
-        </div>';
+        </div>`;
         previewContainer.append(dialogBox);
 
         let indexLine = 0;
@@ -130,9 +131,10 @@ function ffmqPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
 
 }
 
-function renderPreview(previewContainerSelector, text) {
+function renderPreview(previewContainerSelector, text, id, type) {
     document.getElementById(previewContainerSelector).innerHTML = '';
-    ffmqPreviewBox(previewContainerSelector, text, 0, 1);
+    const boxType = 1;
+    ffmqPreviewBox(previewContainerSelector, text, id, boxType);
 }
 
 const charlist = [];

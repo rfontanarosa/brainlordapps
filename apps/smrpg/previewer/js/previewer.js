@@ -13,7 +13,6 @@ function smrpgTextClean(text) {
 }
 
 function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
-    console.log(boxIndex, boxType);
     const previewContainer = $('#' + previewContainerSelector);
     text = text.replace(/\[13\]\[.\]/g, ""); // Pause?
     text = text.replace(/\[13\]\[..\]/g, ""); // Pause?
@@ -30,9 +29,9 @@ function smrpgPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
                 <div class="chars"></div>\
             </div>\
             <div class="infobox">\
-                <div class="counter counter1"></div>\
-                <div class="counter counter2"></div>\
-                <div class="counter counter3"></div>\
+                <div class="counter1"></div>\
+                <div class="counter2"></div>\
+                <div class="counter3"></div>\
                 <div class="alert"></div>\
             </div>\
         </div>`;

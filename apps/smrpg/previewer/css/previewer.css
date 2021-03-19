@@ -1,194 +1,195 @@
 .smrpg-preview-box {
-	margin-right: .5rem;
+    margin-right: .5rem;
 }
 
 .smrpg-preview-box .infobox {
-	border: 1px solid white;
-	color: white;
-	font-size: 10px;
-	margin: 10px 0;
-	min-height: 5px;
-	text-align: left;
-	width: 256px;
+    border: 1px solid white;
+    background-color: white;
+    color: black;
+    font-size: 10px;
+    margin: 10px 0;
+    min-height: 5px;
+    text-align: left;
+    width: 256px;
 }
 
 .smrpg-preview-box .infobox .counter {
-	margin: 5px;
+    margin: 5px;
 }
 
 .smrpg-preview-box .infobox .alert {
-	color: #fa4444;
-	margin: 5px;
-	padding: 0px;
-	border: none;
+    color: #fa4444;
+    margin: 5px;
+    padding: 0px;
+    border: none;
 }
 
 .smrpg-dialog-box .bgimage {
-	height: 224px;
-	width: 256px;
-	background: url(../images/bg1.png) no-repeat;
+    height: 224px;
+    width: 256px;
+    background: url(../images/bg1.png) no-repeat;
 }
 
 .smrpg-dialog-box .chars {
-	padding-left: 17px;
-	padding-top: 18px;
-	line-height: 0px;
-	position: relative;
+    padding-left: 17px;
+    padding-top: 18px;
+    line-height: 0px;
+    position: relative;
 }
 
 .smrpg-dialog-box .chars br {
-	margin-bottom: 1px;
-}
-
-.smrpg-battledialog-box .bgimage {
-	height: 224px;
-	width: 256px;
-	background: url(../images/bg1.png) no-repeat;
-}
-
-.smrpg-battledialog-box .chars {
-	padding-left: 17px;
-	padding-top: 18px;
-	line-height: 0px;
-	position: relative;
-}
-
-.newline_newpage_arrow {
-	width: 15px;
-	height: 8px;
-	background: url(../images/newline_newpage_arrow.png) no-repeat;
-	position: absolute;
-	top: 56px;
-	right: 17px;
+    margin-bottom: 1px;
 }
 
 .redtext {
-	color: #fa4444;
+    color: #fa4444;
+}
+
+.smrpg-battledialog-box .bgimage {
+    height: 224px;
+    width: 256px;
+    background: url(../images/bg1.png) no-repeat;
+}
+
+.smrpg-battledialog-box .chars {
+    padding-left: 17px;
+    padding-top: 18px;
+    line-height: 0px;
+    position: relative;
+}
+
+.newline_newpage_arrow {
+    width: 15px;
+    height: 8px;
+    background: url(../images/newline_newpage_arrow.png) no-repeat;
+    position: absolute;
+    top: 56px;
+    right: 17px;
 }
 
 .smrpg-font1 {
-	min-height: 12px;
-	display: inline-block;
-	margin-right: 1px;
-	margin-bottom: 4px;
-	background-image: url(../images/fontTableDialogue3.png);
+    min-height: 12px;
+    display: inline-block;
+    margin-right: 1px;
+    margin-bottom: 4px;
+    background-image: url(../images/fontTableDialogue3.png);
 }
 
-.smrpg-font1-32 { width: 4px; background-position: -0px -0px; } /*   */
-.smrpg-font1-33 { width: 6px; background-position: -16px -0px; } /* ! */
-.smrpg-font1-8220 { width: 6px; background-position: -32px -0px; } /* “ */
-.smrpg-font1-8221 { width: 6px; background-position: -48px -0px; } /* ” */
-.smrpg-font1-9829 { width: 8px; background-position: -64px -0px; } /* ♥ */
-.smrpg-font1-9834 { width: 8px; background-position: -80px -0px; } /* ♪ */
+.smrpg-font1-32   { width: 4px; background-position: -0px     -0px; } /*   */
+.smrpg-font1-33   { width: 6px; background-position: -16px    -0px; } /* ! */
+.smrpg-font1-8220 { width: 6px; background-position: -32px    -0px; } /* “ */
+.smrpg-font1-8221 { width: 6px; background-position: -48px    -0px; } /* ” */
+.smrpg-font1-9829 { width: 8px; background-position: -64px    -0px; } /* ♥ */
+.smrpg-font1-9834 { width: 8px; background-position: -80px    -0px; } /* ♪ */
 
-.smrpg-font1-40 { width: 5px; background-position: -0px -12px; } /* ( */
-.smrpg-font1-41 { width: 5px; background-position: -16px -12px; } /* ) */
-.smrpg-font1-183 { width: 6px; background-position: -32px -12px; } /* · */
-.smrpg-font1-8229 { width: 8px; background-position: -48px -12px; } /* ‥ */
-.smrpg-font1-44 { width: 5px; background-position: -64px -12px; } /* , */
-.smrpg-font1-45 { width: 5px; background-position: -80px -12px; } /* - */
-.smrpg-font1-46 { width: 5px; background-position: -96px -12px; } /* . */
-.smrpg-font1-47 { width: 6px; background-position: -112px -12px; } /* / */
+.smrpg-font1-40   { width: 5px; background-position: -0px    -12px; } /* ( */
+.smrpg-font1-41   { width: 5px; background-position: -16px   -12px; } /* ) */
+.smrpg-font1-183  { width: 6px; background-position: -32px   -12px; } /* · */
+.smrpg-font1-8229 { width: 8px; background-position: -48px   -12px; } /* ‥ */
+.smrpg-font1-44   { width: 5px; background-position: -64px   -12px; } /* , */
+.smrpg-font1-45   { width: 5px; background-position: -80px   -12px; } /* - */
+.smrpg-font1-46   { width: 5px; background-position: -96px   -12px; } /* . */
+.smrpg-font1-47   { width: 6px; background-position: -112px  -12px; } /* / */
 
-.smrpg-font1-48 { width: 7px; background-position: -0px -24px; } /* 0 */
-.smrpg-font1-49 { width: 5px; background-position: -16px -24px; } /* 1 */
-.smrpg-font1-50 { width: 7px; background-position: -32px -24px; } /* 2 */
-.smrpg-font1-51 { width: 7px; background-position: -48px -24px; } /* 3 */
-.smrpg-font1-52 { width: 7px; background-position: -64px -24px; } /* 4 */
-.smrpg-font1-53 { width: 7px; background-position: -80px -24px; } /* 5 */
-.smrpg-font1-54 { width: 7px; background-position: -96px -24px; } /* 6 */
-.smrpg-font1-55 { width: 7px; background-position: -112px -24px; } /* 7 */
+.smrpg-font1-48  { width: 7px; background-position: -0px     -24px; } /* 0 */
+.smrpg-font1-49  { width: 5px; background-position: -16px    -24px; } /* 1 */
+.smrpg-font1-50  { width: 7px; background-position: -32px    -24px; } /* 2 */
+.smrpg-font1-51  { width: 7px; background-position: -48px    -24px; } /* 3 */
+.smrpg-font1-52  { width: 7px; background-position: -64px    -24px; } /* 4 */
+.smrpg-font1-53  { width: 7px; background-position: -80px    -24px; } /* 5 */
+.smrpg-font1-54  { width: 7px; background-position: -96px    -24px; } /* 6 */
+.smrpg-font1-55  { width: 7px; background-position: -112px   -24px; } /* 7 */
 
-.smrpg-font1-56 { width: 7px; background-position: -0px -36px; } /* 8 */
-.smrpg-font1-57 { width: 7px; background-position: -16px -36px; } /* 9 */
-.smrpg-font1-126 { width: 8px; background-position: -32px -36px; } /* ~ */
-.smrpg-font1-63 { width: 8px; background-position: -112px -36px; } /* ? */
+.smrpg-font1-56  { width: 7px; background-position: -0px     -36px; } /* 8 */
+.smrpg-font1-57  { width: 7px; background-position: -16px    -36px; } /* 9 */
+.smrpg-font1-126 { width: 8px; background-position: -32px    -36px; } /* ~ */
+.smrpg-font1-63  { width: 8px; background-position: -112px   -36px; } /* ? */
 
-.smrpg-font1-169 { width: 8px; background-position: -0px -48px; } /* © */
-.smrpg-font1-65 { width: 8px; background-position: -16px -48px; } /* A */
-.smrpg-font1-66 { width: 7px; background-position: -32px -48px; } /* B */
-.smrpg-font1-67 { width: 7px; background-position: -48px -48px; } /* C */
-.smrpg-font1-68 { width: 6px; background-position: -64px -48px; } /* D */
-.smrpg-font1-69 { width: 7px; background-position: -80px -48px; } /* E */
-.smrpg-font1-70 { width: 6px; background-position: -96px -48px; } /* F */
-.smrpg-font1-71 { width: 7px; background-position: -112px -48px; } /* G */
+.smrpg-font1-169 { width: 8px; background-position: -0px     -48px; } /* © */
+.smrpg-font1-65  { width: 8px; background-position: -16px    -48px; } /* A */
+.smrpg-font1-66  { width: 7px; background-position: -32px    -48px; } /* B */
+.smrpg-font1-67  { width: 7px; background-position: -48px    -48px; } /* C */
+.smrpg-font1-68  { width: 6px; background-position: -64px    -48px; } /* D */
+.smrpg-font1-69  { width: 7px; background-position: -80px    -48px; } /* E */
+.smrpg-font1-70  { width: 6px; background-position: -96px    -48px; } /* F */
+.smrpg-font1-71  { width: 7px; background-position: -112px   -48px; } /* G */
 
-.smrpg-font1-72 { width: 7px; background-position: -0px -60px; } /* H */
-.smrpg-font1-73 { width: 3px; background-position: -16px -60px; } /* I */
-.smrpg-font1-74 { width: 6px; background-position: -32px -60px; } /* J */
-.smrpg-font1-75 { width: 7px; background-position: -48px -60px; } /* K */
-.smrpg-font1-76 { width: 5px; background-position: -64px -60px; } /* L */
-.smrpg-font1-77 { width: 9px; background-position: -80px -60px; } /* M */
-.smrpg-font1-78 { width: 6px; background-position: -96px -60px; } /* N */
-.smrpg-font1-79 { width: 7px; background-position: -112px -60px; } /* O */
+.smrpg-font1-72  { width: 7px; background-position: -0px     -60px; } /* H */
+.smrpg-font1-73  { width: 3px; background-position: -16px    -60px; } /* I */
+.smrpg-font1-74  { width: 6px; background-position: -32px    -60px; } /* J */
+.smrpg-font1-75  { width: 7px; background-position: -48px    -60px; } /* K */
+.smrpg-font1-76  { width: 5px; background-position: -64px    -60px; } /* L */
+.smrpg-font1-77  { width: 9px; background-position: -80px    -60px; } /* M */
+.smrpg-font1-78  { width: 6px; background-position: -96px    -60px; } /* N */
+.smrpg-font1-79  { width: 7px; background-position: -112px   -60px; } /* O */
 
-.smrpg-font1-80 { width: 7px; background-position: -0px -72px; } /* P */
-.smrpg-font1-81 { width: 7px; background-position: -16px -72px; } /* Q */
-.smrpg-font1-82 { width: 8px; background-position: -32px -72px; } /* R */
-.smrpg-font1-83 { width: 6px; background-position: -48px -72px; } /* S */
-.smrpg-font1-84 { width: 6px; background-position: -64px -72px; } /* T */
-.smrpg-font1-85 { width: 7px; background-position: -80px -72px; } /* U */
-.smrpg-font1-86 { width: 7px; background-position: -96px -72px; } /* V */
-.smrpg-font1-87 { width: 9px; background-position: -112px -72px; } /* W */
+.smrpg-font1-80  { width: 7px; background-position: -0px     -72px; } /* P */
+.smrpg-font1-81  { width: 7px; background-position: -16px    -72px; } /* Q */
+.smrpg-font1-82  { width: 8px; background-position: -32px    -72px; } /* R */
+.smrpg-font1-83  { width: 6px; background-position: -48px    -72px; } /* S */
+.smrpg-font1-84  { width: 6px; background-position: -64px    -72px; } /* T */
+.smrpg-font1-85  { width: 7px; background-position: -80px    -72px; } /* U */
+.smrpg-font1-86  { width: 7px; background-position: -96px    -72px; } /* V */
+.smrpg-font1-87  { width: 9px; background-position: -112px   -72px; } /* W */
 
-.smrpg-font1-88 { width: 6px; background-position: -0px -84px; } /* X */
-.smrpg-font1-89 { width: 6px; background-position: -16px -84px; } /* Y */
-.smrpg-font1-90 { width: 7px; background-position: -32px -84px; } /* Z */
+.smrpg-font1-88  { width: 6px; background-position: -0px     -84px; } /* X */
+.smrpg-font1-89  { width: 6px; background-position: -16px    -84px; } /* Y */
+.smrpg-font1-90  { width: 7px; background-position: -32px    -84px; } /* Z */
 
-.smrpg-font1-97 { width: 6px; background-position: -16px -96px; } /* a */
-.smrpg-font1-98 { width: 5px; background-position: -32px -96px; } /* b */
-.smrpg-font1-99 { width: 6px; background-position: -48px -96px; } /* c */
-.smrpg-font1-100 { width: 6px; background-position: -64px -96px; } /* d */
-.smrpg-font1-101 { width: 5px; background-position: -80px -96px; } /* e */
-.smrpg-font1-102 { width: 5px; background-position: -96px -96px; } /* f */
-.smrpg-font1-103 { width: 6px; background-position: -112px -96px; } /* g */
+.smrpg-font1-97  { width: 6px; background-position: -16px    -96px; } /* a */
+.smrpg-font1-98  { width: 5px; background-position: -32px    -96px; } /* b */
+.smrpg-font1-99  { width: 6px; background-position: -48px    -96px; } /* c */
+.smrpg-font1-100 { width: 6px; background-position: -64px    -96px; } /* d */
+.smrpg-font1-101 { width: 5px; background-position: -80px    -96px; } /* e */
+.smrpg-font1-102 { width: 5px; background-position: -96px    -96px; } /* f */
+.smrpg-font1-103 { width: 6px; background-position: -112px   -96px; } /* g */
 
-.smrpg-font1-104 { width: 5px; background-position: -0px -108px; } /* h */
-.smrpg-font1-105 { width: 3px; background-position: -16px -108px; } /* i */
-.smrpg-font1-106 { width: 5px; background-position: -32px -108px; } /* j */
-.smrpg-font1-107 { width: 6px; background-position: -48px -108px; } /* k */
-.smrpg-font1-108 { width: 3px; background-position: -64px -108px; } /* l */
-.smrpg-font1-109 { width: 7px; background-position: -80px -108px; } /* m */
-.smrpg-font1-110 { width: 6px; background-position: -96px -108px; } /* n */
-.smrpg-font1-111 { width: 6px; background-position: -112px -108px; } /* o */
+.smrpg-font1-104 { width: 5px; background-position: -0px    -108px; } /* h */
+.smrpg-font1-105 { width: 3px; background-position: -16px   -108px; } /* i */
+.smrpg-font1-106 { width: 5px; background-position: -32px   -108px; } /* j */
+.smrpg-font1-107 { width: 6px; background-position: -48px   -108px; } /* k */
+.smrpg-font1-108 { width: 3px; background-position: -64px   -108px; } /* l */
+.smrpg-font1-109 { width: 7px; background-position: -80px   -108px; } /* m */
+.smrpg-font1-110 { width: 6px; background-position: -96px   -108px; } /* n */
+.smrpg-font1-111 { width: 6px; background-position: -112px  -108px; } /* o */
 
-.smrpg-font1-112 { width: 6px; background-position: -0px -120px; } /* p */
-.smrpg-font1-113 { width: 6px; background-position: -16px -120px; } /* q */
-.smrpg-font1-114 { width: 5px; background-position: -32px -120px; } /* r */
-.smrpg-font1-115 { width: 6px; background-position: -48px -120px; } /* s */
-.smrpg-font1-116 { width: 5px; background-position: -64px -120px; } /* t */
-.smrpg-font1-117 { width: 6px; background-position: -80px -120px; } /* u */
-.smrpg-font1-118 { width: 7px; background-position: -96px -120px; } /* v */
-.smrpg-font1-119 { width: 8px; background-position: -112px -120px; } /* w */
+.smrpg-font1-112 { width: 6px; background-position: -0px    -120px; } /* p */
+.smrpg-font1-113 { width: 6px; background-position: -16px   -120px; } /* q */
+.smrpg-font1-114 { width: 5px; background-position: -32px   -120px; } /* r */
+.smrpg-font1-115 { width: 6px; background-position: -48px   -120px; } /* s */
+.smrpg-font1-116 { width: 5px; background-position: -64px   -120px; } /* t */
+.smrpg-font1-117 { width: 6px; background-position: -80px   -120px; } /* u */
+.smrpg-font1-118 { width: 7px; background-position: -96px   -120px; } /* v */
+.smrpg-font1-119 { width: 8px; background-position: -112px  -120px; } /* w */
 
-.smrpg-font1-120 { width: 6px; background-position: -0px -132px; } /* x */
-.smrpg-font1-121 { width: 5px; background-position: -16px -132px; } /* y */
-.smrpg-font1-122 { width: 6px; background-position: -32px -132px; } /* z */
+.smrpg-font1-120  { width: 6px; background-position: -0px   -132px; } /* x */
+.smrpg-font1-121  { width: 5px; background-position: -16px  -132px; } /* y */
+.smrpg-font1-122  { width: 6px; background-position: -32px  -132px; } /* z */
 
-.smrpg-font1-224 { width: 6px; background-position: -48px -132px; } /* à */
-.smrpg-font1-232 { width: 5px; background-position: -64px -132px; } /* è */
-.smrpg-font1-233 { width: 5px; background-position: -80px -132px; } /* é */
-.smrpg-font1-236 { width: 3px; background-position: -96px -132px; } /* ì */
-.smrpg-font1-242 { width: 6px; background-position: -112px -132px; } /* ò */
+.smrpg-font1-224  { width: 6px; background-position: -48px  -132px; } /* à */
+.smrpg-font1-232  { width: 5px; background-position: -64px  -132px; } /* è */
+.smrpg-font1-233  { width: 5px; background-position: -80px  -132px; } /* é */
+.smrpg-font1-236  { width: 3px; background-position: -96px  -132px; } /* ì */
+.smrpg-font1-242  { width: 6px; background-position: -112px -132px; } /* ò */
 
-.smrpg-font1-249 { width: 6px; background-position: -0px -156px; } /* ù */
-.smrpg-font1-192 { width: 8px; background-position: -16px -156px; } /* À */
-.smrpg-font1-200 { width: 5px; background-position: -32px -156px; } /* È */
-.smrpg-font1-201 { width: 5px; background-position: -48px -156px; } /* É */
-.smrpg-font1-204 { width: 3px; background-position: -64px -156px; } /* Ì */
-.smrpg-font1-210 { width: 7px; background-position: -80px -156px; } /* Ò */
-.smrpg-font1-58 { width: 7px; background-position: -96px -156px; } /* : */
-.smrpg-font1-59 { width: 7px; background-position: -112px -156px; } /* ; */
+.smrpg-font1-249  { width: 6px; background-position: -0px   -156px; } /* ù */
+.smrpg-font1-192  { width: 8px; background-position: -16px  -156px; } /* À */
+.smrpg-font1-200  { width: 5px; background-position: -32px  -156px; } /* È */
+.smrpg-font1-201  { width: 5px; background-position: -48px  -156px; } /* É */
+.smrpg-font1-204  { width: 3px; background-position: -64px  -156px; } /* Ì */
+.smrpg-font1-210  { width: 7px; background-position: -80px  -156px; } /* Ò */
+.smrpg-font1-58   { width: 7px; background-position: -96px  -156px; } /* : */
+.smrpg-font1-59   { width: 7px; background-position: -112px -156px; } /* ; */
 
-.smrpg-font1-60 { width: 8px; background-position: -0px -168px; } /* < */
-.smrpg-font1-62 { width: 8px; background-position: -16px -168px; } /* > */
-.smrpg-font1-8230 { width: 9px; background-position: -32px -168px; } /* … */
-.smrpg-font1-35 { width: 9px; background-position: -48px -168px; } /* # */
-.smrpg-font1-43 { width: 9px; background-position: -64px -168px; } /* + */
-.smrpg-font1-215 { width: 9px; background-position: -80px -168px; } /* × */
-.smrpg-font1-37 { width: 9px; background-position: -96px -168px; } /* % */
+.smrpg-font1-60   { width: 8px; background-position: -0px   -168px; } /* < */
+.smrpg-font1-62   { width: 8px; background-position: -16px  -168px; } /* > */
+.smrpg-font1-8230 { width: 9px; background-position: -32px  -168px; } /* … */
+.smrpg-font1-35   { width: 9px; background-position: -48px  -168px; } /* # */
+.smrpg-font1-43   { width: 9px; background-position: -64px  -168px; } /* + */
+.smrpg-font1-215  { width: 9px; background-position: -80px  -168px; } /* × */
+.smrpg-font1-37   { width: 9px; background-position: -96px  -168px; } /* % */
 
-.smrpg-font1-42 { width: 9px; background-position: -32px -180px; } /* * */
-.smrpg-font1-39 { width: 4px; background-position: -48px -180px; } /* ' */
-.smrpg-font1-38 { width: 8px; background-position: -64px -180px; } /* & */
-.smrpg-font1-217 { width: 7px; background-position: -80px -180px; } /* Ù */
+.smrpg-font1-42   { width: 9px; background-position: -32px  -180px; } /* * */
+.smrpg-font1-39   { width: 4px; background-position: -48px  -180px; } /* ' */
+.smrpg-font1-38   { width: 8px; background-position: -64px  -180px; } /* & */
+.smrpg-font1-217  { width: 7px; background-position: -80px  -180px; } /* Ù */

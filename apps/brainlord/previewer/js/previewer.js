@@ -32,10 +32,10 @@ function brainlordPreviewBox(previewContainerSelector, text, boxIndex, boxType) 
                 <div class="chars"></div>\
             </div>\
             <div class="infobox">\
-                <div class="counter counter1"></div>\
-                <div class="counter counter2"></div>\
-                <div class="counter counter3"></div>\
-                <div class="counter counter4"></div>\
+                <div class="counter1"></div>\
+                <div class="counter2"></div>\
+                <div class="counter3"></div>\
+                <div class="counter4"></div>\
                 <div class="alert"></div>\
             </div>\
         </div>`;
@@ -54,7 +54,7 @@ function brainlordPreviewBox(previewContainerSelector, text, boxIndex, boxType) 
             const utf16int = utf16char.charCodeAt();
             let buffer = "";
             if (hashcharlist[utf16char] > 0) {
-                counter[indexLine] += 8;
+                counter[indexLine] += hashcharlist[utf16char];
                 buffer = `<div class="brainlord-font1 brainlord-font1-${utf16int}"></div>`;
             } else if (utf16char == "\n") {
                 buffer = '<br />';
@@ -89,7 +89,7 @@ function brainlordPreviewBox(previewContainerSelector, text, boxIndex, boxType) 
 
 function renderPreview(previewContainerSelector, text, id, type) {
     document.getElementById(previewContainerSelector).innerHTML = '';
-    const boxType = id < 4097 ? 1 : 2;
+    const boxType = 1;
     brainlordPreviewBox(previewContainerSelector, text, id, boxType);
 }
 

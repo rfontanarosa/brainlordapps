@@ -15,10 +15,10 @@ function lufiaPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
                 <div class="chars"></div>\
             </div>\
             <div class="infobox">\
-                <div class="counter counter1"></div>\
-                <div class="counter counter2"></div>\
-                <div class="counter counter3"></div>\
-                <div class="counter counter4"></div>\
+                <div class="counter1"></div>\
+                <div class="counter2"></div>\
+                <div class="counter3"></div>\
+                <div class="counter4"></div>\
                 <div class="alert"></div>\
             </div>\
         </div>`;
@@ -37,7 +37,7 @@ function lufiaPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             const utf16int = utf16char.charCodeAt();
             let buffer = "";
             if (hashcharlist[utf16char] > 0) {
-                counter[indexLine] += 8;
+                counter[indexLine] += hashcharlist[utf16char];
                 buffer = `<div class="lufia-font1 lufia-font1-${utf16int}"></div>`;
             } else if (utf16char == "\n") {
                 buffer = '<br />';
@@ -80,7 +80,7 @@ const charlist = [];
 charlist.push([" !\"àèéì'()*‥,-./", 8]);
 charlist.push(["0123456789:;È=>?", 8]);
 charlist.push(["ABCDEFGIJKLMNO", 8]);
-charlist.push(["PSRSTUVWXYZ[ò]ù_", 8]);
+charlist.push(["PQRSTUVWXYZ[ò]ù_", 8]);
 charlist.push(["abcdefghijklmno", 8]);
 charlist.push(["pqrstuvwxyz{|}~", 8]);
 
