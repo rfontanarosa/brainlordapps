@@ -79,7 +79,7 @@ function renderPreview(previewContainerSelector, text, id, type) {
 const charlist = [];
 charlist.push([" !\"àèéì'()*‥,-./", 8]);
 charlist.push(["0123456789:;È=>?", 8]);
-charlist.push(["ABCDEFGIJKLMNO", 8]);
+charlist.push(["ABCDEFGHIJKLMNO", 8]);
 charlist.push(["PQRSTUVWXYZ[ò]ù_", 8]);
 charlist.push(["abcdefghijklmno", 8]);
 charlist.push(["pqrstuvwxyz{|}~", 8]);
