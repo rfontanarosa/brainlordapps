@@ -20,11 +20,11 @@
 						$author = UserManager::getUsername();
 						$db = new SQLite3(SQLITE_FILENAME);
 						if ($type == 'ref') {
-							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations AS t2 WHERE t2.author = :author) as ts ON tx.id = ts.id_text WHERE ref LIKE :text_to_search ORDER BY id ASC";
+							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx WHERE ref LIKE :text_to_search ORDER BY id ASC";
 						} else if ($type == 'original') {
-							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status, text_decoded FROM texts as tx LEFT JOIN (SELECT * FROM translations AS t2 WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text_decoded LIKE :text_to_search GROUP BY id HAVING MAX(ts.date) ORDER BY id ASC";
+							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT id_text, status FROM translations WHERE author = :author GROUP BY id_text HAVING MAX(date)) as ts ON tx.id = ts.id_text WHERE text_decoded LIKE :text_to_search ORDER BY id ASC";
 						} else if ($type == 'new') {
-							$query = "SELECT id_text, COALESCE(status, 0) as status, translation FROM translations WHERE translation LIKE :text_to_search AND author = :author ORDER BY id_text ASC";
+							$query = "SELECT id_text, COALESCE(status, 0) as status FROM translations WHERE translation LIKE :text_to_search AND author = :author GROUP BY id_text HAVING MAX(date) ORDER BY id_text ASC";
 						} else if ($type == 'comment') {
 							$query = "SELECT id_text, COALESCE(status, 0) as status FROM translations WHERE comment LIKE :text_to_search AND author = :author ORDER BY id_text ASC";
 						} else if ($type == 'duplicates') {
