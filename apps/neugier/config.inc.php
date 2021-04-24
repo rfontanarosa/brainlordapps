@@ -7,9 +7,9 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 
 define('TITLE', 'Neugier: Umi to Kaze no Koudou');
 
-define('SQLITE_FILENAME', RESOURCE_PATH . '/neugier/db/neugier.db');
+define('SQLITE_FILENAME', RESOURCE_PATH . '/neugier/db/neugier.sqlite3');
 define('LAST_ENTRY', 220);
-define('NEWLINECHAR', '{01}');
+define('NEWLINECHAR', '-----');
 define('NEWLINE_REPLACE', 0);
 
 function textClean($text) {
@@ -20,12 +20,5 @@ function textClean($text) {
 }
 
 function tableClean($text) {
-  $text = str_replace('à', '{50}', $text);
-  $text = str_replace('è', '{51}', $text);
-  $text = str_replace('é', '{52}', $text);
-  $text = str_replace('ì', '{53}', $text);
-  $text = str_replace('ò', '{54}', $text);
-  $text = str_replace('ù', '{55}', $text);
-  $text = str_replace('È', '{56}', $text);
   return $text;
 }

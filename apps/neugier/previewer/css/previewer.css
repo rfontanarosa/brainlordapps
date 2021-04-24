@@ -1,0 +1,154 @@
+.neugier-preview-box {
+    margin-right: .5rem;
+}
+
+.neugier-preview-box .infobox {
+    border: 1px solid white;
+    color: white;
+    font-size: 10px;
+    margin: 10px 0;
+    min-height: 5px;
+    text-align: left;
+    width: 256px;
+}
+
+.neugier-preview-box .infobox .counter {
+    margin: 5px;
+}
+
+.neugier-preview-box .infobox .alert {
+    color: #fa4444;
+    margin: 5px;
+    padding: 0px;
+    border: none;
+}
+
+.neugier-dialog-box .bgimage {
+    height: 224px;
+    width: 256px;
+    background: url(../images/neugier-preview.png) no-repeat;
+}
+
+.neugier-dialog-box .chars {
+    padding-left: 40px;
+    padding-top: 127px;
+    line-height: 0px;
+    position: relative;
+}
+
+.neugier-dialog-box .chars br {
+    margin-bottom: 0px;
+}
+
+.redtext {
+    color: #fa4444;
+}
+
+.neugier-font1 {
+    min-height: 16px;
+    display: inline-block;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    background-image: url(../images/neugier_font_ita.png);
+    width: 8px;
+    background-position: -80px -16px;
+}
+
+.neugier-font1-8230 { width: 6px; background-position: -0px   -16px; } /* … */
+.neugier-font1-44   { width: 4px; background-position: -8px   -16px; } /* , */
+.neugier-font1-46   { width: 3px; background-position: -16px  -16px; } /* . */
+.neugier-font1-33   { width: 4px; background-position: -24px  -16px; } /* ! */
+.neugier-font1-63   { width: 7px; background-position: -32px  -16px; } /* ? */
+.neugier-font1-41   { width: 4px; background-position: -40px  -16px; } /* ) */
+.neugier-font1-8221	{ width: 6px; background-position: -48px  -16px; } /* ” */
+.neugier-font1-39   { width: 3px; background-position: -56px  -16px; } /* ' */
+.neugier-font1-32   { width: 6px; background-position: -64px  -16px; } /*   */
+.neugier-font1-65   { width: 8px; background-position: -72px  -16px; } /* A */
+.neugier-font1-66   { width: 8px; background-position: -80px  -16px; } /* B */
+.neugier-font1-67   { width: 8px; background-position: -88px  -16px; } /* C */
+.neugier-font1-68   { width: 8px; background-position: -96px  -16px; } /* D */
+.neugier-font1-69   { width: 8px; background-position: -104px -16px; } /* E */
+.neugier-font1-70   { width: 8px; background-position: -112px -16px; } /* F */
+.neugier-font1-71   { width: 8px; background-position: -120px -16px; } /* G */
+
+.neugier-font1-72   { width: 8px; background-position: -0px   -32px; } /* H */
+.neugier-font1-73   { width: 4px; background-position: -8px   -32px; } /* I */
+.neugier-font1-74   { width: 6px; background-position: -16px  -32px; } /* J */
+.neugier-font1-75   { width: 8px; background-position: -24px  -32px; } /* K */
+.neugier-font1-76   { width: 7px; background-position: -32px  -32px; } /* L */
+.neugier-font1-77   { width: 8px; background-position: -40px  -32px; } /* M */
+.neugier-font1-78   { width: 8px; background-position: -48px  -32px; } /* N */
+.neugier-font1-79   { width: 8px; background-position: -56px  -32px; } /* O */
+.neugier-font1-80   { width: 8px; background-position: -64px  -32px; } /* P */
+.neugier-font1-81   { width: 8px; background-position: -72px  -32px; } /* Q */
+.neugier-font1-82   { width: 8px; background-position: -80px  -32px; } /* R */
+.neugier-font1-83   { width: 8px; background-position: -88px  -32px; } /* S */
+.neugier-font1-84   { width: 8px; background-position: -96px  -32px; } /* T */
+.neugier-font1-85   { width: 8px; background-position: -104px -32px; } /* U */
+.neugier-font1-86   { width: 8px; background-position: -112px -32px; } /* V */
+.neugier-font1-87   { width: 8px; background-position: -120px -32px; } /* W */
+
+.neugier-font1-8216 { width: 6px; background-position: -0px   -48px; } /* ‘ */
+.neugier-font1-89   { width: 8px; background-position: -8px   -48px; } /* Y */
+.neugier-font1-90   { width: 8px; background-position: -16px  -48px; } /* Z */
+.neugier-font1-97   { width: 7px; background-position: -24px  -48px; } /* a */
+.neugier-font1-98   { width: 8px; background-position: -32px  -48px; } /* b */
+.neugier-font1-99   { width: 7px; background-position: -40px  -48px; } /* c */
+.neugier-font1-100  { width: 8px; background-position: -48px  -48px; } /* d */
+.neugier-font1-101  { width: 7px; background-position: -56px  -48px; } /* e */
+.neugier-font1-102  { width: 6px; background-position: -64px  -48px; } /* f */
+.neugier-font1-103  { width: 7px; background-position: -72px  -48px; } /* g */
+.neugier-font1-104  { width: 8px; background-position: -80px  -48px; } /* h */
+.neugier-font1-105  { width: 4px; background-position: -88px  -48px; } /* i */
+.neugier-font1-106  { width: 5px; background-position: -96px  -48px; } /* j */
+.neugier-font1-107  { width: 8px; background-position: -104px -48px; } /* k */
+.neugier-font1-108  { width: 4px; background-position: -112px -48px; } /* l */
+.neugier-font1-109  { width: 8px; background-position: -120px -48px; } /* m */
+
+.neugier-font1-110  { width: 8px; background-position: -0px   -64px; } /* n */
+.neugier-font1-111  { width: 7px; background-position: -8px   -64px; } /* o */
+.neugier-font1-112  { width: 8px; background-position: -16px  -64px; } /* p */
+.neugier-font1-113  { width: 8px; background-position: -24px  -64px; } /* q */
+.neugier-font1-114  { width: 7px; background-position: -32px  -64px; } /* r */
+.neugier-font1-115  { width: 7px; background-position: -40px  -64px; } /* s */
+.neugier-font1-116  { width: 6px; background-position: -48px  -64px; } /* t */
+.neugier-font1-117  { width: 8px; background-position: -56px  -64px; } /* u */
+.neugier-font1-118  { width: 8px; background-position: -64px  -64px; } /* v */
+.neugier-font1-119  { width: 8px; background-position: -72px  -64px; } /* w */
+.neugier-font1-120  { width: 8px; background-position: -80px  -64px; } /* x */
+.neugier-font1-121  { width: 8px; background-position: -88px  -64px; } /* y */
+.neugier-font1-122  { width: 8px; background-position: -96px  -64px; } /* z */
+.neugier-font1-58   { width: 2px; background-position: -104px -64px; } /* : */
+.neugier-font1-45   { width: 6px; background-position: -112px -64px; } /* - */
+/**/
+
+.neugier-font1-224  { width: 7px; background-position: -64px  -80px; } /* à */
+.neugier-font1-232  { width: 7px; background-position: -72px  -80px; } /* è */
+.neugier-font1-233  { width: 7px; background-position: -80px  -80px; } /* é */
+.neugier-font1-236  { width: 4px; background-position: -88px  -80px; } /* ì */
+.neugier-font1-242  { width: 7px; background-position: -96px  -80px; } /* ò */
+.neugier-font1-249  { width: 8px; background-position: -104px -80px; } /* ù */
+.neugier-font1-200  { width: 8px; background-position: -112px -80px; } /* È */
+/**/
+
+/**/
+
+.neugier-font1-8220 { width: 6px; background-position: -56px  -112px; } /* 0 */
+
+.neugier-font1-48   { width: 8px; background-position: -64px  -128px; } /* 0 */
+.neugier-font1-49   { width: 6px; background-position: -72px  -128px; } /* 1 */
+.neugier-font1-50   { width: 8px; background-position: -80px  -128px; } /* 2 */
+.neugier-font1-51   { width: 8px; background-position: -88px  -128px; } /* 3 */
+.neugier-font1-52   { width: 8px; background-position: -96px  -128px; } /* 4 */
+.neugier-font1-53   { width: 8px; background-position: -104px -128px; } /* 5 */
+.neugier-font1-54   { width: 8px; background-position: -112px -128px; } /* 6 */
+.neugier-font1-55   { width: 8px; background-position: -120px -128px; } /* 7 */
+
+.neugier-font1-56   { width: 8px; background-position: -0px   -144px; } /* 8 */
+.neugier-font1-57   { width: 8px; background-position: -8px   -144px; } /* 9 */
+.neugier-font1-40   { width: 4px; background-position: -16px  -144px; } /* ( */
+.neugier-font1-126  { width: 8px; background-position: -24px  -144px; } /* ~ */
+/**/
+.neugier-font1-43   { width: 8px; background-position: -40px  -144px; } /* + */
+/**/
+.neugier-font1-59   { width: 8px; background-position: -56px  -144px; } /* ; */
