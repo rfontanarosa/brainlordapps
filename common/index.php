@@ -100,7 +100,7 @@
 					$text = $row['text_decoded'];
 					$size = $row['size'];
 					$block = $row['block'];
-					$ref = isset($row['ref']) && $row['ref'] |= '' ? $row['ref'] : 'N/D';
+					$ref = isset($row['ref']) && $row['ref'] != '' ? $row['ref'] : 'N/D';
 					$text_offset = isset($row['address']) ? dechex($row['address']) : 'N/D';
 					$pointers_offsets = isset($row['pointers_offsets']) ? $row['pointers_offsets'] : 'N/D';
 					$other_text = $row['text'];
