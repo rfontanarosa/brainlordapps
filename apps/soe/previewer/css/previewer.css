@@ -1,45 +1,190 @@
 .soe-dialogbox {
-  margin-right: .5rem;
+    margin-right: .5rem;
 }
 
 .soe-dialogbox .infobox {
-  background-color: white;
-  border: 1px solid black;
-  color: black;
-  font-size: 10px;
-  margin: 10px 0;
-  min-height: 5px;
-  text-align: left;
-  width: 256px;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    font-size: 10px;
+    margin: 10px 0;
+    min-height: 5px;
+    text-align: left;
+    width: 256px;
 }
 
 .soe-dialogbox .infobox > div {
-  margin: 5px;
+    margin: 5px;
 }
 
 .soe-dialogbox .alert {
-  color: #fa4444;
-  padding: 0px;
-  border: none;
+    color: #fa4444;
+    margin: 5px;
+    padding: 0px;
+    border: none;
 }
 
 .soe-dialogbox .bgimage {
-  background: url(../images/background0.png) no-repeat;
-  height: 224px;
-  width: 256px;
+    height: 224px;
+    width: 256px;
+    background: url(../images/background0.png) no-repeat;
 }
 
 .soe-dialogbox .chars {
-  padding-left: 20px;
-  padding-top: 20px;
-  line-height: 0px;
-  position: relative;
+    padding-left: 20px;
+    padding-top: 20px;
+    line-height: 0px;
+    position: relative;
 }
 
 .soe-dialogbox .chars br {
-  margin-bottom: 1px;
+    margin-bottom: 1px;
 }
 
 .redtext {
-  color: #fa4444;
+    color: #fa4444;
 }
+
+.soe-font1 {
+    min-height: 12px;
+    display: inline-block;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    width: 16px;
+    background-image: url(../images/soe_gfx_font1.png);
+}
+
+.soe-font1-224  { width: 7px;  background-position:   -0px  -0px;  } /* à */
+.soe-font1-232  { width: 7px;  background-position:  -16px  -0px;  } /* è */
+.soe-font1-233  { width: 7px;  background-position:  -32px  -0px;  } /* é */
+.soe-font1-236  { width: 4px;  background-position:  -48px  -0px;  } /* ì */
+.soe-font1-242  { width: 7px;  background-position:  -64px  -0px;  } /* ò */
+.soe-font1-249  { width: 7px;  background-position:  -80px  -0px;  } /* ù */
+/* */
+/* */
+
+.soe-font1-192  { width: 7px;  background-position:   -0px -12px;  } /* À */
+.soe-font1-200  { width: 6px;  background-position:  -16px -12px;  } /* È */
+.soe-font1-201  { width: 6px;  background-position:  -32px -12px;  } /* É */
+.soe-font1-204  { width: 5px;  background-position:  -48px -12px;  } /* Ì */
+.soe-font1-210  { width: 7px;  background-position:  -64px -12px;  } /* Ò */
+.soe-font1-217  { width: 7px;  background-position:  -80px -12px;  } /* Ù */
+/* */
+.soe-font1-32   { width: 4px;  background-position: -112px -12px;  } /*   */
+
+/* */
+.soe-font1-33   { width: 4px;  background-position:  -16px -24px;  } /* ! */
+.soe-font1-34   { width: 6px; background-position:   -32px -24px;  } /* " */
+.soe-font1-35   { width: 9px;  background-position:  -48px -24px;  } /* # */
+.soe-font1-36   { width: 7px;  background-position:  -64px -24px;  } /* $ */
+.soe-font1-37   { width: 9px;  background-position:  -80px -24px;  } /* % */
+.soe-font1-38   { width: 8px;  background-position:  -96px -24px;  } /* & */
+.soe-font1-39   { width: 3px;  background-position: -112px -24px;  } /* ' */
+
+.soe-font1-40   { width: 4px;  background-position:   -0px -36px;  } /* ( */
+.soe-font1-41   { width: 4px;  background-position:  -16px -36px;  } /* ) */
+.soe-font1-42   { width: 6px; background-position:   -32px -36px;  } /* * */
+.soe-font1-43   { width: 6px; background-position:   -48px -36px;  } /* + */
+.soe-font1-44   { width: 3px;  background-position:  -64px -36px;  } /* , */
+.soe-font1-45   { width: 7px;  background-position:  -80px -36px;  } /* - */
+.soe-font1-46   { width: 3px;  background-position:  -96px -36px;  } /* . */
+.soe-font1-47   { width: 6px;  background-position: -112px -36px;  } /* / */
+
+.soe-font1-48   { width: 7px;  background-position:   -0px -48px;  } /* 0 */
+.soe-font1-49   { width: 4px;  background-position:  -16px -48px;  } /* 1 */
+.soe-font1-50   { width: 7px;  background-position:  -32px -48px;  } /* 2 */
+.soe-font1-51   { width: 7px;  background-position:  -48px -48px;  } /* 3 */
+.soe-font1-52   { width: 8px;  background-position:  -64px -48px;  } /* 4 */
+.soe-font1-53   { width: 7px;  background-position:  -80px -48px;  } /* 5 */
+.soe-font1-54   { width: 7px;  background-position:  -96px -48px;  } /* 6 */
+.soe-font1-55   { width: 7px;  background-position: -112px -48px;  } /* 7 */
+
+.soe-font1-56   { width: 7px;  background-position:   -0px -60px;  } /* 8 */
+.soe-font1-57   { width: 7px;  background-position:  -16px -60px;  } /* 9 */
+.soe-font1-58   { width: 3px;  background-position:  -32px -60px;  } /* : */
+.soe-font1-59   { width: 3px;  background-position:  -48px -60px;  } /* ; */
+.soe-font1-60   { width: 5px;  background-position:  -64px -60px;  } /* < */
+.soe-font1-61   { width: 7px;  background-position:  -80px -60px;  } /* = */
+.soe-font1-62   { width: 5px;  background-position:  -96px -60px;  } /* > */
+.soe-font1-63   { width: 7px;  background-position: -112px -60px;  } /* ? */
+
+.soe-font1-64   { width: 9px;  background-position:   -0px -72px;  } /* @ */
+.soe-font1-65   { width: 7px;  background-position:  -16px -72px;  } /* A */
+.soe-font1-66   { width: 7px;  background-position:  -32px -72px;  } /* B */
+.soe-font1-67   { width: 7px;  background-position:  -48px -72px;  } /* C */
+.soe-font1-68   { width: 7px;  background-position:  -64px -72px;  } /* D */
+.soe-font1-69   { width: 6px;  background-position:  -80px -72px;  } /* E */
+.soe-font1-70   { width: 6px;  background-position:  -96px -72px;  } /* F */
+.soe-font1-71   { width: 7px;  background-position: -112px -72px;  } /* G */
+
+.soe-font1-72   { width: 7px;  background-position:   -0px -84px;  } /* H */
+.soe-font1-73   { width: 5px;  background-position:  -16px -84px;  } /* I */
+.soe-font1-74   { width: 7px;  background-position:  -32px -84px;  } /* J */
+.soe-font1-75   { width: 8px;  background-position:  -48px -84px;  } /* K */
+.soe-font1-76   { width: 6px;  background-position:  -64px -84px;  } /* L */
+.soe-font1-77   { width: 9px;  background-position:  -80px -84px;  } /* M */
+.soe-font1-78   { width: 8px;  background-position:  -96px -84px;  } /* N */
+.soe-font1-79   { width: 7px;  background-position: -112px -84px;  } /* O */
+
+.soe-font1-80   { width: 7px;  background-position:   -0px -96px;  } /* P */
+.soe-font1-81   { width: 7px;  background-position:  -16px -96px;  } /* Q */
+.soe-font1-82   { width: 7px;  background-position:  -32px -96px;  } /* R */
+.soe-font1-83   { width: 6px;  background-position:  -48px -96px;  } /* S */
+.soe-font1-84   { width: 7px;  background-position:  -64px -96px;  } /* T */
+.soe-font1-85   { width: 7px;  background-position:  -80px -96px;  } /* U */
+.soe-font1-86   { width: 7px;  background-position:  -96px -96px;  } /* V */
+.soe-font1-87   { width: 11px; background-position: -112px -96px;  } /* W */
+
+.soe-font1-88   { width: 7px;  background-position:   -0px -108px; } /* X */
+.soe-font1-89   { width: 7px;  background-position:  -16px -108px; } /* Y */
+.soe-font1-90   { width: 7px;  background-position:  -32px -108px; } /* Z */
+.soe-font1-91   { width: 4px;  background-position:  -48px -108px; } /* [ */
+.soe-font1-92   { width: 6px;  background-position:  -64px -108px; } /* \ */
+.soe-font1-93   { width: 4px;  background-position:  -80px -108px; } /* ] */
+/* */
+.soe-font1-8230 { width: 9px;  background-position: -112px -108px;  } /* … */
+
+.soe-font1-96   { width: 3px;  background-position:   -0px -120px; } /* ` */
+.soe-font1-97   { width: 7px;  background-position:  -16px -120px; } /* a */
+.soe-font1-98   { width: 7px;  background-position:  -32px -120px; } /* b */
+.soe-font1-99   { width: 6px;  background-position:  -48px -120px; } /* c */
+.soe-font1-100  { width: 7px;  background-position:  -64px -120px; } /* d */
+.soe-font1-101  { width: 7px;  background-position:  -80px -120px; } /* e */
+.soe-font1-102  { width: 6px;  background-position:  -96px -120px; } /* f */
+.soe-font1-103  { width: 7px;  background-position: -112px -120px; } /* g */
+
+.soe-font1-104  { width: 7px;  background-position:   -0px -132px; } /* h */
+.soe-font1-105  { width: 3px;  background-position:  -16px -132px; } /* i */
+.soe-font1-106  { width: 6px;  background-position:  -32px -132px; } /* j */
+.soe-font1-107  { width: 7px;  background-position:  -48px -132px; } /* k */
+.soe-font1-108  { width: 3px;  background-position:  -64px -132px; } /* l */
+.soe-font1-109  { width: 11px; background-position:  -80px -132px; } /* m */
+.soe-font1-110  { width: 7px;  background-position:  -96px -132px; } /* n */
+.soe-font1-111  { width: 7px;  background-position: -112px -132px; } /* o */
+
+.soe-font1-112  { width: 7px;  background-position:   -0px -144px; } /* p */
+.soe-font1-113  { width: 7px;  background-position:  -16px -144px; } /* q */
+.soe-font1-114  { width: 6px;  background-position:  -32px -144px; } /* r */
+.soe-font1-115  { width: 6px;  background-position:  -48px -144px; } /* s */
+.soe-font1-116  { width: 5px;  background-position:  -64px -144px; } /* t */
+.soe-font1-117  { width: 7px;  background-position:  -80px -144px; } /* u */
+.soe-font1-118  { width: 7px;  background-position:  -96px -144px; } /* v */
+.soe-font1-119  { width: 11px; background-position: -112px -144px; } /* w */
+
+.soe-font1-120  { width: 7px;  background-position:   -0px -156px; } /* x */
+.soe-font1-121  { width: 7px;  background-position:  -16px -156px; } /* y */
+.soe-font1-122  { width: 7px;  background-position:  -32px -156px; } /* z */
+/* */
+.soe-font1-124  { width: 2px;  background-position:  -64px -156px; } /* | */
+/* */
+/* */
+/* */
+
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
+/* */
