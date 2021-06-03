@@ -39,7 +39,7 @@ function lufiaPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             if (hashcharlist[utf16char] > 0) {
                 counter[indexLine] += hashcharlist[utf16char];
                 buffer = `<div class="lufia-font1 lufia-font1-${utf16int}"></div>`;
-            } else if (utf16char == "\n") {
+            } else if (utf16char === '\n') {
                 buffer = '<br />';
                 indexLine++;
             } else if (utf16char !== 13) {

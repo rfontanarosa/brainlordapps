@@ -100,8 +100,8 @@ function ffmqPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             let buffer = '';
             if (hashcharlist[utf16char] > 0) {
                 counter[indexLine] += hashcharlist[utf16char];
-                buffer = '<div class="ffmq-font1 ffmq-font1-' + utf16int + '"></div>';
-            } else if (utf16char == "\n") {
+                buffer = `<div class="ffmq-font1 ffmq-font1-${utf16int}"></div>`;
+            } else if (utf16char === '\n') {
                 buffer = '<br />';
                 indexLine++;
             } else {
@@ -113,7 +113,7 @@ function ffmqPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
         };
 
         for (let i = 0; i < counter.length; i++) {
-            if (counter[i] <= 208) {
+            if (counter[i] <= charLimit) {
                 counterstring[i] = "Line " + (i + 1) + ": " + counter[i] + " pixel";
             } else {
                 counterstring[i] = "<div class=\"redtext\">Line " + (i + 1) + ": " + counter[i] + " pixel</div>";

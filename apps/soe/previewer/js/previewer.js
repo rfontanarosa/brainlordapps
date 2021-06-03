@@ -44,23 +44,24 @@ function soePreviewBox(previewContainerSelector, text, boxIndex, boxType) {
         } else {
             if (utf16char === ' ') {
                 spacePosition = i;
-                // charCounter += hashcharlist[utf16char] ? hashcharlist[utf16char] : 0;
+                charCounter += hashcharlist[utf16char] ? hashcharlist[utf16char] + 1 : 0; // soe space shadow fix
                 wordCounter = 0;
-            }
-            charCounter += hashcharlist[utf16char] ? hashcharlist[utf16char] : 0;
-            wordCounter += hashcharlist[utf16char] ? hashcharlist[utf16char] : 0;
-            if (charCounter > charLimit) {
-                if (spacePosition !== -1) {
-                    if (lineCounter >= lineLimit) {
-                        newText = newText.replaceAt(spacePosition, '\r');
-                        lineCounter = 1;
-                    } else {
-                        newText = newText.replaceAt(spacePosition, '\n');
-                        lineCounter += 1;
+            } else {
+                charCounter += hashcharlist[utf16char] ? hashcharlist[utf16char] : 0;
+                wordCounter += hashcharlist[utf16char] ? hashcharlist[utf16char] : 0;
+                if (charCounter > charLimit) {
+                    if (spacePosition !== -1) {
+                        if (lineCounter >= lineLimit) {
+                            newText = newText.replaceAt(spacePosition, '\r');
+                            lineCounter = 1;
+                        } else {
+                            newText = newText.replaceAt(spacePosition, '\n');
+                            lineCounter += 1;
+                        }
                     }
+                    spacePosition = -1;
+                    charCounter = wordCounter;
                 }
-                spacePosition = -1;
-                charCounter = wordCounter;
             }
         }
     }
@@ -99,8 +100,8 @@ function soePreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             let buffer = '';
             if (hashcharlist[utf16char] > 0) {
                 counter[indexLine] += hashcharlist[utf16char];
-                buffer = '<div class="soe-font1 soe-font1-' + utf16int + '"></div>';
-            } else if (utf16char == "\n") {
+                buffer = `<div class="soe-font1 soe-font1-${utf16int}"></div>`;
+            } else if (utf16char === '\n') {
                 buffer = '<br />';
                 indexLine++;
             } else {
@@ -112,7 +113,7 @@ function soePreviewBox(previewContainerSelector, text, boxIndex, boxType) {
         };
 
         for (let i = 0; i < counter.length; i++) {
-            if (counter[i] <= 150) {
+            if (counter[i] <= charLimit) {
                 counterstring[i] = "Line " + (i + 1) + ": " + counter[i] + " pixel";
             } else {
                 counterstring[i] = "<div class=\"redtext\">Line " + (i + 1) + ": " + counter[i] + " pixel</div>";

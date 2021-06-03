@@ -13,7 +13,7 @@
     width: 256px;
 }
 
-.ffmq-preview-box .counter1, .ffmq-preview-box .counter2, .ffmq-preview-box .counter3 {
+.ffmq-preview-box .infobox > div {
     margin: 5px;
 }
 
