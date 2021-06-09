@@ -5,6 +5,8 @@ String.prototype.replaceAt = function(index, replacement) {
 function soeTextClean(text) {
     text = text.replace(/{/g, '"');
     text = text.replace(/}/g, '"');
+    text = text.replace(/<\$93>/g, "");
+    text = text.replace(/<\$94>/g, "");
     text = text.replace(/<\$96>/g, "");
     text = text.replace(/<\$97>/g, "");
     text = text.replace(/<\$85>/g, "");
@@ -65,16 +67,17 @@ function soePreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             }
         }
     }
+
     // console.log(newText.replaceAll('\r', '<BOX>').replaceAll('\n', '<LINE>'));
 
-    const previewContainer = $('#' + previewContainerSelector);
-
+    const previewContainer = $(`#${previewContainerSelector}`);
     let dialogs = newText.split('\r');
     dialogs = dialogs.filter(element => element !== '');
     dialogs.forEach((dialog, index) => {
 
-        const dialogId = `dialog-${boxIndex}-${index}`;
-        dialogBox = '<div id="' + dialogId + '" class="soe-dialogbox">\
+        const previewBoxClass = 'soe-preview-box';
+        const previewBoxId = `dialog-${boxIndex}-${index}`;
+        const previewBox = `<div class="${previewBoxClass}" id="${previewBoxId}">\
             <div class="bgimage">\
                 <div class="chars"></div>\
             </div>\
@@ -85,12 +88,11 @@ function soePreviewBox(previewContainerSelector, text, boxIndex, boxType) {
                 <div class="counter4"></div>\
                 <div class="alert"></div>\
             </div>\
-        </div>';
-        previewContainer.append(dialogBox);
+        </div>`;
+        previewContainer.append(previewBox);
 
         let indexLine = 0;
         let picturestring = '';
-        const counterstring = ['', '', '', ''];
         let alert = '';
         const counter = [0, 0, 0, 0];
 
@@ -112,21 +114,18 @@ function soePreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             }
         };
 
-        for (let i = 0; i < counter.length; i++) {
-            if (counter[i] <= charLimit) {
-                counterstring[i] = "Line " + (i + 1) + ": " + counter[i] + " pixel";
-            } else {
-                counterstring[i] = "<div class=\"redtext\">Line " + (i + 1) + ": " + counter[i] + " pixel</div>";
-            }
-        }
+        const counterstring = counter.map((count, i) => count <= charLimit
+            ? `Line ${i + 1}: ${count} pixel`
+            : `<div class="redtext">Line ${i + 1}: ${count} pixel</div>`
+        );
 
-        const dialogSelector = `#${dialogId}`;
-        $(dialogSelector, previewContainer).find('.chars').html(picturestring);
-        $(dialogSelector, previewContainer).find('.counter1').html(counterstring[0]);
-        $(dialogSelector, previewContainer).find('.counter2').html(counterstring[1]);
-        $(dialogSelector, previewContainer).find('.counter3').html(counterstring[2]);
-        $(dialogSelector, previewContainer).find('.counter4').html(counterstring[3]);
-        $(dialogSelector, previewContainer).find('.alert').html(alert !== '' ? `Unsupported character(s): ${alert}` : '');
+        const previewBoxSelector = `#${previewBoxId}`;
+        $(previewBoxSelector, previewContainer).find('.chars').html(picturestring);
+        $(previewBoxSelector, previewContainer).find('.counter1').html(counterstring[0]);
+        $(previewBoxSelector, previewContainer).find('.counter2').html(counterstring[1]);
+        $(previewBoxSelector, previewContainer).find('.counter3').html(counterstring[2]);
+        $(previewBoxSelector, previewContainer).find('.counter4').html(counterstring[3]);
+        $(previewBoxSelector, previewContainer).find('.alert').html(alert !== '' ? `Unsupported character(s): ${alert}` : '');
 
     });
 

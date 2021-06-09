@@ -21,13 +21,15 @@ function brainlordTextClean(text) {
 
 function brainlordPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
 
-    const previewContainer = $('#' + previewContainerSelector);
+    const charLimit = 222;
+
+    const previewContainer = $(`#${previewContainerSelector}`);
     const dialogs = text.split(/<input>/g);
     dialogs.forEach((dialog, index) => {
 
-        const dialogId = `dialog-${boxIndex}-${index}`;
-        const dialogClass = 'brainlord-dialog-box';
-        dialogBox = `<div id="${dialogId}" class="brainlord-preview-box ${dialogClass}">\
+        const previewBoxClass = 'brainlord-preview-box';
+        const previewBoxId = `dialog-${boxIndex}-${index}`;
+        const previewBox = `<div class="${previewBoxClass}" id="${previewBoxId}">\
             <div class="bgimage">\
                 <div class="chars"></div>\
             </div>\
@@ -39,13 +41,12 @@ function brainlordPreviewBox(previewContainerSelector, text, boxIndex, boxType) 
                 <div class="alert"></div>\
             </div>\
         </div>`;
-        previewContainer.append(dialogBox);
+        previewContainer.append(previewBox);
 
         dialog = brainlordTextClean(dialog);
 
         let indexLine = 0;
         let picturestring = '';
-        const counterstring = ['', '', '', ''];
         let alert = '';
         const counter = [0, 0, 0, 0];
 
@@ -67,21 +68,18 @@ function brainlordPreviewBox(previewContainerSelector, text, boxIndex, boxType) 
             }
         }
 
-        for (let i = 0; i < counter.length; i++) {
-            if (counter[i] <= 222) {
-                counterstring[i] = "Line " + (i + 1) + ": " + counter[i] + " pixel";
-            } else {
-                counterstring[i] = "<div class=\"redtext\">Line " + (i + 1) + ": " + counter[i] + " pixel</div>";
-            }
-        }
+        const counterstring = counter.map((count, i) => count <= charLimit
+            ? `Line ${i + 1}: ${count} pixel`
+            : `<div class="redtext">Line ${i + 1}: ${count} pixel</div>`
+        );
 
-        const dialogSelector = `#${dialogId}`;
-        $(dialogSelector, previewContainer).find('.chars').html(picturestring);
-        $(dialogSelector, previewContainer).find('.counter1').html(counterstring[0]);
-        $(dialogSelector, previewContainer).find('.counter2').html(counterstring[1]);
-        $(dialogSelector, previewContainer).find('.counter3').html(counterstring[2]);
-        $(dialogSelector, previewContainer).find('.counter4').html(counterstring[3]);
-        $(dialogSelector, previewContainer).find('.alert').html(alert !== '' ? `Unsupported character(s): ${alert}` : '');
+        const previewBoxSelector = `#${previewBoxId}`;
+        $(previewBoxSelector, previewContainer).find('.chars').html(picturestring);
+        $(previewBoxSelector, previewContainer).find('.counter1').html(counterstring[0]);
+        $(previewBoxSelector, previewContainer).find('.counter2').html(counterstring[1]);
+        $(previewBoxSelector, previewContainer).find('.counter3').html(counterstring[2]);
+        $(previewBoxSelector, previewContainer).find('.counter4').html(counterstring[3]);
+        $(previewBoxSelector, previewContainer).find('.alert').html(alert !== '' ? `Unsupported character(s): ${alert}` : '');
 
     });
 

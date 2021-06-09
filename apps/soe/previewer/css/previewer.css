@@ -1,8 +1,8 @@
-.soe-dialogbox {
+.soe-preview-box {
     margin-right: .5rem;
 }
 
-.soe-dialogbox .infobox {
+.soe-preview-box .infobox {
     border: 1px solid black;
     background-color: white;
     color: black;
@@ -13,31 +13,31 @@
     width: 256px;
 }
 
-.soe-dialogbox .infobox > div {
+.soe-preview-box .infobox > div {
     margin: 5px;
 }
 
-.soe-dialogbox .alert {
+.soe-preview-box .alert {
     color: #fa4444;
     margin: 5px;
     padding: 0px;
     border: none;
 }
 
-.soe-dialogbox .bgimage {
+.soe-preview-box .bgimage {
     height: 224px;
     width: 256px;
     background: url(../images/background0.png) no-repeat;
 }
 
-.soe-dialogbox .chars {
+.soe-preview-box .chars {
     padding-left: 20px;
     padding-top: 20px;
     line-height: 0px;
     position: relative;
 }
 
-.soe-dialogbox .chars br {
+.soe-preview-box .chars br {
     margin-bottom: 1px;
 }
 

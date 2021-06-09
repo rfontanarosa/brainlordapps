@@ -24,20 +24,20 @@
     border: none;
 }
 
-.lufia-dialog-box .bgimage {
+.lufia-preview-box .bgimage {
     height: 224px;
     width: 256px;
     background: url(../images/lufia_textbox.png) no-repeat;
 }
 
-.lufia-dialog-box .chars {
+.lufia-preview-box .chars {
     padding-left: 8px;
     padding-top: 15px;
     line-height: 0px;
     position: relative;
 }
 
-.lufia-dialog-box .chars br {
+.lufia-preview-box .chars br {
     margin-bottom: 0px;
 }
 

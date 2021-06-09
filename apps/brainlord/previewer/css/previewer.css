@@ -24,20 +24,20 @@
     border: none;
 }
 
-.brainlord-dialog-box .bgimage {
+.brainlord-preview-box .bgimage {
     height: 224px;
     width: 256px;
     background: url(../images/bl-preview.png) no-repeat;
 }
 
-.brainlord-dialog-box .chars {
+.brainlord-preview-box .chars {
     padding-left: 24px;
     padding-top: 144px;
     line-height: 0px;
     position: relative;
 }
 
-.brainlord-dialog-box .chars br {
+.brainlord-preview-box .chars br {
     margin-bottom: 0px;
 }
 
