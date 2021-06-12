@@ -112,20 +112,20 @@ function soePreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             if (buffer !== '') {
                 picturestring += buffer;
             }
-        };
+        }
 
         const counterstring = counter.map((count, i) => count <= charLimit
             ? `Line ${i + 1}: ${count} pixel`
             : `<div class="redtext">Line ${i + 1}: ${count} pixel</div>`
         );
 
-        const previewBoxSelector = `#${previewBoxId}`;
-        $(previewBoxSelector, previewContainer).find('.chars').html(picturestring);
-        $(previewBoxSelector, previewContainer).find('.counter1').html(counterstring[0]);
-        $(previewBoxSelector, previewContainer).find('.counter2').html(counterstring[1]);
-        $(previewBoxSelector, previewContainer).find('.counter3').html(counterstring[2]);
-        $(previewBoxSelector, previewContainer).find('.counter4').html(counterstring[3]);
-        $(previewBoxSelector, previewContainer).find('.alert').html(alert !== '' ? `Unsupported character(s): ${alert}` : '');
+        const previewBoxElement = $(`#${previewBoxId}`, previewContainer);
+        previewBoxElement.find('.chars').html(picturestring);
+        previewBoxElement.find('.counter1').html(counterstring[0]);
+        previewBoxElement.find('.counter2').html(counterstring[1]);
+        previewBoxElement.find('.counter3').html(counterstring[2]);
+        previewBoxElement.find('.counter4').html(counterstring[3]);
+        previewBoxElement.find('.alert').html(alert !== '' ? `Unsupported character(s): ${alert}` : '');
 
     });
 
