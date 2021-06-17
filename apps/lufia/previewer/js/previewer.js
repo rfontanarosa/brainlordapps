@@ -1,37 +1,24 @@
-function lufiaTextClean(text) {
-    return text;
-}
+function lufiaRenderPreview(selector, text, config) {
+    const {textId, numRows, rowMaxPixels, previewerClass, fontClass} = config;
 
-function lufiaPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
-
-    const charLimit = 240;
-
-    const previewContainer = $(`#${previewContainerSelector}`);
-    const dialogs = text.split(/<input>/g);
+    const previewContainer = $(`#${selector}`);
+    let dialogs = text.split('\r');
+    dialogs = dialogs.filter(element => element !== '');
     dialogs.forEach((dialog, index) => {
 
-        const previewBoxClass = 'lufia-preview-box';
-        const previewBoxId = `dialog-${boxIndex}-${index}`;
-        const previewBox = `<div class="${previewBoxClass}" id="${previewBoxId}">\
+        const previewBoxId = `dialog-${textId}-${index}`;
+        const previewBox = `<div class="${previewerClass}" id="${previewBoxId}">\
             <div class="bgimage">\
                 <div class="chars"></div>\
             </div>\
-            <div class="infobox">\
-                <div class="counter1"></div>\
-                <div class="counter2"></div>\
-                <div class="counter3"></div>\
-                <div class="counter4"></div>\
-                <div class="alert"></div>\
-            </div>\
+            <div class="infobox"></div>\
         </div>`;
         previewContainer.append(previewBox);
-
-        dialog = lufiaTextClean(dialog);
 
         let indexLine = 0;
         let picturestring = '';
         let alert = '';
-        const counter = [0, 0, 0, 0];
+        const counter = new Array(numRows).fill(0);
 
         for (let i = 0; i < dialog.length; i++) {
             const utf16char = dialog.charAt(i);
@@ -39,7 +26,7 @@ function lufiaPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             let buffer = "";
             if (hashcharlist[utf16char] > 0) {
                 counter[indexLine] += hashcharlist[utf16char];
-                buffer = `<div class="lufia-font1 lufia-font1-${utf16int}"></div>`;
+                buffer = `<div class="${fontClass} ${fontClass}-${utf16int}"></div>`;
             } else if (utf16char === '\n') {
                 buffer = '<br />';
                 indexLine++;
@@ -51,18 +38,14 @@ function lufiaPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
             }
         }
 
-        const counterstring = counter.map((count, i) => count <= charLimit
-            ? `Line ${i + 1}: ${count} pixel`
-            : `<div class="redtext">Line ${i + 1}: ${count} pixel</div>`
-        );
-
         const previewBoxElement = $(`#${previewBoxId}`, previewContainer);
         previewBoxElement.find('.chars').html(picturestring);
-        previewBoxElement.find('.counter1').html(counterstring[0]);
-        previewBoxElement.find('.counter2').html(counterstring[1]);
-        previewBoxElement.find('.counter3').html(counterstring[2]);
-        previewBoxElement.find('.counter4').html(counterstring[3]);
-        previewBoxElement.find('.alert').html(alert !== '' ? `Unsupported character(s): ${alert}` : '');
+        const infoboxElement = $(".infobox", previewBoxElement);
+        counter.forEach((count, i) => {
+            const classNames = `counter${i + 1}` + (count <= rowMaxPixels ? "" : " redtext");
+            infoboxElement.append(`<div class="${classNames}">Line ${i + 1}: ${count} pixel</div>`);
+        });
+        infoboxElement.append(`<div class="alert">${alert !== "" ? "Unsupported character(s): " + alert : ""}</div>`);
 
     });
 
@@ -70,8 +53,14 @@ function lufiaPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
 
 function renderPreview(previewContainerSelector, text, id, type) {
     document.getElementById(previewContainerSelector).innerHTML = '';
-    const boxType = 1;
-    lufiaPreviewBox(previewContainerSelector, text, id, boxType);
+    const previewerConfig = {
+        textId: id,
+        numRows: 4,
+        rowMaxPixels: 240,
+        previewerClass: 'lufia-preview-box',
+        fontClass: 'lufia-font1'
+    };
+    lufiaRenderPreview(previewContainerSelector, text, previewerConfig);
 }
 
 const charlist = [];
