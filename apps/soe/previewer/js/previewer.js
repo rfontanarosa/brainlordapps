@@ -5,6 +5,7 @@ String.prototype.replaceAt = function(index, replacement) {
 const soeTextClean = text => {
     text = text.replace(/{/g, '"');
     text = text.replace(/}/g, '"');
+    text = text.replace(/<\$92>/g, "");
     text = text.replace(/<\$93>/g, "");
     text = text.replace(/<\$94>/g, "");
     text = text.replace(/<\$96>/g, "");
@@ -16,6 +17,8 @@ const soeTextClean = text => {
     text = text.replace(/<Dog>/g, "XXXXX");
     text = text.replace(/<\Choice>/g, "");
     text = text.replace(/<S \$.. \$..>/g, "");
+    text = text.replace(/«/g, "<");
+    text = text.replace(/»/g, ">");
     return text;
 };
 
