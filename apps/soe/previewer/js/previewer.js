@@ -130,7 +130,7 @@ function renderPreview(previewContainerSelector, text, id, type) {
         previewerClass: 'soe-preview-box',
         fontClass: 'soe-font1'
     };
-    const parsedText = soeTextParse(text, soeTextParse, previewerConfig.numRows, previewerConfig.rowMaxPixels);
+    const parsedText = soeTextParse(text, soeTextClean, previewerConfig.numRows, previewerConfig.rowMaxPixels);
     soeRenderPreview(previewContainerSelector, parsedText, previewerConfig);
 }
 
