@@ -14,6 +14,7 @@ const soeTextClean = text => {
     text = text.replace(/<\$87>/g, "");
     text = text.replace(/<\$A3>/g, "XXXXX");
     text = text.replace(/<\Item>/g, "XXXXX");
+    text = text.replace(/<Boy>/g, "XXXXX");
     text = text.replace(/<Dog>/g, "XXXXX");
     text = text.replace(/<\Choice>/g, "");
     text = text.replace(/<S \$.. \$..>/g, "");
