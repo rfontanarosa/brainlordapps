@@ -1,7 +1,10 @@
 function spikeTextClean(text) {
     text = text.replace(/\[WIN.+]/g, '');
+    text = text.replace(/\{e8}/g, '');
+    text = text.replace(/\{f2}/g, '');
     text = text.replace(/\{f4}{..\}{..\}/g, '');
     text = text.replace(/\{f6}{..\}/g, '');
+    text = text.replace(/\{f7}/g, '');
     text = text.replace(/\{f8}{..\}/g, '');
     text = text.replace(/\{fa}{..\}{..\}{..\}{..\}/g, '');
     text = text.replace(/\{fc}{..\}/g, '');
@@ -15,8 +18,7 @@ function spikeRenderPreview(selector, text, config) {
     const {textId, numRows, rowMaxPixels, previewerClass, fontClass} = config;
 
     const previewContainer = $(`#${selector}`);
-    let dialogs = text.split(/\[WIN.+]|\[CONTINUE]\n/g);
-    console.log(dialogs)
+    let dialogs = text.split(/\[WIN.+]|\[CONTINUE]\n|\[SCROLL 08]\n/g);
     dialogs = dialogs.filter(element => element !== '');
     dialogs.forEach((dialog, index) => {
 
@@ -85,6 +87,7 @@ charlist.push([" 0123456789ABCDE", 8]);
 charlist.push(["FGHIJKLMNOPQRSTU", 8]);
 charlist.push(["VWXYZabcdefghijk", 8]);
 charlist.push(["lmnopqrstuvwxyz", 8]);
+charlist.push(["àèéìòùÈ", 8]);
 charlist.push([".,'", 8]);
 charlist.push(["\"-…!?", 8]);
 
