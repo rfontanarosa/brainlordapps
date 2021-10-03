@@ -7,8 +7,8 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 
 define('TITLE', 'The Twisted Tales of Spike McFang');
 
-define('SQLITE_FILENAME', RESOURCE_PATH . '/spike/db/spike.db');
-define('LAST_ENTRY', 295);
+define('SQLITE_FILENAME', RESOURCE_PATH . '/spike/db/spike.sqlite3');
+define('LAST_ENTRY', 175);
 define('NEWLINECHAR', '');
 define('NEWLINE_REPLACE', 0);
 
