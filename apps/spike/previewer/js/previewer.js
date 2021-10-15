@@ -1,16 +1,14 @@
 function spikeTextClean(text) {
     text = text.replace(/\[WIN.+]/g, '');
-    text = text.replace(/\{e8}/g, '');
-    text = text.replace(/\{f2}/g, '');
-    text = text.replace(/\{f4}{..\}{..\}/g, '');
-    text = text.replace(/\{f6}{..\}/g, '');
-    text = text.replace(/\{f7}/g, '');
-    text = text.replace(/\{f8}{..\}/g, '');
-    text = text.replace(/\{fa}{..\}{..\}{..\}{..\}/g, '');
-    text = text.replace(/\{fc}{..\}/g, '');
-    text = text.replace(/\{fd}{..\}{..\}{..\}{..\}/g, '');
-    text = text.replace(/\{fe}{..\}/g, '');
-    text = text.replace(/\{ff}{..\}{..\}/g, '');
+    text = text.replace(/\[COLOR .+]/g, '');
+    text = text.replace(/\[SCROLL ..]/g, '');
+    text = text.replace(/\[F4 .. ..]/g, '');
+    text = text.replace(/\[F6 ..]/g, '');
+    text = text.replace(/\[F8 ..]/g, '');
+    text = text.replace(/\[FD .. .. .. ..]/g, '');
+    text = text.replace(/\[FE ..]/g, '');
+    text = text.replace(/\[FF .. ..]/g, '');
+    text = text.replace(/\{..}/g, '');
     return text;
 }
 
@@ -18,7 +16,7 @@ function spikeRenderPreview(selector, text, config) {
     const {textId, numRows, rowMaxPixels, previewerClass, fontClass} = config;
 
     const previewContainer = $(`#${selector}`);
-    let dialogs = text.split(/\[WIN.+]|\[CONTINUE]\n|\[SCROLL 08]\n/g);
+    let dialogs = text.split(/\[WIN.+]|\[CONTINUE]\n|\[SCROLL ..]\n/g);
     dialogs = dialogs.filter(element => element !== '');
     dialogs.forEach((dialog, index) => {
 
@@ -32,7 +30,6 @@ function spikeRenderPreview(selector, text, config) {
         previewContainer.append(previewBox);
 
         dialog = spikeTextClean(dialog);
-        console.log(dialog);
 
         let indexLine = 0;
         let picturestring = '';
@@ -42,7 +39,7 @@ function spikeRenderPreview(selector, text, config) {
         for (let i = 0; i < dialog.length; i++) {
             const utf16char = dialog.charAt(i);
             const utf16int = utf16char.charCodeAt();
-            let buffer = "";
+            let buffer = '';
             if (hashcharlist[utf16char] > 0) {
                 counter[indexLine] += hashcharlist[utf16char];
                 buffer = `<div class="${fontClass} ${fontClass}-${utf16int}"></div>`;
@@ -89,7 +86,7 @@ charlist.push(["VWXYZabcdefghijk", 8]);
 charlist.push(["lmnopqrstuvwxyz", 8]);
 charlist.push(["àèéìòùÈ", 8]);
 charlist.push([".,'", 8]);
-charlist.push(["\"-…!?", 8]);
+charlist.push(["\"-…!?:", 8]);
 
 const hashcharlist = [];
 for (let i = 0; i < charlist.length; i++) {
