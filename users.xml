@@ -5,6 +5,7 @@
 		<uname>clomax</uname>
 		<pass>a1163e2185c02cb934eec16cca3fc507</pass>
 		<apps>
+			<!-- <app name="7thsaga" role="user" /> -->
 			<app name="bof" role="user" />
 			<app name="brainlord" role="user" />
 			<app name="brandish" role="user" />
@@ -15,8 +16,8 @@
 			<app name="sd3" role="user" />
 			<app name="soe" role="user" />
 			<app name="smrpg" role="user" />
-			<app name="so" role="user" />
 			<app name="spike" role="user" />
+			<app name="starocean" role="user" />
 			<app name="ys3" role="user" />
 			<app name="ys4" role="user" />
 		</apps>
