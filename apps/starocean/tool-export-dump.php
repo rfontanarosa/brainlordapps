@@ -32,7 +32,7 @@
         $text_decoded = $row[2];
         $translation = $row[1];
         $text = $translation ? $translation : $text_decoded;
-        $str .= "$ref$text\n\n";
+        $str .= "$ref$text\n\n\n";
     }
 
     header("Content-Disposition: attachment; filename=$filename");
