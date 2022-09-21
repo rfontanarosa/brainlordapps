@@ -1,0 +1,172 @@
+.starocean-preview-box {
+  margin-right: .5rem;
+}
+
+.starocean-preview-box .infobox {
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  font-size: 10px;
+  margin: 10px 0;
+  min-height: 5px;
+  text-align: left;
+  width: 256px;
+}
+
+.starocean-preview-box .infobox > div {
+  margin: 5px;
+}
+
+.starocean-preview-box .alert {
+  color: #fa4444;
+  margin: 5px;
+  padding: 0px;
+  border: none;
+}
+
+.starocean-preview-box .bgimage {
+  height: 80px;
+  width: 256px;
+  /* background: url(../images/starocean_dialog_box.png) no-repeat; */
+  background: url(../images/starocean_dialog_box.png) no-repeat;
+}
+
+.starocean-preview-box .chars {
+  padding-left: 24px;
+  padding-top: 7px;
+  line-height: 0px;
+  position: relative;
+}
+
+.starocean-preview-box .chars br {
+  margin-bottom: 1px;
+}
+
+.starocean-font1 {
+  min-height: 16px;
+  display: inline-block;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  width: 16px;
+  background-image: url(../images/3F0000_font_ita.png);
+}
+
+/*  12*/
+.starocean-font1-48   { width: 7px; background-position:  -16px   -0px; } /* 0 */
+.starocean-font1-49   { width: 5px; background-position:  -32px   -0px; } /* 1 */
+.starocean-font1-50   { width: 7px; background-position:  -48px   -0px; } /* 2 */
+.starocean-font1-51   { width: 7px; background-position:  -64px   -0px; } /* 3 */
+.starocean-font1-52   { width: 8px; background-position:  -80px   -0px; } /* 4 */
+.starocean-font1-53   { width: 7px; background-position:  -96px   -0px; } /* 5 */
+.starocean-font1-54   { width: 7px; background-position: -112px   -0px; } /* 6 */
+
+.starocean-font1-55   { width: 7px; background-position:   -0px  -16px; } /* 7 */
+.starocean-font1-56   { width: 7px; background-position:  -16px  -16px; } /* 8 */
+.starocean-font1-57   { width: 7px; background-position:  -32px  -16px; } /* 9 */
+.starocean-font1-65   { width: 7px; background-position:  -48px  -16px; } /* A */
+.starocean-font1-66   { width: 7px; background-position:  -64px  -16px; } /* B */
+.starocean-font1-67   { width: 7px; background-position:  -80px  -16px; } /* C */
+.starocean-font1-68   { width: 7px; background-position:  -96px  -16px; } /* D */
+.starocean-font1-69   { width: 6px; background-position: -112px  -16px; } /* E */
+
+.starocean-font1-70   { width: 6px; background-position:   -0px  -32px; } /* F */ 
+.starocean-font1-71   { width: 7px; background-position:  -16px  -32px; } /* G */
+.starocean-font1-72   { width: 7px; background-position:  -32px  -32px; } /* H */
+.starocean-font1-73   { width: 3px; background-position:  -48px  -32px; } /* I */
+.starocean-font1-74   { width: 7px; background-position:  -64px  -32px; } /* J */
+.starocean-font1-75   { width: 8px; background-position:  -80px  -32px; } /* K */
+.starocean-font1-76   { width: 6px; background-position:  -96px  -32px; } /* L */
+.starocean-font1-77   { width:11px; background-position: -112px  -32px; } /* M */
+
+.starocean-font1-78   { width: 8px; background-position:   -0px  -48px; } /* N */
+.starocean-font1-79   { width: 7px; background-position:  -16px  -48px; } /* O */
+.starocean-font1-80   { width: 7px; background-position:  -32px  -48px; } /* P */
+.starocean-font1-81   { width: 7px; background-position:  -48px  -48px; } /* Q */
+.starocean-font1-82   { width: 7px; background-position:  -64px  -48px; } /* R */
+.starocean-font1-83   { width: 6px; background-position:  -80px  -48px; } /* S */
+.starocean-font1-84   { width: 7px; background-position:  -96px  -48px; } /* T */
+.starocean-font1-85   { width: 7px; background-position: -112px  -48px; } /* U */
+
+.starocean-font1-86   { width: 7px; background-position:   -0px  -64px; } /* V */
+.starocean-font1-87   { width:11px; background-position:  -15px  -64px; } /* W */
+.starocean-font1-88   { width: 7px; background-position:  -32px  -64px; } /* X */
+.starocean-font1-89   { width: 7px; background-position:  -48px  -64px; } /* Y */
+.starocean-font1-90   { width: 7px; background-position:  -64px  -64px; } /* Z */
+/* À 7*/
+/* È 6*/
+/* É 3*/
+
+/* Ì 7*/
+/* Ò 7*/
+/* Ù 7*/
+/*  8*/
+.starocean-font1-97   { width: 7px; background-position:  -64px  -80px; } /* a */
+.starocean-font1-98   { width: 7px; background-position:  -80px  -80px; } /* b */
+.starocean-font1-99   { width: 6px; background-position:  -96px  -80px; } /* c */
+.starocean-font1-100  { width: 7px; background-position: -112px  -80px; } /* d */
+
+.starocean-font1-101  { width: 7px; background-position:   -0px  -96px; } /* e */
+.starocean-font1-102  { width: 6px; background-position:  -16px  -96px; } /* f */
+.starocean-font1-103  { width: 7px; background-position:  -32px  -96px; } /* g */
+.starocean-font1-104  { width: 7px; background-position:  -48px  -96px; } /* h */
+.starocean-font1-105  { width: 3px; background-position:  -64px  -96px; } /* i */
+.starocean-font1-106  { width: 6px; background-position:  -80px  -96px; } /* j */
+.starocean-font1-107  { width: 7px; background-position:  -96px  -96px; } /* k */
+.starocean-font1-108  { width: 3px; background-position: -112px  -96px; } /* l */
+
+.starocean-font1-109  { width:11px; background-position:   -0px -112px; } /* m */
+.starocean-font1-110  { width: 7px; background-position:  -16px -112px; } /* n */
+.starocean-font1-111  { width: 7px; background-position:  -32px -112px; } /* o */
+.starocean-font1-112  { width: 7px; background-position:  -48px -112px; } /* p */
+.starocean-font1-113  { width: 7px; background-position:  -64px -112px; } /* q */
+.starocean-font1-114  { width: 6px; background-position:  -80px -112px; } /* r */
+.starocean-font1-115  { width: 6px; background-position:  -96px -112px; } /* s */
+.starocean-font1-116  { width: 5px; background-position: -112px -112px; } /* t */
+
+.starocean-font1-117  { width: 7px; background-position:   -0px -128px; } /* u */
+.starocean-font1-118  { width: 7px; background-position:  -16px -128px; } /* v */
+.starocean-font1-119  { width:12px; background-position:  -32px -128px; } /* w */
+.starocean-font1-120  { width: 7px; background-position:  -48px -128px; } /* x */
+.starocean-font1-121  { width: 7px; background-position:  -64px -128px; } /* y */
+.starocean-font1-122  { width: 7px; background-position:  -80px -128px; } /* z */
+/* à 7*/
+/* è 7*/
+
+/* é 3*/
+/* ì 7*/
+/* ò 7*/
+/* ù 7*/
+/*  7*/
+.starocean-font1-32   { width: calc(4px + 1px); background-position:  -80px -144px; } /*   */
+.starocean-font1-39   { width: 4px; background-position:  -96px -144px; } /* ' */
+.starocean-font1-33   { width: 4px; background-position: -112px -144px; } /* ! */
+
+.starocean-font1-191  { width: 7px; background-position:   -0px -160px; } /* ¿ */
+.starocean-font1-63   { width: 7px; background-position:  -16px -160px; } /* ? */
+.starocean-font1-44   { width: 3px; background-position:  -32px -160px; } /* , */
+.starocean-font1-46   { width: 3px; background-position:  -48px -160px; } /* . */
+.starocean-font1-58   { width: 3px; background-position:  -64px -160px; } /* : */
+.starocean-font1-59   { width: 3px; background-position:  -80px -160px; } /* ; */
+.starocean-font1-8220 { width: 6px; background-position:  -96px -160px; } /* “ */
+.starocean-font1-8221 { width: 6px; background-position: -112px -160px; } /* ” */
+
+.starocean-font1-47   { width: 7px; background-position:   -0px -176px; } /* / */
+.starocean-font1-42   { width: 8px; background-position:  -16px -176px; } /* * */
+.starocean-font1-43   { width: 7px; background-position:  -32px -176px; } /* + */
+.starocean-font1-45   { width: 7px; background-position:  -48px -176px; } /* - */
+.starocean-font1-61   { width: 7px; background-position:  -64px -176px; } /* = */
+.starocean-font1-35   { width:10px; background-position:  -80px -176px; } /* # */
+.starocean-font1-37   { width:11px; background-position:  -96px -176px; } /* % */
+.starocean-font1-38   { width: 9px; background-position: -112px -176px; } /* & */
+
+.starocean-font1-40   { width: 4px; background-position:   -0px -192px; } /* ( */
+.starocean-font1-41   { width: 4px; background-position:  -16px -192px; } /* ) */
+.starocean-font1-60   { width: 7px; background-position:  -32px -192px; } /* < */
+.starocean-font1-62   { width: 7px; background-position:  -48px -192px; } /* > */
+.starocean-font1-9829 { width:12px; background-position:  -64px -192px; } /* ♥ */
+.starocean-font1-9834 { width:10px; background-position:  -80px -192px; } /* ♪ */
+.starocean-font1-9733 { width:11px; background-position:  -96px -192px; } /* ★ */
+.starocean-font1-9734 { width:11px; background-position: -112px -192px; } /* ☆ */
+
+.starocean-font1-178  { width: 5px; background-position:   -0px -208px; } /* ² */
+.starocean-font1-9765 { width: 0px; background-position:  -16px -208px; } /* ☥ */
