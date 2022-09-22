@@ -7,11 +7,20 @@ String.prototype.replaceAt = function (index, replacement) {
 };
 
 function staroceanTextClean(text) {
-  text = text.replace(/<ASHLAY>/g, "Ashlay");
-  text = text.replace(/<DORN>/g, "Dorn");
-  text = text.replace(/<IRIA>/g, "Dorn");
-  text = text.replace(/<MILLY>/g, "Milly");
   text = text.replace(/<RATIX>/g, "Ratix");
+  text = text.replace(/<MILLY>/g, "Milly");
+  text = text.replace(/<DORN>/g, "Dorn");
+  text = text.replace(/<RONIXIS>/g, "Ronixis");
+  text = text.replace(/<IRIA>/g, "Iria");
+  text = text.replace(/<CIUS>/g, "Cius");
+  text = text.replace(/<JOSHUA>/g, "Joshua");
+  text = text.replace(/<TINEK>/g, "Tinek");
+  text = text.replace(/<MARVEL>/g, "Marvel");
+  text = text.replace(/<ASHLAY>/g, "Ashlay");
+  text = text.replace(/<PERISIE>/g, "Perisie");
+  text = text.replace(/<FEAR>/g, "Fear");
+  text = text.replace(/<PAUSE><..>/g, "");
+  text = text.replace(/<COLOR><..>/g, "");
   text = text.replace(/<WAIT><CLOSE>/g, "");
   return text;
 }
@@ -22,8 +31,7 @@ function staroceanPreviewBox(
   boxIndex,
   boxType
 ) {
-  //   text = text.replace(/<(?:1A|1B|SPEAKER|SCROLL)[^>]*>\n/gm, "\r");
-  text = text.replaceAll("<WAIT>\n", "\n");
+  text = text.replaceAll("<WAIT>\n", "\r");
   text = staroceanTextClean(text);
   let newText = "";
   const charLimit = 208;
@@ -149,10 +157,13 @@ charlist.push(["MWm%★☆", 11]);
 charlist.push(["#♪", 10]);
 charlist.push(["&", 9]);
 charlist.push(["4KN*", 8]);
-charlist.push(["02356789ABCDEGHJOPQRTUVXYZabdeghknopquvxyz¿?/+-=<>", 7]);
-charlist.push(["EFLScfjrs“”", 6]);
+charlist.push([
+  "02356789ABCDEGHJOPQRTUVXYZabdeghknopquvxyz¿?/+-=<>ÀÒÙàèéòù",
+  7,
+]);
+charlist.push(["EFLScfjrs“”ÈÉ", 6]);
 charlist.push(["1t² ", 5]);
-charlist.push(["'!()", 4]);
+charlist.push(["'!()Ìì", 4]);
 charlist.push(["Iil,.:;", 3]);
 
 const hashcharlist = [];
