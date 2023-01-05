@@ -1,0 +1,144 @@
+.ignition-preview-box {
+    margin-right: .5rem;
+}
+
+.ignition-preview-box .infobox {
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    font-size: 10px;
+    margin: 10px 0;
+    min-height: 5px;
+    text-align: left;
+    width: 256px;
+}
+
+.ignition-preview-box .infobox > div {
+    margin: 5px;
+}
+
+.ignition-preview-box .infobox .alert {
+    color: #fa4444;
+    margin: 5px;
+    padding: 0px;
+    border: none;
+}
+
+.ignition-preview-box .bgimage {
+    height: 64px;
+    width: 256px;
+    background: url('../images/text_box.png') no-repeat;
+}
+
+.ignition-preview-box .chars {
+    padding-left: 8px;
+    padding-top: 8px;
+    line-height: 0px;
+    position: relative;
+}
+
+.ignition-preview-box .chars br {
+    margin-bottom: 0px;
+}
+
+.redtext {
+    color: #fa4444;
+}
+
+.ignition-font1 {
+    min-height: 16px;
+    display: inline-block;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    background-image: url(../images/font_8x12.png);
+    width: 8px;
+    background-position: -80px -16px;
+}
+
+.ignition-font1-32   { background-position: -0px    -0px; } /*   */
+.ignition-font1-97   { background-position: -8px    -0px; } /* a */
+.ignition-font1-98   { background-position: -16px   -0px; } /* b */
+.ignition-font1-99   { background-position: -24px   -0px; } /* c */
+.ignition-font1-100  { background-position: -32px   -0px; } /* d */
+.ignition-font1-101  { background-position: -40px   -0px; } /* e */
+.ignition-font1-102  { background-position: -48px   -0px; } /* f */
+.ignition-font1-103  { background-position: -56px   -0px; } /* g */
+.ignition-font1-104  { background-position: -64px   -0px; } /* h */
+.ignition-font1-105  { background-position: -72px   -0px; } /* i */
+.ignition-font1-106  { background-position: -80px   -0px; } /* j */
+.ignition-font1-107  { background-position: -88px   -0px; } /* k */
+.ignition-font1-108  { background-position: -96px   -0px; } /* l */
+.ignition-font1-109  { background-position: -104px  -0px; } /* m */
+.ignition-font1-110  { background-position: -112px  -0px; } /* n */
+.ignition-font1-111  { background-position: -120px  -0px; } /* o */
+
+.ignition-font1-112  { background-position: -0px   -16px; } /* p */
+.ignition-font1-113  { background-position: -8px   -16px; } /* q */
+.ignition-font1-114  { background-position: -16px  -16px; } /* r */
+.ignition-font1-115  { background-position: -24px  -16px; } /* s */
+.ignition-font1-116  { background-position: -32px  -16px; } /* t */
+.ignition-font1-117  { background-position: -40px  -16px; } /* u */
+.ignition-font1-118  { background-position: -48px  -16px; } /* v */
+.ignition-font1-119  { background-position: -56px  -16px; } /* w */
+.ignition-font1-120  { background-position: -64px  -16px; } /* x */
+.ignition-font1-121  { background-position: -72px  -16px; } /* y */
+.ignition-font1-122  { background-position: -80px  -16px; } /* z */
+.ignition-font1-46   { background-position: -88px  -16px; } /* . */
+.ignition-font1-34   { background-position: -96px  -16px; } /* " */
+.ignition-font1-44   { background-position: -104px -16px; } /* , */
+.ignition-font1-45   { background-position: -112px -16px; } /* - */
+.ignition-font1-39   { background-position: -120px -16px; } /* ' */
+
+.ignition-font1-58   { background-position: -0px  -32px;  } /* : */
+.ignition-font1-65   { background-position: -8px   -32px; } /* A */
+.ignition-font1-66   { background-position: -16px  -32px; } /* B */
+.ignition-font1-67   { background-position: -24px  -32px; } /* C */
+.ignition-font1-68   { background-position: -32px  -32px; } /* D */
+.ignition-font1-69   { background-position: -40px  -32px; } /* E */
+.ignition-font1-70   { background-position: -48px  -32px; } /* F */
+.ignition-font1-71   { background-position: -56px  -32px; } /* G */
+.ignition-font1-72   { background-position: -64px  -32px; } /* H */
+.ignition-font1-73   { background-position: -72px  -32px; } /* I */
+.ignition-font1-74   { background-position: -80px  -32px; } /* J */
+.ignition-font1-75   { background-position: -88px  -32px; } /* K */
+.ignition-font1-76   { background-position: -96px  -32px; } /* L */
+.ignition-font1-77   { background-position: -104px -32px; } /* M */
+.ignition-font1-78   { background-position: -112px -32px; } /* N */
+.ignition-font1-79   { background-position: -120px -32px; } /* O */
+
+.ignition-font1-80   { background-position: -0px   -48px; } /* P */
+.ignition-font1-81   { background-position: -8px   -48px; } /* Q */
+.ignition-font1-82   { background-position: -16px  -48px; } /* R */
+.ignition-font1-83   { background-position: -24px  -48px; } /* S */
+.ignition-font1-84   { background-position: -32px  -48px; } /* T */
+.ignition-font1-85   { background-position: -40px  -48px; } /* U */
+.ignition-font1-86   { background-position: -48px  -48px; } /* V */
+.ignition-font1-87   { background-position: -56px  -48px; } /* W */
+.ignition-font1-88   { background-position: -64px  -48px; } /* X */
+.ignition-font1-89   { background-position: -72px  -48px; } /* Y */
+.ignition-font1-90   { background-position: -80px  -48px; } /* Z */
+.ignition-font1-63   { background-position: -88px  -48px; } /* ? */
+.ignition-font1-33   { background-position: -96px  -48px; } /* ! */
+.ignition-font1-40   { background-position: -104px -48px; } /* ( */
+.ignition-font1-41   { background-position: -112px -48px; } /* ) */
+.ignition-font1-47   { background-position: -120px -48px; } /* / */
+
+.ignition-font1-48   { background-position: -0px   -64px; } /* 0 */
+.ignition-font1-49   { background-position: -8px   -64px; } /* 1 */
+.ignition-font1-50   { background-position: -16px  -64px; } /* 2 */
+.ignition-font1-51   { background-position: -24px  -64px; } /* 3 */
+.ignition-font1-52   { background-position: -32px  -64px; } /* 4 */
+.ignition-font1-53   { background-position: -40px  -64px; } /* 5 */
+.ignition-font1-54   { background-position: -48px  -64px; } /* 6 */
+.ignition-font1-55   { background-position: -56px  -64px; } /* 7 */
+.ignition-font1-56   { background-position: -64px  -64px; } /* 8 */
+.ignition-font1-57   { background-position: -72px  -64px; } /* 9 */
+.ignition-font1-59   { background-position: -80px  -64px; } /* ; */
+
+.ignition-font1-224  { background-position: -0px   -80px; } /* à */
+.ignition-font1-233  { background-position: -8px   -80px; } /* é */
+.ignition-font1-232  { background-position: -16px  -80px; } /* è */
+.ignition-font1-236  { background-position: -24px  -80px; } /* ì */
+.ignition-font1-242  { background-position: -32px  -80px; } /* ò */
+.ignition-font1-249  { background-position: -40px  -80px; } /* ù */
+.ignition-font1-200  { background-position: -48px  -80px; } /* È */
