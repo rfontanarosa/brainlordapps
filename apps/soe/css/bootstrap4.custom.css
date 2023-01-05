@@ -13,18 +13,16 @@ body {
   background: url(../images/bg3.png);
   border-right: 1px white solid;
 }
-
 .sidebar nav a {
   width: 4rem;
   margin-bottom: 1rem;
 }
-
 .sidebar nav a div {
-  font-size: .75rem;
+  font-size: 0.75rem;
 }
 
 .nav .nav-link {
-  padding: .5rem .5rem;
+  padding: 0.5rem 0.5rem;
 }
 
 .brain-navbar {
@@ -32,12 +30,10 @@ body {
   background: url(../images/bg3.png);
   border-bottom: 1px solid white;
 }
-
 .brain-navbar .navbar-brand, .brain-navbar .navbar-text {
   color: white;
-  text-shadow: 3px 3px 0px black;
+  text-shadow: 3px 3px 0px rgb(0, 0, 0);
 }
-
 .brain-navbar .navbar-toggler {
   border: 1px solid white;
 }
@@ -45,24 +41,20 @@ body {
 .brain-nav .nav-item {
   background: white;
   border: 1px solid white;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
 }
-
 .brain-nav .nav-item .nav-link {
-  padding: .25rem .5rem;
+  padding: 0.25rem 0.5rem;
 }
-
 .brain-nav .nav-item .nav-link .badge {
   vertical-align: middle;
-  margin-top: -.25em;
+  margin-top: -0.25em;
 }
-
 .brain-nav .nav-item .active {
   background: url(../images/bg0.png);
 }
-
 .brain-nav .nav-item a {
   color: black;
 }
@@ -72,26 +64,21 @@ body {
   color: white;
   border: 1px solid white;
 }
-
 .brain-card .card-body, .brain-card .card-header, .brain-card .card-footer {
-  padding: .5rem .5rem;
+  padding: 0.5rem 0.5rem;
 }
-
 .brain-card .card-header {
   border-bottom: 1px solid white;
 }
-
 .brain-card .card-header .btn {
-  padding: .25rem .5rem;
+  padding: 0.25rem 0.5rem;
   font-size: 75%;
   color: white;
   background-color: transparent;
   border: 1px solid white;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
   margin-left: 1rem;
 }
-
 .brain-card .card-footer {
   border-top: 1px solid white;
-}
-/*# sourceMappingURL=bootstrap4.custom.css.map */
+}/*# sourceMappingURL=bootstrap4.custom.css.map */
