@@ -1,10 +1,16 @@
+$text-primary-color: white;
+$text-secondary-color: black;
+$body-background: blue;
+$navbar-background: red;
+$card-background: purple;
+$nav-item-background: green;
+
 html {
 	height: 100%;
 }
 
 body {
 	height: 100%;
-	padding-top: 56px;
 	background: $body-background;
 }
 
@@ -34,7 +40,7 @@ body {
 		text-shadow: 3px 3px 0px rgba(0, 0, 0, 1);
 	}
 	.navbar-toggler {
-	border: 1px solid $text-primary-color;
+		border: 1px solid $text-primary-color;
 	}
 }
 
@@ -47,13 +53,15 @@ body {
 		margin-bottom: 1rem;
 		.nav-link {
 			padding: .25rem .5rem;
+			color: black;
+			&.active {
+				background: $card-background;
+				color: white;
+			}
 			.badge {
 				vertical-align: middle;
 				margin-top: -.25em;
 			}
-		}
-		.active {
-			background: $card-background;
 		}
 		a {
 			color: $text-secondary-color;

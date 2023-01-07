@@ -37,8 +37,8 @@ $(function() {
     }).done(function(data, textStatus, jqXHR) {
       const jsonObject = JSON.parse(data);
       const textarea = $('textarea[name=translation]');
-      const className = status === 0 ? 'btn-danger' : status === 1 ? 'btn-warning' : 'btn-success';
-      textarea.removeClass('btn-warning btn-danger btn-success').addClass(className);
+      const className = status === 0 ? 'text-bg-danger' : status === 1 ? 'text-bg-warning' : 'text-bg-success';
+      textarea.removeClass('text-bg-warning text-bg-danger text-bg-success').addClass(className);
       $('#last-update').text(jsonObject.updateDate);
       moreRecentTranslation = false;
       $('#my-toast .toast-body').text('The text has been updated with success!').removeClass('bg-danger').addClass('bg-success');
@@ -47,9 +47,7 @@ $(function() {
       $('#my-toast .toast-body').text('An error has occurred!').removeClass('bg-success').addClass('bg-danger');
     }).always(function(a, textStatus, b) {
       $('#confirm-modal').modal('hide');
-      $('#my-toast').toast({
-        delay: 1500,
-      }).toast('show');
+      $('#my-toast').toast('show')
     });
   }; 
 
@@ -58,7 +56,8 @@ $(function() {
   $('.submit-btn').on('click', e => {
     const status = e.currentTarget.value;
     $('input[name="status"]').val(status);
-    moreRecentTranslation ? $('#confirm-modal').modal() : submit();
+    const myModal = new bootstrap.Modal(document.getElementById('confirm-modal'))
+    moreRecentTranslation ? myModal.show() : submit();
   });
 
   $('.preview-btn').on('click', e => {
@@ -119,9 +118,7 @@ $(function() {
       window.open(`?id=${id}`, '_blank').focus();
     } else {
       $('#my-toast .toast-body').text('Index out of range!')
-      $('#my-toast').toast({
-        delay: 1500,
-      }).toast('show');
+      $('#my-toast').toast('show')
     }
   });
 
@@ -165,7 +162,7 @@ $(function() {
         $('#search-result').empty();
         if (jsonArray.length !== 0) {
           $('#search-result').append($('<div />').addClass('mb-3').text(`Results found: ${jsonArray.length}`));
-          const template = $('<a />').addClass('btn btn-sm mr-1 mb-1').attr('target', '_blank');
+          const template = $('<a />').addClass('btn btn-sm me-1 mb-1').attr('target', '_blank');
           const items = jsonArray.map(value => {
             const {id, status} = value;
             const item = template.clone().text(id).attr('href', `?id=${id}`);
