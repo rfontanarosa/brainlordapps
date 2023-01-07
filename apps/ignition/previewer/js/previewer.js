@@ -2,8 +2,9 @@ function ignitionTextClean(text) {
     text = text.replace(/<..>/g, '');
     text = text.replace(/<.. ..>/g, '');
     text = text.replace(/\[PORTRAIT ..]\n/g, '');
+    text = text.replace(/\[WAIT ..]/g, '');
     text = text.replace(/<CLOSE>/g, '');
-    text = text.replace(/<INPUT>/g, '');
+    text = text.replace(/<INPUT>\n/g, '');
     text = text.replace(/<LINE>/g, '');
     return text;
 }
@@ -12,7 +13,7 @@ function ignitionRenderPreview(selector, text, config) {
     const {textId, numRows, rowMaxPixels, previewerClass, fontClass} = config;
 
     const previewContainer = $(`#${selector}`);
-    let dialogs = text.split(/\n<CLEAR>\n/g);
+    let dialogs = text.split(/<CLEAR>\n/g);
     dialogs = dialogs.filter(element => element !== '');
     dialogs.forEach((dialog, index) => {
 
