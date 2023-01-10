@@ -6,6 +6,10 @@ function ignitionTextClean(text) {
     text = text.replace(/<CLOSE>/g, '');
     text = text.replace(/<INPUT>\n/g, '');
     text = text.replace(/<LINE>/g, '');
+    text = text.replace(/<PAUSE>\n/g, '');
+    text = text.replace(/<CONTINUE>\n/g, '');
+    text = text.replace(/\[FC03 ..]/g, '');
+    text = text.replace(/\<FC00 ..>/g, '');
     return text;
 }
 
