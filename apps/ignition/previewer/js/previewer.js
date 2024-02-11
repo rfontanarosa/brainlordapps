@@ -86,7 +86,7 @@ charlist.push(["pqrstuvwxyz.\",-'", 8]);
 charlist.push([":ABCDEFGHIJKLMNO", 8]);
 charlist.push(["PQRSTUVWXYZ?!()/", 8]);
 charlist.push(["0123456789;", 8]);
-charlist.push(["àéèìòùÈ", 8]);
+charlist.push(["àéèìòùÈ°", 8]);
 
 const hashcharlist = [];
 for (let i = 0; i < charlist.length; i++) {

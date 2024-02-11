@@ -89,7 +89,7 @@
 .ignition-font1-45   { background-position: -112px -16px; } /* - */
 .ignition-font1-39   { background-position: -120px -16px; } /* ' */
 
-.ignition-font1-58   { background-position: -0px  -32px;  } /* : */
+.ignition-font1-58   { background-position: -0px   -32px; } /* : */
 .ignition-font1-65   { background-position: -8px   -32px; } /* A */
 .ignition-font1-66   { background-position: -16px  -32px; } /* B */
 .ignition-font1-67   { background-position: -24px  -32px; } /* C */
@@ -142,3 +142,4 @@
 .ignition-font1-242  { background-position: -32px  -80px; } /* ò */
 .ignition-font1-249  { background-position: -40px  -80px; } /* ù */
 .ignition-font1-200  { background-position: -48px  -80px; } /* È */
+.ignition-font1-176  { background-position: -56px  -80px; } /* ° */
