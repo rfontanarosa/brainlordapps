@@ -4,7 +4,6 @@ html {
 
 body {
   height: 100%;
-  padding-top: 56px;
   background: url(../images/bg1.png);
 }
 
@@ -47,13 +46,15 @@ body {
 }
 .brain-nav .nav-item .nav-link {
   padding: 0.25rem 0.5rem;
+  color: black;
+}
+.brain-nav .nav-item .nav-link.active {
+  background: #440b14;
+  color: white;
 }
 .brain-nav .nav-item .nav-link .badge {
   vertical-align: middle;
   margin-top: -0.25em;
-}
-.brain-nav .nav-item .active {
-  background: #440b14;
 }
 .brain-nav .nav-item a {
   color: black;
