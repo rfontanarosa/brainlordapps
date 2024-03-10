@@ -50,9 +50,8 @@
     display: inline-block;
     margin-right: 0px;
     margin-bottom: 0px;
-    background-image: url(../images/spike_mcfang_font_8x16_ita.png);
     width: 8px;
-    background-position: -80px -16px;
+    background-image: url(../images/spike_mcfang_font_8x16_ita.png);
 }
 
 .spike-font1-32   { background-position: -0px   -0px;   } /*   */
