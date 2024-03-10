@@ -1,0 +1,21 @@
+.soe-font1 {
+    background-image: url(../images/soe_gfx_font1_it.png) !important;
+}
+
+.soe-font1-224  { width: 7px;  background-position:   -0px  -0px;  } /* à */
+.soe-font1-232  { width: 7px;  background-position:  -16px  -0px;  } /* è */
+.soe-font1-233  { width: 7px;  background-position:  -32px  -0px;  } /* é */
+.soe-font1-236  { width: 4px;  background-position:  -48px  -0px;  } /* ì */
+.soe-font1-242  { width: 7px;  background-position:  -64px  -0px;  } /* ò */
+.soe-font1-249  { width: 7px;  background-position:  -80px  -0px;  } /* ù */
+/* */
+/* */
+
+.soe-font1-192  { width: 7px;  background-position:   -0px -12px;  } /* À */
+.soe-font1-200  { width: 6px;  background-position:  -16px -12px;  } /* È */
+.soe-font1-201  { width: 6px;  background-position:  -32px -12px;  } /* É */
+.soe-font1-204  { width: 5px;  background-position:  -48px -12px;  } /* Ì */
+.soe-font1-210  { width: 7px;  background-position:  -64px -12px;  } /* Ò */
+.soe-font1-217  { width: 7px;  background-position:  -80px -12px;  } /* Ù */
+/* */
+/* */
