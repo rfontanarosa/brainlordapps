@@ -54,7 +54,6 @@
     background-image: url(../images/bl-font-text.png);
     background-image: url(../images/bl-font-text-mog.png);
     background-image: url(../images/bl-font-text-ita.png);
-    background-position: -80px -16px;
 }
 
 .brainlord-font1-48   { background-position: -0px   -0px;  } /* 0 */
@@ -65,16 +64,16 @@
 .brainlord-font1-53   { background-position: -80px  -0px;  } /* 5 */
 .brainlord-font1-54   { background-position: -96px  -0px;  } /* 6 */
 .brainlord-font1-55   { background-position: -112px -0px;  } /* 7 */
-  
+
 .brainlord-font1-56   { background-position: -0px   -16px; } /* 8 */
 .brainlord-font1-57   { background-position: -16px  -16px; } /* 9 */
 .brainlord-font1-32   { background-position: -80px  -16px; } /*   */
-  
+
 .brainlord-font1-41   { background-position: -0px   -32px; } /* ) */
 .brainlord-font1-46   { background-position: -112px -32px; } /* . */
-  
+
 .brainlord-font1-47   { background-position: -16px  -48px; } /* / */
-  
+
 .brainlord-font1-65   { background-position: -0px   -64px; } /* A */
 .brainlord-font1-66   { background-position: -16px  -64px; } /* B */
 .brainlord-font1-67   { background-position: -32px  -64px; } /* C */
@@ -83,7 +82,7 @@
 .brainlord-font1-70   { background-position: -80px  -64px; } /* F */
 .brainlord-font1-71   { background-position: -96px  -64px; } /* G */
 .brainlord-font1-72   { background-position: -112px -64px; } /* H */
-  
+
 .brainlord-font1-73   { background-position: -0px   -80px; } /* I */
 .brainlord-font1-74   { background-position: -16px  -80px; } /* J */
 .brainlord-font1-75   { background-position: -32px  -80px; } /* K */
@@ -101,7 +100,7 @@
 .brainlord-font1-86   { background-position: -80px  -96px; } /* V */
 .brainlord-font1-87   { background-position: -96px  -96px; } /* W */
 .brainlord-font1-88   { background-position: -112px -96px; } /* X */
- 
+
 .brainlord-font1-89   { background-position: -0px   -112px; } /* Y */
 .brainlord-font1-90   { background-position: -16px  -112px; } /* Z */
 .brainlord-font1-97   { background-position: -32px  -112px; } /* a */

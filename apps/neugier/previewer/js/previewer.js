@@ -8,7 +8,7 @@ function neugierPreviewBox(previewContainerSelector, text, boxIndex, boxType) {
     const previewContainer = $('#' + previewContainerSelector);
     const dialogs = [];
     const lines = text.split("\n");
-    console.log(lines);
+
     for (i=0; i<lines.length; i+=4) {
         dialog = lines.slice(i, i+4).join("\n");
         console.log(dialog);

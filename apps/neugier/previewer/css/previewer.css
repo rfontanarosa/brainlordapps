@@ -3,8 +3,9 @@
 }
 
 .neugier-preview-box .infobox {
-    border: 1px solid white;
-    color: white;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
     font-size: 10px;
     margin: 10px 0;
     min-height: 5px;
@@ -12,7 +13,7 @@
     width: 256px;
 }
 
-.neugier-preview-box .infobox .counter {
+.neugier-preview-box .infobox > div {
     margin: 5px;
 }
 
@@ -49,9 +50,8 @@
     display: inline-block;
     margin-right: 0px;
     margin-bottom: 0px;
-    background-image: url(../images/neugier_font_ita.png);
     width: 8px;
-    background-position: -80px -16px;
+    background-image: url(../images/neugier_font_ita.png);
 }
 
 .neugier-font1-8230 { width: 6px; background-position: -0px   -16px; } /* … */

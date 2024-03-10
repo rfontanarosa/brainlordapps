@@ -50,9 +50,8 @@
     display: inline-block;
     margin-right: 0px;
     margin-bottom: 0px;
-    background-image: url(../images/font_8x12.png);
     width: 8px;
-    background-position: -80px -16px;
+    background-image: url(../images/font_8x12.png);
 }
 
 .ignition-font1-32   { background-position: -0px    -0px; } /*   */

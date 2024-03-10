@@ -51,7 +51,7 @@
     margin-right: 0px;
     margin-bottom: 0px;
     width: 16px;
-    background-image: url(../images/soe_gfx_font1.png);
+    background-image: url(../images/soe_gfx_font1_it.png);
 }
 
 .soe-font1-224  { width: 7px;  background-position:   -0px  -0px;  } /* à */
@@ -70,11 +70,11 @@
 .soe-font1-210  { width: 7px;  background-position:  -64px -12px;  } /* Ò */
 .soe-font1-217  { width: 7px;  background-position:  -80px -12px;  } /* Ù */
 /* */
-.soe-font1-32   { width: 4px;  background-position: -112px -12px;  } /*   */
-
 /* */
+
+.soe-font1-32   { width: 4px;  background-position: -112px -12px;  } /*   */
 .soe-font1-33   { width: 4px;  background-position:  -16px -24px;  } /* ! */
-.soe-font1-34   { width: 6px; background-position:   -32px -24px;  } /* " */
+.soe-font1-34   { width: 6px;  background-position:  -32px -24px;  } /* " */
 .soe-font1-35   { width: 9px;  background-position:  -48px -24px;  } /* # */
 .soe-font1-36   { width: 7px;  background-position:  -64px -24px;  } /* $ */
 .soe-font1-37   { width: 9px;  background-position:  -80px -24px;  } /* % */
@@ -142,7 +142,7 @@
 .soe-font1-92   { width: 6px;  background-position:  -64px -108px; } /* \ */
 .soe-font1-93   { width: 4px;  background-position:  -80px -108px; } /* ] */
 /* */
-.soe-font1-8230 { width: 9px;  background-position: -112px -108px;  } /* … */
+.soe-font1-8230 { width: 9px;  background-position: -112px -108px; } /* … */
 
 .soe-font1-96   { width: 3px;  background-position:   -0px -120px; } /* ` */
 .soe-font1-97   { width: 7px;  background-position:  -16px -120px; } /* a */
