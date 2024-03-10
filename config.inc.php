@@ -1,9 +1,8 @@
 <?php
 
-if (!extension_loaded('sqlite3')) die('Extension php_sqlite3 not loaded');
+if (!extension_loaded('sqlite3')) die('Extension php_sqlite3 not loaded.');
 
-/** DEBUG */
-
+// DEBUG
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -177,9 +176,9 @@ class DbManager {
 
 	public static function getTranslationsByUser($db, $uname, $block=0) {
 		$ret = array();
-		$query = "SELECT text, new_text, text_encoded, id, id2 FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM trans WHERE trans.author=:author AND trans.status = 2) AS t2 ON t1.id=t2.id_text ORDER BY t1.id";
+		$query = "SELECT text, translation, text_decoded, id, ref FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE author=:author AND status = 2) AS t2 ON t1.id=t2.id_text ORDER BY t1.id";
 		if ($block != 0) {
-			$query = "SELECT text, new_text, text_encoded, id, id2 FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM trans WHERE trans.author=:author AND trans.status = 2) AS t2 ON t1.id=t2.id_text WHERE t1.block = :block ORDER BY t1.id";	
+			$query = "SELECT text, translation, text_decoded, id, ref FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE author=:author AND status = 2) AS t2 ON t1.id=t2.id_text WHERE t1.block = :block ORDER BY t1.id";	
 		}
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
@@ -196,9 +195,27 @@ class DbManager {
 
 	public static function getMoreRecentTranslations($db, $block=0) {
 		$ret = array();
-		$query = "SELECT * FROM (SELECT text, new_text, text_encoded, id, id2, address, size, t2.author, COALESCE(t2.date, 1) AS date FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM trans WHERE status = 2) AS t2 ON t1.id=t2.id_text) WHERE 1=1 GROUP BY id HAVING MAX(date)";
+		$query = "SELECT * FROM (SELECT text, translation, text_decoded, id, ref, address, size, t2.author, COALESCE(t2.date, 1) AS date FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE status = 2 GROUP BY id_text HAVING MAX(date)) AS t2 ON t1.id=t2.id_text)";
 		if ($block != 0) {
-			$query = "SELECT * FROM (SELECT text, new_text, text_encoded, id, id2, address, size, t2.author, COALESCE(t2.date, 1) AS date FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM trans WHERE status = 2) AS t2 ON t1.id=t2.id_text WHERE t1.block = :block) WHERE 1=1 GROUP BY id HAVING MAX(date)";
+			$query = "SELECT * FROM (SELECT text, translation, text_decoded, id, ref, address, size, t2.author, COALESCE(t2.date, 1) AS date FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE status = 2 GROUP BY id_text HAVING MAX(date)) AS t2 ON t1.id=t2.id_text WHERE t1.block = :block)";
+		}
+		$stmt = $db->prepare($query);
+		if ($block != 0) {
+			$stmt->bindValue(':block', $block, SQLITE3_INTEGER);
+		}
+		$results = $stmt->execute();
+		while ($row = $results->fetchArray()) {
+			$ret[] = $row;
+		}
+		$results->finalize();
+		return $ret;
+	}
+
+	public static function getOriginalDump($db, $block=0) {
+		$ret = array();
+		$query = "SELECT text, null, text_decoded, id, ref FROM texts ORDER BY id";
+		if ($block != 0) {
+			$query = "SELECT text, null, text_decoded, id, ref FROM texts WHERE block = :block ORDER BY id";
 		}
 		$stmt = $db->prepare($query);
 		if ($block != 0) {
