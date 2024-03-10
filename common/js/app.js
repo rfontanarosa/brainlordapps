@@ -17,11 +17,11 @@ $(function() {
   let moreRecentTranslation = document.getElementById('app-vars').getAttribute('data-more-recent-translation') === '1';
 
   const submit = () => {
-    const idText = $('input[name="id-text"]').val();
-    const translation = $('textarea[name="translation"]').val();
-    const comment = $('textarea[name="comment"]').val();
-    const status = parseInt($('input[name="status"]').val());
-    const extendsToDuplicates = $('#extends-to-duplicates').is(':checked');
+    const idText = document.querySelector('input[name="id-text"]').value;
+    const translation = document.querySelector('textarea[name="translation"]').value;
+    const comment = document.querySelector('textarea[name="comment"]').value;
+    const status = parseInt(document.querySelector('input[name="status"]').value);
+    const extendsToDuplicates = document.getElementById('extends-to-duplicates').checked;
     $.ajax({
       type: 'POST',
       url: 'ajax_submit.php',
