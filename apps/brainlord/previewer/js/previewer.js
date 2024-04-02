@@ -107,6 +107,7 @@ charlist.push([":;àèé", 8]);
 charlist.push(["ìòùÈ°'\"", 8]);
 charlist.push(["-,·", 8]);
 charlist.push(["!", 8]);
+charlist.push(["♪", 8]);
 
 const hashcharlist = [];
 for (let i = 0; i < charlist.length; i++) {
