@@ -94,7 +94,7 @@ function renderPreview(previewContainerSelector, text, id, type) {
 const charlist = [];
 charlist.push(["01234567", 8]);
 charlist.push(["89 ", 8]);
-charlist.push([").", 8]);
+charlist.push([")·", 8]);
 charlist.push(["/", 8]);
 charlist.push(["ABCDEFGH", 8]);
 charlist.push(["IJKLMNOP", 8]);
@@ -105,8 +105,9 @@ charlist.push(["opqrstuv", 8]);
 charlist.push(["wxyz?", 8]);
 charlist.push([":;àèé", 8]);
 charlist.push(["ìòùÈ°'\"", 8]);
-charlist.push(["-,·", 8]);
+charlist.push(["-,.", 8]);
 charlist.push(["!", 8]);
+charlist.push(["♪", 8]);
 
 const hashcharlist = [];
 for (let i = 0; i < charlist.length; i++) {

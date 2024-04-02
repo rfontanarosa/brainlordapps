@@ -68,7 +68,7 @@
 .seventhsaga-font1-32   { background-position: -80px  -16px; } /*   */
 
 .seventhsaga-font1-41   { background-position: -0px   -32px; } /* ) */
-.seventhsaga-font1-46   { background-position: -112px -32px; } /* . */
+.seventhsaga-font1-183  { background-position: -112px -32px; } /* · */
 
 .seventhsaga-font1-47   { background-position: -16px  -48px; } /* / */
 
@@ -154,6 +154,8 @@
 
 .seventhsaga-font1-45   { background-position: -0px   -208px; } /* - */
 .seventhsaga-font1-44   { background-position: -16px  -208px; } /* , */
-.seventhsaga-font1-183  { background-position: -32px  -208px; } /* · */
+.seventhsaga-font1-46   { background-position: -32px  -208px; } /* . */
 
 .seventhsaga-font1-33   { background-position: -80px  -256px; } /* ! */
+
+.seventhsaga-font1-9834 { background-position: -80px  -400px; } /* ♪ */
