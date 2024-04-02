@@ -1,0 +1,159 @@
+.seventhsaga-preview-box {
+    margin-right: .5rem;
+}
+
+.seventhsaga-preview-box .infobox {
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    font-size: 10px;
+    margin: 10px 0;
+    min-height: 5px;
+    text-align: left;
+    width: 256px;
+}
+
+.seventhsaga-preview-box .infobox .counter {
+    margin: 5px;
+}
+
+.seventhsaga-preview-box .infobox .alert {
+    color: #fa4444;
+    margin: 5px;
+    padding: 0px;
+    border: none;
+}
+
+.seventhsaga-preview-box .bgimage {
+    height: 224px;
+    width: 256px;
+    background: url(../images/7thsaga-preview.png) no-repeat;
+}
+
+.seventhsaga-preview-box .chars {
+    padding-left: 24px;
+    padding-top: 144px;
+    line-height: 0px;
+    position: relative;
+}
+
+.seventhsaga-preview-box .chars br {
+    margin-bottom: 0px;
+}
+
+.redtext {
+    color: #fa4444;
+}
+
+.seventhsaga-font1 {
+    min-height: 16px;
+    display: inline-block;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    width: 8px;
+    background-image: url(../images/7thsaga_font_ita.png);
+}
+
+.seventhsaga-font1-48   { background-position: -0px   -0px;  } /* 0 */
+.seventhsaga-font1-49   { background-position: -16px  -0px;  } /* 1 */
+.seventhsaga-font1-50   { background-position: -32px  -0px;  } /* 2 */
+.seventhsaga-font1-51   { background-position: -48px  -0px;  } /* 3 */
+.seventhsaga-font1-52   { background-position: -64px  -0px;  } /* 4 */
+.seventhsaga-font1-53   { background-position: -80px  -0px;  } /* 5 */
+.seventhsaga-font1-54   { background-position: -96px  -0px;  } /* 6 */
+.seventhsaga-font1-55   { background-position: -112px -0px;  } /* 7 */
+
+.seventhsaga-font1-56   { background-position: -0px   -16px; } /* 8 */
+.seventhsaga-font1-57   { background-position: -16px  -16px; } /* 9 */
+.seventhsaga-font1-32   { background-position: -80px  -16px; } /*   */
+
+.seventhsaga-font1-41   { background-position: -0px   -32px; } /* ) */
+.seventhsaga-font1-46   { background-position: -112px -32px; } /* . */
+
+.seventhsaga-font1-47   { background-position: -16px  -48px; } /* / */
+
+.seventhsaga-font1-65   { background-position: -0px   -64px; } /* A */
+.seventhsaga-font1-66   { background-position: -16px  -64px; } /* B */
+.seventhsaga-font1-67   { background-position: -32px  -64px; } /* C */
+.seventhsaga-font1-68   { background-position: -48px  -64px; } /* D */
+.seventhsaga-font1-69   { background-position: -64px  -64px; } /* E */
+.seventhsaga-font1-70   { background-position: -80px  -64px; } /* F */
+.seventhsaga-font1-71   { background-position: -96px  -64px; } /* G */
+.seventhsaga-font1-72   { background-position: -112px -64px; } /* H */
+
+.seventhsaga-font1-73   { background-position: -0px   -80px; } /* I */
+.seventhsaga-font1-74   { background-position: -16px  -80px; } /* J */
+.seventhsaga-font1-75   { background-position: -32px  -80px; } /* K */
+.seventhsaga-font1-76   { background-position: -48px  -80px; } /* L */
+.seventhsaga-font1-77   { background-position: -64px  -80px; } /* M */
+.seventhsaga-font1-78   { background-position: -80px  -80px; } /* N */
+.seventhsaga-font1-79   { background-position: -96px  -80px; } /* O */
+.seventhsaga-font1-80   { background-position: -112px -80px; } /* P */
+
+.seventhsaga-font1-81   { background-position: -0px   -96px; } /* Q */
+.seventhsaga-font1-82   { background-position: -16px  -96px; } /* R */
+.seventhsaga-font1-83   { background-position: -32px  -96px; } /* S */
+.seventhsaga-font1-84   { background-position: -48px  -96px; } /* T */
+.seventhsaga-font1-85   { background-position: -64px  -96px; } /* U */
+.seventhsaga-font1-86   { background-position: -80px  -96px; } /* V */
+.seventhsaga-font1-87   { background-position: -96px  -96px; } /* W */
+.seventhsaga-font1-88   { background-position: -112px -96px; } /* X */
+
+.seventhsaga-font1-89   { background-position: -0px   -112px; } /* Y */
+.seventhsaga-font1-90   { background-position: -16px  -112px; } /* Z */
+.seventhsaga-font1-97   { background-position: -32px  -112px; } /* a */
+.seventhsaga-font1-98   { background-position: -48px  -112px; } /* b */
+.seventhsaga-font1-99   { background-position: -64px  -112px; } /* c */
+.seventhsaga-font1-100  { background-position: -80px  -112px; } /* d */
+.seventhsaga-font1-101  { background-position: -96px  -112px; } /* e */
+.seventhsaga-font1-102  { background-position: -112px -112px; } /* f */
+
+.seventhsaga-font1-103  { background-position: -0px   -128px; } /* g */
+.seventhsaga-font1-104  { background-position: -16px  -128px; } /* h */
+.seventhsaga-font1-105  { background-position: -32px  -128px; } /* i */
+.seventhsaga-font1-106  { background-position: -48px  -128px; } /* j */
+.seventhsaga-font1-107  { background-position: -64px  -128px; } /* k */
+.seventhsaga-font1-108  { background-position: -80px  -128px; } /* l */
+.seventhsaga-font1-109  { background-position: -96px  -128px; } /* m */
+.seventhsaga-font1-110  { background-position: -112px -128px; } /* n */
+
+.seventhsaga-font1-111  { background-position: -0px   -144px; } /* o */
+.seventhsaga-font1-112  { background-position: -16px  -144px; } /* p */
+.seventhsaga-font1-113  { background-position: -32px  -144px; } /* q */
+.seventhsaga-font1-114  { background-position: -48px  -144px; } /* r */
+.seventhsaga-font1-115  { background-position: -64px  -144px; } /* s */
+.seventhsaga-font1-116  { background-position: -80px  -144px; } /* t */
+.seventhsaga-font1-117  { background-position: -96px  -144px; } /* u */
+.seventhsaga-font1-118  { background-position: -112px -144px; } /* v */
+
+.seventhsaga-font1-119  { background-position: -0px   -160px; } /* w */
+.seventhsaga-font1-120  { background-position: -16px  -160px; } /* x */
+.seventhsaga-font1-121  { background-position: -32px  -160px; } /* y */
+.seventhsaga-font1-122  { background-position: -48px  -160px; } /* z */
+/**/
+/**/
+.seventhsaga-font1-63   { background-position: -96px  -160px; } /* ? */
+
+/**/
+/**/
+.seventhsaga-font1-58   { background-position: -32px  -176px; } /* : */
+.seventhsaga-font1-59   { background-position: -48px  -176px; } /* ; */
+/**/
+.seventhsaga-font1-224  { background-position: -80px  -176px; } /* à */
+.seventhsaga-font1-232  { background-position: -96px  -176px; } /* è */
+.seventhsaga-font1-233  { background-position: -112px -176px; } /* é */
+
+.seventhsaga-font1-236  { background-position: -0px   -192px; } /* ì */
+.seventhsaga-font1-242  { background-position: -16px  -192px; } /* ò */
+.seventhsaga-font1-249  { background-position: -32px  -192px; } /* ù */
+.seventhsaga-font1-200  { background-position: -48px  -192px; } /* È */
+.seventhsaga-font1-176  { background-position: -64px  -192px; } /* ° */
+/**/
+.seventhsaga-font1-39   { background-position: -96px  -192px; } /* ' */
+.seventhsaga-font1-34   { background-position: -112px -192px; } /* " */
+
+.seventhsaga-font1-45   { background-position: -0px   -208px; } /* - */
+.seventhsaga-font1-44   { background-position: -16px  -208px; } /* , */
+.seventhsaga-font1-183  { background-position: -32px  -208px; } /* · */
+
+.seventhsaga-font1-33   { background-position: -80px  -256px; } /* ! */
