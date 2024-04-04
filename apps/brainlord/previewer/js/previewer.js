@@ -5,17 +5,16 @@ function brainlordTextClean(text) {
     text = text.replace(/\{fd}{..\}{..\}/g, '');
     text = text.replace(/\{fe}{..\}{..\}/g, '');
     text = text.replace(/\{ff}{..\}{..\}{..\}/g, '');
-    text = text.replaceAll('{f3}', ' ');
+    text = text.replaceAll('{f3}', '');
     text = text.replaceAll('{82}', '');
     text = text.replaceAll('{89}', 'X');
     text = text.replaceAll('{8c}', 'X');
     text = text.replaceAll('{8d}', 'X');
+    text = text.replaceAll('{ee}', ' ');
+    text = text.replaceAll('{ef}', ' ');
     text = text.replaceAll('<name>', 'PLAYER');
     text = text.replaceAll('<ram>', 'RAM');
     text = text.replaceAll('<white>', '');
-    text = text.replaceAll('{ee}', ' ');
-    text = text.replaceAll('{ef}', ' ');
-    text = text.replaceAll('{f7}', '');
     return text;
 }
 
