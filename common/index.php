@@ -31,7 +31,7 @@
 		<script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 		<link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
-		<link rel="stylesheet" href="<?php echo APPLICATION_PATH ?>/css/bootstrap4.custom.css">
+		<link rel="stylesheet" href="<?php echo APPLICATION_PATH ?>/css/bootstrap.custom.css">
 		<link rel="stylesheet" href="<?php echo APPLICATION_PATH ?>/previewer/css/previewer.css">
 		<script type="text/javascript" src="<?php echo APPLICATION_PATH ?>/previewer/js/previewer.js" charset="UTF-8"></script>
 	</head>

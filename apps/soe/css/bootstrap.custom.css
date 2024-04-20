@@ -4,12 +4,12 @@ html {
 
 body {
   height: 100%;
-  background: url(../images/bg3.png);
+  background: url(../images/bg4.png);
 }
 
 .sidebar {
   width: 5rem;
-  background: url(../images/bg2.png);
+  background: url(../images/bg3.png);
   border-right: 1px white solid;
 }
 .sidebar nav a {
@@ -26,7 +26,7 @@ body {
 
 .brain-navbar {
   color: white;
-  background: url(../images/bg2.png);
+  background: url(../images/bg3.png);
   border-bottom: 1px solid white;
 }
 .brain-navbar .navbar-brand, .brain-navbar .navbar-text {
@@ -49,7 +49,7 @@ body {
   color: black;
 }
 .brain-nav .nav-item .nav-link.active {
-  background: url(../images/bg2.png);
+  background: url(../images/bg0.png);
   color: white;
 }
 .brain-nav .nav-item .nav-link .badge {
@@ -61,7 +61,7 @@ body {
 }
 
 .brain-card {
-  background: url(../images/bg2.png);
+  background: url(../images/bg0.png);
   color: white;
   border: 1px solid white;
 }

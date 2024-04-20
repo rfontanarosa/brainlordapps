@@ -9,7 +9,7 @@ body {
 
 .sidebar {
   width: 5rem;
-  background: url(../images/bg2.png);
+  background: url(../images/bg1.png);
   border-right: 1px white solid;
 }
 .sidebar nav a {
@@ -26,7 +26,7 @@ body {
 
 .brain-navbar {
   color: white;
-  background: url(../images/bg2.png);
+  background: url(../images/bg1.png);
   border-bottom: 1px solid white;
 }
 .brain-navbar .navbar-brand, .brain-navbar .navbar-text {
