@@ -4,7 +4,7 @@
 
     require_once 'config.inc.php';
 
-    $block = isset($_POST['block']) ? $_POST['block'] : 1;
+    $block = isset($_POST['block']) ? $_POST['block'] : 0;
     $type = isset($_POST['type']) ? $_POST['type'] : 1;
 
     $author = UserManager::getUsername();
