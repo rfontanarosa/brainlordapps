@@ -1,9 +1,5 @@
 String.prototype.replaceAt = function (index, replacement) {
-  return (
-    this.substr(0, index) +
-    replacement +
-    this.substr(index + replacement.length)
-  );
+  return (this.slice(0, index) + replacement + this.slice(index + replacement.length));
 };
 
 function staroceanTextClean(text) {
@@ -37,7 +33,6 @@ function staroceanPreviewBox(
   const charLimit = 208;
   const lineLimit = 4;
   let charCounter = 0;
-  let wordCounter = 0;
   let lineCounter = 1;
   let spacePosition = -1;
   for (let i = 0; i < text.length; i++) {
@@ -61,10 +56,8 @@ function staroceanPreviewBox(
       if (utf16char === " ") {
         spacePosition = i;
         charCounter += hashcharlist[utf16char] ? hashcharlist[utf16char] : 0;
-        wordCounter = 0;
       } else {
         charCounter += hashcharlist[utf16char] ? hashcharlist[utf16char] : 0;
-        wordCounter += hashcharlist[utf16char] ? hashcharlist[utf16char] : 0;
         if (charCounter > charLimit) {
           if (spacePosition !== -1) {
             if (lineCounter >= lineLimit) {
@@ -76,7 +69,6 @@ function staroceanPreviewBox(
             }
           }
           spacePosition = -1;
-          charCounter = wordCounter;
         }
       }
     }
@@ -157,10 +149,7 @@ charlist.push(["MWm%★☆", 11]);
 charlist.push(["#♪", 10]);
 charlist.push(["&", 9]);
 charlist.push(["4KN*", 8]);
-charlist.push([
-  "02356789ABCDEGHJOPQRTUVXYZabdeghknopquvxyz¿?/+-=<>ÀÒÙàèéòù",
-  7,
-]);
+charlist.push(["02356789ABCDEGHJOPQRTUVXYZabdeghknopquvxyz¿?/+-=<>ÀÒÙàèéòù", 7]);
 charlist.push(["EFLScfjrs“”ÈÉ", 6]);
 charlist.push(["1t² ", 5]);
 charlist.push(["'!()Ìì", 4]);
