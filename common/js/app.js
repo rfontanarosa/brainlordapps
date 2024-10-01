@@ -65,12 +65,13 @@ $(function() {
     e.preventDefault();
     if (typeof renderPreview === 'function') {
       const sourceId = e.currentTarget.getAttribute('data-source-id');
-      const dialogContainerId = e.currentTarget.getAttribute('data-dialog-container-id');
-      const text = document.getElementById(sourceId).value;
+      const containerId = e.currentTarget.getAttribute('data-preview-container-id');
+      const gameId = e.currentTarget.getAttribute('data-game-id');
       const id = e.currentTarget.getAttribute('data-id');
-      renderPreview(dialogContainerId, text, id, sourceId);
+      const text = document.getElementById(sourceId).value;
+      renderPreview(containerId, text, id, gameId);
     } else {
-      console.log('renderPreview is not defined!');
+      console.error('renderPreview is not defined!');
     }
   });
 

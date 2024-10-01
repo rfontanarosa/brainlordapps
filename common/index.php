@@ -226,7 +226,15 @@
 									<span style="line-height: 1.75;">TRANSLATION</span>
 									<div class="d-flex justify-content-end">
 										<button type="submit" class="btn btn-light" id="paste-new-btn"><i class="bi bi-clipboard"></i>&nbsp;PASTE</button>
-										<button type="submit" class="btn btn-light preview-btn" id="preview-new-btn" data-source-id="translation" data-dialog-container-id="dialog-container" data-id="<?php echo $id; ?>">
+										<button
+											type="submit"
+											class="btn btn-light preview-btn"
+											id="preview-new-btn"
+											data-source-id="translation"
+											data-preview-container-id="preview-container"
+											data-game-id="<?php echo APPLICATION_ID; ?>"
+											data-id="<?php echo $id; ?>"
+										>
 											<i class="bi bi-eye-fill"></i>&nbsp;PREVIEW
 										</button>
 									</div>
@@ -277,7 +285,15 @@
 									<span style="line-height: 1.75;">ORIGINAL</span>
 									<div class="d-flex justify-content-end">
 										<button type="submit" class="btn btn-light copy-btn" data-source-id="original-text"><i class="bi bi-clipboard-fill"></i>&nbsp;COPY</button>
-										<button type="submit" class="btn btn-light preview-btn" id="preview-original-btn" data-source-id="original-text" data-dialog-container-id="dialog-container" data-id="<?php echo $id; ?>">
+										<button
+											type="submit"
+											class="btn btn-light preview-btn"
+											id="preview-original-btn"
+											data-source-id="original-text"
+											data-preview-container-id="preview-container"
+											data-game-id="<?php echo APPLICATION_ID; ?>"
+											data-id="<?php echo $id; ?>"
+										>
 											<i class="bi bi-eye-fill"></i>&nbsp;PREVIEW
 										</button>
 									</div>
@@ -302,7 +318,7 @@
 							<!-- PEVIEW BOX -->
 							<div class="card brain-card">
 								<div class="card-body">
-									<div id="dialog-container" class="d-flex flex-row flex-wrap">PREVIEW</div>
+									<div id="preview-container" class="d-flex flex-row flex-wrap">PREVIEW</div>
 								</div>
 							</div>
 						</div>
@@ -336,7 +352,14 @@
 									<span style="line-height: 1.75;"><i class="bi bi-person-fill"></i>&nbsp;<?php echo $author; ?></span>
 									<div class="d-flex justify-content-end">
 										<button type="submit" class="btn btn-light copy-btn" data-source-id="<?php echo $author; ?>_text"><i class="bi bi-clipboard-fill"></i>&nbsp;COPY</button>
-										<button type="submit" class="btn btn-light preview-btn" data-source-id="<?php echo $author; ?>_text" data-dialog-container-id="dialog-container1" data-id="<?php echo $id; ?>">
+										<button
+											type="submit"
+											class="btn btn-light preview-btn"
+											data-source-id="<?php echo $author; ?>_text"
+											data-preview-container-id="preview-container-1"
+											data-game-id="<?php echo APPLICATION_ID; ?>"
+											data-id="<?php echo $id; ?>"
+										>
 											<i class="bi bi-eye-fill"></i>&nbsp;PREVIEW
 										</button>
 									</div>
@@ -376,7 +399,7 @@
 							<!-- PEVIEW BOX -->
 							<div class="card brain-card">
 								<div class="card-body">
-									<div id="dialog-container1" class="d-flex flex-row flex-wrap">PREVIEW</div>
+									<div id="preview-container-1" class="d-flex flex-row flex-wrap">PREVIEW</div>
 								</div>
 							</div>
 						</div>
