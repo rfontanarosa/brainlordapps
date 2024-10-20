@@ -5,7 +5,7 @@ require_once '../../config.inc.php';
 define('APPLICATION_ID', 'brandish');
 define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 
-define('TITLE', 'Brandish');
+define('TITLE', 'Brandish (SNES)');
 
 define('SQLITE_FILENAME', RESOURCE_PATH . '/brandish/db/brandish.db');
 define('LAST_ENTRY', 330);

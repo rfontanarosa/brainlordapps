@@ -5,7 +5,7 @@ require_once '../../config.inc.php';
 define('APPLICATION_ID', 'bof');
 define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 
-define('TITLE', 'Breath of Fire');
+define('TITLE', 'Breath of Fire (SNES)');
 
 define('SQLITE_FILENAME', RESOURCE_PATH . '/bof/db/bof.db');
 define('LAST_ENTRY', 1701);

@@ -5,7 +5,7 @@ require_once '../../config.inc.php';
 define('APPLICATION_ID', 'brandish2');
 define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 
-define('TITLE', 'Brandish 2: The Planet Buster');
+define('TITLE', 'Brandish 2: The Planet Buster (SNES)');
 
 define('SQLITE_FILENAME', RESOURCE_PATH . '/brandish2/db/brandish2.db');
 define('LAST_ENTRY', 955);
