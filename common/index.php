@@ -20,22 +20,22 @@
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title><?php echo TITLE; ?>&nbsp;-&nbsp;Translation Tool</title>
-		<link href="<?php echo APPLICATION_PATH ?>/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
-		<link href="<?php echo APPLICATION_PATH ?>/images/favicon.ico" rel="apple-touch-icon">
-		<script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
-		<script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-		<link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
-		<link rel="stylesheet" href="<?php echo APPLICATION_PATH ?>/css/bootstrap.custom.css">
-		<link rel="stylesheet" href="<?php echo APPLICATION_PATH ?>/previewer/css/previewer.css">
-		<script type="text/javascript" src="<?php echo APPLICATION_PATH ?>/previewer/js/previewer.js" charset="UTF-8"></script>
-	</head>
-	<body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title><?php echo TITLE; ?>&nbsp;-&nbsp;Translation Tool</title>
+    <link href="<?php echo APPLICATION_PATH ?>/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="<?php echo APPLICATION_PATH ?>/images/favicon.ico" rel="apple-touch-icon">
+    <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="<?php echo APPLICATION_PATH ?>/css/bootstrap.custom.css">
+    <link rel="stylesheet" href="/node_modules/mumble-previewer/dist/css/styles.css">
+    <script type="text/javascript" src="/node_modules/mumble-previewer/dist/bundle.js" charset="UTF-8"></script>
+  </head>
+  <body>
 
   <!-- NAVBAR -->
   <nav class="navbar sticky-top navbar-expand-lg brain-navbar">

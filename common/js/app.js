@@ -63,13 +63,13 @@ $(function() {
   $('.preview-btn').on('click', e => {
     e.stopPropagation();
     e.preventDefault();
-    if (typeof renderPreview === 'function') {
+    if (MumblePreviewer && typeof MumblePreviewer.renderPreview === 'function') {
       const sourceId = e.currentTarget.getAttribute('data-source-id');
       const containerId = e.currentTarget.getAttribute('data-preview-container-id');
       const gameId = e.currentTarget.getAttribute('data-game-id');
-      const id = e.currentTarget.getAttribute('data-id');
+      // const id = e.currentTarget.getAttribute('data-id');
       const text = document.getElementById(sourceId).value;
-      renderPreview(containerId, text, id, gameId);
+      MumblePreviewer.renderPreview(containerId, text, gameId);
     } else {
       console.error('renderPreview is not defined!');
     }
