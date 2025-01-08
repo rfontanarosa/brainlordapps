@@ -220,10 +220,44 @@
 			<div class="tab-content" id="pills-tabContent">
 				<div class="tab-pane fade show active" id="pills-translation" role="tabpanel" aria-labelledby="pills-translation-tab" tabindex="0">
 					<div class="row gx-2">
+						<!-- ORIGINAL COLUMN -->
+						<div class="col-md-12 col-lg-4">
+							<div class="card brain-card mb-3">
+								<div class="card-header d-flex justify-content-between align-items-center">
+									<div>ORIGINAL</div>
+									<div class="d-flex justify-content-end">
+										<button type="submit" class="btn btn-light copy-btn" data-source-id="original-text"><i class="bi bi-clipboard-fill"></i>&nbsp;COPY</button>
+										<button
+											type="submit"
+											class="btn btn-light preview-btn"
+											id="preview-original-btn"
+											data-source-id="original-text"
+											data-preview-container-id="preview-container"
+											data-game-id="<?php echo APPLICATION_ID; ?>"
+											data-id="<?php echo $id; ?>"
+										>
+											<i class="bi bi-eye-fill"></i>&nbsp;PREVIEW
+										</button>
+									</div>
+								</div>
+								<div class="card-body">
+									<textarea rows="14" class="form-control" id="original-text" name="original-text" disabled><?php echo $text; ?></textarea>
+								</div>
+								<div class="card-footer d-flex justify-content-between">
+									<small>Ref:&nbsp;<?php echo htmlentities($ref); ?></small>
+									<small>Size:&nbsp;<?php echo $size; ?></small>
+									<small>Block:&nbsp;<?php echo $block; ?></small>
+								</div>
+								<div class="card-footer d-flex justify-content-between">
+									<small>Text Offset:&nbsp;<?php echo $text_offset; ?></small>
+									<small>Pointers Offsets:&nbsp;<?php echo $pointers_offsets; ?></small>
+								</div>
+							</div>
+						</div>
 						<!-- TRANSLATION COLUMN -->
 						<div class="col-md-12 col-lg-4">
 							<div class="card brain-card mb-3">
-								<div class="card-header d-flex justify-content-between">
+								<div class="card-header d-flex justify-content-between align-items-center">
 									<div>TRANSLATION</div>
 									<div class="d-flex justify-content-end">
 										<button type="submit" class="btn btn-light" id="paste-new-btn"><i class="bi bi-clipboard"></i>&nbsp;PASTE</button>
@@ -276,40 +310,6 @@
 									<button type="submit" class="btn btn-danger btn-sm submit-btn" value="0"><i class="bi bi-x-lg"></i>&nbsp;UNDONE</button>
 									<button type="submit" class="btn btn-warning btn-sm submit-btn" value="1" id="partially-btn"><i class="bi bi-exclamation-triangle-fill"></i>&nbsp;PARTIALLY<br /><small>Ctrl + A</small></button>
 									<button type="submit" class="btn btn-success btn-sm submit-btn" value="2" id="done-btn"><i class="bi bi-check-lg"></i>&nbsp;DONE<br /><small>Ctrl + D</small></button>
-								</div>
-							</div>
-						</div>
-						<!-- ORIGINAL COLUMN -->
-						<div class="col-md-12 col-lg-4">
-							<div class="card brain-card mb-3">
-								<div class="card-header d-flex justify-content-between align-items-center">
-									<div>ORIGINAL</div>
-									<div class="d-flex justify-content-end">
-										<button type="submit" class="btn btn-light copy-btn" data-source-id="original-text"><i class="bi bi-clipboard-fill"></i>&nbsp;COPY</button>
-										<button
-											type="submit"
-											class="btn btn-light preview-btn"
-											id="preview-original-btn"
-											data-source-id="original-text"
-											data-preview-container-id="preview-container"
-											data-game-id="<?php echo APPLICATION_ID; ?>"
-											data-id="<?php echo $id; ?>"
-										>
-											<i class="bi bi-eye-fill"></i>&nbsp;PREVIEW
-										</button>
-									</div>
-								</div>
-								<div class="card-body">
-									<textarea rows="14" class="form-control" id="original-text" name="original-text" disabled><?php echo $text; ?></textarea>
-								</div>
-								<div class="card-footer d-flex justify-content-between">
-									<small>Ref:&nbsp;<?php echo htmlentities($ref); ?></small>
-									<small>Size:&nbsp;<?php echo $size; ?></small>
-									<small>Block:&nbsp;<?php echo $block; ?></small>
-								</div>
-								<div class="card-footer d-flex justify-content-between">
-									<small>Text Offset:&nbsp;<?php echo $text_offset; ?></small>
-									<small>Pointers Offsets:&nbsp;<?php echo $pointers_offsets; ?></small>
 								</div>
 							</div>
 						</div>
