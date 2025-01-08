@@ -187,7 +187,7 @@
 
 		<!-- BOXES -->
 		<div class="container-fluid mb-3 mt-3">
-			<div class="row">
+			<div class="row gx-2">
 				<div class="col-md-12 col-lg-8">
           <ul class="nav nav-pills brain-nav" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -204,6 +204,7 @@
             </li>
           </ul>
 				</div>
+				<!-- STATS -->
 				<div class="col-md-12 col-lg-4">
 					<div class="card brain-card mb-1">
 						<div class="card-body d-flex justify-content-around">
@@ -218,12 +219,12 @@
 			</div>
 			<div class="tab-content" id="pills-tabContent">
 				<div class="tab-pane fade show active" id="pills-translation" role="tabpanel" aria-labelledby="pills-translation-tab" tabindex="0">
-					<div class="row">
-						<div class="col-md-12 col-lg-6">
-							<!-- TRANSLATION - BOX -->
+					<div class="row gx-2">
+						<!-- TRANSLATION COLUMN -->
+						<div class="col-md-12 col-lg-4">
 							<div class="card brain-card mb-3">
 								<div class="card-header d-flex justify-content-between">
-									<span style="line-height: 1.75;">TRANSLATION</span>
+									<div>TRANSLATION</div>
 									<div class="d-flex justify-content-end">
 										<button type="submit" class="btn btn-light" id="paste-new-btn"><i class="bi bi-clipboard"></i>&nbsp;PASTE</button>
 										<button
@@ -257,13 +258,13 @@
 										}
 									?>
 									<input type="hidden" name="id-text" value="<?php echo $id; ?>" />
-									<textarea rows="8" class="form-control mb-3 <?php echo $class; ?>" id="translation" name="translation"><?php echo $translation; ?></textarea>
+									<textarea rows="14" class="form-control mb-3 <?php echo $class; ?>" id="translation" name="translation"><?php echo $translation; ?></textarea>
 									<textarea rows="1" class="form-control" name="comment"><?php echo $comment; ?></textarea>
 								</div>
-								<div class="card-footer d-flex justify-content-between">
+								<div class="card-footer d-flex justify-content-between align-items-center">
 									<small>
 										<i class="bi bi-clock-fill"></i>
-										<span id="last-update" style="line-height: 1.5rem;"><?php echo $formatted_date; ?></span>
+										<span id="last-update"><?php echo $formatted_date; ?></span>
 									</small>
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" id="extends-to-duplicates" <?php if ($duplicates > 0) echo 'checked'; ?> />
@@ -278,11 +279,11 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-12 col-lg-6">
-							<!-- ORIGINAL - BOX -->
+						<!-- ORIGINAL COLUMN -->
+						<div class="col-md-12 col-lg-4">
 							<div class="card brain-card mb-3">
-								<div class="card-header d-flex justify-content-between">
-									<span style="line-height: 1.75;">ORIGINAL</span>
+								<div class="card-header d-flex justify-content-between align-items-center">
+									<div>ORIGINAL</div>
 									<div class="d-flex justify-content-end">
 										<button type="submit" class="btn btn-light copy-btn" data-source-id="original-text"><i class="bi bi-clipboard-fill"></i>&nbsp;COPY</button>
 										<button
@@ -299,7 +300,7 @@
 									</div>
 								</div>
 								<div class="card-body">
-									<textarea rows="8" class="form-control" id="original-text" name="original-text" disabled><?php echo $text; ?></textarea>
+									<textarea rows="14" class="form-control" id="original-text" name="original-text" disabled><?php echo $text; ?></textarea>
 								</div>
 								<div class="card-footer d-flex justify-content-between">
 									<small>Ref:&nbsp;<?php echo htmlentities($ref); ?></small>
@@ -312,13 +313,12 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="col-12">
-							<!-- PEVIEW BOX -->
+						<div class="col-md-12 col-lg-4">
+							<!-- PEVIEW - BOX -->
 							<div class="card brain-card">
+								<div class="card-header">PREVIEW</div>
 								<div class="card-body">
-									<div id="preview-container" class="d-flex flex-row flex-wrap">PREVIEW</div>
+									<div id="preview-container" class="d-flex flex-row flex-wrap justify-content-center"></div>
 								</div>
 							</div>
 						</div>
@@ -346,10 +346,10 @@
 										$more_recent_translation = true;
 									}
 							?>
-							<!-- USER - BOX -->
+							<!-- USER - BOXES -->
 							<div class="card brain-card mb-3">
-								<div class="card-header d-flex justify-content-between">
-									<span style="line-height: 1.75;"><i class="bi bi-person-fill"></i>&nbsp;<?php echo $author; ?></span>
+								<div class="card-header d-flex justify-content-between align-items-center">
+									<div><i class="bi bi-person-fill"></i>&nbsp;<?php echo $author; ?></div>
 									<div class="d-flex justify-content-end">
 										<button type="submit" class="btn btn-light copy-btn" data-source-id="<?php echo $author; ?>_text"><i class="bi bi-clipboard-fill"></i>&nbsp;COPY</button>
 										<button
@@ -395,11 +395,12 @@
 								}
 							?>
 						</div>
+						<!-- PEVIEW - BOX -->
 						<div class="col-md-12 col-lg-6">
-							<!-- PEVIEW BOX -->
 							<div class="card brain-card">
+								<div class="card-header">PREVIEW</div>
 								<div class="card-body">
-									<div id="preview-container-1" class="d-flex flex-row flex-wrap">PREVIEW</div>
+									<div id="preview-container-1" class="d-flex flex-row flex-wrap justify-content-center"></div>
 								</div>
 							</div>
 						</div>
