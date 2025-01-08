@@ -40,11 +40,15 @@ $(function() {
         extends_to_duplicates: extendsToDuplicates,
       },
     }).done(function(data, textStatus, jqXHR) {
-      const jsonObject = JSON.parse(data);
-      const textarea = $('textarea[name=translation]');
+      // update textarea color
       const className = status === 0 ? 'text-bg-danger' : status === 1 ? 'text-bg-warning' : 'text-bg-success';
-      textarea.removeClass('text-bg-warning text-bg-danger text-bg-success').addClass(className);
-      $('#last-update').text(jsonObject.updateDate);
+      const textarea = document.querySelector('textarea[name="translation"]'); 
+      textarea.classList.remove('text-bg-warning', 'text-bg-danger', 'text-bg-success');
+      textarea.classList.add(className);
+      // update date
+      const jsonObject = JSON.parse(data);
+      const lastUpdateElement = document.getElementById('last-update');
+      lastUpdateElement.textContent = jsonObject.updateDate;
       moreRecentTranslation = false;
       $('#my-toast .toast-body').text('The text has been updated with success!').removeClass('bg-danger').addClass('bg-success');
     }).fail(function(jqXHR, textStatus, errorThrown) {
