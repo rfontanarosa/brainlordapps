@@ -12,9 +12,14 @@ $(function() {
     }
   };
 
-  const maxId = parseInt(document.getElementById('app-vars').getAttribute('data-max-id'));
-  const currentId = parseInt(document.getElementById('app-vars').getAttribute('data-current-id'));
-  let moreRecentTranslation = document.getElementById('app-vars').getAttribute('data-more-recent-translation') === '1';
+  const appVars = document.getElementById('app-vars');
+  const maxId = parseInt(appVars.getAttribute('data-max-id'));
+  const currentId = parseInt(appVars.getAttribute('data-current-id'));
+  let moreRecentTranslation = appVars.getAttribute('data-more-recent-translation') === '1';
+  const modal = new bootstrap.Modal(document.getElementById('confirm-modal'));
+
+  const modalConfirmButton = document.getElementById('modal-confirm-btn');
+  const submitButtons = document.querySelectorAll('.submit-btn');
 
   const submit = () => {
     const idText = document.querySelector('input[name="id-text"]').value;
@@ -49,15 +54,18 @@ $(function() {
       $('#confirm-modal').modal('hide');
       $('#my-toast').toast('show')
     });
-  }; 
+  };
 
-  $('#modal-confirm-btn').on('click', () => submit());
+  modalConfirmButton.addEventListener('click', () => submit());
 
-  $('.submit-btn').on('click', e => {
-    const status = e.currentTarget.value;
-    $('input[name="status"]').val(status);
-    const myModal = new bootstrap.Modal(document.getElementById('confirm-modal'))
-    moreRecentTranslation ? myModal.show() : submit();
+  submitButtons.forEach(submitButton => {
+    submitButton.addEventListener('click', e => {
+      e.preventDefault();
+      const status = e.currentTarget.value;
+      const statusInput = document.querySelector('input[name="status"]');
+      statusInput.value = status;
+      moreRecentTranslation ? modal.show() : submit();
+    })
   });
 
   $('.preview-btn').on('click', e => {
