@@ -1,39 +1,31 @@
 <?php
-
-	header('Content-Type: text/html; charset=utf-8');
-
-	session_start();
-
-	require_once './config.inc.php';
-
-	/** LOGOUT */
-	if (isset($_POST['logout'])) {
-		UserManager::logout();
-	}
-
-	/** LOGIN */
-	if (isset($_POST['uname'])) {
-		UserManager::login($_POST['uname'], $_POST['pass']);
-	}
-
+  header('Content-Type: text/html; charset=utf-8');
+  session_start();
+  require_once './config.inc.php';
+  /** LOGOUT */
+  if (isset($_POST['logout'])) {
+    UserManager::logout();
+  }
+  /** LOGIN */
+  if (isset($_POST['uname'])) {
+    UserManager::login($_POST['uname'], $_POST['pass']);
+  }
 ?>
-
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title><?php echo TITLE; ?>&nbsp;-&nbsp;Translation Tool</title>
     <link href="<?php echo APPLICATION_PATH ?>/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="<?php echo APPLICATION_PATH ?>/images/favicon.ico" rel="apple-touch-icon">
-    <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?php echo APPLICATION_PATH ?>/css/bootstrap.custom.css">
     <link rel="stylesheet" href="/node_modules/mumble-previewer/dist/css/styles.css">
-    <script type="text/javascript" src="/node_modules/mumble-previewer/dist/bundle.js" charset="UTF-8"></script>
+    <script src="/node_modules/mumble-previewer/dist/bundle.js" async></script>
   </head>
   <body>
 
@@ -519,7 +511,7 @@
 	</div>
 
 	<span id="app-vars" data-max-id="<?php echo $max_id ?>" data-current-id="<?php echo $id ?>" data-more-recent-translation="<?php echo $more_recent_translation ?>" style="display: hidden;"></span>
-	<script type="text/javascript" src="/common/js/app.js" charset="UTF-8"></script>
+	<script src="/common/js/app.js"></script>
 
 	</body>
 </html>
