@@ -63,24 +63,20 @@
     </div>
   </nav>
 
-	<?php
-		$max_id = LAST_ENTRY;
-		$id = isset($_GET['id']) ? $_GET['id'] : 1;
-		if (!is_numeric($id)) {
-			exit('<div class="m-3 p-3 bg-light">ERROR! Index is not a number!</div></body></html>');
-		}
-		if ($id < 1 || $id > $max_id) {
-			exit('<div class="m-3 p-3 bg-light">ERROR! Index out of range!</div></body></html>');
-		}
-		$max_date = 0;
-		$more_recent_translation = false;
-	?>
-
-	<?php if (UserManager::isLogged() && UserManager::getRole(APPLICATION_ID) == 'user'): ?>
-
-		<?php $uname = UserManager::getUsername(); ?>
+  <?php if (UserManager::isLogged() && UserManager::getRole(APPLICATION_ID) == 'user'): ?>
 
 		<?php
+      $uname = UserManager::getUsername();
+      $max_id = LAST_ENTRY;
+      $id = isset($_GET['id']) ? $_GET['id'] : 1;
+      if (!is_numeric($id)) {
+        exit('<div class="m-3">ERROR! Index is not a number!</div></body></html>');
+      }
+      if ($id < 1 || $id > $max_id) {
+        exit('<div class="m-3">ERROR! Index out of range!</div></body></html>');
+      }
+      $max_date = 0;
+      $more_recent_translation = false;
 			try {
 				$db = new SQLite3(SQLITE_FILENAME);
 				// PAGINATION
@@ -98,7 +94,7 @@
 				if ($row = DbManager::getOriginalById($db, $id)) {
 					$text = $row['text_decoded'];
 					$size = $row['size'];
-					$block = $row['block'];
+					// $block = $row['block'];
 					$ref = isset($row['ref']) && $row['ref'] != '' ? $row['ref'] : 'N/D';
 					$text_offset = isset($row['address']) ? dechex((int)$row['address']) : 'N/D';
 					$pointers_offsets = isset($row['pointers_offsets']) ? $row['pointers_offsets'] : 'N/D';
@@ -238,7 +234,6 @@
 								<div class="card-footer d-flex justify-content-between">
 									<small>Ref:&nbsp;<?php echo htmlentities($ref); ?></small>
 									<small>Size:&nbsp;<?php echo $size; ?></small>
-									<small>Block:&nbsp;<?php echo $block; ?></small>
 								</div>
 								<div class="card-footer d-flex justify-content-between">
 									<small>Text Offset:&nbsp;<?php echo $text_offset; ?></small>
@@ -472,17 +467,14 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 
 </div>
 </div>
 
-	<?php else: ?>
-
-		<div class="m-3 p-3 bg-light">ACCESS DENIED! You are not authorized to access this page!</div>
-
-	<?php endif; ?>
+  <?php else: ?>
+    <div class="m-3">ACCESS DENIED! You are not authorized to access this page!</div>
+  <?php endif; ?>
 
 	<!-- TOASTS -->
 	<div class="toast-container position-fixed bottom-0 end-0 p-3">
@@ -510,8 +502,15 @@
 		</div>
 	</div>
 
-	<span id="app-vars" data-max-id="<?php echo $max_id ?>" data-current-id="<?php echo $id ?>" data-more-recent-translation="<?php echo $more_recent_translation ?>" style="display: hidden;"></span>
-	<script src="/common/js/app.js"></script>
+  <span
+      id="app-vars"
+      data-current-id="<?php echo $id ?>"
+      data-max-id="<?php echo $max_id ?>"
+      data-more-recent-translation="<?php echo $more_recent_translation ?>"
+      data-username="<?php echo $uname; ?>"
+      style="display: hidden;">
+    </span>
 
-	</body>
+    <script src="/common/js/app.js"></script>
+  </body>
 </html>

@@ -1,4 +1,4 @@
-$(function() {
+document.addEventListener('DOMContentLoaded', () => {
 
   document.onkeyup = e => {
     if (e.ctrlKey && e.key.toUpperCase() === 'P') {
