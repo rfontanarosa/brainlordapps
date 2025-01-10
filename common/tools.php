@@ -6,21 +6,21 @@
 				<form action="tool-export-dump.php" method="post">
 					<input type="hidden" name="type" value="1" />
 					<input type="hidden" name="block" value="0" />
-					<button class="btn btn-outline-light" type="submit"><i class="fas fa-file-export"></i>&nbsp;Export ORIGINAL dump</button>
+					<button class="btn btn-primary" type="submit"><i class="fas fa-file-export"></i>&nbsp;Export ORIGINAL dump</button>
 				</form>
 			</div>
 			<div class="card-footer">
 				<form action="tool-export-dump.php" method="post">
 					<input type="hidden" name="type" value="2" />
 					<input type="hidden" name="block" value="0" />
-					<button class="btn btn-outline-light" type="submit"><i class="fas fa-file-export"></i>&nbsp;Export YOUR translation</button>
+					<button class="btn btn-primary" type="submit"><i class="fas fa-file-export"></i>&nbsp;Export YOUR translation</button>
 				</form>
 			</div>
 			<div class="card-footer">
 				<form action="tool-export-dump.php" method="post">
 					<input type="hidden" name="type" value="3" />
 					<input type="hidden" name="block" value="0" />
-					<button class="btn btn-outline-light" type="submit"><i class="fas fa-file-export"></i>&nbsp;Export MORE RECENT translation</button>
+					<button class="btn btn-primary" type="submit"><i class="fas fa-file-export"></i>&nbsp;Export MORE RECENT translation</button>
 				</form>
 			</div>
 		</div>

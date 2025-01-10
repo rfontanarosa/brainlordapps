@@ -8,18 +8,24 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (e.ctrlKey && e.key.toUpperCase() === 'D') {
       document.getElementById('done-btn').click();
     } else if (e.ctrlKey && e.key.toUpperCase() === 'A') {
-      document.getElementById('partially-btn').click();
+      document.getElementById('in-progress-btn').click();
     }
   };
 
   const appVars = document.getElementById('app-vars');
-  const maxId = parseInt(appVars.getAttribute('data-max-id'));
-  const currentId = parseInt(appVars.getAttribute('data-current-id'));
+  const currentId = parseInt(appVars.getAttribute('data-current-id'), 10);
+  const maxId = parseInt(appVars.getAttribute('data-max-id'), 10);
+  const username = appVars.getAttribute('data-username');
+  const gameId = appVars.getAttribute('data-game-id');
   let moreRecentTranslation = appVars.getAttribute('data-more-recent-translation') === '1';
+
   const modal = new bootstrap.Modal(document.getElementById('confirm-modal'));
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
   const modalConfirmButton = document.getElementById('modal-confirm-btn');
   const submitButtons = document.querySelectorAll('.submit-btn');
+  const selectTranslator = document.getElementById('select-translator');
 
   const submit = () => {
     const idText = document.querySelector('input[name="id-text"]').value;
@@ -40,11 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
         extends_to_duplicates: extendsToDuplicates,
       },
     }).done(function(data, textStatus, jqXHR) {
-      // update textarea color
-      const className = status === 0 ? 'text-bg-danger' : status === 1 ? 'text-bg-warning' : 'text-bg-success';
-      const textarea = document.querySelector('textarea[name="translation"]'); 
-      textarea.classList.remove('text-bg-warning', 'text-bg-danger', 'text-bg-success');
-      textarea.classList.add(className);
+      // update translation status icon
+      const colorClass = status === 1 ? 'text-warning' : status === 2 ? 'text-success' : 'text-danger';
+      const iconClass = status === 1 ? 'bi-exclamation-diamond-fill' : status === 2 ? 'bi-check-square-fill' : 'bi-x-circle-fill';
+      const statusIconElement = document.getElementById('translation-status');
+      statusIconElement.classList.remove(...statusIconElement.classList);
+      statusIconElement.classList.add('bi', colorClass, iconClass);
       // update date
       const jsonObject = JSON.parse(data);
       const lastUpdateElement = document.getElementById('last-update');
@@ -72,26 +79,45 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   });
 
-  $('.preview-btn').on('click', e => {
-    e.stopPropagation();
+  selectTranslator.addEventListener('change', function() {
+    const selectedOption = selectTranslator.options[selectTranslator.selectedIndex];
+    const selectedValue = selectedOption.value;
+    const blocks = document.querySelectorAll('.card-block');
+    blocks.forEach(block => {
+      if (block.classList.contains(`card-block-${selectedValue}`)) {
+        block.classList.remove('d-none');
+      } else {
+        block.classList.add('d-none');
+      }
+    });
+    document.getElementById('paste-btn').disabled = selectedValue !== username;
+  });
+
+  document.getElementById('preview-btn-original').addEventListener('click', e => {
     e.preventDefault();
+    const text = document.getElementById('original-text').value;
     if (MumblePreviewer && typeof MumblePreviewer.renderPreview === 'function') {
-      const sourceId = e.currentTarget.getAttribute('data-source-id');
-      const containerId = e.currentTarget.getAttribute('data-preview-container-id');
-      const gameId = e.currentTarget.getAttribute('data-game-id');
-      // const id = e.currentTarget.getAttribute('data-id');
-      const text = document.getElementById(sourceId).value;
-      MumblePreviewer.renderPreview(containerId, text, gameId);
+      MumblePreviewer.renderPreview('preview-container', text, gameId);
     } else {
       console.error('renderPreview is not defined!');
     }
   });
 
-  $('.copy-btn').on('click', e => {
-    e.stopPropagation();
+  document.getElementById('preview-btn').addEventListener('click', e => {
     e.preventDefault();
-    const sourceId = e.currentTarget.getAttribute('data-source-id');
-    const text = document.getElementById(sourceId).value;
+    const elements = document.querySelectorAll('[name="translation"]');
+    const visibleElement = Array.from(elements).find(el => window.getComputedStyle(el.parentElement.parentElement).display !== 'none');
+    const text = visibleElement.value;
+    if (MumblePreviewer && typeof MumblePreviewer.renderPreview === 'function') {
+      MumblePreviewer.renderPreview('preview-container', text, gameId);
+    } else {
+      console.error('renderPreview is not defined!');
+    }
+  });
+
+  document.getElementById('copy-btn-original').addEventListener('click', e => {
+    e.preventDefault();
+    const text = document.getElementById('original-text').value;
     navigator.clipboard.writeText(text).then(function() {
       /* clipboard successfully set */
     }, function() {
@@ -99,16 +125,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  $('#paste-new-btn').on('click', e => {
-    e.stopPropagation();
+  document.getElementById('copy-btn').addEventListener('click', e => {
     e.preventDefault();
-    navigator.clipboard.readText().then(clipText => {
-      document.getElementById('translation').value = clipText;
-      $('#translation').keyup();
+    const elements = document.querySelectorAll('[name="translation"]');
+    const visibleElement = Array.from(elements).find(el => window.getComputedStyle(el.parentElement.parentElement).display !== 'none');
+    const text = visibleElement.value;
+    navigator.clipboard.writeText(text).then(function() {
+      /* clipboard successfully set */
+    }, function() {
+      /* clipboard write failed */
     });
   });
 
-  $('#translation').on('keyup', () => document.getElementById('preview-new-btn').click());
+  document.getElementById('paste-btn').addEventListener('click', e => {
+    e.preventDefault();
+    navigator.clipboard.readText().then(clipText => {
+      const translationElement = document.getElementById('translation');
+      translationElement.value = clipText;
+      translationElement.dispatchEvent(new Event('keyup')); 
+    });
+  });
+
+  document.getElementById('translation').addEventListener('keyup', () => {
+    document.getElementById('preview-btn').click();
+  });
 
   $('.search-input').on('keypress', e => {
     if (e.key === 'Enter') {
