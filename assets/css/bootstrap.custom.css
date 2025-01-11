@@ -42,10 +42,13 @@ body {
 .navbar-nav .nav-link {
   color: #9198a1;
 }
-.navbar-nav .nav-link.active {
+.navbar-nav .nav-link .bi {
+  color: #9198a1;
+}
+.navbar-nav .nav-link.active, .navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover {
   color: #f0f6fc;
 }
-.navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover {
+.navbar-nav .nav-link.active .bi, .navbar-nav .nav-link:focus .bi, .navbar-nav .nav-link:hover .bi {
   color: #f0f6fc;
 }
 
@@ -99,7 +102,11 @@ body {
   color: #f0f6fc;
 }
 .navbar .navbar-toggler {
-  border: 1px solid #f0f6fc;
+  border-color: #3D444E;
+}
+.navbar .navbar-toggler:focus {
+  background-color: #262C36;
+  border-color: #3D444E;
 }
 
 .card {
@@ -109,11 +116,15 @@ body {
 }
 .card .card-header {
   background-color: #151B23;
+  height: 3rem;
 }
-.card .card-header button {
-  padding: 0.25rem 0.5rem;
-  font-size: 0.75rem;
-  border-radius: 0.25rem;
+.card .card-header .btn {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+}
+.card .card-header .btn:focus .bi, .card .card-header .btn:hover .bi {
+  color: #f0f6fc;
 }
 .card .card-body, .card .card-header, .card .card-footer {
   padding: 0.5rem 0.5rem;

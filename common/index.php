@@ -30,10 +30,11 @@
   <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar sticky-top navbar-expand-lg">
+  <nav class="navbar navbar-dark sticky-top navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="/"><i class="bi bi-house"></i></a>
       <a class="navbar-brand" href="<?php echo APPLICATION_PATH ?>"><?php echo TITLE; ?></a>
+      <span class="navbar-brand"><img src="<?php echo APPLICATION_PATH ?>/images/favicon.png" /></span>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -274,8 +275,8 @@
                       </button>
                     </span>
                     <span tabindex="0" data-bs-toggle="tooltip" data-bs-title="Paste from clipboard">
-                      <button class="btn btn-primary" id="paste-btn" type="submit">
-                        <i class="bi bi-clipboard"></i>
+                      <button class="btn" id="paste-btn" type="submit">
+                        <i class="bi bi-clipboard-plus-fill"></i>
                       </button>
                     </span>
                     <span tabindex="0" data-bs-toggle="tooltip" data-bs-title="Show preview">

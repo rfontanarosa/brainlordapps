@@ -59,12 +59,16 @@ body {
   .nav-link {
     color: $text-secondaryColor;
 
-    &.active {
-      color: $text-primaryColor;
+    .bi {
+      color: $text-secondaryColor;
     }
 
-    &:focus, &:hover {
+    &.active, &:focus, &:hover {
       color: $text-primaryColor;
+
+      .bi {
+        color: $text-primaryColor;
+      }
     }
   }
 }
@@ -121,7 +125,12 @@ body {
   }
 
   .navbar-toggler {
-    border: 1px solid $text-primaryColor;
+    border-color: $borderColor-default;
+
+    &:focus {
+      background-color: $button-bgColor-hover;
+      border-color: $borderColor-default;
+    }
   }
 }
 
@@ -132,11 +141,18 @@ body {
 
   .card-header {
     background-color: $bgColor-muted;
+    height: 3rem;
 
-    button {
-      padding: .25rem .5rem;
-      font-size: .75rem;
-      border-radius: .25rem;
+    .btn {
+      background-color: transparent;
+      padding: 0;
+      border: none;
+
+      &:focus, &:hover {
+        .bi {
+          color: $text-primaryColor;
+        }
+      }
     }
   }
 
