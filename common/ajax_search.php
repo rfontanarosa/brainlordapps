@@ -31,6 +31,12 @@
 							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text_decoded = (SELECT text_decoded FROM texts WHERE id = :text_to_search) ORDER BY id ASC";
 						} else if ($type == 'personal_all') {
 							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text ORDER BY id ASC";
+						} else if ($type == 'personal_todo') {
+							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text WHERE status = 0 ORDER BY id ASC";
+						} else if ($type == 'personal_in_progress') {
+							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text WHERE status = 1 ORDER BY id ASC";
+						} else if ($type == 'personal_done') {
+							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text WHERE status = 2 ORDER BY id ASC";
 						} else if ($type == 'global_untranslated') {
 							$query = "SELECT id, 0 as status FROM texts WHERE id NOT IN (SELECT distinct(id_text) FROM translations WHERE status = 2) ORDER BY id ASC";
 						} else {

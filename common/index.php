@@ -355,88 +355,100 @@
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane fade" id="pills-search" role="tabpanel" aria-labelledby="pills-search-tab">
-					<div class="row">
+        <div class="tab-pane fade" id="pills-search" role="tabpanel" aria-labelledby="pills-search-tab">
+          <div class="row">
             <!-- SEARCH COLUMN -->
-						<div class="col-md-12 col-lg-6">
-							<div class="card">
-								<div class="card-header d-flex justify-content-between align-items-center">SEARCH</div>
-								<div class="card-body">
-									<div class="input-group mb-3">
-										<span class="input-group-text">Go to (ID)</span>
-										<input type="search" class="form-control search-input" id="go-to" placeholder="Go to..." data-button-id="go-to-btn" />
+            <div class="col-md-12 col-lg-6">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">SEARCH</div>
+                <div class="card-body">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Go to (ID)</span>
+                    <input type="search" class="form-control search-input" id="go-to" placeholder="Go to..." data-button-id="go-to-btn" />
                     <button class="btn btn-primary" id="go-to-btn" type="button">
                       <i class="bi bi-box-arrow-in-right"></i>&nbsp;Go
                     </button>
-									</div>
-									<div class="input-group mb-3">
-										<span class="input-group-text">Ref</span>
-										<input type="search" class="form-control search-input" id="search-ref" placeholder="Search for..." data-button-id="search-ref-btn" />
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Ref</span>
+                    <input type="search" class="form-control search-input" id="search-ref" placeholder="Search for..." data-button-id="search-ref-btn" />
                     <button class="btn btn-primary search-btn" id="search-ref-btn" data-type="ref" type="button">
                       <i class="bi bi-search"></i>&nbsp;Search
                     </button>
-									</div>
-									<div class="form-group mb-3">
-										<div class="input-group mb-1">
-											<span class="input-group-text">Original</span>
-											<input type="search" class="form-control search-input" id="search-original" placeholder="Search for..." data-button-id="search-original-btn" />
+                  </div>
+                  <div class="form-group mb-3">
+                    <div class="input-group mb-1">
+                      <span class="input-group-text">Original</span>
+                      <input type="search" class="form-control search-input" id="search-original" placeholder="Search for..." data-button-id="search-original-btn" />
                       <button class="btn btn-primary search-btn" id="search-original-btn" data-type="original" type="button">
                         <i class="bi bi-search"></i>&nbsp;Search
                       </button>
-										</div>
-										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="" id="search-original-wwo" />
-											<label class="form-check-label" for="search-original-word">Whole word only</label>
-										</div>
-									</div>
-									<div class="form-group mb-3">
-										<div class="input-group mb-1">
-											<span class="input-group-text">Translated</span>
-											<input type="search" class="form-control search-input" id="search-new" placeholder="Search for..." data-button-id="search-new-btn" />
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="search-original-wwo" />
+                      <label class="form-check-label" for="search-original-word">Whole word only</label>
+                    </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <div class="input-group mb-1">
+                      <span class="input-group-text">Translated</span>
+                      <input type="search" class="form-control search-input" id="search-new" placeholder="Search for..." data-button-id="search-new-btn" />
                       <button class="btn btn-primary search-btn" id="search-new-btn" data-type="new" type="button">
                         <i class="bi bi-search"></i>&nbsp;Search
                       </button>
-										</div>
-										<div class="form-check">
-											<input class="form-check-input" type="checkbox" value="" id="search-new-wwo" />
-											<label class="form-check-label" for="search-new-word">Whole word only</label>
-										</div>
-									</div>
-									<div class="input-group mb-3">
-										<span class="input-group-text">Comment</span>
-										<input type="search" class="form-control search-input" id="search-comment" placeholder="Search for..." data-button-id="search-comment-btn" />
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="search-new-wwo" />
+                      <label class="form-check-label" for="search-new-word">Whole word only</label>
+                    </div>
+                  </div>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text">Comment</span>
+                    <input type="search" class="form-control search-input" id="search-comment" placeholder="Search for..." data-button-id="search-comment-btn" />
                     <button class="btn btn-primary search-btn" id="search-comment-btn" data-type="comment" type="button">
                       <i class="bi bi-search"></i>&nbsp;Search
                     </button>
-									</div>
-									<div class="input-group">
-										<span class="input-group-text">Duplicates (ID)</span>
-										<input type="search" class="form-control search-input" id="search-duplicates" placeholder="Search duplicates..." data-button-id="search-duplicates-btn" value="<?php echo $id; ?>" />
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-text">Duplicates (ID)</span>
+                    <input type="search" class="form-control search-input" id="search-duplicates" placeholder="Search duplicates..." data-button-id="search-duplicates-btn" value="<?php echo $id; ?>" />
                     <button class="btn btn-primary search-btn" id="search-duplicates-btn" data-type="duplicates" type="button">
                       <i class="bi bi-search"></i>&nbsp;Search
                     </button>
-									</div>
-								</div>
-								<div class="card-footer">
-                  <button class="btn btn-primary search-btn" id="search-personal-all-btn" data-type="personal_all" type="button">
-                    <i class="bi bi-search"></i>&nbsp;Search Personal ALL
+                  </div>
+                </div>
+                <div class="card-footer d-flex align-items-center gap-3">
+                  <div style="flex: 1;"><i class="bi bi-search"></i>&nbsp;Search Personal</div>
+                  <button class="btn btn-primary search-btn" data-type="personal_all" type="button">
+                    <i class="bi bi-globe"></i>&nbsp;ALL
                   </button>
-								</div>
-								<div class="card-footer">
-                  <button class="btn btn-primary search-btn" id="search-global_untranslated-btn" data-type="global_untranslated" type="button">
-                    <i class="bi bi-search"></i>&nbsp;Search Global Untranslated
+                  <button class="btn btn-primary search-btn" data-type="personal_todo" type="button">
+                    <i class="bi bi-x-circle-fill text-danger"></i>&nbsp;TODO
                   </button>
-								</div>
-							</div>
-						</div>
+                  <button class="btn btn-primary search-btn" data-type="personal_in_progress" type="button">
+                    <i class="bi bi-exclamation-diamond-fill text-warning"></i>&nbsp;IN PROGRESS
+                  </button>
+                  <button class="btn btn-primary search-btn" data-type="personal_done" type="button">
+                    <i class="bi bi-check-square-fill text-success"></i>&nbsp;DONE
+                  </button>
+                </div>
+                <div class="card-footer card-footer d-flex align-items-center gap-3">
+                <div style="flex: 1;"><i class="bi bi-search"></i>&nbsp;Search Global</div>
+                  <button class="btn btn-primary search-btn" data-type="global_untranslated" type="button">
+                    <i class="bi bi-search"></i>&nbsp;Untranslated
+                  </button>
+                </div>
+              </div>
+            </div>
             <!-- SEARCH RESULTS COLUMN -->
-						<div class="col-md-12 col-lg-6">
-							<div class="card">
-								<div class="card-body" id="search-result">SEARCH RESULTS</div>
-							</div>
-						</div>
-					</div>
-				</div>
+            <div class="col-md-12 col-lg-6">
+              <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">SEARCH RESULTS</div>
+                <div class="card-body d-flex flex-wrap" id="search-result"></div>
+              </div>
+            </div>
+          </div>
+        </div>
 				<div class="tab-pane fade" id="pills-tools" role="tabpanel" aria-labelledby="pills-tools-tab">
 					<?php if (file_exists('tools.php')): ?>
 						<?php require_once("tools.php"); ?>
