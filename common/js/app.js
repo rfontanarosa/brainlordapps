@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalConfirmButton = document.getElementById('modal-confirm-btn');
   const submitButtons = document.querySelectorAll('.submit-btn');
   const selectTranslator = document.getElementById('select-translator');
+  const searchButtons = document.querySelectorAll('.search-btn');
+  const searchInputs = document.querySelectorAll('.search-input');
 
   const submit = () => {
     const idText = document.querySelector('input[name="id-text"]').value;
@@ -150,14 +152,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('preview-btn').click();
   });
 
-  $('.search-input').on('keypress', e => {
-    if (e.key === 'Enter') {
-      const buttonId = e.currentTarget.getAttribute('data-button-id');
-      document.getElementById(buttonId).click();
-    }
+  searchInputs.forEach(searchInput => {
+    searchInput.addEventListener('keyup', e => {
+      if (e.key === 'Enter') {
+        const buttonId = e.currentTarget.getAttribute('data-button-id');
+        document.getElementById(buttonId).click();
+      }
+    });
   });
 
-  $('#go-to-btn').on('click', e => {
+  document.getElementById('go-to-btn').addEventListener('click', e => {
     e.preventDefault();
     const id = parseInt(document.getElementById('go-to').value);
     if (!isNaN(id) && id > 0 && id < maxId) {
@@ -168,72 +172,74 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  $('.search-btn').on('click', e => {
-    e.preventDefault();
-    const type = e.currentTarget.getAttribute('data-type');
-    let textToSearch = undefined;
-    let wholeWordOnly = false;
-    switch (type) {
-      case 'ref':
-        textToSearch = document.getElementById('search-ref').value;
-        break;
-      case 'original':
-        textToSearch = document.getElementById('search-original').value;
-        wholeWordOnly = $('#search-original-wwo').is(':checked');
-        break;
-      case 'new':
-        textToSearch = document.getElementById('search-new').value;
-        wholeWordOnly = $('#search-new-wwo').is(':checked');
-        break;
-      case 'comment':
-        textToSearch = document.getElementById('search-comment').value;
-        break;
-      case 'duplicates':
-        textToSearch = document.getElementById('search-duplicates').value;
-        break;
-    }
-    if ((textToSearch === undefined || textToSearch.length > 1) || type === 'duplicates') {
-      $.ajax({
-        async: false,
-        type: 'POST',
-        url: 'ajax_search.php',
-        data: {
-          type,
-          text_to_search: textToSearch,
-          whole_word_only: wholeWordOnly,
-        },
-      }).done(function(data, textStatus, jqXHR) {
-        const jsonArray = JSON.parse(data);
+  searchButtons.forEach(searchButton => {
+    searchButton.addEventListener('click', e => {
+      e.preventDefault();
+      const type = e.currentTarget.getAttribute('data-type');
+      let textToSearch = undefined;
+      let wholeWordOnly = false;
+      switch (type) {
+        case 'ref':
+          textToSearch = document.getElementById('search-ref').value;
+          break;
+        case 'original':
+          textToSearch = document.getElementById('search-original').value;
+          wholeWordOnly = document.getElementById('search-original-wwo').checked;
+          break;
+        case 'new':
+          textToSearch = document.getElementById('search-new').value;
+          wholeWordOnly = document.getElementById('search-new-wwo').checked;
+          break;
+        case 'comment':
+          textToSearch = document.getElementById('search-comment').value;
+          break;
+        case 'duplicates':
+          textToSearch = document.getElementById('search-duplicates').value;
+          break;
+      }
+      if ((textToSearch === undefined || textToSearch.length > 1) || type === 'duplicates') {
+        $.ajax({
+          async: false,
+          type: 'POST',
+          url: 'ajax_search.php',
+          data: {
+            type,
+            text_to_search: textToSearch,
+            whole_word_only: wholeWordOnly,
+          },
+        }).done(function(data, textStatus, jqXHR) {
+          const jsonArray = JSON.parse(data);
+          $('#search-result').empty();
+          if (jsonArray.length !== 0) {
+            $('#search-result').append($('<div />').addClass('mb-1').css('flex-basis', '100%').text(`Results found: ${jsonArray.length}`));
+            const template = $('<a />').addClass('btn btn-sm me-1 mb-1 d-flex justify-content-center align-items-center').attr('target', '_blank').css({width: '50px', height: '50px'});
+            const items = jsonArray.map(value => {
+              const {id, status} = value;
+              const item = template.clone().text(id).attr('href', `?id=${id}`);
+              if (id === currentId) {
+                item.addClass('disabled').removeAttr('href').removeAttr('_blank');
+              }
+              const className = status === 0 ? 'btn-danger' : status === 1 ? 'btn-warning' : 'btn-success';
+              item.addClass(className);
+              return item;
+            });
+            $('#search-result').append(items);
+          } else {
+            $('#search-result').append($('<div />').css('flex-basis', '100%').text('No results found!'));
+          }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+          console.log(errorThrown);
+          $('#search-result').empty();
+          $('#search-result').text('An error has occurred!');
+        }).always(function(a, textStatus, b) {
+          $('#search-result').show();
+        });
+      } else {
         $('#search-result').empty();
-        if (jsonArray.length !== 0) {
-          $('#search-result').append($('<div />').addClass('mb-3').text(`Results found: ${jsonArray.length}`));
-          const template = $('<a />').addClass('btn btn-sm me-1 mb-1').attr('target', '_blank');
-          const items = jsonArray.map(value => {
-            const {id, status} = value;
-            const item = template.clone().text(id).attr('href', `?id=${id}`);
-            if (id === currentId) {
-              item.addClass('disabled').removeAttr('href').removeAttr('_blank');
-            }
-            const className = status === 0 ? 'btn-danger' : status === 1 ? 'btn-warning' : 'btn-success';
-            item.addClass(className);
-            return item;
-          });
-          $('#search-result').append(items);
-        } else {
-          $('#search-result').text('No results found!');
-        }
-      }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.log(errorThrown);
-        $('#search-result').empty();
-        $('#search-result').text('An error has occurred!');
-      }).always(function(a, textStatus, b) {
+        $('#search-result').text('Input must be not empty and larger than 1 character!');
         $('#search-result').show();
-      });
-    } else {
-      $('#search-result').empty();
-      $('#search-result').text('Input must be not empty and larger than 1 character!');
-      $('#search-result').show();
-    }
+      }
+    });
   });
 
 });
