@@ -185,6 +185,11 @@
               <i class="bi bi-skip-backward-fill"></i>
             </a>
           </span>
+          <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to PREVIOUS TODO entry">
+            <a class="btn btn-primary btn-sm <?php if (!isset($prev_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($prev_id)) echo $prev_id; ?>">
+              <i class="bi bi-skip-start-fill"></i>
+            </a>
+          </span>
           <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to PREVIOUS entry">
             <a class="btn btn-primary btn-sm <?php if ($id == 1) echo 'disabled'; ?>" href="?id=<?php echo ($id > 1) ? ($id - 1) : 1; ?>" id="prev-btn">
               <i class="bi bi-arrow-left-circle-fill"></i>
@@ -195,19 +200,14 @@
               <i class="bi bi-arrow-right-circle-fill"></i>
             </a>
           </span>
-          <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to LAST entry">
-            <a class="btn btn-primary btn-sm <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php echo $max_id; ?>">
-              <i class="bi bi-skip-forward-fill"></i>
-            </a>
-          </span>
-          <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to PREVIOUS TODO entry">
-            <a class="btn btn-primary btn-sm <?php if (!isset($prev_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($prev_id)) echo $prev_id; ?>">
-              <i class="bi bi-skip-start-fill"></i>
-            </a>
-          </span>
           <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to NEXT TODO entry">
             <a class="btn btn-primary btn-sm <?php if (!isset($next_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($next_id)) echo $next_id; ?>">
               <i class="bi bi-skip-end-fill"></i>
+            </a>
+          </span>
+          <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to LAST entry">
+            <a class="btn btn-primary btn-sm <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php echo $max_id; ?>">
+              <i class="bi bi-skip-forward-fill"></i>
             </a>
           </span>
         </div>
@@ -377,7 +377,7 @@
                     </button>
 									</div>
 									<div class="form-group mb-3">
-										<div class="input-group">
+										<div class="input-group mb-1">
 											<span class="input-group-text">Original</span>
 											<input type="search" class="form-control search-input" id="search-original" placeholder="Search for..." data-button-id="search-original-btn" />
                       <button class="btn btn-primary search-btn" id="search-original-btn" data-type="original" type="button">
@@ -390,7 +390,7 @@
 										</div>
 									</div>
 									<div class="form-group mb-3">
-										<div class="input-group">
+										<div class="input-group mb-1">
 											<span class="input-group-text">Translated</span>
 											<input type="search" class="form-control search-input" id="search-new" placeholder="Search for..." data-button-id="search-new-btn" />
                       <button class="btn btn-primary search-btn" id="search-new-btn" data-type="new" type="button">
