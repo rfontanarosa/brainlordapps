@@ -157,14 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  $('#go-to').on('keypress', e => {
-    if (e.key === 'Enter') {
-      document.getElementById('go-to-btn').click();
-    }
-  });
-
   $('#go-to-btn').on('click', e => {
-    e.stopPropagation();
     e.preventDefault();
     const id = parseInt(document.getElementById('go-to').value);
     if (!isNaN(id) && id > 0 && id < maxId) {
@@ -175,8 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  $('#search-ref-btn, #search-original-btn, #search-new-btn, #search-comment-btn, #search-duplicates-btn, #search-personal_all-btn, #search-global_untranslated-btn').on('click', e => {
-    e.stopPropagation();
+  $('.search-btn').on('click', e => {
     e.preventDefault();
     const type = e.currentTarget.getAttribute('data-type');
     let textToSearch = undefined;
@@ -200,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         textToSearch = document.getElementById('search-duplicates').value;
         break;
     }
-    if (textToSearch === undefined || textToSearch.length > 1) {
+    if ((textToSearch === undefined || textToSearch.length > 1) || type === 'duplicates') {
       $.ajax({
         async: false,
         type: 'POST',

@@ -360,23 +360,29 @@
             <!-- SEARCH COLUMN -->
 						<div class="col-md-12 col-lg-6">
 							<div class="card">
-								<div class="card-header">SEARCH</div>
+								<div class="card-header d-flex justify-content-between align-items-center">SEARCH</div>
 								<div class="card-body">
 									<div class="input-group mb-3">
 										<span class="input-group-text">Go to (ID)</span>
-										<input type="text" class="form-control" id="go-to" placeholder="Go to..." />
-										<button class="btn btn-primary" type="button" id="go-to-btn"><i class="bi bi-box-arrow-in-right"></i>&nbsp;Go</button>
+										<input type="search" class="form-control search-input" id="go-to" placeholder="Go to..." data-button-id="go-to-btn" />
+                    <button class="btn btn-primary" id="go-to-btn" type="button">
+                      <i class="bi bi-box-arrow-in-right"></i>&nbsp;Go
+                    </button>
 									</div>
 									<div class="input-group mb-3">
 										<span class="input-group-text">Ref</span>
 										<input type="search" class="form-control search-input" id="search-ref" placeholder="Search for..." data-button-id="search-ref-btn" />
-										<button class="btn btn-primary" type="button" id="search-ref-btn" data-type="ref"><i class="bi bi-search"></i>&nbsp;Search</button>
+                    <button class="btn btn-primary search-btn" id="search-ref-btn" data-type="ref" type="button">
+                      <i class="bi bi-search"></i>&nbsp;Search
+                    </button>
 									</div>
 									<div class="form-group mb-3">
 										<div class="input-group">
 											<span class="input-group-text">Original</span>
 											<input type="search" class="form-control search-input" id="search-original" placeholder="Search for..." data-button-id="search-original-btn" />
-											<button class="btn btn-primary" type="button" id="search-original-btn" data-type="original"><i class="bi bi-search"></i>&nbsp;Search</button>
+                      <button class="btn btn-primary search-btn" id="search-original-btn" data-type="original" type="button">
+                        <i class="bi bi-search"></i>&nbsp;Search
+                      </button>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="checkbox" value="" id="search-original-wwo" />
@@ -387,7 +393,9 @@
 										<div class="input-group">
 											<span class="input-group-text">Translated</span>
 											<input type="search" class="form-control search-input" id="search-new" placeholder="Search for..." data-button-id="search-new-btn" />
-											<button class="btn btn-primary" type="button" id="search-new-btn" data-type="new"><i class="bi bi-search"></i>&nbsp;Search</button>
+                      <button class="btn btn-primary search-btn" id="search-new-btn" data-type="new" type="button">
+                        <i class="bi bi-search"></i>&nbsp;Search
+                      </button>
 										</div>
 										<div class="form-check">
 											<input class="form-check-input" type="checkbox" value="" id="search-new-wwo" />
@@ -397,19 +405,27 @@
 									<div class="input-group mb-3">
 										<span class="input-group-text">Comment</span>
 										<input type="search" class="form-control search-input" id="search-comment" placeholder="Search for..." data-button-id="search-comment-btn" />
-										<button class="btn btn-primary" type="button" id="search-comment-btn" data-type="comment"><i class="bi bi-search"></i>&nbsp;Search</button>
+                    <button class="btn btn-primary search-btn" id="search-comment-btn" data-type="comment" type="button">
+                      <i class="bi bi-search"></i>&nbsp;Search
+                    </button>
 									</div>
 									<div class="input-group">
 										<span class="input-group-text">Duplicates (ID)</span>
 										<input type="search" class="form-control search-input" id="search-duplicates" placeholder="Search duplicates..." data-button-id="search-duplicates-btn" value="<?php echo $id; ?>" />
-										<button class="btn btn-primary" type="button" id="search-duplicates-btn" data-type="duplicates"><i class="bi bi-search"></i>&nbsp;Search</button>
+                    <button class="btn btn-primary search-btn" id="search-duplicates-btn" data-type="duplicates" type="button">
+                      <i class="bi bi-search"></i>&nbsp;Search
+                    </button>
 									</div>
 								</div>
 								<div class="card-footer">
-									<button class="btn btn-primary" type="button" id="search-personal_all-btn" data-type="personal_all"><i class="bi bi-search"></i>&nbsp;Search Personal ALL</button>
+                  <button class="btn btn-primary search-btn" id="search-personal-all-btn" data-type="personal_all" type="button">
+                    <i class="bi bi-search"></i>&nbsp;Search Personal ALL
+                  </button>
 								</div>
 								<div class="card-footer">
-									<button class="btn btn-primary" type="button" id="search-global_untranslated-btn" data-type="global_untranslated"><i class="bi bi-search"></i>&nbsp;Search Global Untranslated</button>
+                  <button class="btn btn-primary search-btn" id="search-global_untranslated-btn" data-type="global_untranslated" type="button">
+                    <i class="bi bi-search"></i>&nbsp;Search Global Untranslated
+                  </button>
 								</div>
 							</div>
 						</div>
@@ -432,7 +448,7 @@
           <div class="row">
             <div class="col-md-12 col-lg-6">
               <div class="card">
-                <div class="card-header">SHORTCUTS</div>
+                <div class="card-header d-flex justify-content-between align-items-center">SHORTCUTS</div>
                 <div class="card-body">
                 <ul class="list-group">
                   <li class="list-group-item">Ctrl + P - Previous</li>
