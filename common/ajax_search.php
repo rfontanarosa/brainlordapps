@@ -20,7 +20,7 @@
 						$author = UserManager::getUsername();
 						$db = new SQLite3(SQLITE_FILENAME);
 						if ($type == 'ref') {
-							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx WHERE ref LIKE :text_to_search ORDER BY id ASC";
+							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT id_text, status FROM translations WHERE author = :author GROUP BY id_text HAVING MAX(date)) as ts ON tx.id = ts.id_text  WHERE ref LIKE :text_to_search ORDER BY id ASC";
 						} else if ($type == 'original') {
 							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT id_text, status FROM translations WHERE author = :author GROUP BY id_text HAVING MAX(date)) as ts ON tx.id = ts.id_text WHERE text_decoded LIKE :text_to_search ORDER BY id ASC";
 						} else if ($type == 'new') {
