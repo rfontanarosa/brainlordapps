@@ -31,6 +31,18 @@ body {
   color: $text-secondaryColor;
 }
 
+.toast {
+  background-color: $bgColor-default;
+  border-color: $borderColor-default;
+  color: $text-primaryColor;
+
+  .toast-header {
+    background-color: $bgColor-muted;
+    border-color: $borderColor-default;
+    color: $text-primaryColor;
+  }
+}
+
 .btn.btn-primary {
   background-color: $button-bgColor-rest;
   border-color: $borderColor-default;
@@ -135,9 +147,9 @@ body {
 }
 
 .card {
-  background: $bgColor-default;
+  background-color: $bgColor-default;
+  border-color: $borderColor-default;
   color: $text-primaryColor;
-  border: 1px solid $borderColor-default;
 
   .card-header {
     background-color: $bgColor-muted;

@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const modal = new bootstrap.Modal(document.getElementById('confirm-modal'));
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
   const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+  const toast = document.getElementById('my-toast');
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast);
+  const toastBody = toast.querySelector('.toast-body'); 
 
   const modalConfirmButton = document.getElementById('modal-confirm-btn');
   const submitButtons = document.querySelectorAll('.submit-btn');
@@ -59,13 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const lastUpdateElement = document.getElementById('last-update');
       lastUpdateElement.textContent = jsonObject.updateDate;
       moreRecentTranslation = false;
-      $('#my-toast .toast-body').text('The text has been updated with success!').removeClass('bg-danger').addClass('bg-success');
+      toastBody.textContent = 'The text has been updated successfully!';
     }).fail(function(jqXHR, textStatus, errorThrown) {
       console.log(errorThrown);
-      $('#my-toast .toast-body').text('An error has occurred!').removeClass('bg-success').addClass('bg-danger');
+      toastBody.textContent = 'The text has been updated successfully!';
     }).always(function(a, textStatus, b) {
       $('#confirm-modal').modal('hide');
-      $('#my-toast').toast('show')
+      toastBootstrap.show();
     });
   };
 
@@ -167,8 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isNaN(id) && id > 0 && id < maxId) {
       window.open(`?id=${id}`, '_blank').focus();
     } else {
-      $('#my-toast .toast-body').text('Index out of range!')
-      $('#my-toast').toast('show')
+      toastBody.textContent = 'Index out of range!';
+      toastBootstrap.show();
     }
   });
 

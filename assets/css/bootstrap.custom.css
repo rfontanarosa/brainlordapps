@@ -18,6 +18,17 @@ body {
   color: #9198a1;
 }
 
+.toast {
+  background-color: #0D1117;
+  border-color: #3D444E;
+  color: #f0f6fc;
+}
+.toast .toast-header {
+  background-color: #151B23;
+  border-color: #3D444E;
+  color: #f0f6fc;
+}
+
 .btn.btn-primary {
   background-color: #212830;
   border-color: #3D444E;
@@ -110,9 +121,9 @@ body {
 }
 
 .card {
-  background: #0D1117;
+  background-color: #0D1117;
+  border-color: #3D444E;
   color: #f0f6fc;
-  border: 1px solid #3D444E;
 }
 .card .card-header {
   background-color: #151B23;
