@@ -19,7 +19,6 @@
     <title><?php echo TITLE; ?>&nbsp;-&nbsp;Translation Tool</title>
     <link href="<?php echo APPLICATION_PATH ?>/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="<?php echo APPLICATION_PATH ?>/images/favicon.ico" rel="apple-touch-icon">
-    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
@@ -444,7 +443,7 @@
                     <div class="col-md-12 col-lg-6">
                       <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center">SEARCH RESULTS</div>
-                        <div class="card-body d-flex flex-wrap" id="search-result"></div>
+                        <div class="card-body d-flex flex-wrap" id="search-results"></div>
                       </div>
                     </div>
                   </div>

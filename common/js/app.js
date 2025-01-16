@@ -24,13 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
   const toast = document.getElementById('my-toast');
   const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast);
-  const toastBody = toast.querySelector('.toast-body'); 
+  const toastBody = toast.querySelector('.toast-body');
 
   const modalConfirmButton = document.getElementById('modal-confirm-btn');
   const submitButtons = document.querySelectorAll('.submit-btn');
   const selectTranslator = document.getElementById('select-translator');
   const searchButtons = document.querySelectorAll('.search-btn');
   const searchInputs = document.querySelectorAll('.search-input');
+  const searchResults = document.getElementById('search-results');
 
   const submit = () => {
     const idText = document.querySelector('input[name="id-text"]').value;
@@ -38,10 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const comment = document.querySelector('textarea[name="comment"]').value;
     const status = parseInt(document.querySelector('input[name="status"]').value);
     const extendsToDuplicates = document.getElementById('extends-to-duplicates').checked;
-    $.ajax({
-      type: 'POST',
-      url: 'ajax_submit.php',
-      data: {
+    fetch('ajax_submit.php', {
+      method: 'POST',
+      body: new URLSearchParams({
         id_text: idText,
         project: '',
         translation,
@@ -49,8 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
         tags: '',
         comment,
         extends_to_duplicates: extendsToDuplicates,
-      },
-    }).done(function(data, textStatus, jqXHR) {
+      })
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    }).then(data => {
       // update translation status icon
       const colorClass = status === 1 ? 'text-warning' : status === 2 ? 'text-success' : 'text-danger';
       const iconClass = status === 1 ? 'bi-exclamation-diamond-fill' : status === 2 ? 'bi-check-square-fill' : 'bi-x-circle-fill';
@@ -58,16 +63,15 @@ document.addEventListener('DOMContentLoaded', () => {
       statusIconElement.classList.remove(...statusIconElement.classList);
       statusIconElement.classList.add('bi', colorClass, iconClass);
       // update date
-      const jsonObject = JSON.parse(data);
       const lastUpdateElement = document.getElementById('last-update');
-      lastUpdateElement.textContent = jsonObject.updateDate;
+      lastUpdateElement.textContent = data.updateDate;
       moreRecentTranslation = false;
       toastBody.textContent = 'The text has been updated successfully!';
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-      console.log(errorThrown);
+    }).catch(error => {
+      console.error(error);
       toastBody.textContent = 'The text has been updated successfully!';
-    }).always(function(a, textStatus, b) {
-      $('#confirm-modal').modal('hide');
+    }).finally(() => {
+      modal.hide();
       toastBootstrap.show();
     });
   };
@@ -200,48 +204,60 @@ document.addEventListener('DOMContentLoaded', () => {
           textToSearch = document.getElementById('search-duplicates').value;
           break;
       }
-      if ((textToSearch === undefined || textToSearch.length > 1) || type === 'duplicates') {
-        $.ajax({
-          async: false,
-          type: 'POST',
-          url: 'ajax_search.php',
-          data: {
-            type,
-            text_to_search: textToSearch,
-            whole_word_only: wholeWordOnly,
-          },
-        }).done(function(data, textStatus, jqXHR) {
-          const jsonArray = JSON.parse(data);
-          $('#search-result').empty();
-          if (jsonArray.length !== 0) {
-            $('#search-result').append($('<div />').addClass('mb-1').css('flex-basis', '100%').text(`Results found: ${jsonArray.length}`));
-            const template = $('<a />').addClass('btn btn-sm me-1 mb-1 d-flex justify-content-center align-items-center').attr('target', '_blank').css({width: '50px', height: '50px'});
-            const items = jsonArray.map(value => {
-              const {id, status} = value;
-              const item = template.clone().text(id).attr('href', `?id=${id}`);
-              if (id === currentId) {
-                item.addClass('disabled').removeAttr('href').removeAttr('_blank');
-              }
-              const className = status === 0 ? 'btn-danger' : status === 1 ? 'btn-warning' : 'btn-success';
-              item.addClass(className);
-              return item;
-            });
-            $('#search-result').append(items);
-          } else {
-            $('#search-result').append($('<div />').css('flex-basis', '100%').text('No results found!'));
-          }
-        }).fail(function(jqXHR, textStatus, errorThrown) {
-          console.log(errorThrown);
-          $('#search-result').empty();
-          $('#search-result').text('An error has occurred!');
-        }).always(function(a, textStatus, b) {
-          $('#search-result').show();
-        });
-      } else {
-        $('#search-result').empty();
-        $('#search-result').text('Input must be not empty and larger than 1 character!');
-        $('#search-result').show();
+      if (['ref', 'original', 'new', 'comment'].includes(type) && (textToSearch === undefined || textToSearch.length < 2)) {
+        searchResults.innerHTML = '';
+        searchResults.textContent = 'Please enter a valid search value (at least 2 characters).';
+        searchResults.style.display = 'block';
+        return;
       }
+      fetch('ajax_search.php', {
+        method: 'POST',
+        body: new URLSearchParams({
+          type,
+          text_to_search: textToSearch,
+          whole_word_only: wholeWordOnly
+        })
+      }).then(response => {
+        searchResults.innerHTML = '';
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      }).then(data => {
+        const resultsCountElement = document.createElement('div');
+        resultsCountElement.style.flexBasis = '100%';
+        resultsCountElement.classList.add('mb-1');
+        searchResults.appendChild(resultsCountElement);
+        if (data.length !== 0) {
+          resultsCountElement.textContent = `Results found: ${data.length}!`;
+          const template = document.createElement('a');
+          template.classList.add('btn', 'btn-sm', 'me-1', 'mb-1', 'd-flex', 'justify-content-center', 'align-items-center');
+          template.target = '_blank';
+          template.style.width = '50px';
+          template.style.height = '50px';
+          const items = [];
+          data.forEach(({id, status}) => {
+            const item = template.cloneNode(true);
+            item.textContent = id;
+            item.href = `?id=${id}`;
+            if (id === currentId) {
+              item.classList.add('disabled');
+              item.removeAttribute('href');
+              item.removeAttribute('target');
+            }
+            const className = status === 0 ? 'btn-danger' : status === 1 ? 'btn-warning' : 'btn-success';
+            item.classList.add(className);
+            searchResults.appendChild(item);
+          });
+        } else {
+          resultsCountElement.textContent = 'No results found!';
+        }
+      }).catch(error => {
+        console.error(error);
+        searchResults.textContent = 'An error has occurred! See the console for more details.';
+      }).finally(() => {
+        searchResults.style.display = 'block';
+      });
     });
   });
 
