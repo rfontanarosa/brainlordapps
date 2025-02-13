@@ -14,6 +14,7 @@
 			<app name="ffmq" role="user" />
 			<app name="ignition" role="user" />
 			<app name="lufia" role="user" />
+			<app name="gaia" role="user" />
 			<app name="neugier" role="user" />
 			<app name="sd3" role="user" />
 			<app name="smrpg" role="user" />
