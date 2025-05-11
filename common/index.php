@@ -452,7 +452,7 @@
                   <?php if (file_exists('tools.php')): ?>
                     <?php require_once("tools.php"); ?>
                   <?php else: ?>
-                    <div class="p-3 bg-light">No tools.</div>
+                    <div class="p-3">No tools.</div>
                   <?php endif; ?>
                 </div>
                 <div class="tab-pane fade" id="pills-help" role="tabpanel" aria-labelledby="pills-help-tab">
