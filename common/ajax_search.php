@@ -32,7 +32,7 @@
 						} else if ($type == 'personal_all') {
 							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text ORDER BY id ASC";
 						} else if ($type == 'personal_todo') {
-							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text WHERE status = 0 ORDER BY id ASC";
+							$query = "SELECT tx.id, COALESCE(ts.status, -1) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text WHERE ts.id_text IS NULL OR ts.status = 0 ORDER BY id ASC";
 						} else if ($type == 'personal_in_progress') {
 							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text WHERE status = 1 ORDER BY id ASC";
 						} else if ($type == 'personal_done') {

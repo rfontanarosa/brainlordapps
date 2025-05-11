@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
               item.removeAttribute('href');
               item.removeAttribute('target');
             }
-            const className = status === 0 ? 'btn-danger' : status === 1 ? 'btn-warning' : 'btn-success';
+            const className = status === -1 || status === 0 ? 'btn-danger' : status === 1 ? 'btn-warning' : 'btn-success';
             item.classList.add(className);
             searchResults.appendChild(item);
           });
