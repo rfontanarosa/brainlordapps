@@ -8,7 +8,7 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 define('TITLE', 'Illusion of Gaia (SNES)');
 
 define('SQLITE_FILENAME', RESOURCE_PATH . '/gaia/db/gaia.sqlite3');
-define('LAST_ENTRY', 1332);
+define('LAST_ENTRY', 1333);
 define('NEWLINECHAR', '-----');
 define('NEWLINE_REPLACE', 0);
 
