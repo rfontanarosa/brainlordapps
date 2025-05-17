@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/bootstrap.custom.css">
     <link rel="stylesheet" href="/node_modules/mumble-previewer/dist/css/styles.css">
-    <script src="/node_modules/mumble-previewer/dist/bundle.js" async></script>
+    <script src="/node_modules/mumble-previewer/dist/bundle.js"></script>
     <script src="/common/js/app.js"></script>
   </head>
   <body>
@@ -519,6 +519,12 @@
         </div>
       </div>
     </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('preview-btn').click();
+      });
+    </script>
 
   </body>
 </html>
