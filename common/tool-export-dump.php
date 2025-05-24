@@ -2,7 +2,7 @@
 
     session_start();
 
-    require_once 'config.inc.php';
+    require_once './config.inc.php';
 
     $block = isset($_POST['block']) ? $_POST['block'] : 0;
     $type = isset($_POST['type']) ? $_POST['type'] : 1;
