@@ -19,6 +19,7 @@
 			<app name="sd3" role="user" />
 			<app name="smrpg" role="user" />
 			<app name="soe" role="user" />
+			<app name="som" role="user" />
 			<app name="spike" role="user" />
 			<app name="starocean" role="user" />
 			<app name="ys3" role="user" />
