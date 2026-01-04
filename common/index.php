@@ -484,7 +484,7 @@
         data-max-id="<?php echo $max_id ?>"
         data-more-recent-translation="<?php echo $more_recent_translation ?>"
         data-username="<?php echo $uname; ?>"
-        data-game-id="<?php echo APPLICATION_ID; ?>"
+        data-game-id="<?php echo defined('PREVIEWER_ID') ? PREVIEWER_ID : APPLICATION_ID; ?>"
         style="display: hidden;">
       </span>
 
