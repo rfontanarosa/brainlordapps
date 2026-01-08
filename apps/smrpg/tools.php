@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-md-12 col-lg-6">
 		<div class="card brain-card">
-			<div class="card-header">TOOLS</div>
+			<div class="card-header d-flex justify-content-between align-items-center">TOOLS</div>
 			<div class="card-body">
 				<button class="btn btn-outline-light" type="button" id="find-invalid-text-btn"><i class="fas fa-bug"></i>&nbsp;Find too long texts</button>
 			</div>
