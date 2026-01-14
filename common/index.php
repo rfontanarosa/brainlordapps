@@ -245,7 +245,7 @@
                           </div>
                         </div>
                         <div class="card-body">
-                          <textarea rows="14" class="form-control" id="original-text" disabled><?php echo $text; ?></textarea>
+                          <textarea rows="14" class="form-control" id="original-text" disabled><?php echo "\n" . $text; ?></textarea>
                         </div>
                         <div class="card-footer d-flex justify-content-between">
                           <small>Ref:&nbsp;<?php echo htmlentities($ref); ?></small>
@@ -303,10 +303,10 @@
                               ?>
                               <?php if ($author == $uname): ?>
                                 <input type="hidden" name="id-text" value="<?php echo $id; ?>" />
-                                <textarea rows="14" class="form-control mb-3" name="translation" id="translation"><?php echo $translation['translation']; ?></textarea>
+                                <textarea rows="14" class="form-control mb-3" name="translation" id="translation"><?php echo "\n" . $translation['translation']; ?></textarea>
                                 <textarea rows="1" class="form-control" name="comment"><?php echo $translation['comment']; ?></textarea>
                               <?php else: ?>
-                                <textarea rows="14" class="form-control mb-3" name="translation" disabled><?php echo $translation['translation']; ?></textarea>
+                                <textarea rows="14" class="form-control mb-3" name="translation" disabled><?php echo "\n" . $translation['translation']; ?></textarea>
                                 <textarea rows="1" class="form-control" name="comment" disabled><?php echo $translation['comment']; ?></textarea>
                               <?php endif; ?>
                             </div>
