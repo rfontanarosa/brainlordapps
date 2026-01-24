@@ -104,8 +104,8 @@
           $in_progress = $stats[1];
           $done = $stats[2];
           $todo = LAST_ENTRY - ($done + $in_progress);
-          $done100 = number_format(round(($done/$max_id)*100, 3), 1);
-          $in_progress100 = number_format(round(($in_progress/$max_id)*100, 3), 1);
+          $done100 = number_format(($done / $max_id) * 100, 1);
+          $in_progress100 = number_format(($in_progress / $max_id) * 100, 1);
           $todo100 = number_format(100 - $done100 - $in_progress100, 1);
           // ORIGINAL
           if ($row = DbManager::getOriginalById($db, $id)) {
@@ -218,9 +218,9 @@
                 <div class="col-md-12 col-lg-4 brain-stats">
                   <small><i class="bi bi-bar-chart-line-fill"></i>&nbsp;STATS</small>
                   <span class="badge"><?php echo LAST_ENTRY; ?></span>
-                  <span class="badge"><i class="bi-x-circle-fill text-danger"></i>&nbsp;<?php echo $todo; ?></span>
-                  <span class="badge"><i class="bi-exclamation-diamond-fill text-warning"></i>&nbsp;<?php echo $in_progress; ?></span>
-                  <span class="badge"><i class="bi-check-square-fill text-success"></i>&nbsp;<?php echo $done; ?></span>
+                  <span class="badge"><i class="bi-x-circle-fill text-danger"></i>&nbsp;<?php echo $todo . ' - ' . $todo100 . '%'; ?></span>
+                  <span class="badge"><i class="bi-exclamation-diamond-fill text-warning"></i>&nbsp;<?php echo $in_progress . ' - ' . $in_progress100 . '%'; ?></span>
+                  <span class="badge"><i class="bi-check-square-fill text-success"></i>&nbsp;<?php echo $done . ' - ' . $done100 . '%'; ?></span>
                 </div>
               </div>
               <div class="tab-content" id="pills-tabContent">
