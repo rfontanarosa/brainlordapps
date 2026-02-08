@@ -19,7 +19,3 @@ function textClean($text) {
   }
   return $text;
 }
-
-function tableClean($text) {
-  return $text;
-}
