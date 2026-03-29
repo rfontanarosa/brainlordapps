@@ -16,7 +16,7 @@
 						$text_to_search = isset($_POST['text_to_search']) ? $_POST['text_to_search'] : '';
 						$whole_word_only = $_POST['whole_word_only'] === 'true';
 						$case_sensitive = $_POST['case_sensitive'] === 'true';
-						$author = UserManager::getUsername();
+						$author = isset($_POST['author']) && $_POST['author'] !== '' ? $_POST['author'] : UserManager::getUsername();
 						$db = new SQLite3(SQLITE_FILENAME);
 						if ($type == 'ref') {
 							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT id_text, status FROM translations WHERE author = :author GROUP BY id_text HAVING MAX(date)) as ts ON tx.id = ts.id_text  WHERE ref LIKE :text_to_search ORDER BY id ASC";

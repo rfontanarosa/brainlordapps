@@ -75,6 +75,16 @@ function textClean($text) {
 
 class DbManager {
 
+	public static function getAuthors($db) {
+		$ret = [];
+		$results = $db->query('SELECT DISTINCT author FROM translations ORDER BY author ASC');
+		while ($row = $results->fetchArray()) {
+			$ret[] = $row[0];
+		}
+		$results->finalize();
+		return $ret;
+	}
+
 	public static function getMaxId($db) {
 		$ret = 0;
 		$results = $db->query('SELECT COUNT(*) FROM texts');

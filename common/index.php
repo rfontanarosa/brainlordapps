@@ -96,6 +96,8 @@
           if ($id < 1 || $id > $max_id) {
             exit('<div class="m-3">ERROR! Index out of range!</div></body></html>');
           }
+          // AUTHORS
+          $authors = DbManager::getAuthors($db);
           // PAGINATION
           $next_id = DbManager::getNextIdByUserAndId($db, $uname, $id);
           $prev_id = DbManager::getPrevIdByUserAndId($db, $uname, $id);
@@ -359,7 +361,14 @@
                     <!-- SEARCH COLUMN -->
                     <div class="col-md-12 col-lg-6">
                       <div class="card">
-                        <div class="card-header d-flex justify-content-between align-items-center">SEARCH</div>
+                        <div class="card-header d-flex justify-content-between align-items-center gap-3">
+                          <div>SEARCH</div>
+                          <select id="select-search-user" class="form-select form-select-sm" style="flex: 1;">
+                            <?php foreach ($authors as $author): ?>
+                              <option value="<?php echo $author; ?>" <?php if ($author == $uname) echo 'selected'; ?>><?php echo $author; ?></option>
+                            <?php endforeach; ?>
+                          </select>
+                        </div>
                         <div class="card-body">
                           <div class="input-group mb-3">
                             <span class="input-group-text">Go to (ID)</span>

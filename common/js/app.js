@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalConfirmButton = document.getElementById('modal-confirm-btn');
   const submitButtons = document.querySelectorAll('.submit-btn');
   const selectTranslator = document.getElementById('select-translator');
+  const selectSearchUser = document.getElementById('select-search-user');
   const searchButtons = document.querySelectorAll('.search-btn');
   const searchInputs = document.querySelectorAll('.search-input');
   const searchResults = document.getElementById('search-results');
@@ -228,7 +229,8 @@ document.addEventListener('DOMContentLoaded', () => {
           type,
           text_to_search: textToSearch,
           whole_word_only: wholeWordOnly,
-          case_sensitive: caseSensitive
+          case_sensitive: caseSensitive,
+          author: selectSearchUser.value
         })
       }).then(response => {
         searchResults.innerHTML = '';
