@@ -126,24 +126,24 @@ document.addEventListener('DOMContentLoaded', () => {
     renderPreview(getVisibleTranslation().value);
   });
 
+  const copyToClipboard = text => {
+    navigator.clipboard.writeText(text).then(() => {
+      toastBody.textContent = 'Copied to clipboard!';
+      toastBootstrap.show();
+    }).catch(() => {
+      toastBody.textContent = 'Failed to copy to clipboard!';
+      toastBootstrap.show();
+    });
+  };
+
   document.getElementById('copy-btn-original').addEventListener('click', e => {
     e.preventDefault();
-    const text = document.getElementById('original-text').value;
-    navigator.clipboard.writeText(text).then(function() {
-      /* clipboard successfully set */
-    }, function() {
-      /* clipboard write failed */
-    });
+    copyToClipboard(document.getElementById('original-text').value);
   });
 
   document.getElementById('copy-btn').addEventListener('click', e => {
     e.preventDefault();
-    const text = getVisibleTranslation().value;
-    navigator.clipboard.writeText(text).then(function() {
-      /* clipboard successfully set */
-    }, function() {
-      /* clipboard write failed */
-    });
+    copyToClipboard(getVisibleTranslation().value);
   });
 
   document.getElementById('paste-btn').addEventListener('click', e => {
