@@ -22,9 +22,9 @@
 						if ($type == 'ref') {
 							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT id_text, status FROM translations WHERE author = :author GROUP BY id_text HAVING MAX(date)) as ts ON tx.id = ts.id_text  WHERE ref LIKE :text_to_search ORDER BY id ASC";
 						} else if ($type == 'original') {
-							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT id_text, status FROM translations WHERE author = :author GROUP BY id_text HAVING MAX(date)) as ts ON tx.id = ts.id_text WHERE text_decoded LIKE :text_to_search ORDER BY id ASC";
+							$query = "SELECT tx.id, COALESCE(ts.status, 0) as status, tx.text_decoded FROM texts as tx LEFT JOIN (SELECT id_text, status FROM translations WHERE author = :author GROUP BY id_text HAVING MAX(date)) as ts ON tx.id = ts.id_text WHERE text_decoded LIKE :text_to_search ORDER BY id ASC";
 						} else if ($type == 'new') {
-							$query = "SELECT id_text, COALESCE(status, 0) as status FROM translations WHERE translation LIKE :text_to_search AND author = :author GROUP BY id_text HAVING MAX(date) ORDER BY id_text ASC";
+							$query = "SELECT id_text, COALESCE(status, 0) as status, translation FROM translations WHERE translation LIKE :text_to_search AND author = :author GROUP BY id_text HAVING MAX(date) ORDER BY id_text ASC";
 						} else if ($type == 'comment') {
 							$query = "SELECT id_text, COALESCE(status, 0) as status FROM translations WHERE comment LIKE :text_to_search AND author = :author ORDER BY id_text ASC";
 						} else if ($type == 'duplicates') {
@@ -53,8 +53,8 @@
 						}
 						$results = $stmt->execute();
 						while ($row = $results->fetchArray()) {
-							if ($whole_word_only == 'true') {
-								if (!preg_match('/\b' . $text_to_search . '\b/', $row[2])) continue;
+							if ($whole_word_only) {
+								if (!preg_match('/\b' . preg_quote($text_to_search, '/') . '\b/i', $row[2])) continue;
 							}
 							array_push($data, array(
 								'id' => $row[0],
