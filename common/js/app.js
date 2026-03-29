@@ -22,8 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let moreRecentTranslation = appVars.getAttribute('data-more-recent-translation') === '1';
 
   const modal = new bootstrap.Modal(document.getElementById('confirm-modal'));
-  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+  document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
   const toast = document.getElementById('my-toast');
   const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast);
   const toastBody = toast.querySelector('.toast-body');
@@ -71,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       toastBody.textContent = 'The text has been updated successfully!';
     }).catch(error => {
       console.error(error);
-      toastBody.textContent = 'The text has been updated successfully!';
+      toastBody.textContent = 'An error occurred while saving!';
     }).finally(() => {
       modal.hide();
       toastBootstrap.show();
@@ -91,8 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   selectTranslator.addEventListener('change', function() {
-    const selectedOption = selectTranslator.options[selectTranslator.selectedIndex];
-    const selectedValue = selectedOption.value;
+    const selectedValue = selectTranslator.value;
     const blocks = document.querySelectorAll('.card-block');
     blocks.forEach(block => {
       if (block.classList.contains(`card-block-${selectedValue}`)) {
@@ -104,26 +102,27 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('paste-btn').disabled = selectedValue !== username;
   });
 
-  document.getElementById('preview-btn-original').addEventListener('click', e => {
-    e.preventDefault();
-    const text = document.getElementById('original-text').value;
+  const renderPreview = text => {
     if (MumblePreviewer && typeof MumblePreviewer.renderPreview === 'function') {
       MumblePreviewer.renderPreview('preview-container', text, gameId);
     } else {
       console.error('renderPreview is not defined!');
     }
+  };
+
+  const getVisibleTranslation = () => {
+    const elements = document.querySelectorAll('[name="translation"]');
+    return Array.from(elements).find(el => window.getComputedStyle(el.parentElement.parentElement).display !== 'none');
+  };
+
+  document.getElementById('preview-btn-original').addEventListener('click', e => {
+    e.preventDefault();
+    renderPreview(document.getElementById('original-text').value);
   });
 
   document.getElementById('preview-btn').addEventListener('click', e => {
     e.preventDefault();
-    const elements = document.querySelectorAll('[name="translation"]');
-    const visibleElement = Array.from(elements).find(el => window.getComputedStyle(el.parentElement.parentElement).display !== 'none');
-    const text = visibleElement.value;
-    if (MumblePreviewer && typeof MumblePreviewer.renderPreview === 'function') {
-      MumblePreviewer.renderPreview('preview-container', text, gameId);
-    } else {
-      console.error('renderPreview is not defined!');
-    }
+    renderPreview(getVisibleTranslation().value);
   });
 
   document.getElementById('copy-btn-original').addEventListener('click', e => {
@@ -138,9 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('copy-btn').addEventListener('click', e => {
     e.preventDefault();
-    const elements = document.querySelectorAll('[name="translation"]');
-    const visibleElement = Array.from(elements).find(el => window.getComputedStyle(el.parentElement.parentElement).display !== 'none');
-    const text = visibleElement.value;
+    const text = getVisibleTranslation().value;
     navigator.clipboard.writeText(text).then(function() {
       /* clipboard successfully set */
     }, function() {
@@ -157,8 +154,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  let previewDebounceTimer;
   document.getElementById('translation').addEventListener('keyup', () => {
-    document.getElementById('preview-btn').click();
+    clearTimeout(previewDebounceTimer);
+    previewDebounceTimer = setTimeout(() => renderPreview(getVisibleTranslation().value), 300);
   });
 
   searchInputs.forEach(searchInput => {
@@ -237,7 +236,6 @@ document.addEventListener('DOMContentLoaded', () => {
           template.target = '_blank';
           template.style.width = '50px';
           template.style.height = '50px';
-          const items = [];
           data.forEach(({id, status}) => {
             const item = template.cloneNode(true);
             item.textContent = id;
