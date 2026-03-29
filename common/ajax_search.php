@@ -2,9 +2,7 @@
 
 	session_start();
 
-	header('Content-Type: text/plain');
-	//header('Content-type: application/json');
-	//header('Access-Control-Allow-Origin: *');
+	header('Content-Type: application/json');
 
 	require_once './config.inc.php';
 
