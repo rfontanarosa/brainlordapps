@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   document.onkeyup = e => {
+    const tag = document.activeElement.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return;
     if (e.ctrlKey && e.key.toUpperCase() === 'P') {
       document.getElementById('prev-btn').click();
     } else if (e.ctrlKey && e.key.toUpperCase() === 'N') {
