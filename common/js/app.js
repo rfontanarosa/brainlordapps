@@ -218,9 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
           break;
       }
       if (['ref', 'original', 'new', 'comment'].includes(type) && textToSearch.length < 2) {
-        searchResults.innerHTML = '';
         showToast('Search query must be at least 2 characters.');
-        searchResults.style.display = 'block';
         return;
       }
       fetch('ajax_search.php', {
