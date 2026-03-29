@@ -34,6 +34,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInputs = document.querySelectorAll('.search-input');
   const searchResults = document.getElementById('search-results');
 
+  const renderPreview = text => {
+    if (MumblePreviewer && typeof MumblePreviewer.renderPreview === 'function') {
+      MumblePreviewer.renderPreview('preview-container', text, gameId);
+    } else {
+      console.error('renderPreview is not defined!');
+    }
+  };
+
+  const getVisibleTranslation = () => {
+    const elements = document.querySelectorAll('[name="translation"]');
+    return Array.from(elements).find(el => window.getComputedStyle(el.parentElement.parentElement).display !== 'none');
+  };
+
   const submit = () => {
     const idText = document.querySelector('input[name="id-text"]').value;
     const translation = document.querySelector('textarea[name="translation"]').value;
@@ -61,8 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const colorClass = status === 1 ? 'text-warning' : status === 2 ? 'text-success' : 'text-danger';
       const iconClass = status === 1 ? 'bi-exclamation-diamond-fill' : status === 2 ? 'bi-check-square-fill' : 'bi-x-circle-fill';
       const statusIconElement = document.getElementById('translation-status');
-      statusIconElement.classList.remove(...statusIconElement.classList);
-      statusIconElement.classList.add('bi', colorClass, iconClass);
+      statusIconElement.className = `bi ${colorClass} ${iconClass}`;
       // update date
       const lastUpdateElement = document.getElementById('last-update');
       lastUpdateElement.textContent = data.updateDate;
@@ -77,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  modalConfirmButton.addEventListener('click', () => submit());
+  modalConfirmButton.addEventListener('click', submit);
 
   submitButtons.forEach(submitButton => {
     submitButton.addEventListener('click', e => {
@@ -89,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   });
 
-  selectTranslator.addEventListener('change', function() {
+  selectTranslator.addEventListener('change', () => {
     const selectedValue = selectTranslator.value;
     const blocks = document.querySelectorAll('.card-block');
     blocks.forEach(block => {
@@ -102,19 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('paste-btn').disabled = selectedValue !== username;
     renderPreview(getVisibleTranslation().value);
   });
-
-  const renderPreview = text => {
-    if (MumblePreviewer && typeof MumblePreviewer.renderPreview === 'function') {
-      MumblePreviewer.renderPreview('preview-container', text, gameId);
-    } else {
-      console.error('renderPreview is not defined!');
-    }
-  };
-
-  const getVisibleTranslation = () => {
-    const elements = document.querySelectorAll('[name="translation"]');
-    return Array.from(elements).find(el => window.getComputedStyle(el.parentElement.parentElement).display !== 'none');
-  };
 
   document.getElementById('preview-btn-original').addEventListener('click', e => {
     e.preventDefault();
