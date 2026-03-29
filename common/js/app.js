@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('go-to-btn').addEventListener('click', e => {
     e.preventDefault();
     const id = parseInt(document.getElementById('go-to').value);
-    if (!isNaN(id) && id > 0 && id < maxId) {
+    if (!isNaN(id) && id > 0 && id <= maxId) {
       window.open(`?id=${id}`, '_blank').focus();
     } else {
       toastBody.textContent = 'Index out of range!';
