@@ -27,6 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toast);
   const toastBody = toast.querySelector('.toast-body');
 
+  const showToast = message => {
+    toastBody.textContent = message;
+    toastBootstrap.show();
+  };
+
   const modalConfirmButton = document.getElementById('modal-confirm-btn');
   const submitButtons = document.querySelectorAll('.submit-btn');
   const selectTranslator = document.getElementById('select-translator');
@@ -48,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const submit = () => {
+    let toastMessage = '';
     const idText = document.querySelector('input[name="id-text"]').value;
     const translation = document.querySelector('textarea[name="translation"]').value;
     const comment = document.querySelector('textarea[name="comment"]').value;
@@ -79,13 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const lastUpdateElement = document.getElementById('last-update');
       lastUpdateElement.textContent = data.updateDate;
       moreRecentTranslation = false;
-      toastBody.textContent = 'The text has been updated successfully!';
+      toastMessage = 'The text has been updated successfully!';
     }).catch(error => {
       console.error(error);
-      toastBody.textContent = 'An error occurred while saving!';
+      toastMessage = 'An error occurred while saving!';
     }).finally(() => {
       modal.hide();
-      toastBootstrap.show();
+      showToast(toastMessage);
     });
   };
 
@@ -126,12 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const copyToClipboard = text => {
+    if (!navigator.clipboard) { showToast('Clipboard API not available!'); return; }
     navigator.clipboard.writeText(text).then(() => {
-      toastBody.textContent = 'Copied to clipboard!';
-      toastBootstrap.show();
+      showToast('Copied to clipboard!');
     }).catch(() => {
-      toastBody.textContent = 'Failed to copy to clipboard!';
-      toastBootstrap.show();
+      showToast('Failed to copy to clipboard!');
     });
   };
 
@@ -147,10 +152,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('paste-btn').addEventListener('click', e => {
     e.preventDefault();
+    if (!navigator.clipboard) { showToast('Clipboard API not available!'); return; }
     navigator.clipboard.readText().then(clipText => {
       const translationElement = document.getElementById('translation');
       translationElement.value = clipText;
-      translationElement.dispatchEvent(new Event('keyup')); 
+      translationElement.dispatchEvent(new Event('keyup'));
+      showToast('Pasted from clipboard!');
+    }).catch(() => {
+      showToast('Failed to paste from clipboard!');
     });
   });
 
@@ -175,8 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!isNaN(id) && id > 0 && id <= maxId) {
       window.open(`?id=${id}`, '_blank').focus();
     } else {
-      toastBody.textContent = 'Index out of range!';
-      toastBootstrap.show();
+      showToast('Index out of range!');
     }
   });
 
@@ -184,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
     searchButton.addEventListener('click', e => {
       e.preventDefault();
       const type = e.currentTarget.getAttribute('data-type');
-      let textToSearch = undefined;
+      let textToSearch = '';
       let wholeWordOnly = false;
       let caseSensitive = false;
       switch (type) {
@@ -208,9 +216,9 @@ document.addEventListener('DOMContentLoaded', () => {
           textToSearch = document.getElementById('search-duplicates').value;
           break;
       }
-      if (['ref', 'original', 'new', 'comment'].includes(type) && (textToSearch === undefined || textToSearch.length < 2)) {
+      if (['ref', 'original', 'new', 'comment'].includes(type) && textToSearch.length < 2) {
         searchResults.innerHTML = '';
-        searchResults.textContent = 'Please enter a valid search value (at least 2 characters).';
+        showToast('Search query must be at least 2 characters.');
         searchResults.style.display = 'block';
         return;
       }
@@ -258,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }).catch(error => {
         console.error(error);
-        searchResults.textContent = 'An error has occurred! See the console for more details.';
+        searchResults.textContent = 'An error occurred. See the console for more details.';
       }).finally(() => {
         searchResults.style.display = 'block';
       });
