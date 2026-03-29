@@ -6,6 +6,7 @@
 		<pass>a1163e2185c02cb934eec16cca3fc507</pass>
 		<apps>
 			<app name="7thsaga" role="user" />
+			<app name="alcahest" role="user" />
 			<app name="bof" role="user" />
 			<app name="bof2" role="user" />
 			<app name="brainlord" role="user" />
