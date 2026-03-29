@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     document.getElementById('paste-btn').disabled = selectedValue !== username;
+    renderPreview(getVisibleTranslation().value);
   });
 
   const renderPreview = text => {
