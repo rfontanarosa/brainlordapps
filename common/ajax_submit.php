@@ -71,7 +71,7 @@
 			header('HTTP/1.1 401 Unauthorized');
 			exit;
 		}
-	} catch (Exception $e) {
+	} catch (Throwable $e) {
 		header('HTTP/1.1 500 Internal Server Error');
 		exit;
 	}

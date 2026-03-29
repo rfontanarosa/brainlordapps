@@ -166,7 +166,7 @@
           //
           $db->close();
           unset($db);
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
           print_r($e);
         }
       ?>
