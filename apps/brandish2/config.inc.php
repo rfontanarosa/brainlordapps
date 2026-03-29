@@ -8,7 +8,6 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 define('TITLE', 'Brandish 2: The Planet Buster (SNES)');
 
 define('SQLITE_FILENAME', RESOURCE_PATH . '/brandish2/db/brandish2.db');
-define('LAST_ENTRY', 955);
 define('NEWLINECHAR', '{01}');
 define('NEWLINE_REPLACE', 0);
 

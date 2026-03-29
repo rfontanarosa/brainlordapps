@@ -8,7 +8,6 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 define('TITLE', 'Breath of Fire 2 (SNES)');
 
 define('SQLITE_FILENAME', RESOURCE_PATH . '/bof2/db/bof2.sqlite3');
-define('LAST_ENTRY', 428);
 define('NEWLINECHAR', '-----');
 define('NEWLINE_REPLACE', 0);
 

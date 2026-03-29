@@ -8,7 +8,6 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 define('TITLE', 'Super Mario RPG: Legend of the Seven Stars (SNES)');
 
 define('SQLITE_FILENAME', RESOURCE_PATH . '/smrpg/db/smrpg.sqlite3');
-define('LAST_ENTRY', 4352);
 define('NEWLINECHAR', '-----');
 define('NEWLINE_REPLACE', 0);
 

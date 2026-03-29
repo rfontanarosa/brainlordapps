@@ -84,18 +84,18 @@
 
       <?php
         $uname = UserManager::getUsername();
-        $max_id = LAST_ENTRY;
         $id = isset($_GET['id']) ? $_GET['id'] : 1;
         if (!is_numeric($id)) {
           exit('<div class="m-3">ERROR! Index is not a number!</div></body></html>');
-        }
-        if ($id < 1 || $id > $max_id) {
-          exit('<div class="m-3">ERROR! Index out of range!</div></body></html>');
         }
         $max_date = 0;
         $more_recent_translation = false;
         try {
           $db = new SQLite3(SQLITE_FILENAME);
+          $max_id = DbManager::getMaxId($db);
+          if ($id < 1 || $id > $max_id) {
+            exit('<div class="m-3">ERROR! Index out of range!</div></body></html>');
+          }
           // PAGINATION
           $next_id = DbManager::getNextIdByUserAndId($db, $uname, $id);
           $prev_id = DbManager::getPrevIdByUserAndId($db, $uname, $id);
@@ -103,7 +103,7 @@
           $stats = DbManager::countByUserGroupByStatus($db, $uname);
           $in_progress = $stats[1];
           $done = $stats[2];
-          $todo = LAST_ENTRY - ($done + $in_progress);
+          $todo = $max_id - ($done + $in_progress);
           $done100 = number_format(($done / $max_id) * 100, 1);
           $in_progress100 = number_format(($in_progress / $max_id) * 100, 1);
           $todo100 = number_format(100 - $done100 - $in_progress100, 1);
@@ -217,7 +217,7 @@
                 <!-- STATS -->
                 <div class="col-md-12 col-lg-4 brain-stats">
                   <small><i class="bi bi-bar-chart-line-fill"></i>&nbsp;STATS</small>
-                  <span class="badge"><?php echo LAST_ENTRY; ?></span>
+                  <span class="badge"><?php echo $max_id; ?></span>
                   <span class="badge"><i class="bi-x-circle-fill text-danger"></i>&nbsp;<?php echo $todo . ' - ' . $todo100 . '%'; ?></span>
                   <span class="badge"><i class="bi-exclamation-diamond-fill text-warning"></i>&nbsp;<?php echo $in_progress . ' - ' . $in_progress100 . '%'; ?></span>
                   <span class="badge"><i class="bi-check-square-fill text-success"></i>&nbsp;<?php echo $done . ' - ' . $done100 . '%'; ?></span>

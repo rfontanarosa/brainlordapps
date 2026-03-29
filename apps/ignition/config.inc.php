@@ -8,7 +8,6 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 define('TITLE', 'Ignition Factor, The (SNES)');
 
 define('SQLITE_FILENAME', RESOURCE_PATH . '/ignition/db/ignition.sqlite3');
-define('LAST_ENTRY', 428);
 define('NEWLINECHAR', '-----');
 define('NEWLINE_REPLACE', 0);
 

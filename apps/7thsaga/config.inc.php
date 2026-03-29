@@ -8,7 +8,6 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 define('TITLE', '7th Saga, The (SNES)');
 
 define('SQLITE_FILENAME', RESOURCE_PATH . '/7thsaga/db/7thsaga.sqlite3');
-define('LAST_ENTRY', 1244);
 define('NEWLINECHAR', '{f9}');
 define('NEWLINE_REPLACE', 0);
 

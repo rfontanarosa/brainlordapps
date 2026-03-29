@@ -68,6 +68,16 @@ class UserManager {
 
 class DbManager {
 
+	public static function getMaxId($db) {
+		$ret = 0;
+		$results = $db->query('SELECT COUNT(*) FROM texts');
+		if ($row = $results->fetchArray()) {
+			$ret = (int)$row[0];
+		}
+		$results->finalize();
+		return $ret;
+	}
+
 	public static function countByUserAndStatus($db, $uname, $status) {
 		$ret = 0;
 		$query = 'SELECT COUNT(*) FROM trans WHERE author = :author AND status = :status';

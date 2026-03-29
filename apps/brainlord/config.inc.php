@@ -9,7 +9,6 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 define('TITLE', 'Brain Lord (SNES)');
 
 define('SQLITE_FILENAME', RESOURCE_PATH . '/brainlord/db/brainlord.sqlite3');
-define('LAST_ENTRY', 1192);
 define('NEWLINECHAR', '{f9}');
 define('NEWLINE_REPLACE', 0);
 

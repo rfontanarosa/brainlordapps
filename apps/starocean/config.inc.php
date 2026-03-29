@@ -8,7 +8,6 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 define('TITLE', 'Star Ocean (SNES)');
 
 define('SQLITE_FILENAME', RESOURCE_PATH . '/starocean/db/starocean.sqlite3');
-define('LAST_ENTRY', 4000);
 define('NEWLINECHAR', '-----');
 define('NEWLINE_REPLACE', 0);
 

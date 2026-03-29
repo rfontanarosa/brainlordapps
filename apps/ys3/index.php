@@ -36,11 +36,14 @@
 	<body>
 
 	<?php
-		$max_id = LAST_ENTRY;
 		$id = isset($_GET['id']) ? $_GET['id'] : 1;
 		if (!is_numeric($id)) {
 			exit('<div class="container">ERROR!!! Index is not a number!</div></body></html>');
 		}
+		$_db = new SQLite3(SQLITE_FILENAME);
+		$max_id = DbManager::getMaxId($_db);
+		$_db->close();
+		unset($_db);
 		if ($id < 1 || $id > $max_id) {
 			exit('<div class="container">ERROR!!! Index out of range!</div></body></html>');
 		}
@@ -98,7 +101,7 @@
 						$db = new SQLite3(SQLITE_FILENAME);
 						$partially = DbManager::countByUserAndStatus($db, $uname, 1);
 						$done = DbManager::countByUserAndStatus($db, $uname, 2);
-						$undone = LAST_ENTRY - ($done + $partially);
+						$undone = $max_id - ($done + $partially);
 						$db->close();
 						unset($db);
 						$done100 = number_format(round(($done/$max_id)*100, 3), 1);

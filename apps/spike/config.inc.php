@@ -8,7 +8,6 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 define('TITLE', 'Twisted Tales of Spike McFang, The (SNES)');
 
 define('SQLITE_FILENAME', RESOURCE_PATH . '/spike/db/spike.sqlite3');
-define('LAST_ENTRY', 252);
 define('NEWLINECHAR', '');
 define('NEWLINE_REPLACE', 0);
 
