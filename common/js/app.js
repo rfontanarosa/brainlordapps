@@ -186,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const type = e.currentTarget.getAttribute('data-type');
       let textToSearch = undefined;
       let wholeWordOnly = false;
+      let caseSensitive = false;
       switch (type) {
         case 'ref':
           textToSearch = document.getElementById('search-ref').value;
@@ -193,10 +194,12 @@ document.addEventListener('DOMContentLoaded', () => {
         case 'original':
           textToSearch = document.getElementById('search-original').value;
           wholeWordOnly = document.getElementById('search-original-wwo').checked;
+          caseSensitive = document.getElementById('search-original-cs').checked;
           break;
         case 'new':
           textToSearch = document.getElementById('search-new').value;
           wholeWordOnly = document.getElementById('search-new-wwo').checked;
+          caseSensitive = document.getElementById('search-new-cs').checked;
           break;
         case 'comment':
           textToSearch = document.getElementById('search-comment').value;
@@ -216,7 +219,8 @@ document.addEventListener('DOMContentLoaded', () => {
         body: new URLSearchParams({
           type,
           text_to_search: textToSearch,
-          whole_word_only: wholeWordOnly
+          whole_word_only: wholeWordOnly,
+          case_sensitive: caseSensitive
         })
       }).then(response => {
         searchResults.innerHTML = '';

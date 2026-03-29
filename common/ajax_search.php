@@ -15,6 +15,7 @@
 						$type = $_POST['type'];
 						$text_to_search = isset($_POST['text_to_search']) ? $_POST['text_to_search'] : '';
 						$whole_word_only = $_POST['whole_word_only'] === 'true';
+						$case_sensitive = $_POST['case_sensitive'] === 'true';
 						$author = UserManager::getUsername();
 						$db = new SQLite3(SQLITE_FILENAME);
 						if ($type == 'ref') {
@@ -44,7 +45,7 @@
 						$stmt = $db->prepare($query);
 						$stmt->bindValue(':author', $author, SQLITE3_TEXT);
 						if ($type == 'duplicates') {
-							$stmt->bindValue(':text_to_search', "$text_to_search", SQLITE3_TEXT);
+							$stmt->bindValue(':text_to_search', $text_to_search, SQLITE3_TEXT);
 						} else if ($type == 'personal_all' || $type == 'global_untranslated') {
 						} else {
 							$stmt->bindValue(':text_to_search', "%$text_to_search%", SQLITE3_TEXT);
@@ -52,7 +53,10 @@
 						$results = $stmt->execute();
 						while ($row = $results->fetchArray()) {
 							if ($whole_word_only) {
-								if (!preg_match('/\b' . preg_quote($text_to_search, '/') . '\b/i', $row[2])) continue;
+								$flags = $case_sensitive ? '' : 'i';
+								if (!preg_match('/\b' . preg_quote($text_to_search, '/') . '\b/' . $flags, $row[2])) continue;
+							} elseif ($case_sensitive && ($type === 'original' || $type === 'new')) {
+								if (strpos($row[2], $text_to_search) === false) continue;
 							}
 							array_push($data, array(
 								'id' => $row[0],
