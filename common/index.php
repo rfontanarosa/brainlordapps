@@ -385,7 +385,7 @@
                             </div>
                             <div class="form-check">
                               <input class="form-check-input" type="checkbox" value="" id="search-original-wwo" />
-                              <label class="form-check-label" for="search-original-word">Whole word only</label>
+                              <label class="form-check-label" for="search-original-wwo">Whole word only</label>
                             </div>
                           </div>
                           <div class="form-group mb-3">
@@ -398,7 +398,7 @@
                             </div>
                             <div class="form-check">
                               <input class="form-check-input" type="checkbox" value="" id="search-new-wwo" />
-                              <label class="form-check-label" for="search-new-word">Whole word only</label>
+                              <label class="form-check-label" for="search-new-wwo">Whole word only</label>
                             </div>
                           </div>
                           <div class="input-group mb-3">
