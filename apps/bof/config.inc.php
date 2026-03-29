@@ -7,16 +7,7 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 
 define('TITLE', 'Breath of Fire (SNES)');
 
-define('SQLITE_FILENAME', RESOURCE_PATH . '/bof/db/bof.db');
-define('NEWLINECHAR', '{02}');
-define('NEWLINE_REPLACE', 0);
-
-function textClean($text) {
-  if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
-    $text = str_replace(PHP_EOL, NEWLINECHAR, $text);
-  }
-  return $text;
-}
+define('SQLITE_FILENAME', RESOURCE_PATH . '/bof/db/bof.sqlite3');
 
 function tableClean($text) {
   $text = str_replace('à', '{10}', $text);

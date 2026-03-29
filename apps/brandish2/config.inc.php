@@ -8,15 +8,6 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 define('TITLE', 'Brandish 2: The Planet Buster (SNES)');
 
 define('SQLITE_FILENAME', RESOURCE_PATH . '/brandish2/db/brandish2.db');
-define('NEWLINECHAR', '{01}');
-define('NEWLINE_REPLACE', 0);
-
-function textClean($text) {
-  if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
-    $text = str_replace(PHP_EOL, NEWLINECHAR, $text);
-  }
-  return $text;
-}
 
 function tableClean($text) {
   $text = str_replace('à', '{6A}', $text);

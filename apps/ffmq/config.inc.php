@@ -7,13 +7,4 @@ define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 
 define('TITLE', 'Final Fantasy: Mystic Quest (SNES)');
 
-define('SQLITE_FILENAME', RESOURCE_PATH . '/ffmq/db/ffmq.db');
-define('NEWLINECHAR', '-----');
-define('NEWLINE_REPLACE', 0);
-
-function textClean($text) {
-  if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
-    $text = str_replace(PHP_EOL, NEWLINECHAR, $text);
-  }
-  return $text;
-}
+define('SQLITE_FILENAME', RESOURCE_PATH . '/ffmq/db/ffmq.sqlite3');

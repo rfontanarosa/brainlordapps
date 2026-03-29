@@ -66,6 +66,13 @@ class UserManager {
 
 }
 
+function textClean($text) {
+	if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
+		$text = str_replace(PHP_EOL, NEWLINECHAR, $text);
+	}
+	return $text;
+}
+
 class DbManager {
 
 	public static function getMaxId($db) {
