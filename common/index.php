@@ -179,6 +179,10 @@
           <div class="px-0">
             <div class="container-fluid mb-2 mt-2">
               <div class="row mb-2 gx-2">
+                <!-- TRANSLATION ID -->
+                <div class="col-md-12 col-lg-4 brain-translation-id">
+                  <span><?php echo sprintf('#%04d', $id); ?></span>
+                </div>
                 <!-- PAGINATION -->
                 <div class="col-md-12 col-lg-4 brain-paginator">
                   <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to FIRST entry">
@@ -211,10 +215,6 @@
                       <i class="bi bi-skip-forward-fill"></i>
                     </a>
                   </span>
-                </div>
-                <!-- TRANSLATION ID -->
-                <div class="col-md-12 col-lg-4 brain-translation-id">
-                  <span><?php echo sprintf('#%04d', $id); ?></span>
                 </div>
                 <!-- STATS -->
                 <div class="col-md-12 col-lg-4 brain-stats">
