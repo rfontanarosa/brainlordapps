@@ -218,5 +218,14 @@ body {
     border: 1px solid $borderColor-default;
     border-radius: .25rem;
     color: $text-primaryColor;
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+
+      th, td {
+        border: 1px solid $borderColor-default;
+      }
+    }
   }
 }
