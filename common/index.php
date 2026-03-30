@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="/assets/css/bootstrap.custom.css">
     <link rel="stylesheet" href="/node_modules/mumble-previewer/dist/css/styles.css">
     <script src="/node_modules/mumble-previewer/dist/index.js"></script>
-    <script src="/common/js/app.js"></script>
+    <script src="/common/js/app.js?<?php echo filemtime($_SERVER['DOCUMENT_ROOT'] . '/common/js/app.js'); ?>"></script>
   </head>
   <body>
 
