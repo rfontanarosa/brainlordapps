@@ -100,7 +100,7 @@ body {
 .brain-paginator {
   display: flex;
   gap: 1rem;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   color: $text-primaryColor;
 
@@ -113,7 +113,7 @@ body {
 .brain-translation-id {
   display: flex;
   gap: 1rem;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   color: $text-primaryColor;
   font-size: 1.2rem;

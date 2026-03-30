@@ -182,4 +182,12 @@ body {
   border: 1px solid #3D444E;
   border-radius: 0.25rem;
   color: #f0f6fc;
+}
+#preview-container .info-box table {
+  border-collapse: collapse;
+  width: 100%;
+}
+#preview-container .info-box table th,
+#preview-container .info-box table td {
+  border: 1px solid #3D444E;
 }/*# sourceMappingURL=bootstrap.custom.css.map */

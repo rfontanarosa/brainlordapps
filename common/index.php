@@ -249,13 +249,17 @@
                         <div class="card-body">
                           <textarea rows="14" class="form-control" id="original-text" disabled><?php echo "\n" . $text; ?></textarea>
                         </div>
-                        <div class="card-footer d-flex justify-content-between">
-                          <small>Ref:&nbsp;<?php echo htmlentities($ref); ?></small>
+                        <div class="card-footer d-flex">
                           <small>Size:&nbsp;<?php echo $size; ?></small>
                         </div>
-                        <div class="card-footer d-flex justify-content-between">
+                        <div class="card-footer d-flex">
                           <small>Text Offset:&nbsp;<?php echo $text_offset; ?></small>
+                        </div>
+                        <div class="card-footer d-flex">
                           <small>Pointers Offsets:&nbsp;<?php echo $pointers_offsets; ?></small>
+                        </div>
+                        <div class="card-footer d-flex">
+                          <small style="word-break: break-all;">Ref:&nbsp;<?php echo htmlentities($ref); ?></small>
                         </div>
                       </div>
                     </div>
