@@ -16,6 +16,7 @@
 						$text_to_search = isset($_POST['text_to_search']) ? $_POST['text_to_search'] : '';
 						$whole_word_only = $_POST['whole_word_only'] === 'true';
 						$case_sensitive = $_POST['case_sensitive'] === 'true';
+						$regex = isset($_POST['regex']) && $_POST['regex'] === 'true';
 						$author = isset($_POST['author']) && $_POST['author'] !== '' ? $_POST['author'] : UserManager::getUsername();
 						$db = new SQLite3(SQLITE_FILENAME);
 						if ($type == 'ref') {
@@ -48,11 +49,26 @@
 							$stmt->bindValue(':text_to_search', $text_to_search, SQLITE3_TEXT);
 						} else if ($type == 'personal_all' || $type == 'global_untranslated') {
 						} else {
-							$stmt->bindValue(':text_to_search', "%$text_to_search%", SQLITE3_TEXT);
+							if ($regex && ($type === 'original' || $type === 'new')) {
+								$stmt->bindValue(':text_to_search', '%', SQLITE3_TEXT);
+							} else {
+								$stmt->bindValue(':text_to_search', "%$text_to_search%", SQLITE3_TEXT);
+							}
 						}
 						$results = $stmt->execute();
+						$regex_pattern = $text_to_search;
+						if ($regex && strlen($regex_pattern) >= 2) {
+							$delim = $regex_pattern[0];
+							$lastDelim = strrpos($regex_pattern, $delim, 1);
+							if ($lastDelim !== false && $lastDelim > 0) {
+								$flags = str_replace('g', '', substr($regex_pattern, $lastDelim + 1));
+								$regex_pattern = substr($regex_pattern, 0, $lastDelim + 1) . $flags;
+							}
+						}
 						while ($row = $results->fetchArray()) {
-							if ($whole_word_only) {
+							if ($regex && ($type === 'original' || $type === 'new')) {
+								if (@preg_match($regex_pattern, $row[2]) !== 1) continue;
+							} elseif ($whole_word_only) {
 								$flags = $case_sensitive ? '' : 'i';
 								if (!preg_match('/\b' . preg_quote($text_to_search, '/') . '\b/' . $flags, $row[2])) continue;
 							} elseif ($case_sensitive && ($type === 'original' || $type === 'new')) {

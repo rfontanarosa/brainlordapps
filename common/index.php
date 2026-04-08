@@ -383,6 +383,10 @@
                               <input class="form-check-input" type="checkbox" value="" id="search-original-cs" />
                               <label class="form-check-label" for="search-original-cs">Case sensitive</label>
                             </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="search-original-rx" />
+                              <label class="form-check-label" for="search-original-rx">Regular expression</label>
+                            </div>
                           </div>
                           <div class="input-group mb-3">
                             <span class="input-group-text">Ref</span>
@@ -435,6 +439,10 @@
                             <div class="form-check">
                               <input class="form-check-input" type="checkbox" value="" id="search-new-cs" />
                               <label class="form-check-label" for="search-new-cs">Case sensitive</label>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" value="" id="search-new-rx" />
+                              <label class="form-check-label" for="search-new-rx">Regular expression</label>
                             </div>
                           </div>
                           <div class="input-group mb-3">

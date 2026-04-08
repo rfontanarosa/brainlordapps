@@ -189,6 +189,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  const setupRegexToggle = (rxId, wwoId, csId) => {
+    const rx = document.getElementById(rxId);
+    const wwo = document.getElementById(wwoId);
+    const cs = document.getElementById(csId);
+    rx.addEventListener('change', () => {
+      wwo.disabled = rx.checked;
+      cs.disabled = rx.checked;
+      if (rx.checked) { wwo.checked = false; cs.checked = false; }
+    });
+  };
+  setupRegexToggle('search-original-rx', 'search-original-wwo', 'search-original-cs');
+  setupRegexToggle('search-new-rx', 'search-new-wwo', 'search-new-cs');
+
   searchButtons.forEach(searchButton => {
     searchButton.addEventListener('click', e => {
       e.preventDefault();
@@ -196,6 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
       let textToSearch = '';
       let wholeWordOnly = false;
       let caseSensitive = false;
+      let regex = false;
       switch (type) {
         case 'ref':
           textToSearch = document.getElementById('search-ref').value;
@@ -204,11 +218,13 @@ document.addEventListener('DOMContentLoaded', () => {
           textToSearch = document.getElementById('search-original').value;
           wholeWordOnly = document.getElementById('search-original-wwo').checked;
           caseSensitive = document.getElementById('search-original-cs').checked;
+          regex = document.getElementById('search-original-rx').checked;
           break;
         case 'new':
           textToSearch = document.getElementById('search-new').value;
           wholeWordOnly = document.getElementById('search-new-wwo').checked;
           caseSensitive = document.getElementById('search-new-cs').checked;
+          regex = document.getElementById('search-new-rx').checked;
           break;
         case 'comment':
           textToSearch = document.getElementById('search-comment').value;
@@ -228,6 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
           text_to_search: textToSearch,
           whole_word_only: wholeWordOnly,
           case_sensitive: caseSensitive,
+          regex,
           author: selectSearchUser.value
         })
       }).then(response => {
