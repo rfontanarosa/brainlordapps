@@ -14,8 +14,8 @@
 						$data = array();
 						$type = $_POST['type'];
 						$text_to_search = isset($_POST['text_to_search']) ? $_POST['text_to_search'] : '';
-						$whole_word_only = $_POST['whole_word_only'] === 'true';
-						$case_sensitive = $_POST['case_sensitive'] === 'true';
+						$whole_word_only = isset($_POST['whole_word_only']) && $_POST['whole_word_only'] === 'true';
+						$case_sensitive = isset($_POST['case_sensitive']) && $_POST['case_sensitive'] === 'true';
 						$regex = isset($_POST['regex']) && $_POST['regex'] === 'true';
 						$author = isset($_POST['author']) && $_POST['author'] !== '' ? $_POST['author'] : UserManager::getUsername();
 						$db = new SQLite3(SQLITE_FILENAME);
@@ -44,10 +44,12 @@
 							exit;
 						}
 						$stmt = $db->prepare($query);
-						$stmt->bindValue(':author', $author, SQLITE3_TEXT);
+						if ($type !== 'global_untranslated') {
+							$stmt->bindValue(':author', $author, SQLITE3_TEXT);
+						}
 						if ($type == 'duplicates') {
 							$stmt->bindValue(':text_to_search', $text_to_search, SQLITE3_TEXT);
-						} else if ($type == 'personal_all' || $type == 'global_untranslated') {
+						} else if (in_array($type, ['personal_all', 'personal_todo', 'personal_in_progress', 'personal_done', 'global_untranslated'])) {
 						} else {
 							if ($regex && ($type === 'original' || $type === 'new')) {
 								$stmt->bindValue(':text_to_search', '%', SQLITE3_TEXT);
@@ -55,7 +57,6 @@
 								$stmt->bindValue(':text_to_search', "%$text_to_search%", SQLITE3_TEXT);
 							}
 						}
-						$results = $stmt->execute();
 						$regex_pattern = $text_to_search;
 						if ($regex && strlen($regex_pattern) >= 2) {
 							$delim = $regex_pattern[0];
@@ -65,10 +66,11 @@
 								$regex_pattern = substr($regex_pattern, 0, $lastDelim + 1) . $flags;
 							}
 						}
+						$results = $stmt->execute();
 						while ($row = $results->fetchArray()) {
 							if ($regex && ($type === 'original' || $type === 'new')) {
 								if (@preg_match($regex_pattern, $row[2]) !== 1) continue;
-							} elseif ($whole_word_only) {
+							} elseif ($whole_word_only && ($type === 'original' || $type === 'new')) {
 								$flags = $case_sensitive ? '' : 'i';
 								if (!preg_match('/\b' . preg_quote($text_to_search, '/') . '\b/' . $flags, $row[2])) continue;
 							} elseif ($case_sensitive && ($type === 'original' || $type === 'new')) {

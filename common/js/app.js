@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     document.getElementById('paste-btn').disabled = selectedValue !== username;
-    renderPreview(getVisibleTranslation().value);
+    renderPreview(getVisibleTranslation()?.value ?? '');
   });
 
   document.getElementById('preview-btn-original').addEventListener('click', e => {
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('preview-btn').addEventListener('click', e => {
     e.preventDefault();
-    renderPreview(getVisibleTranslation().value);
+    renderPreview(getVisibleTranslation()?.value ?? '');
   });
 
   const copyToClipboard = text => {
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('copy-btn').addEventListener('click', e => {
     e.preventDefault();
-    copyToClipboard(getVisibleTranslation().value);
+    copyToClipboard(getVisibleTranslation()?.value ?? '');
   });
 
   document.getElementById('paste-btn').addEventListener('click', e => {
@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let previewDebounceTimer;
   document.getElementById('translation').addEventListener('keyup', () => {
     clearTimeout(previewDebounceTimer);
-    previewDebounceTimer = setTimeout(() => renderPreview(getVisibleTranslation().value), 300);
+    previewDebounceTimer = setTimeout(() => renderPreview(getVisibleTranslation()?.value ?? ''), 300);
   });
 
   searchInputs.forEach(searchInput => {
