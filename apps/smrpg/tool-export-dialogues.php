@@ -4,6 +4,11 @@
 
     require_once 'config.inc.php';
 
+    if (!UserManager::isLogged() || UserManager::getRole(APPLICATION_ID) != 'user') {
+        header('HTTP/1.1 401 Unauthorized');
+        exit;
+    }
+
     $block = isset($_POST['block']) ? $_POST['block'] : 1;
     $type = isset($_POST['type']) ? $_POST['type'] : 1;
 
