@@ -2,8 +2,8 @@
 
 if (!extension_loaded('sqlite3')) die('Extension php_sqlite3 not loaded.');
 
-// DEBUG
-ini_set('display_errors', 1);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
 error_reporting(E_ALL);
 
 define('BASE_PATH', realpath(dirname(__FILE__) . '/'));
@@ -19,27 +19,25 @@ class UserManager {
 
 	public static function login($uname, $pass) {
 		$xml = @simplexml_load_file(BASE_PATH . '/users.xml');
-		if ($xml !== false) {
-			foreach($xml->user as $user) {
-				if ($uname == $user->uname) {
-					if (md5($pass) == $user->pass) {
-						$_SESSION['uname'] = $uname;
-						foreach($user->apps->app as $app) {
-							if (!isset($_SESSION['roles'])) {
-								$_SESSION['roles'] = array();
-							}
-							$_SESSION['roles'][$app['name'] . ''] = $app['role'] . '';
-						}
-					} else {
-						$login_response = 'Error: Invalid password';
-					}
-				} else {
-					$login_response = 'Error: Invalid username';
-				}
-			}
-		} else {
-			$login_response = 'Error: File not found';
+		if ($xml === false) {
+			return 'Error: File not found';
 		}
+		foreach($xml->user as $user) {
+			if ($uname == $user->uname) {
+				if (md5($pass) != $user->pass) {
+					return 'Error: Invalid password';
+				}
+				$_SESSION['uname'] = $uname;
+				foreach($user->apps->app as $app) {
+					if (!isset($_SESSION['roles'])) {
+						$_SESSION['roles'] = array();
+					}
+					$_SESSION['roles'][$app['name'] . ''] = $app['role'] . '';
+				}
+				return null;
+			}
+		}
+		return 'Error: Invalid username';
 	}
 
 	public static function isLogged() {
