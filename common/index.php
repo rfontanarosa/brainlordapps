@@ -1,6 +1,5 @@
 <?php
   header('Content-Type: text/html; charset=utf-8');
-  session_start();
   require_once './config.inc.php';
   /** LOGOUT */
   if (isset($_POST['logout'])) {

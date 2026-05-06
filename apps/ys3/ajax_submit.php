@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <?php
 
 	header('Content-Type: text/plain');

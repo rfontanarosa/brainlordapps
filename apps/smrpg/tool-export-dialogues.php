@@ -1,7 +1,5 @@
 <?php
 
-    session_start();
-
     require_once 'config.inc.php';
 
     if (!UserManager::isLogged() || UserManager::getRole(APPLICATION_ID) != 'user') {
