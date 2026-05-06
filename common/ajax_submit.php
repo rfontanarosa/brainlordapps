@@ -4,9 +4,14 @@
 
 	require_once './config.inc.php';
 
+	function json_error($status, $message) {
+		http_response_code($status);
+		echo json_encode(['error' => $message]);
+		exit;
+	}
+
     if (!UserManager::isLogged() || UserManager::getRole(APPLICATION_ID) != 'user') {
-        header('HTTP/1.1 401 Unauthorized');
-        exit;
+        json_error(401, 'Unauthorized');
     }
 
 	try {
@@ -64,12 +69,11 @@
 				echo json_encode($result);
 				break;
 			default:
-				header('HTTP/1.1 405 Method Not Allowed');
-				exit;
+				json_error(405, 'Method not allowed');
 		}
 	} catch (Throwable $e) {
-		header('HTTP/1.1 500 Internal Server Error');
-		exit;
+		error_log((string)$e);
+		json_error(500, 'Internal server error');
 	}
 
 ?>

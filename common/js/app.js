@@ -53,6 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
     return Array.from(elements).find(el => window.getComputedStyle(el.parentElement.parentElement).display !== 'none');
   };
 
+  const parseJsonResponse = async response => {
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      throw new Error(data.error || `Request failed (${response.status})`);
+    }
+    return data;
+  };
+
   const submit = () => {
     let toastMessage = '';
     const idText = document.querySelector('input[name="id-text"]').value;
@@ -71,12 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         comment,
         extends_to_duplicates: extendsToDuplicates,
       })
-    }).then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    }).then(data => {
+    }).then(parseJsonResponse).then(data => {
       // update translation status icon
       const colorClass = status === 1 ? 'text-warning' : status === 2 ? 'text-success' : 'text-danger';
       const iconClass = status === 1 ? 'bi-exclamation-diamond-fill' : status === 2 ? 'bi-check-square-fill' : 'bi-x-circle-fill';
@@ -89,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
       toastMessage = 'The text has been updated successfully!';
     }).catch(error => {
       console.error(error);
-      toastMessage = 'An error occurred while saving!';
+      toastMessage = `Save failed: ${error.message}`;
     }).finally(() => {
       modal.hide();
       showToast(toastMessage);
@@ -249,10 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
       }).then(response => {
         searchResults.innerHTML = '';
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
+        return parseJsonResponse(response);
       }).then(data => {
         const resultsCountElement = document.createElement('div');
         resultsCountElement.style.flexBasis = '100%';
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }).catch(error => {
         console.error(error);
-        searchResults.textContent = 'An error occurred. See the console for more details.';
+        searchResults.textContent = `Search failed: ${error.message}`;
       }).finally(() => {
         searchResults.style.display = 'block';
       });

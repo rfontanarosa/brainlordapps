@@ -4,9 +4,14 @@
 
 	require_once './config.inc.php';
 
-    if (!UserManager::isLogged() || UserManager::getRole(APPLICATION_ID) != 'user') {
-        header('HTTP/1.1 401 Unauthorized');
+	function json_error($status, $message) {
+		http_response_code($status);
+		echo json_encode(['error' => $message]);
         exit;
+    }
+
+    if (!UserManager::isLogged() || UserManager::getRole(APPLICATION_ID) != 'user') {
+        json_error(401, 'Unauthorized');
     }
 
 	try {
@@ -42,8 +47,7 @@
 					} else if ($type == 'global_untranslated') {
 						$query = "SELECT id, 0 as status FROM texts WHERE id NOT IN (SELECT distinct(id_text) FROM translations WHERE status = 2) ORDER BY id ASC";
 					} else {
-						header('HTTP/1.1 400 Bad Request');
-						exit;
+						json_error(400, 'Unknown search type');
 					}
 					$stmt = $db->prepare($query);
 					if ($type !== 'global_untranslated') {
@@ -89,16 +93,14 @@
 					echo json_encode($data);
 					break;
 				} else {
-					header('HTTP/1.1 422 Unprocessable Entity');
-					exit;
+					json_error(422, 'Missing search type');
 				}
 			default:
-				header('HTTP/1.1 405 Method Not Allowed');
-				exit;
+				json_error(405, 'Method not allowed');
 		}
 	} catch (Throwable $e) {
-		header('HTTP/1.1 500 Internal Server Error');
-		exit;
+		error_log((string)$e);
+		json_error(500, 'Internal server error');
 	}
 
 ?>
