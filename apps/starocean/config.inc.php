@@ -3,6 +3,7 @@
 require_once '../../config.inc.php';
 
 define('APPLICATION_ID', 'starocean');
+define('PREVIEWER_ID', 'starocean_it');
 define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 
 define('TITLE', 'Star Ocean (SNES)');
