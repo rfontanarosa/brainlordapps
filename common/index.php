@@ -168,7 +168,8 @@
           $db->close();
           unset($db);
         } catch (Throwable $e) {
-          print_r($e);
+          error_log((string)$e);
+          echo '<div class="m-3">An error occurred while loading this entry.</div>';
         }
       ?>
 

@@ -167,7 +167,8 @@
 									unset($db);
 								}
 								catch (Exception $e) {
-									print_r($e);
+									error_log((string)$e);
+									echo 'An error occurred while loading this entry.';
 								}
 							?>
 						</div>
