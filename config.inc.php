@@ -18,14 +18,15 @@ if (!function_exists('sqlite_escape_string')) {
 class UserManager {
 
 	public static function login($uname, $pass) {
+		$generic_error = 'Error: Invalid username or password';
 		$xml = @simplexml_load_file(BASE_PATH . '/users.xml');
 		if ($xml === false) {
-			return 'Error: File not found';
+			return $generic_error;
 		}
 		foreach($xml->user as $user) {
 			if ($uname == $user->uname) {
-				if (md5($pass) != $user->pass) {
-					return 'Error: Invalid password';
+				if (!hash_equals((string)$user->pass, md5($pass))) {
+					return $generic_error;
 				}
 				$_SESSION['uname'] = $uname;
 				foreach($user->apps->app as $app) {
@@ -37,7 +38,7 @@ class UserManager {
 				return null;
 			}
 		}
-		return 'Error: Invalid username';
+		return $generic_error;
 	}
 
 	public static function isLogged() {
