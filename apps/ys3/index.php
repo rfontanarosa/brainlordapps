@@ -10,8 +10,9 @@
 	}
 
 	/** LOGIN */
+	$login_error = null;
 	if (isset($_POST['uname'])) {
-		UserManager::login($_POST['uname'], $_POST['pass']);
+		$login_error = UserManager::login($_POST['uname'], $_POST['pass']);
 	}
 
 ?>
@@ -69,6 +70,9 @@
 					</ul>
 				<?php else: ?>
 					<form method="post" class="navbar-form navbar-right" role="navigation">
+						<?php if ($login_error): ?>
+							<span class="text-danger"><?php echo htmlspecialchars($login_error); ?></span>
+						<?php endif; ?>
 						<div class="form-group">
 							<input type="text" name="uname" class="form-control" placeholder="Username">
 						</div>

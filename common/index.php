@@ -6,8 +6,9 @@
     UserManager::logout();
   }
   /** LOGIN */
+  $login_error = null;
   if (isset($_POST['uname'])) {
-    UserManager::login($_POST['uname'], $_POST['pass']);
+    $login_error = UserManager::login($_POST['uname'], $_POST['pass']);
   }
 ?>
 <!doctype html>
@@ -63,7 +64,10 @@
               <button class="btn btn-primary btn-sm" type="submit"><i class="bi bi-box-arrow-right"></i>&nbsp;Logout</button>
             </form>
           <?php else: ?>
-            <form class="d-flex ms-auto" method="post">
+            <form class="d-flex ms-auto align-items-center" method="post">
+              <?php if ($login_error): ?>
+                <span class="navbar-text text-danger me-2"><?php echo htmlspecialchars($login_error); ?></span>
+              <?php endif; ?>
               <div class="me-2">
                 <input class="form-control form-control-sm" name="uname" type="text" placeholder="Username" aria-label="Username" />
               </div>
