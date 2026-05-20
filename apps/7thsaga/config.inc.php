@@ -3,7 +3,8 @@
 require_once '../../config.inc.php';
 
 define('APPLICATION_ID', '7thsaga');
-define('PREVIEWER_ID', '7thsaga_it');
+define('PREVIEWER_ID', '7thsaga');
+define('PREVIEWER_LANGUAGE', 'it');
 define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 
 define('TITLE', '7th Saga, The (SNES)');

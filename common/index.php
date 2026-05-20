@@ -514,6 +514,7 @@
         data-more-recent-translation="<?php echo $more_recent_translation ?>"
         data-username="<?php echo $uname; ?>"
         data-game-id="<?php echo defined('PREVIEWER_ID') ? PREVIEWER_ID : APPLICATION_ID; ?>"
+        data-language="<?php echo defined('PREVIEWER_LANGUAGE') ? PREVIEWER_LANGUAGE : ''; ?>"
         style="display: hidden;">
       </span>
 

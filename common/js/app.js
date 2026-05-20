@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const maxId = parseInt(appVars.getAttribute('data-max-id'), 10);
   const username = appVars.getAttribute('data-username');
   const gameId = appVars.getAttribute('data-game-id');
+  const gameLanguage = appVars.getAttribute('data-language') || '';
   let moreRecentTranslation = appVars.getAttribute('data-more-recent-translation') === '1';
 
   const modal = new bootstrap.Modal(document.getElementById('confirm-modal'));
@@ -40,9 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInputs = document.querySelectorAll('.search-input');
   const searchResults = document.getElementById('search-results');
 
+  const previewConfig = gameLanguage ? { id: gameId, language: gameLanguage } : { id: gameId };
+
   const renderPreview = text => {
     if (MumblePreviewer && typeof MumblePreviewer.renderPreview === 'function') {
-      MumblePreviewer.renderPreview('preview-container', text, gameId);
+      MumblePreviewer.renderPreview('preview-container', text, previewConfig);
     } else {
       console.error('renderPreview is not defined!');
     }

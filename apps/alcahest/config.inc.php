@@ -3,7 +3,8 @@
 require_once '../../config.inc.php';
 
 define('APPLICATION_ID', 'alcahest');
-define('PREVIEWER_ID', 'alcahest_it');
+define('PREVIEWER_ID', 'alcahest');
+define('PREVIEWER_LANGUAGE', 'it');
 define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 
 define('TITLE', 'Alcahest (SNES)');
