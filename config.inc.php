@@ -135,7 +135,7 @@ class DbManager {
 
 	public static function countDucplicatesById($db, $id) {
 		$ret = 0;
-		$query = 'SELECT COUNT(*) FROM texts WHERE text_decoded = (SELECT text_decoded FROM texts WHERE id = :id)';
+		$query = 'SELECT COUNT(*) FROM texts WHERE text = (SELECT text FROM texts WHERE id = :id)';
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':id', $id, SQLITE3_INTEGER);
 		$results = $stmt->execute();
@@ -213,9 +213,9 @@ class DbManager {
 
 	public static function getTranslationsByUser($db, $uname, $block=0) {
 		$ret = array();
-		$query = "SELECT text, translation, text_decoded, id, ref FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE author=:author AND status = 2) AS t2 ON t1.id=t2.id_text ORDER BY t1.id";
+		$query = "SELECT t1.id, t1.text, t1.ref, t2.translation FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE author=:author AND status = 2) AS t2 ON t1.id=t2.id_text ORDER BY t1.id";
 		if ($block != 0) {
-			$query = "SELECT text, translation, text_decoded, id, ref FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE author=:author AND status = 2) AS t2 ON t1.id=t2.id_text WHERE t1.block = :block ORDER BY t1.id";	
+			$query = "SELECT t1.id, t1.text, t1.ref, t2.translation FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE author=:author AND status = 2) AS t2 ON t1.id=t2.id_text WHERE t1.block = :block ORDER BY t1.id";
 		}
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
@@ -232,9 +232,9 @@ class DbManager {
 
 	public static function getMoreRecentTranslations($db, $block=0) {
 		$ret = array();
-		$query = "SELECT * FROM (SELECT text, translation, text_decoded, id, ref, address, size, t2.author, COALESCE(t2.date, 1) AS date FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE status = 2 GROUP BY id_text HAVING MAX(date)) AS t2 ON t1.id=t2.id_text)";
+		$query = "SELECT t1.id, t1.text, t1.ref, t2.translation FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE status = 2 GROUP BY id_text HAVING MAX(date)) AS t2 ON t1.id=t2.id_text ORDER BY t1.id";
 		if ($block != 0) {
-			$query = "SELECT * FROM (SELECT text, translation, text_decoded, id, ref, address, size, t2.author, COALESCE(t2.date, 1) AS date FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE status = 2 GROUP BY id_text HAVING MAX(date)) AS t2 ON t1.id=t2.id_text WHERE t1.block = :block)";
+			$query = "SELECT t1.id, t1.text, t1.ref, t2.translation FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE status = 2 GROUP BY id_text HAVING MAX(date)) AS t2 ON t1.id=t2.id_text WHERE t1.block = :block ORDER BY t1.id";
 		}
 		$stmt = $db->prepare($query);
 		if ($block != 0) {
@@ -250,9 +250,9 @@ class DbManager {
 
 	public static function getOriginalDump($db, $block=0) {
 		$ret = array();
-		$query = "SELECT text, null, text_decoded, id, ref FROM texts ORDER BY id";
+		$query = "SELECT id, text, ref FROM texts ORDER BY id";
 		if ($block != 0) {
-			$query = "SELECT text, null, text_decoded, id, ref FROM texts WHERE block = :block ORDER BY id";
+			$query = "SELECT id, text, ref FROM texts WHERE block = :block ORDER BY id";
 		}
 		$stmt = $db->prepare($query);
 		if ($block != 0) {

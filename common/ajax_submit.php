@@ -30,7 +30,7 @@
 				$extends_to_duplicates = $_POST['extends_to_duplicates'] === 'true';
 				$db = new SQLite3(SQLITE_FILENAME);
 				if ($extends_to_duplicates) {
-					$query = 'SELECT id FROM texts WHERE text_decoded = (SELECT text_decoded FROM texts WHERE id = :id)';
+					$query = 'SELECT id FROM texts WHERE text = (SELECT text FROM texts WHERE id = :id)';
 					$stmt = $db->prepare($query);
 					$stmt->bindValue(':id', $id_text, SQLITE3_INTEGER);
 					$results = $stmt->execute();

@@ -7,8 +7,8 @@
 	function json_error($status, $message) {
 		http_response_code($status);
 		echo json_encode(['error' => $message]);
-        exit;
-    }
+		exit;
+	}
 
     if (!UserManager::isLogged() || UserManager::getRole(APPLICATION_ID) != 'user') {
         json_error(401, 'Unauthorized');
@@ -29,13 +29,13 @@
 					if ($type == 'ref') {
 						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT id_text, status FROM translations WHERE author = :author GROUP BY id_text HAVING MAX(date)) as ts ON tx.id = ts.id_text  WHERE ref LIKE :text_to_search ORDER BY id ASC";
 					} else if ($type == 'original') {
-						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status, tx.text_decoded FROM texts as tx LEFT JOIN (SELECT id_text, status FROM translations WHERE author = :author GROUP BY id_text HAVING MAX(date)) as ts ON tx.id = ts.id_text WHERE text_decoded LIKE :text_to_search ORDER BY id ASC";
+						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status, tx.text FROM texts as tx LEFT JOIN (SELECT id_text, status FROM translations WHERE author = :author GROUP BY id_text HAVING MAX(date)) as ts ON tx.id = ts.id_text WHERE text LIKE :text_to_search ORDER BY id ASC";
 					} else if ($type == 'new') {
 						$query = "SELECT id_text, COALESCE(status, 0) as status, translation FROM translations WHERE translation LIKE :text_to_search AND author = :author GROUP BY id_text HAVING MAX(date) ORDER BY id_text ASC";
 					} else if ($type == 'comment') {
 						$query = "SELECT id_text, COALESCE(status, 0) as status FROM translations WHERE comment LIKE :text_to_search AND author = :author ORDER BY id_text ASC";
 					} else if ($type == 'duplicates') {
-						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text_decoded = (SELECT text_decoded FROM texts WHERE id = :text_to_search) ORDER BY id ASC";
+						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text = (SELECT text FROM texts WHERE id = :text_to_search) ORDER BY id ASC";
 					} else if ($type == 'personal_all') {
 						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text ORDER BY id ASC";
 					} else if ($type == 'personal_todo') {
@@ -65,13 +65,13 @@
 					}
 					$regex_pattern = $text_to_search;
 					if ($regex && strlen($regex_pattern) >= 2) {
-						$delim = $regex_pattern[0];
-						$lastDelim = strrpos($regex_pattern, $delim, 1);
-						if ($lastDelim !== false && $lastDelim > 0) {
-							$flags = str_replace('g', '', substr($regex_pattern, $lastDelim + 1));
-							$regex_pattern = substr($regex_pattern, 0, $lastDelim + 1) . $flags;
+							$delim = $regex_pattern[0];
+							$lastDelim = strrpos($regex_pattern, $delim, 1);
+							if ($lastDelim !== false && $lastDelim > 0) {
+								$flags = str_replace('g', '', substr($regex_pattern, $lastDelim + 1));
+								$regex_pattern = substr($regex_pattern, 0, $lastDelim + 1) . $flags;
+							}
 						}
-					}
 					$results = $stmt->execute();
 					while ($row = $results->fetchArray()) {
 						if ($regex && ($type === 'original' || $type === 'new')) {

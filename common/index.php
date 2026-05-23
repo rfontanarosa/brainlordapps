@@ -114,7 +114,7 @@
           $todo100 = number_format(100 - $done100 - $in_progress100, 1);
           // ORIGINAL
           if ($row = DbManager::getOriginalById($db, $id)) {
-            $text = $row['text_decoded'];
+            $text = $row['text'];
             $size = $row['size'];
             $ref = isset($row['ref']) && $row['ref'] != '' ? $row['ref'] : 'N/D';
             $text_offset = isset($row['address']) ? dechex((int)$row['address']) : 'N/D';

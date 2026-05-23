@@ -31,13 +31,16 @@
     }
     $str = '';
     foreach ($rows as $row) {
-        $ref = $row[4];
-        $text_decoded = $row[2];
-        $translation = $row[1];
-        $text = $translation ? $translation : $text_decoded;
+        if ($type == 1) {
+            $text = $row[1];
+            $ref = $row[2];
+        } else {
+            $original = $row[1];
+            $ref = $row[2];
+            $translation = $row[3];
+            $text = $translation ? $translation : $original;
+        }
         $str .= "$ref\n$text\n\n";
-        // $str .= "$ref$text\n\n\n";
-        // $str .= "$ref\n$text\n\n\n";
     }
 
     header("Content-Disposition: attachment; filename=$filename");

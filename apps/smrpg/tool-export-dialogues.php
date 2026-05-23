@@ -16,9 +16,9 @@
     $str = '';
     $rows = $type == 1 ? DbManager::getTranslationsByUser($db, $author, $block) : DbManager::getMoreRecentTranslations($db, $block);
     foreach ($rows as $row) {
-        $id2 = $row[4];
-        $original_text = $row[2];
-        $new_text = $row[1];
+        $original_text = $row[1];
+        $id2 = $row[2];
+        $new_text = $row[3];
         $text = $new_text ? $new_text : $original_text;
         $str .= "{{$id2}}\t$text\n";
     }
