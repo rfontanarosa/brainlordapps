@@ -116,9 +116,9 @@
           if ($row = DbManager::getOriginalById($db, $id)) {
             $text = $row['text'];
             $size = $row['size'];
-            $ref = isset($row['ref']) && $row['ref'] != '' ? $row['ref'] : 'N/D';
-            $text_offset = isset($row['address']) ? dechex((int)$row['address']) : 'N/D';
-            $pointers_offsets = isset($row['pointers_offsets']) ? $row['pointers_offsets'] : 'N/D';
+            $ref = isset($row['ref']) && $row['ref'] != '' ? $row['ref'] : '—';
+            $address = isset($row['address']) ? '0x' . dechex((int)$row['address']) : '—';
+            $pointer_addresses = !empty($row['pointer_addresses']) ? $row['pointer_addresses'] : '—';
             if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
               $text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
             }
@@ -251,17 +251,20 @@
                         <div class="card-body">
                           <textarea rows="14" class="form-control" id="original-text" disabled><?php echo "\n" . $text; ?></textarea>
                         </div>
-                        <div class="card-footer d-flex">
-                          <small>Size:&nbsp;<?php echo $size; ?></small>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                          <small>Size (bytes)</small>
+                          <small><?php echo $size; ?></small>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                          <small>Address</small>
+                          <small><?php echo $address; ?></small>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                          <small>Pointer Addresses</small>
+                          <small><?php echo $pointer_addresses; ?></small>
                         </div>
                         <div class="card-footer d-flex">
-                          <small>Text Offset:&nbsp;<?php echo $text_offset; ?></small>
-                        </div>
-                        <div class="card-footer d-flex">
-                          <small>Pointers Offsets:&nbsp;<?php echo $pointers_offsets; ?></small>
-                        </div>
-                        <div class="card-footer d-flex">
-                          <small style="word-break: break-all;">Ref:&nbsp;<?php echo htmlentities($ref); ?></small>
+                          <small style="word-break: break-all;"><?php echo htmlentities($ref); ?></small>
                         </div>
                       </div>
                     </div>
@@ -359,12 +362,12 @@
                           <div id="preview-container" class="d-flex flex-row flex-wrap justify-content-center gap-3"></div>
                         </div>
                         <div class="card-footer d-flex justify-content-between align-items-center">
-                          <span>Previewer</span>
-                          <span><?php echo defined('PREVIEWER_ID') ? PREVIEWER_ID : APPLICATION_ID; ?></span>
+                          <small>Previewer ID</small>
+                          <small><?php echo defined('PREVIEWER_ID') ? PREVIEWER_ID : APPLICATION_ID; ?></small>
                         </div>
                         <div class="card-footer d-flex justify-content-between align-items-center">
-                          <span>Language</span>
-                          <span><?php echo defined('PREVIEWER_LANGUAGE') && PREVIEWER_LANGUAGE !== '' ? PREVIEWER_LANGUAGE : '—'; ?></span>
+                          <small>Language</small>
+                          <small><?php echo defined('PREVIEWER_LANGUAGE') && PREVIEWER_LANGUAGE !== '' ? PREVIEWER_LANGUAGE : '—'; ?></small>
                         </div>
                       </div>
                     </div>
