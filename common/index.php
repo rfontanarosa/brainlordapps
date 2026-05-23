@@ -300,11 +300,11 @@
                           <span class="card-block card-block-<?php echo $author . $class; ?>">
                             <div class="card-body">
                               <?php
-                                switch ($translation['status']) {
-                                  case '1':
+                                switch ((int)$translation['status']) {
+                                  case 1:
                                     $classes = 'bi-exclamation-diamond-fill text-warning';
                                     break;
-                                  case '2':
+                                  case 2:
                                     $classes = 'bi-check-square-fill text-success';
                                     break;
                                   default:
