@@ -351,12 +351,20 @@
                       <div class="card">
                         <div class="card-header d-flex justify-content-between align-items-center gap-3">
                           <div>PREVIEW</div>
-                          <select class="form-select form-select-sm" style="flex: 1;">
-                            <option value="">Default</option>
+                          <select id="select-variant" class="form-select form-select-sm" style="flex: 1;" disabled>
+                            <option value="">-- Auto --</option>
                           </select>
                         </div>
                         <div class="card-body">
                           <div id="preview-container" class="d-flex flex-row flex-wrap justify-content-center gap-3"></div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                          <span>Previewer</span>
+                          <span><?php echo defined('PREVIEWER_ID') ? PREVIEWER_ID : APPLICATION_ID; ?></span>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                          <span>Language</span>
+                          <span><?php echo defined('PREVIEWER_LANGUAGE') && PREVIEWER_LANGUAGE !== '' ? PREVIEWER_LANGUAGE : '—'; ?></span>
                         </div>
                       </div>
                     </div>

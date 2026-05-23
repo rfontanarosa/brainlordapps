@@ -179,6 +179,7 @@ body {
   select,
   select:focus,
   select:focus-visible,
+  select:disabled,
   textarea:disabled,
   textarea:focus {
     background-color: $bgColor-default;

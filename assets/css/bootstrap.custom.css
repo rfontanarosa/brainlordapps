@@ -147,6 +147,7 @@ body {
 .card select,
 .card select:focus,
 .card select:focus-visible,
+.card select:disabled,
 .card textarea:disabled,
 .card textarea:focus {
   background-color: #0D1117;

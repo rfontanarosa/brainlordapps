@@ -37,19 +37,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitButtons = document.querySelectorAll('.submit-btn');
   const selectTranslator = document.getElementById('select-translator');
   const selectSearchUser = document.getElementById('select-search-user');
+  const selectVariant = document.getElementById('select-variant');
   const searchButtons = document.querySelectorAll('.search-btn');
   const searchInputs = document.querySelectorAll('.search-input');
   const searchResults = document.getElementById('search-results');
 
-  const previewConfig = gameLanguage ? { id: gameId, language: gameLanguage } : { id: gameId };
+  const buildPreviewConfig = () => {
+    const config = { id: gameId };
+    if (gameLanguage) config.language = gameLanguage;
+    const variant = selectVariant?.value || '';
+    if (variant) config.variant = variant;
+    return config;
+  };
 
   const renderPreview = text => {
     if (MumblePreviewer && typeof MumblePreviewer.renderPreview === 'function') {
-      MumblePreviewer.renderPreview('preview-container', text, previewConfig);
+      MumblePreviewer.renderPreview('preview-container', text, buildPreviewConfig());
     } else {
       console.error('renderPreview is not defined!');
     }
   };
+
+  if (selectVariant && MumblePreviewer && typeof MumblePreviewer.getAvailableVariants === 'function') {
+    const variants = MumblePreviewer.getAvailableVariants(gameId);
+    for (const { id, label } of variants) {
+      const opt = document.createElement('option');
+      opt.value = id;
+      opt.textContent = label;
+      selectVariant.appendChild(opt);
+    }
+    selectVariant.disabled = variants.length === 0;
+    selectVariant.addEventListener('change', () => {
+      renderPreview(getVisibleTranslation()?.value ?? '');
+    });
+  }
 
   const getVisibleTranslation = () => {
     const elements = document.querySelectorAll('[name="translation"]');
