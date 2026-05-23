@@ -116,11 +116,9 @@
           if ($row = DbManager::getOriginalById($db, $id)) {
             $text = $row['text_decoded'];
             $size = $row['size'];
-            // $block = $row['block'];
             $ref = isset($row['ref']) && $row['ref'] != '' ? $row['ref'] : 'N/D';
             $text_offset = isset($row['address']) ? dechex((int)$row['address']) : 'N/D';
             $pointers_offsets = isset($row['pointers_offsets']) ? $row['pointers_offsets'] : 'N/D';
-            $other_text = $row['text'];
             if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
               $text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
             }
