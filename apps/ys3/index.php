@@ -209,19 +209,15 @@
 							<form method="post" id="form1">
 								<input type="hidden" name="id_text" value="<?php echo $id; ?>" />
 								<?php
-									switch ($status) {
-										case '0':
-											$class = 'label-danger';
-											break;
-										case '':
-											$class = 'label-danger';
-											break;
-										case '1':
+									switch ((int)$status) {
+										case 1:
 											$class = 'label-warning';
 											break;
-										case '2':
+										case 2:
 											$class = 'label-success';
 											break;
+										default:
+											$class = 'label-danger';
 									}
 								?>
 								<textarea rows="10" class="form-control <?php echo $class; ?>" id="new_text" name="new_text"><?php if (isset($text)) echo $text; else echo $otext; ?></textarea>
