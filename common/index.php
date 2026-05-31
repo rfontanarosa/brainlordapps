@@ -117,7 +117,9 @@
             $text = $row['text'];
             $size = $row['size'];
             $ref = isset($row['ref']) && $row['ref'] != '' ? $row['ref'] : '—';
-            $address = isset($row['address']) ? '0x' . dechex((int)$row['address']) : '—';
+            $address = (isset($row['address']) && $row['address'] !== '')
+              ? '0x' . dechex(stripos(trim($row['address']), '0x') === 0 ? hexdec($row['address']) : (int)$row['address'])
+              : '—';
             $pointer_addresses = !empty($row['pointer_addresses']) ? $row['pointer_addresses'] : '—';
             if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
               $text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
