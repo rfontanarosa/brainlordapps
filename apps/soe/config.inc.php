@@ -3,6 +3,8 @@
 require_once '../../config.inc.php';
 
 define('APPLICATION_ID', 'soe');
+define('PREVIEWER_ID', 'soe');
+define('PREVIEWER_LANGUAGE', 'it');
 define('APPLICATION_PATH', '/apps/' . APPLICATION_ID);
 
 define('TITLE', 'Secret of Evermore (SNES)');
