@@ -67,9 +67,10 @@ class UserManager {
 	}
 
 	public static function getRole($app) {
-		$ret = (array_key_exists('*', $_SESSION['roles'])) ? $_SESSION['roles']['*'] : '';
+		$roles = $_SESSION['roles'] ?? [];
+		$ret = array_key_exists('*', $roles) ? $roles['*'] : '';
 		if ($ret == '') {
-			$ret = (array_key_exists($app, $_SESSION['roles'])) ? $_SESSION['roles'][$app] : '';
+			$ret = array_key_exists($app, $roles) ? $roles[$app] : '';
 		}
 		return $ret;
 	}

@@ -210,7 +210,12 @@ document.addEventListener('DOMContentLoaded', () => {
     e.preventDefault();
     const id = parseInt(document.getElementById('go-to').value);
     if (!isNaN(id) && id > 0 && id <= maxId) {
-      window.open(`?id=${id}`, '_blank').focus();
+      const win = window.open(`?id=${id}`, '_blank');
+      if (win) {
+        win.focus();
+      } else {
+        showToast('Unable to open a new tab (popup blocked?).');
+      }
     } else {
       showToast('Index out of range!');
     }
