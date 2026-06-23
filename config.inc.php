@@ -248,6 +248,16 @@ class DbManager {
 		return $ret;
 	}
 
+	public static function getFiles($db) {
+		$ret = array();
+		$results = $db->query("SELECT filename, MIN(id) AS first_id, COUNT(*) AS cnt FROM texts GROUP BY filename ORDER BY first_id");
+		while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+			$ret[] = $row;
+		}
+		$results->finalize();
+		return $ret;
+	}
+
 	public static function getOriginalDump($db, $block=0) {
 		$ret = array();
 		$query = "SELECT id, text, ref FROM texts ORDER BY id";

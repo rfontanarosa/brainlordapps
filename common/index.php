@@ -93,12 +93,14 @@
         }
         $max_date = 0;
         $more_recent_translation = false;
+        $files = [];
         try {
           $db = new SQLite3(SQLITE_FILENAME);
           $max_id = DbManager::getMaxId($db);
           if ($id < 1 || $id > $max_id) {
             exit('<div class="m-3">ERROR! Index out of range!</div></body></html>');
           }
+          $files = DbManager::getFiles($db);
           // AUTHORS
           $authors = DbManager::getAuthors($db);
           // PAGINATION

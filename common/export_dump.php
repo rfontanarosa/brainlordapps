@@ -14,20 +14,25 @@
     $db = new SQLite3(SQLITE_FILENAME);
 
     $rows = [];
-    $filename = 'file.err';
     switch ($type) {
         case 1:
             $rows = DbManager::getOriginalDump($db, $block);
-            $filename = 'dump.txt';
             break;
         case 2:
             $rows = DbManager::getTranslationsByUser($db, $author, $block);
-            $filename = "dump_ita_$author.txt";
             break;
         case 3:
             $rows = DbManager::getMoreRecentTranslations($db, $block);
-            $filename = 'dump_ita.txt';
             break;
+    }
+
+    $filename = isset($_POST['filename']) ? preg_replace('/[^A-Za-z0-9._-]/', '_', basename($_POST['filename'])) : '';
+    if ($filename === '') {
+        switch ($type) {
+            case 2: $filename = "dump_ita_$author.txt"; break;
+            case 3: $filename = 'dump_ita.txt'; break;
+            default: $filename = 'dump.txt'; break;
+        }
     }
     $str = '';
     foreach ($rows as $row) {
