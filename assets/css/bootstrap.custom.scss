@@ -17,9 +17,10 @@ html {
 }
 
 body {
-  height: 100%;
+  min-height: 100%;
   background: $bgColor-default;
   color: $text-primaryColor;
+  padding-bottom: 3.5rem;
 }
 
 .badge {
@@ -144,6 +145,11 @@ body {
       border-color: $borderColor-default;
     }
   }
+}
+
+.brain-bottom-bar {
+  border-top: 1px solid $borderColor-default;
+  border-bottom: none;
 }
 
 .card {

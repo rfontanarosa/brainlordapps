@@ -185,51 +185,9 @@
         <div class="row h-100">
           <div class="px-0">
             <div class="container-fluid mb-2 mt-2">
-              <div class="row mb-2 gx-2">
-                <!-- TRANSLATION ID -->
-                <div class="col-md-12 col-lg-4 brain-translation-id">
-                  <span><?php echo sprintf('#%04d', $id); ?></span>
                 </div>
-                <!-- PAGINATION -->
-                <div class="col-md-12 col-lg-4 brain-paginator">
-                  <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to FIRST entry">
-                    <a class="btn btn-primary btn-sm <?php if ($id == 1) echo 'disabled'; ?>" href="?id=1">
-                      <i class="bi bi-skip-backward-fill"></i>
-                    </a>
-                  </span>
-                  <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to PREVIOUS TODO entry">
-                    <a class="btn btn-primary btn-sm <?php if (!isset($prev_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($prev_id)) echo $prev_id; ?>">
-                      <i class="bi bi-skip-start-fill"></i>
-                    </a>
-                  </span>
-                  <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to PREVIOUS entry">
-                    <a class="btn btn-primary btn-sm <?php if ($id == 1) echo 'disabled'; ?>" href="?id=<?php echo ($id > 1) ? ($id - 1) : 1; ?>" id="prev-btn">
-                      <i class="bi bi-arrow-left-circle-fill"></i>
-                    </a>
-                  </span>
-                  <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to NEXT entry">
-                    <a class="btn btn-primary btn-sm <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php echo ($id < $max_id) ? ($id + 1) : $max_id; ?>" id="next-btn">
-                      <i class="bi bi-arrow-right-circle-fill"></i>
-                    </a>
-                  </span>
-                  <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to NEXT TODO entry">
-                    <a class="btn btn-primary btn-sm <?php if (!isset($next_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($next_id)) echo $next_id; ?>">
-                      <i class="bi bi-skip-end-fill"></i>
-                    </a>
-                  </span>
-                  <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to LAST entry">
-                    <a class="btn btn-primary btn-sm <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php echo $max_id; ?>">
-                      <i class="bi bi-skip-forward-fill"></i>
-                    </a>
-                  </span>
+                  <?php endif; ?>
                 </div>
-                <!-- STATS -->
-                <div class="col-md-12 col-lg-4 brain-stats">
-                  <small><i class="bi bi-bar-chart-line-fill"></i>&nbsp;STATS</small>
-                  <span class="badge"><?php echo $max_id; ?></span>
-                  <span class="badge"><i class="bi-x-circle-fill text-danger"></i>&nbsp;<?php echo $todo . ' - ' . $todo100 . '%'; ?></span>
-                  <span class="badge"><i class="bi-exclamation-diamond-fill text-warning"></i>&nbsp;<?php echo $in_progress . ' - ' . $in_progress100 . '%'; ?></span>
-                  <span class="badge"><i class="bi-check-square-fill text-success"></i>&nbsp;<?php echo $done . ' - ' . $done100 . '%'; ?></span>
                 </div>
               </div>
               <div class="tab-content" id="pills-tabContent">
@@ -556,6 +514,44 @@
         data-language="<?php echo defined('PREVIEWER_LANGUAGE') ? PREVIEWER_LANGUAGE : ''; ?>"
         style="display: hidden;">
       </span>
+
+      <!-- BOTTOM BAR (always visible, like the header) -->
+      <nav class="navbar navbar-dark fixed-bottom brain-bottom-bar">
+        <div class="container-fluid justify-content-center">
+          <div class="brain-paginator">
+            <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to FIRST entry">
+              <a class="btn btn-primary btn-sm <?php if ($id == 1) echo 'disabled'; ?>" href="?id=1">
+                <i class="bi bi-chevron-bar-left"></i>
+              </a>
+            </span>
+            <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to PREVIOUS unfinished entry">
+              <a class="btn btn-primary btn-sm <?php if (!isset($prev_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($prev_id)) echo $prev_id; ?>">
+                <i class="bi bi-skip-start-fill"></i>
+              </a>
+            </span>
+            <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to PREVIOUS entry">
+              <a class="btn btn-primary btn-sm <?php if ($id == 1) echo 'disabled'; ?>" href="?id=<?php echo ($id > 1) ? ($id - 1) : 1; ?>" id="prev-btn">
+                <i class="bi bi-chevron-left"></i>
+              </a>
+            </span>
+            <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to NEXT entry">
+              <a class="btn btn-primary btn-sm <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php echo ($id < $max_id) ? ($id + 1) : $max_id; ?>" id="next-btn">
+                <i class="bi bi-chevron-right"></i>
+              </a>
+            </span>
+            <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to NEXT unfinished entry">
+              <a class="btn btn-primary btn-sm <?php if (!isset($next_id)) echo 'disabled'; ?>" href="?id=<?php if (isset($next_id)) echo $next_id; ?>">
+                <i class="bi bi-skip-end-fill"></i>
+              </a>
+            </span>
+            <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Go to LAST entry">
+              <a class="btn btn-primary btn-sm <?php if ($id == $max_id) echo 'disabled'; ?>" href="?id=<?php echo $max_id; ?>">
+                <i class="bi bi-chevron-bar-right"></i>
+              </a>
+            </span>
+          </div>
+        </div>
+      </nav>
 
     <?php else: ?>
       <div class="m-3">ACCESS DENIED! You are not authorized to access this page!</div>
