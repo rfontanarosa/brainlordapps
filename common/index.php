@@ -42,12 +42,13 @@
           <?php if (UserManager::isLogged()): ?>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="pills-tab" role="tablist">
               <li class="nav-item">
-                <a class="nav-link active" id="pills-translation-tab" data-bs-toggle="pill" data-bs-target="#pills-translation" type="button" role="tab" aria-controls="pills-translation" aria-selected="true">
-                  <i class="bi bi-translate"></i>&nbsp;TRANSLATION
-                </a>
+                <a class="nav-link active" id="pills-translation-tab" data-bs-toggle="pill" data-bs-target="#pills-translation" type="button" role="tab" aria-controls="pills-translation" aria-selected="true"><i class="bi bi-translate"></i>&nbsp;TRANSLATION</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="pills-search-tab" data-bs-toggle="pill" data-bs-target="#pills-search" type="button" role="tab" aria-controls="pills-search" aria-selected="false"><i class="bi bi-search"></i>&nbsp;SEARCH</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-stats-tab" data-bs-toggle="pill" data-bs-target="#pills-stats" type="button" role="tab" aria-controls="pills-stats" aria-selected="false"><i class="bi bi-bar-chart-line-fill"></i>&nbsp;STATS</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="pills-tools-tab" data-bs-toggle="pill" data-bs-target="#pills-tools" type="button" role="tab" aria-controls="pills-tools" aria-selected="false"><i class="bi bi-tools"></i>&nbsp;TOOLS</a>
@@ -496,6 +497,31 @@
                   <?php else: ?>
                     <div class="p-3">No tools.</div>
                   <?php endif; ?>
+                </div>
+                <div class="tab-pane fade" id="pills-stats" role="tabpanel" aria-labelledby="pills-stats-tab">
+                  <div class="row gx-2">
+                    <div class="col-md-12 col-lg-6">
+                      <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">STATS</div>
+                        <div class="card-body d-flex justify-content-between align-items-center">
+                          <small>TOTAL</small>
+                          <span class="badge"><?php echo $max_id; ?></span>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                          <small>TODO</small>
+                          <span class="badge"><i class="bi-x-circle-fill text-danger"></i>&nbsp;<?php echo $todo . ' - ' . $todo100 . '%'; ?></span>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                          <small>IN PROGRESS</small>
+                          <span class="badge"><i class="bi-exclamation-diamond-fill text-warning"></i>&nbsp;<?php echo $in_progress . ' - ' . $in_progress100 . '%'; ?></span>
+                        </div>
+                        <div class="card-footer d-flex justify-content-between align-items-center">
+                          <small>DONE</small>
+                          <span class="badge"><i class="bi-check-square-fill text-success"></i>&nbsp;<?php echo $done . ' - ' . $done100 . '%'; ?></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="tab-pane fade" id="pills-help" role="tabpanel" aria-labelledby="pills-help-tab">
                   <div class="row">
