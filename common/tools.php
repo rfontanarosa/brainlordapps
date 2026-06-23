@@ -21,9 +21,4 @@
 			</form>
 		</div>
 	</div>
-	<div class="col-md-12 col-lg-6">
-		<div class="card brain-card">
-			<div class="card-body" id="tool-result">TOOL RESULTS</div>
-		</div>
-	</div>
 </div>
