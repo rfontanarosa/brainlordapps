@@ -211,16 +211,16 @@ class DbManager {
 		return $rows;
 	}
 
-	public static function getTranslationsByUser($db, $uname, $block=0) {
+	public static function getTranslationsByUser($db, $uname, $filename='') {
 		$ret = array();
-		$query = "SELECT t1.id, t1.text, t1.ref, t2.translation FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE author=:author AND status = 2) AS t2 ON t1.id=t2.id_text ORDER BY t1.id";
-		if ($block != 0) {
-			$query = "SELECT t1.id, t1.text, t1.ref, t2.translation FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE author=:author AND status = 2) AS t2 ON t1.id=t2.id_text WHERE t1.block = :block ORDER BY t1.id";
+		$query = "SELECT t1.id, t1.text, t1.ref, t2.translation FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE author=:author AND status = 2) AS t2 ON t1.filename=t2.filename AND t1.file_index=t2.file_index ORDER BY t1.id";
+		if ($filename !== '') {
+			$query = "SELECT t1.id, t1.text, t1.ref, t2.translation FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE author=:author AND status = 2) AS t2 ON t1.filename=t2.filename AND t1.file_index=t2.file_index WHERE t1.filename = :filename ORDER BY t1.id";
 		}
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
-		if ($block != 0) {
-			$stmt->bindValue(':block', $block, SQLITE3_INTEGER);
+		if ($filename !== '') {
+			$stmt->bindValue(':filename', $filename, SQLITE3_TEXT);
 		}
 		$results = $stmt->execute();
 		while ($row = $results->fetchArray()) {
@@ -230,15 +230,15 @@ class DbManager {
 		return $ret;
 	}
 
-	public static function getMoreRecentTranslations($db, $block=0) {
+	public static function getMoreRecentTranslations($db, $filename='') {
 		$ret = array();
-		$query = "SELECT t1.id, t1.text, t1.ref, t2.translation FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE status = 2 GROUP BY id_text HAVING MAX(date)) AS t2 ON t1.id=t2.id_text ORDER BY t1.id";
-		if ($block != 0) {
-			$query = "SELECT t1.id, t1.text, t1.ref, t2.translation FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE status = 2 GROUP BY id_text HAVING MAX(date)) AS t2 ON t1.id=t2.id_text WHERE t1.block = :block ORDER BY t1.id";
+		$query = "SELECT t1.id, t1.text, t1.ref, t2.translation FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE status = 2 GROUP BY filename, file_index HAVING MAX(date)) AS t2 ON t1.filename=t2.filename AND t1.file_index=t2.file_index ORDER BY t1.id";
+		if ($filename !== '') {
+			$query = "SELECT t1.id, t1.text, t1.ref, t2.translation FROM texts AS t1 LEFT OUTER JOIN (SELECT * FROM translations WHERE status = 2 GROUP BY filename, file_index HAVING MAX(date)) AS t2 ON t1.filename=t2.filename AND t1.file_index=t2.file_index WHERE t1.filename = :filename ORDER BY t1.id";
 		}
 		$stmt = $db->prepare($query);
-		if ($block != 0) {
-			$stmt->bindValue(':block', $block, SQLITE3_INTEGER);
+		if ($filename !== '') {
+			$stmt->bindValue(':filename', $filename, SQLITE3_TEXT);
 		}
 		$results = $stmt->execute();
 		while ($row = $results->fetchArray()) {
@@ -259,14 +259,15 @@ class DbManager {
 	}
 
 	public static function getOriginalDump($db, $block=0) {
+	public static function getOriginalDump($db, $filename='') {
 		$ret = array();
 		$query = "SELECT id, text, ref FROM texts ORDER BY id";
-		if ($block != 0) {
-			$query = "SELECT id, text, ref FROM texts WHERE block = :block ORDER BY id";
+		if ($filename !== '') {
+			$query = "SELECT id, text, ref FROM texts WHERE filename = :filename ORDER BY id";
 		}
 		$stmt = $db->prepare($query);
-		if ($block != 0) {
-			$stmt->bindValue(':block', $block, SQLITE3_INTEGER);
+		if ($filename !== '') {
+			$stmt->bindValue(':filename', $filename, SQLITE3_TEXT);
 		}
 		$results = $stmt->execute();
 		while ($row = $results->fetchArray()) {

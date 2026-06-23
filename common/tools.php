@@ -3,7 +3,6 @@
 		<div class="card brain-card">
 			<div class="card-header d-flex justify-content-between align-items-center">TOOLS</div>
 			<form action="export_dump.php" method="post">
-				<input type="hidden" name="block" value="0" />
 				<div class="card-body">
 					<label for="export-filename" class="form-label">Filename</label>
 					<select class="form-select mb-3" id="export-filename" name="filename">

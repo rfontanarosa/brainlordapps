@@ -7,8 +7,8 @@
         exit;
     }
 
-    $block = isset($_POST['block']) ? $_POST['block'] : 0;
     $type = isset($_POST['type']) ? $_POST['type'] : 1;
+    $source = isset($_POST['filename']) ? $_POST['filename'] : '';
 
     $author = UserManager::getUsername();
     $db = new SQLite3(SQLITE_FILENAME);
@@ -16,17 +16,17 @@
     $rows = [];
     switch ($type) {
         case 1:
-            $rows = DbManager::getOriginalDump($db, $block);
+            $rows = DbManager::getOriginalDump($db, $source);
             break;
         case 2:
-            $rows = DbManager::getTranslationsByUser($db, $author, $block);
+            $rows = DbManager::getTranslationsByUser($db, $author, $source);
             break;
         case 3:
-            $rows = DbManager::getMoreRecentTranslations($db, $block);
+            $rows = DbManager::getMoreRecentTranslations($db, $source);
             break;
     }
 
-    $filename = isset($_POST['filename']) ? preg_replace('/[^A-Za-z0-9._-]/', '_', basename($_POST['filename'])) : '';
+    $filename = $source !== '' ? preg_replace('/[^A-Za-z0-9._-]/', '_', basename($source)) : '';
     if ($filename === '') {
         switch ($type) {
             case 2: $filename = "dump_ita_$author.txt"; break;
