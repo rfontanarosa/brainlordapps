@@ -281,7 +281,7 @@ class DbManager {
 		if (!$lrow) {
 			return false;
 		}
-		$query = 'INSERT OR REPLACE INTO translations (filename, file_index, author, translation, status, date, tags, comment) VALUES (:filename, :file_index, :author, :translation, :status, :date, :tags, :comment)';
+		$query = 'INSERT INTO translations (filename, file_index, author, translation, status, date, tags, comment) VALUES (:filename, :file_index, :author, :translation, :status, :date, :tags, :comment) ON CONFLICT(filename, file_index, author) DO UPDATE SET translation = excluded.translation, status = excluded.status, date = excluded.date, tags = excluded.tags, comment = excluded.comment';
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':filename', $lrow['filename'], SQLITE3_TEXT);
 		$stmt->bindValue(':file_index', $lrow['file_index'], SQLITE3_INTEGER);
