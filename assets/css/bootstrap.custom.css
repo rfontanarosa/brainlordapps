@@ -4,9 +4,10 @@ html {
 }
 
 body {
-  height: 100%;
+  min-height: 100%;
   background: #0D1117;
   color: #f0f6fc;
+  padding-bottom: 3.5rem;
 }
 
 .badge {
@@ -87,21 +88,27 @@ body {
   height: 2rem;
 }
 
-.brain-translation-id {
-  display: flex;
-  gap: 1rem;
-  justify-content: start;
-  align-items: center;
-  color: #f0f6fc;
-  font-size: 1.2rem;
-}
-
 .brain-stats {
   display: flex;
   gap: 1rem;
   justify-content: end;
   align-items: center;
   color: #f0f6fc;
+}
+
+.brain-file-selector {
+  max-width: 20rem;
+}
+.brain-file-selector select,
+.brain-file-selector select:focus,
+.brain-file-selector select:focus-visible,
+.brain-file-selector select:disabled {
+  background-color: #0D1117;
+  border-color: #3D444E;
+  color: #f0f6fc;
+}
+.brain-file-selector select:focus {
+  border-color: #4493F8;
 }
 
 .navbar {
@@ -118,6 +125,11 @@ body {
 .navbar .navbar-toggler:focus {
   background-color: #262C36;
   border-color: #3D444E;
+}
+
+.brain-bottom-bar {
+  border-top: 1px solid #3D444E;
+  border-bottom: none;
 }
 
 .card {
@@ -157,10 +169,6 @@ body {
 .card input:focus, .card select:focus, .card textarea:focus {
   border-color: #4493F8;
 }
-.card input::-moz-placeholder {
-  color: #9198a1;
-  box-shadow: none;
-}
 .card input::placeholder {
   color: #9198a1;
   box-shadow: none;
@@ -188,7 +196,8 @@ body {
   border-collapse: collapse;
   width: 100%;
 }
-#preview-container .info-box table th,
-#preview-container .info-box table td {
+#preview-container .info-box table th, #preview-container .info-box table td {
   border: 1px solid #3D444E;
-}/*# sourceMappingURL=bootstrap.custom.css.map */
+}
+
+/*# sourceMappingURL=bootstrap.custom.css.map */

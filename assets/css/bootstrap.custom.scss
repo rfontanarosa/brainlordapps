@@ -111,21 +111,29 @@ body {
   }
 }
 
-.brain-translation-id {
-  display: flex;
-  gap: 1rem;
-  justify-content: start;
-  align-items: center;
-  color: $text-primaryColor;
-  font-size: 1.2rem;
-}
-
 .brain-stats {
   display: flex;
   gap: 1rem;
   justify-content: end;
   align-items: center;
   color: $text-primaryColor;
+}
+
+.brain-file-selector {
+  max-width: 20rem;
+
+  select,
+  select:focus,
+  select:focus-visible,
+  select:disabled {
+    background-color: $bgColor-default;
+    border-color: $borderColor-default;
+    color: $text-primaryColor;
+  }
+
+  select:focus {
+    border-color: $input-borderColor-focus;
+  }
 }
 
 .navbar {

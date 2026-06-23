@@ -102,6 +102,7 @@
             exit('<div class="m-3">ERROR! Index out of range!</div></body></html>');
           }
           $files = DbManager::getFiles($db);
+          $file_indexes = [];
           // AUTHORS
           $authors = DbManager::getAuthors($db);
           // PAGINATION
@@ -119,6 +120,8 @@
           if ($row = DbManager::getOriginalById($db, $id)) {
             $text = $row['text'];
             $size = $row['size'];
+            $filename = $row['filename'];
+            $file_index = $row['file_index'];
             $ref = isset($row['ref']) && $row['ref'] != '' ? $row['ref'] : '—';
             $address = (isset($row['address']) && $row['address'] !== '')
               ? '0x' . dechex(stripos(trim($row['address']), '0x') === 0 ? hexdec($row['address']) : (int)$row['address'])
@@ -127,6 +130,7 @@
             if (defined('NEWLINE_REPLACE') && NEWLINE_REPLACE && defined('NEWLINECHAR')) {
               $text = str_replace(NEWLINECHAR, '&#13;&#10;', $text);
             }
+            $file_indexes = DbManager::getFileIndexesByFilename($db, $filename);
           }
           $translations = [];
           // TRANSLATION
@@ -185,9 +189,37 @@
         <div class="row h-100">
           <div class="px-0">
             <div class="container-fluid mb-2 mt-2">
-                </div>
+              <!-- GAME SELECTOR + FILE SELECTOR + FILE INDEX SELECTOR -->
+              <div class="row mb-2 mt-2 gx-2">
+                <!-- FILE SELECTOR -->
+                <div class="brain-file-selector">
+                  <?php if (count($files) >= 1): ?>
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-text"><i class="bi bi-folder2-open"></i>&nbsp;File</span>
+                      <select class="form-select form-select-sm" onchange="if (this.value) window.location.href = '?id=' + this.value;" <?php if (count($files) <= 1) echo 'disabled'; ?>>
+                        <?php foreach ($files as $file): ?>
+                          <option value="<?php echo (int)$file['first_id']; ?>" <?php if (isset($filename) && $file['filename'] === $filename) echo 'selected'; ?>>
+                            <?php echo htmlspecialchars($file['filename']); ?> (<?php echo (int)$file['cnt']; ?>)
+                          </option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
                   <?php endif; ?>
                 </div>
+                <!-- FILE INDEX SELECTOR -->
+                <div class="brain-file-selector">
+                  <?php if (count($file_indexes) > 1): ?>
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-text"><i class="bi bi-hash"></i>Index</span>
+                      <select class="form-select form-select-sm" onchange="if (this.value) window.location.href = '?id=' + this.value;">
+                        <?php foreach ($file_indexes as $entry): ?>
+                          <option value="<?php echo (int)$entry['id']; ?>" <?php if ((int)$entry['id'] === (int)$id) echo 'selected'; ?>>
+                            <?php echo (int)$entry['file_index']; ?>
+                          </option>
+                        <?php endforeach; ?>
+                      </select>
+                    </div>
+                  <?php endif; ?>
                 </div>
               </div>
               <div class="tab-content" id="pills-tabContent">
