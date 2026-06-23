@@ -27,25 +27,25 @@
 					$author = isset($_POST['author']) && $_POST['author'] !== '' ? $_POST['author'] : UserManager::getUsername();
 					$db = new SQLite3(SQLITE_FILENAME);
 					if ($type == 'ref') {
-						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT id_text, status FROM translations WHERE author = :author GROUP BY id_text HAVING MAX(date)) as ts ON tx.id = ts.id_text  WHERE ref LIKE :text_to_search ORDER BY id ASC";
+						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT filename, file_index, status FROM translations WHERE author = :author GROUP BY filename, file_index HAVING MAX(date)) as ts ON tx.filename = ts.filename AND tx.file_index = ts.file_index WHERE ref LIKE :text_to_search ORDER BY id ASC";
 					} else if ($type == 'original') {
-						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status, tx.text FROM texts as tx LEFT JOIN (SELECT id_text, status FROM translations WHERE author = :author GROUP BY id_text HAVING MAX(date)) as ts ON tx.id = ts.id_text WHERE text LIKE :text_to_search ORDER BY id ASC";
+						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status, tx.text FROM texts as tx LEFT JOIN (SELECT filename, file_index, status FROM translations WHERE author = :author GROUP BY filename, file_index HAVING MAX(date)) as ts ON tx.filename = ts.filename AND tx.file_index = ts.file_index WHERE text LIKE :text_to_search ORDER BY id ASC";
 					} else if ($type == 'new') {
-						$query = "SELECT id_text, COALESCE(status, 0) as status, translation FROM translations WHERE translation LIKE :text_to_search AND author = :author GROUP BY id_text HAVING MAX(date) ORDER BY id_text ASC";
+						$query = "SELECT tx.id, COALESCE(t.status, 0) as status, t.translation FROM translations as t JOIN texts as tx ON tx.filename = t.filename AND tx.file_index = t.file_index WHERE t.translation LIKE :text_to_search AND t.author = :author GROUP BY tx.id HAVING MAX(t.date) ORDER BY tx.id ASC";
 					} else if ($type == 'comment') {
-						$query = "SELECT id_text, COALESCE(status, 0) as status FROM translations WHERE comment LIKE :text_to_search AND author = :author ORDER BY id_text ASC";
+						$query = "SELECT tx.id, COALESCE(t.status, 0) as status FROM translations as t JOIN texts as tx ON tx.filename = t.filename AND tx.file_index = t.file_index WHERE t.comment LIKE :text_to_search AND t.author = :author ORDER BY tx.id ASC";
 					} else if ($type == 'duplicates') {
-						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text WHERE text = (SELECT text FROM texts WHERE id = :text_to_search) ORDER BY id ASC";
+						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.filename = ts.filename AND tx.file_index = ts.file_index WHERE text = (SELECT text FROM texts WHERE id = :text_to_search) ORDER BY id ASC";
 					} else if ($type == 'personal_all') {
-						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text ORDER BY id ASC";
+						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.filename = ts.filename AND tx.file_index = ts.file_index ORDER BY id ASC";
 					} else if ($type == 'personal_todo') {
-						$query = "SELECT tx.id, COALESCE(ts.status, -1) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text WHERE ts.id_text IS NULL OR ts.status = 0 ORDER BY id ASC";
+						$query = "SELECT tx.id, COALESCE(ts.status, -1) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.filename = ts.filename AND tx.file_index = ts.file_index WHERE ts.filename IS NULL OR ts.status = 0 ORDER BY id ASC";
 					} else if ($type == 'personal_in_progress') {
-						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text WHERE status = 1 ORDER BY id ASC";
+						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.filename = ts.filename AND tx.file_index = ts.file_index WHERE ts.status = 1 ORDER BY id ASC";
 					} else if ($type == 'personal_done') {
-						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.id = ts.id_text WHERE status = 2 ORDER BY id ASC";
+						$query = "SELECT tx.id, COALESCE(ts.status, 0) as status FROM texts as tx LEFT JOIN (SELECT * FROM translations WHERE author = :author) as ts ON tx.filename = ts.filename AND tx.file_index = ts.file_index WHERE ts.status = 2 ORDER BY id ASC";
 					} else if ($type == 'global_untranslated') {
-						$query = "SELECT id, 0 as status FROM texts WHERE id NOT IN (SELECT distinct(id_text) FROM translations WHERE status = 2) ORDER BY id ASC";
+						$query = "SELECT id, 0 as status FROM texts WHERE id NOT IN (SELECT tx.id FROM texts as tx JOIN translations as t ON tx.filename = t.filename AND tx.file_index = t.file_index WHERE t.status = 2) ORDER BY id ASC";
 					} else {
 						json_error(400, 'Unknown search type');
 					}

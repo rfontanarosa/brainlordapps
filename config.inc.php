@@ -148,7 +148,7 @@ class DbManager {
 
 	public static function getNextIdByUserAndId($db, $uname, $id) {
 		$ret = 0;
-		$query = 'SELECT MIN(id) FROM texts WHERE id NOT IN (SELECT id_text FROM translations WHERE author = :author AND status = :status) AND id > :id';
+		$query = 'SELECT MIN(id) FROM texts WHERE id NOT IN (SELECT tx.id FROM texts AS tx JOIN translations AS t ON tx.filename = t.filename AND tx.file_index = t.file_index WHERE t.author = :author AND t.status = :status) AND id > :id';
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
 		$stmt->bindValue(':status', 2, SQLITE3_INTEGER);
@@ -163,7 +163,7 @@ class DbManager {
 
 	public static function getPrevIdByUserAndId($db, $uname, $id) {
 		$ret = 0;
-		$query = 'SELECT MAX(id) FROM texts WHERE id NOT IN (SELECT id_text FROM translations WHERE author = :author AND status = :status) AND id < :id';
+		$query = 'SELECT MAX(id) FROM texts WHERE id NOT IN (SELECT tx.id FROM texts AS tx JOIN translations AS t ON tx.filename = t.filename AND tx.file_index = t.file_index WHERE t.author = :author AND t.status = :status) AND id < :id';
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
 		$stmt->bindValue(':status', 2, SQLITE3_INTEGER);
@@ -187,7 +187,7 @@ class DbManager {
 	}
 
 	public static function getTranslationByUserAndOriginalId($db, $uname, $id) {
-		$query = 'SELECT * FROM translations WHERE author = :author AND id_text = :id';
+		$query = 'SELECT t.* FROM translations AS t JOIN texts AS tx ON tx.filename = t.filename AND tx.file_index = t.file_index WHERE t.author = :author AND tx.id = :id';
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
 		$stmt->bindValue(':id', $id, SQLITE3_INTEGER);
@@ -198,7 +198,7 @@ class DbManager {
 	}
 
 	public static function getOtherTranslationByOriginalId($db, $uname, $id) {
-		$query = 'SELECT * FROM translations WHERE author != :author AND id_text = :id ORDER BY date DESC';
+		$query = 'SELECT t.* FROM translations AS t JOIN texts AS tx ON tx.filename = t.filename AND tx.file_index = t.file_index WHERE t.author != :author AND tx.id = :id ORDER BY t.date DESC';
 		$stmt = $db->prepare($query);
 		$stmt->bindValue(':author', $uname, SQLITE3_TEXT);
 		$stmt->bindValue(':id', $id, SQLITE3_INTEGER);
@@ -258,7 +258,42 @@ class DbManager {
 		return $ret;
 	}
 
-	public static function getOriginalDump($db, $block=0) {
+	public static function getFileIndexesByFilename($db, $filename) {
+		$ret = array();
+		$query = "SELECT id, file_index FROM texts WHERE filename = :filename ORDER BY file_index";
+		$stmt = $db->prepare($query);
+		$stmt->bindValue(':filename', $filename, SQLITE3_TEXT);
+		$results = $stmt->execute();
+		while ($row = $results->fetchArray(SQLITE3_ASSOC)) {
+			$ret[] = $row;
+		}
+		$results->finalize();
+		return $ret;
+	}
+
+	public static function saveTranslation($db, $id, $author, $translation, $status, $date, $tags, $comment) {
+		$loc = $db->prepare('SELECT filename, file_index FROM texts WHERE id = :id');
+		$loc->bindValue(':id', $id, SQLITE3_INTEGER);
+		$lres = $loc->execute();
+		$lrow = $lres->fetchArray(SQLITE3_ASSOC);
+		$lres->finalize();
+		if (!$lrow) {
+			return false;
+		}
+		$query = 'INSERT OR REPLACE INTO translations (filename, file_index, author, translation, status, date, tags, comment) VALUES (:filename, :file_index, :author, :translation, :status, :date, :tags, :comment)';
+		$stmt = $db->prepare($query);
+		$stmt->bindValue(':filename', $lrow['filename'], SQLITE3_TEXT);
+		$stmt->bindValue(':file_index', $lrow['file_index'], SQLITE3_INTEGER);
+		$stmt->bindValue(':author', $author, SQLITE3_TEXT);
+		$stmt->bindValue(':translation', $translation, SQLITE3_TEXT);
+		$stmt->bindValue(':status', $status, SQLITE3_INTEGER);
+		$stmt->bindValue(':date', $date, SQLITE3_INTEGER);
+		$stmt->bindValue(':tags', $tags, SQLITE3_TEXT);
+		$stmt->bindValue(':comment', $comment, SQLITE3_TEXT);
+		$stmt->execute();
+		return true;
+	}
+
 	public static function getOriginalDump($db, $filename='') {
 		$ret = array();
 		$query = "SELECT id, text, ref FROM texts ORDER BY id";

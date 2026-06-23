@@ -19,7 +19,6 @@
 			case 'POST':
 				$result = array();
 				$id_text = $_POST['id_text'];
-				$project = 'TEST';
 				$author = UserManager::getUsername();
 				$translation = $_POST['translation'];
 				$status = $_POST['status'];
@@ -34,33 +33,16 @@
 					$stmt = $db->prepare($query);
 					$stmt->bindValue(':id', $id_text, SQLITE3_INTEGER);
 					$results = $stmt->execute();
+					$ids = array();
 					while ($row = $results->fetchArray()) {
-						$id_text = $row[0];
-						$query = 'INSERT OR REPLACE INTO translations VALUES (:id_text, :project, :author, :translation, :status, :date, :tags, :comment)';
-						$stmt = $db->prepare($query);
-						$stmt->bindValue(':id_text', $id_text, SQLITE3_INTEGER);
-						$stmt->bindValue(':project', $project, SQLITE3_TEXT);
-						$stmt->bindValue(':author', $author, SQLITE3_TEXT);
-						$stmt->bindValue(':translation', $translation, SQLITE3_TEXT);
-						$stmt->bindValue(':status', $status, SQLITE3_INTEGER);
-						$stmt->bindValue(':date', $date, SQLITE3_INTEGER);
-						$stmt->bindValue(':tags', $tags, SQLITE3_TEXT);
-						$stmt->bindValue(':comment', $comment, SQLITE3_TEXT);
-						$stmt->execute();
+						$ids[] = $row[0];
 					}
 					$results->finalize();
+					foreach ($ids as $duplicate_id) {
+						DbManager::saveTranslation($db, $duplicate_id, $author, $translation, $status, $date, $tags, $comment);
+					}
 				} else {
-					$query = 'INSERT OR REPLACE INTO translations VALUES (:id_text, :project, :author, :translation, :status, :date, :tags, :comment)';
-					$stmt = $db->prepare($query);
-					$stmt->bindValue(':id_text', $id_text, SQLITE3_INTEGER);
-					$stmt->bindValue(':project', $project, SQLITE3_TEXT);
-					$stmt->bindValue(':author', $author, SQLITE3_TEXT);
-					$stmt->bindValue(':translation', $translation, SQLITE3_TEXT);
-					$stmt->bindValue(':status', $status, SQLITE3_INTEGER);
-					$stmt->bindValue(':date', $date, SQLITE3_INTEGER);
-					$stmt->bindValue(':tags', $tags, SQLITE3_TEXT);
-					$stmt->bindValue(':comment', $comment, SQLITE3_TEXT);
-					$stmt->execute();
+					DbManager::saveTranslation($db, $id_text, $author, $translation, $status, $date, $tags, $comment);
 				}
 				$db->close();
 				unset($db);
